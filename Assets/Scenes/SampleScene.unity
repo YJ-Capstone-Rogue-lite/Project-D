@@ -403,10 +403,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478913956}
+  - component: {fileID: 478913957}
   - component: {fileID: 478913955}
   - component: {fileID: 478913954}
   - component: {fileID: 478913953}
-  - component: {fileID: 478913952}
   - component: {fileID: 478913951}
   - component: {fileID: 478913950}
   m_Layer: 14
@@ -452,23 +452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
---- !u!114 &478913952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478913949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b08415e633a4d27a4a801090003559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletPool: {fileID: 318339986}
-  WeaponTip: {fileID: 1216935491}
-  FireRate: 0.1
-  FireShakeForce: 0.8
-  FireShakeDuration: 0.02
 --- !u!114 &478913953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +522,29 @@ Transform:
   - {fileID: 1216935491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478913957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478913949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4ab0bd14e60584eb3cec39f9f45a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapon:
+    name: 
+    grade: 0
+    description: 
+    effect: 
+    type: 0
+    bulletPool: {fileID: 318339986}
+    weaponTip: {fileID: 1216935491}
+    fireRate: 5
+    fireShakeForce: 0.1
+    fireShakeDuration: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,9 +691,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pc2D: {fileID: 519420034}
   _serializedAxis: 1
-  MaxHorizontalInfluence: 5
-  MaxVerticalInfluence: 4
-  InfluenceSmoothness: 0.1
+  MaxHorizontalInfluence: 10
+  MaxVerticalInfluence: 10
+  InfluenceSmoothness: 0
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,8 +730,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.3
-    height: 0.3
+    width: 0.385
+    height: 0.385
   IsRelativeSizeAndPosition: 1
 --- !u!114 &519420038
 MonoBehaviour:
