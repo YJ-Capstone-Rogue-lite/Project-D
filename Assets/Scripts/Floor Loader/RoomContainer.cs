@@ -11,9 +11,9 @@ public struct RoomContainer
 
 public struct RoomData
 {
-    public int[ , ]         roomSize;
-    public TileType[ , ]    tileTable;
-    public GameObject[ , ]  objectTable;
+    public int[]           roomSize;
+    public TileType[,]    tileTable;
+    public GameObject[,]  objectTable;
 }
 
 public enum TileType
