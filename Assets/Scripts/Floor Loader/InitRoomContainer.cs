@@ -4,68 +4,39 @@ using UnityEngine;
 
 public partial class FloorLoader : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
-    static void InitRoomContainer()
+    private static class InitRoomContainer
     {
-        RoomContainer temp = new();
-        temp.defaultRoomData = new RoomData[] {
-            new RoomData{
-                roomSize = new int[] { 1, 1 },
-                tileTable = new TileType[,] {
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL }
+        public static readonly RoomContainer roomContainer;
+        static InitRoomContainer()
+        {
+            roomContainer = new() {
+                defaultRoomData = new RoomData[] {
+                    new RoomData{
+                        roomSize = new bool[,] { { true } },
+                        path = "TileMap/Rooms/Default Room 1"
+                    },
+                    new RoomData{
+                        roomSize = new bool[,] { { true } },
+                        path = "TileMap/Rooms/Default Room 2"
+                    }
                 },
-                objectTable = new GameObject[,] {
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null }
-                }
-            }
-        };
-        temp.overSizeRoomData = new RoomData[] {
-            new RoomData{
-                roomSize = new int[] { 2, 1 },
-                tileTable = new TileType[,] {
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL }
+                overSizeRoomData = new RoomData[] {
+                    new RoomData{
+                        roomSize = new bool[,] { { true, false }, { true, true } },
+                        path = "TileMap/Rooms/OverSize Room 1"               
+                    },
+                    new RoomData{
+                        roomSize = new bool[,] { { true }, { true } },
+                        path = "TileMap/Rooms/OverSize Room 2"               
+                    }
                 },
-                objectTable = new GameObject[,] {
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null }
+                specialRoomData = new RoomData[] {
+                    new RoomData{
+                        roomSize = new bool[,] { { true } },
+                        path = "TileMap/Rooms/Special Room 1"
+                    }
                 }
-            }
-        };
-        temp.specialRoomData = new RoomData[] {
-            new RoomData{
-                roomSize = new int[] { 1, 1 },
-                tileTable = new TileType[,] {
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.FLOOR, TileType.FLOOR, TileType.WALL },
-                    { TileType.WALL, TileType.WALL, TileType.WALL, TileType.WALL }
-                },
-                objectTable = new GameObject[,] {
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null },
-                    { null, null, null, null }
-                }
-            }
-        };
+            };
+        }
     }
 }
