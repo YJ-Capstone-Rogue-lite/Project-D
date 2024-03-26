@@ -17,16 +17,19 @@ public class Title_Btn : MonoBehaviour
     [SerializeReference] private GameObject no_Btn;
 
     [SerializeReference] private TMP_Text popup_Text;
+    
 
     private void Start()
     {
+
+        DataManager.Instance.LoadGameData();
         option_Popup.SetActive(false);
         popUP.SetActive(false);
     }
 
     public void Click_newGame()
     {
-        if (true) // 플레이어 데이터가 있을경우 적기
+        if (System.IO.File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우 적기
         {
             popUP.SetActive(true);
         }
@@ -66,6 +69,7 @@ public class Title_Btn : MonoBehaviour
 
     public void quit_Btn()
     {
+        DataManager.Instance.SaveGameData();
         Application.Quit();
     }
 
