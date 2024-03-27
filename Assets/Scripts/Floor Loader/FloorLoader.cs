@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public partial class FloorLoader : MonoBehaviour
@@ -42,6 +43,17 @@ public partial class FloorLoader : MonoBehaviour
         SelectPorintRoom();
         ChangeSpacialRoom();
         CreateRooms();
+
+        StringBuilder temp = new();
+        for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
+        {
+            for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
+            {
+                temp.Append(m_roomNumberTablel[i, j] + " ");
+            }
+            temp.AppendLine();
+        }
+        Debug.Log(temp);
     }
 
 
@@ -50,10 +62,10 @@ public partial class FloorLoader : MonoBehaviour
         int x = 0, y = 0;
         for(int i=0; i<floorSize*floorSize; i++)
         {
-            x = i % floorSize;
-            y = i / floorSize;
-            m_RoomTablel[y, x] = roomContainer.defaultRoomData[Random.Range(0, roomContainer.defaultRoomData.Length)];
-            m_roomNumberTablel[y, x] = roomIdx++;
+            x = i / floorSize;
+            y = i % floorSize;
+            m_RoomTablel[x, y] = roomContainer.defaultRoomData[Random.Range(0, roomContainer.defaultRoomData.Length)];
+            m_roomNumberTablel[x, y] = roomIdx++;
         }
     }
     private void ChangeOverSizeRoom()
@@ -67,15 +79,19 @@ public partial class FloorLoader : MonoBehaviour
                 y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1));
             } while(SelectedRoomCheck(roomData, x, y));
 
-            m_RoomTablel[y, x] = roomData;
-            m_roomNumberTablel[y, x] = roomIdx++;
-            for(int i=y; i<y+roomData.roomSize.GetLength(0); i++)
+            for(int i=x; i<x+roomData.roomSize.GetLength(0); i++)
             {
-                for(int j=x; j<x+roomData.roomSize.GetLength(1); j++)
+                for(int j=y; j<y+roomData.roomSize.GetLength(1); j++)
                 {
-                    if(roomData.roomSize[i-y, j-x])m_selectedRoomTablel[i, j] = true;
+                    if(roomData.roomSize[i-x, j-y])
+                    {
+                        m_RoomTablel[i, j] = roomData;
+                        m_roomNumberTablel[i, j] = roomIdx;
+                        m_selectedRoomTablel[i, j] = true;
+                    }
                 }
             }
+            roomIdx++;
         }
     }
     private void SelectPorintRoom()
@@ -89,8 +105,8 @@ public partial class FloorLoader : MonoBehaviour
                 y = Random.Range(0, floorSize);
             } while(SelectedRoomCheck(x, y));
 
-            m_selectedRoomTablel[y, x] = true;
-            m_roomNumberTablel[y, x] = roomIdx++;
+            m_selectedRoomTablel[x, y] = true;
+            m_roomNumberTablel[x, y] = roomIdx++;
         }
     }
     private void ChangeSpacialRoom()
@@ -104,42 +120,50 @@ public partial class FloorLoader : MonoBehaviour
                 y = Random.Range(0, floorSize);
             } while(SelectedRoomCheck(x, y));
 
-            m_RoomTablel[y, x] = roomData;
-            m_roomNumberTablel[y, x] = roomIdx++;
-            m_selectedRoomTablel[y, x] = true;
+            m_RoomTablel[x, y] = roomData;
+            m_roomNumberTablel[x, y] = roomIdx++;
+            m_selectedRoomTablel[x, y] = true;
         }
     }
-
+    private void Triangulator()
+    {
+        
+    }
 
 
     private void CreateRooms()
     {
+        StringBuilder st = new();
         HashSet<int> ints = new();
         for(int i=0; i<floorSize; i++)
         {
             for(int j=0; j<floorSize; j++)
             {
-                if(m_selectedRoomTablel[j, i] && !ints.Contains(m_roomNumberTablel[j, i]))
+                // if(m_selectedRoomTablel[i, j])
+                if(m_selectedRoomTablel[i, j] && !ints.Contains(m_roomNumberTablel[i, j]))
                 {
-                    GameObject temp = Resources.Load(m_RoomTablel[j, i].path) as GameObject;
+                    GameObject temp = Resources.Load(m_RoomTablel[i, j].path) as GameObject;
                     temp = Instantiate(temp, gameObject.transform);
-                    temp.transform.position = new Vector2(i*roomSize_Width, j*roomSize_Height);
-                    ints.Add(m_roomNumberTablel[j, i]);
+                    temp.transform.position = new Vector2(j*roomSize_Width, -(i*roomSize_Height));
+                    ints.Add(m_roomNumberTablel[i, j]);
                 }
+                st.Append(m_selectedRoomTablel[i, j] + " ");
             }
+            st.AppendLine();
         }
+        Debug.Log(st);
     }
 
     private bool SelectedRoomCheck(int x, int y)
     {
-        return m_selectedRoomTablel[y, x];
+        return m_selectedRoomTablel[x, y];
     }
     private bool SelectedRoomCheck(RoomData roomData, int x, int y)
     {
         bool check = false;
-        for(int i=y; i<y+roomData.roomSize.GetLength(0); i++)
+        for(int i=x; i<x+roomData.roomSize.GetLength(0); i++)
         {
-            for(int j=x; j<x+roomData.roomSize.GetLength(1); j++)
+            for(int j=y; j<y+roomData.roomSize.GetLength(1); j++)
             {
                 if(m_selectedRoomTablel[i, j]) check = true;
             }

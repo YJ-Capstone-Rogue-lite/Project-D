@@ -22,11 +22,13 @@ public partial class FloorLoader : MonoBehaviour
                 },
                 overSizeRoomData = new RoomData[] {
                     new RoomData{
-                        roomSize = new bool[,] { { true, false }, { true, true } },
+                        roomSize = new bool[,] { { true, false }, 
+                                                 { true, true } },
                         path = "TileMap/Rooms/OverSize Room 1"               
                     },
                     new RoomData{
-                        roomSize = new bool[,] { { true }, { true } },
+                        roomSize = new bool[,] { { true }, 
+                                                 { true } },
                         path = "TileMap/Rooms/OverSize Room 2"               
                     }
                 },
