@@ -1,35 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Title_Btn : MonoBehaviour
 {
-    [SerializeReference] private GameObject newGame_Btn;
-    [SerializeReference] private GameObject loadGame_Btn;
-    [SerializeReference] private GameObject option_Btn;
-    [SerializeReference] private GameObject quitGame_Btn;
+    [SerializeReference] private GameObject newGame;
+    [SerializeReference] private GameObject loadGame;
+    [SerializeReference] private GameObject option;
+    [SerializeReference] private GameObject quitGame;
     [SerializeReference] private GameObject popUP;
     [SerializeReference] private GameObject option_Popup;
-    [SerializeReference] private GameObject apply_Btn;
-    [SerializeReference] private GameObject yes_Btn;
-    [SerializeReference] private GameObject no_Btn;
+    [SerializeReference] private GameObject apply;
+    [SerializeReference] private GameObject yes;
+    [SerializeReference] private GameObject no;
+
+    [SerializeReference] private Button Load_Btn;
 
     [SerializeReference] private TMP_Text popup_Text;
     
 
     private void Start()
     {
-
+        if(File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName))
+        {
+            Load_Btn.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            Load_Btn.GetComponent<Button>().interactable = false;
+        }
         DataManager.Instance.LoadGameData();
         option_Popup.SetActive(false);
         popUP.SetActive(false);
     }
 
+    private void OnApplicationQuit()
+    {
+        DataManager.Instance.SaveGameData();
+    }
+
     public void Click_newGame()
     {
-        if (System.IO.File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우 적기
+        if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우
         {
             popUP.SetActive(true);
         }
@@ -69,9 +84,10 @@ public class Title_Btn : MonoBehaviour
 
     public void quit_Btn()
     {
-        DataManager.Instance.SaveGameData();
         Application.Quit();
     }
+
+
 
 
 

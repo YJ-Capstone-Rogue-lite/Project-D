@@ -59,3 +59,10 @@ public class DataManager : MonoBehaviour
         print("저장 완료");
     }
 }
+public class Data
+{
+    string player_name;
+    int player_hp;
+    int player_shield;
+    int player_speed;
+}
