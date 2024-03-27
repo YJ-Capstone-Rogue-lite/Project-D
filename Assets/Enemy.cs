@@ -38,8 +38,26 @@ public class Enemy : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
     }
 
-    private void GetTarget()
+    private void GetTarget() //플레이어 위치 찾기
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player")) //플레이어에게 접촉했을 때
+        {
+            Destroy(other.gameObject);
+            target = null;
+        }else if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
 }
