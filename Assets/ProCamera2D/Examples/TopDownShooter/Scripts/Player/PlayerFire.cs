@@ -3,6 +3,8 @@ using System.Collections;
 
 namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
 {
+
+
     public class PlayerFire : MonoBehaviour
     {
         // 총알을 관리하는 객체
