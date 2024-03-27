@@ -630,7 +630,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -654,8 +654,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02af6c4f0bc24443ac17f2a53c89c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  dashSpeed: 3
+  defaultspeed: 5
+  moveSpeed: 5
+  dashSpeed: 0
+  dashCoolTime: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
