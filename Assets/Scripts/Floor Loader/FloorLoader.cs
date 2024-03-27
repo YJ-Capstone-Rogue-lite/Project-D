@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using DelaunatorSharp;
 using UnityEngine;
 
 public partial class FloorLoader : MonoBehaviour
@@ -20,6 +22,37 @@ public partial class FloorLoader : MonoBehaviour
     private bool[,]                         m_selectedRoomTablel    = new bool[floorSize, floorSize];
     private int[,]                          m_roomNumberTablel      = new int[floorSize, floorSize];
     private RoomData[,]                     m_RoomTablel            = new RoomData[floorSize, floorSize];
+    private int                             roomIdx                 = 0;
+    Dictionary<Point, List<Point>>          nodes                   = new();
+    Point                                   startPoint;
+
+    private class Point : IPoint
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public Point(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is not IPoint) return false;
+            IPoint temp = (IPoint) obj;
+            return X == temp.X && Y == temp.Y;
+        }
+        public override int GetHashCode()
+        {
+            return System.HashCode.Combine(X, Y);
+        }
+
+        public static double GetABLineLength(IPoint l1, IPoint l2)
+        {
+            return System.Math.Abs(l1.X - l2.X) + System.Math.Abs(l1.Y - l2.Y);
+        }
+    }
 
     void Awake()
     {
@@ -34,13 +67,16 @@ public partial class FloorLoader : MonoBehaviour
 
     void Start() => FloorLoad();
 
-    private int roomIdx;
     public void FloorLoad()
     {
         roomIdx = 0;
         CreateDefaultRoom();
         ChangeOverSizeRoom();
         SelectPorintRoom();
+        ChangeStartRoom();
+        Triangulator();
+        MinimumSpanningTree();
+        ConnenctRooms();
         ChangeSpacialRoom();
         CreateRooms();
 
@@ -50,6 +86,16 @@ public partial class FloorLoader : MonoBehaviour
             for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
             {
                 temp.Append(m_roomNumberTablel[i, j] + " ");
+            }
+            temp.AppendLine();
+        }
+        Debug.Log(temp);
+        temp.Clear();
+        for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
+        {
+            for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
+            {
+                temp.Append(m_selectedRoomTablel[i, j] + " ");
             }
             temp.AppendLine();
         }
@@ -97,7 +143,7 @@ public partial class FloorLoader : MonoBehaviour
     private void SelectPorintRoom()
     {
         int x = 0, y = 0;
-        for(int i=0; i<4; i++)
+        for(int i=0; i<3; i++)
         {
             do
             {                
@@ -107,33 +153,124 @@ public partial class FloorLoader : MonoBehaviour
 
             m_selectedRoomTablel[x, y] = true;
             m_roomNumberTablel[x, y] = roomIdx++;
+        }
+    }
+    private void ChangeStartRoom()
+    {
+        int x = 0, y = 0;
+        do
+        {
+            x = Random.Range(0, floorSize);
+            y = Random.Range(0, floorSize-1);
+        } while(!SelectedRoomCheck(x, y) && SelectedRoomCheck(x, ++y));
+
+        m_RoomTablel[x, y] = roomContainer.specialRoomData[0];
+        m_roomNumberTablel[x, y] = roomIdx++;
+        m_selectedRoomTablel[x, y] = true;
+        startPoint = new (x, y);
+    }
+    private void Triangulator()
+    {
+        HashSet<IPoint> points = new();
+        for(int i=0; i<floorSize; i++)
+        {
+            for(int j=0; j<floorSize; j++)
+            {
+                if(m_selectedRoomTablel[i, j]) points.Add(new Point(i, j));
+            }
+        }
+        Dictionary<Point, HashSet<Point>> nodes = new();
+        Delaunator delaunator = new(points.ToArray());
+        delaunator.ForEachTriangleEdge((edge)=>{
+            if(!nodes.ContainsKey((Point)edge.P))nodes.Add((Point)edge.P, new());
+            nodes[(Point)edge.P].Add((Point)edge.Q);
+            if(!nodes.ContainsKey((Point)edge.Q))nodes.Add((Point)edge.Q, new());
+            nodes[(Point)edge.Q].Add((Point)edge.P);
+        });
+        foreach(Point hashPoint in nodes.Keys)
+            this.nodes.Add(hashPoint, nodes[hashPoint].ToList());
+    }
+    private void MinimumSpanningTree()
+    {
+        var mstEdges = new List<(Point, Point)>();
+        var selectedPoints = new HashSet<Point>();
+        var edges = new List<(Point point, Point neighbor, double distance)>();
+
+        selectedPoints.Add(startPoint);
+        foreach (var neighbor in nodes[startPoint])
+        {
+            edges.Add((startPoint, neighbor, Point.GetABLineLength(startPoint, neighbor)));
+        }
+
+        while (edges.Count > 0)
+        {
+            // 리스트를 거리에 따라 정렬
+            edges.Sort((a, b) => a.distance.CompareTo(b.distance));
+
+            var (currentPoint, nearestNeighbor, _) = edges[0];
+            edges.RemoveAt(0);
+
+            if (selectedPoints.Contains(nearestNeighbor))
+            {
+                continue;
+            }
+
+            selectedPoints.Add(nearestNeighbor);
+            mstEdges.Add((currentPoint, nearestNeighbor));
+
+            foreach (var neighbor in nodes[nearestNeighbor])
+            {
+                if (!selectedPoints.Contains(neighbor))
+                {
+                    edges.Add((nearestNeighbor, neighbor, Point.GetABLineLength(nearestNeighbor, neighbor)));
+                }
+            }
+        }
+
+        nodes = new();
+        foreach(var hashPoint in mstEdges)
+        {
+            if(!nodes.ContainsKey(hashPoint.Item1)) nodes.Add(hashPoint.Item1, new());
+            nodes[hashPoint.Item1].Add(hashPoint.Item2);
+            if(!nodes.ContainsKey(hashPoint.Item2)) nodes.Add(hashPoint.Item2, new());
+            nodes[hashPoint.Item2].Add(hashPoint.Item1);
+        }
+    }
+    private void ConnenctRooms()
+    {
+        foreach(Point hashPoint1 in nodes.Keys)
+        {
+            foreach(Point hashPoint2 in nodes[hashPoint1])
+            {
+                for (int x = System.Math.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= System.Math.Max((int)hashPoint1.X, (int)hashPoint1.X); x++)
+                {
+                    m_selectedRoomTablel[x, (int)hashPoint1.Y] = true;
+                }
+                for (int y =  System.Math.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= System.Math.Max((int)hashPoint1.Y, (int)hashPoint1.Y); y++)
+                {
+                    m_selectedRoomTablel[(int)hashPoint2.X, y] = true;
+                }
+            }
         }
     }
     private void ChangeSpacialRoom()
     {
         int x = 0, y = 0;
-        foreach(var roomData in roomContainer.specialRoomData)
+        for(int i=1; i<roomContainer.specialRoomData.Length; i++)
         {
             do
-            {                
+            {
                 x = Random.Range(0, floorSize);
-                y = Random.Range(0, floorSize);
-            } while(SelectedRoomCheck(x, y));
+                y = Random.Range(0, floorSize-1);
+            } while(!SelectedRoomCheck(x, y) && SelectedRoomCheck(x, ++y));
 
-            m_RoomTablel[x, y] = roomData;
+            m_RoomTablel[x, y] = roomContainer.specialRoomData[i];
             m_roomNumberTablel[x, y] = roomIdx++;
             m_selectedRoomTablel[x, y] = true;
         }
     }
-    private void Triangulator()
-    {
-        
-    }
-
-
     private void CreateRooms()
     {
-        StringBuilder st = new();
         HashSet<int> ints = new();
         for(int i=0; i<floorSize; i++)
         {
@@ -147,11 +284,9 @@ public partial class FloorLoader : MonoBehaviour
                     temp.transform.position = new Vector2(j*roomSize_Width, -(i*roomSize_Height));
                     ints.Add(m_roomNumberTablel[i, j]);
                 }
-                st.Append(m_selectedRoomTablel[i, j] + " ");
             }
-            st.AppendLine();
         }
-        Debug.Log(st);
+        Debug.Log(System.String.Join(" ",ints.ToArray()));
     }
 
     private bool SelectedRoomCheck(int x, int y)
