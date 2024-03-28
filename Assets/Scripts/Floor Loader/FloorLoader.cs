@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DelaunatorSharp;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class FloorLoader : MonoBehaviour
@@ -16,6 +17,7 @@ public partial class FloorLoader : MonoBehaviour
     public const int                        floorSize               = 8;
     public const int                        roomSize_Width          = 16;
     public const int                        roomSize_Height         = 12;
+    public const int                        selectRoomInt           = 5;
 
     public static readonly RoomContainer    roomContainer           = InitRoomContainer.roomContainer;
 
@@ -67,39 +69,45 @@ public partial class FloorLoader : MonoBehaviour
 
     void Start() => FloorLoad();
 
-    public void FloorLoad()
+    IEnumerator enumerator1()
     {
-        roomIdx = 0;
         CreateDefaultRoom();
         ChangeOverSizeRoom();
         SelectPorintRoom();
         ChangeStartRoom();
         Triangulator();
+        yield return new WaitForSecondsRealtime(2f);
         MinimumSpanningTree();
         ConnenctRooms();
         ChangeSpacialRoom();
         CreateRooms();
+    }
 
-        StringBuilder temp = new();
-        for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
-        {
-            for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
-            {
-                temp.Append(m_roomNumberTablel[i, j] + " ");
-            }
-            temp.AppendLine();
-        }
-        Debug.Log(temp);
-        temp.Clear();
-        for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
-        {
-            for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
-            {
-                temp.Append(m_selectedRoomTablel[i, j] + " ");
-            }
-            temp.AppendLine();
-        }
-        Debug.Log(temp);
+    public void FloorLoad()
+    {
+        roomIdx = 0;
+        StartCoroutine(enumerator1());
+
+        // StringBuilder temp = new();
+        // for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
+        // {
+        //     for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
+        //     {
+        //         temp.Append(m_roomNumberTablel[i, j] + " ");
+        //     }
+        //     temp.AppendLine();
+        // }
+        // Debug.Log(temp);
+        // temp.Clear();
+        // for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
+        // {
+        //     for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
+        //     {
+        //         temp.Append(m_selectedRoomTablel[i, j] + " ");
+        //     }
+        //     temp.AppendLine();
+        // }
+        // Debug.Log(temp);
     }
 
 
@@ -143,7 +151,7 @@ public partial class FloorLoader : MonoBehaviour
     private void SelectPorintRoom()
     {
         int x = 0, y = 0;
-        for(int i=0; i<3; i++)
+        for(int i=0; i<selectRoomInt; i++)
         {
             do
             {                
@@ -189,6 +197,7 @@ public partial class FloorLoader : MonoBehaviour
         });
         foreach(Point hashPoint in nodes.Keys)
             this.nodes.Add(hashPoint, nodes[hashPoint].ToList());
+        this.nodes1 = nodes;
     }
     private void MinimumSpanningTree()
     {
@@ -242,11 +251,11 @@ public partial class FloorLoader : MonoBehaviour
         {
             foreach(Point hashPoint2 in nodes[hashPoint1])
             {
-                for (int x = System.Math.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= System.Math.Max((int)hashPoint1.X, (int)hashPoint1.X); x++)
+                for (int x = System.Math.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= System.Math.Max((int)hashPoint1.X, (int)hashPoint2.X); x++)
                 {
                     m_selectedRoomTablel[x, (int)hashPoint1.Y] = true;
                 }
-                for (int y =  System.Math.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= System.Math.Max((int)hashPoint1.Y, (int)hashPoint1.Y); y++)
+                for (int y = System.Math.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= System.Math.Max((int)hashPoint1.Y, (int)hashPoint2.Y); y++)
                 {
                     m_selectedRoomTablel[(int)hashPoint2.X, y] = true;
                 }
@@ -286,7 +295,7 @@ public partial class FloorLoader : MonoBehaviour
                 }
             }
         }
-        Debug.Log(System.String.Join(" ",ints.ToArray()));
+        // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
     }
 
     private bool SelectedRoomCheck(int x, int y)
@@ -305,5 +314,51 @@ public partial class FloorLoader : MonoBehaviour
         }
 
         return check;
+    }
+
+    Dictionary<Point, HashSet<Point>>          nodes1                   = new();
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        foreach(var keys in nodes1.Keys)
+        {
+            foreach(var line in nodes1[keys])
+            {
+                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, 1);
+                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, 1);
+                Gizmos.DrawLine(p1, p2);
+            }
+        }
+        Gizmos.color = Color.green;
+
+        foreach(var keys in nodes.Keys)
+        {
+            foreach(var line in nodes[keys])
+            {
+                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, 0);
+                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, 0);
+                Gizmos.DrawLine(p1, p2);
+            }
+        }
+
+        for(int i=0; i<floorSize; i++)
+        {
+            for(int j=0; j<floorSize; j++)
+            {
+                if(m_selectedRoomTablel[i, j])
+                {
+                    var p = new Vector3((float)j*roomSize_Width + 6, -((float)i*roomSize_Height) - 9, 0);
+                    Gizmos.DrawWireSphere(p, 3);
+                }
+            }
+        }
+        if(startPoint != null)
+        {
+            Gizmos.color = Color.blue;
+            var sp = new Vector3((float)startPoint.Y*roomSize_Width + 6, -((float)startPoint.X*roomSize_Height) - 9, 0);
+            Gizmos.DrawWireSphere(sp, 3);
+        }
     }
 }
