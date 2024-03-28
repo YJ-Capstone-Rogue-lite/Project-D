@@ -22,5 +22,11 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
     }
-
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy")) //Bullet에 접촉했을 때
+        {
+            Destroy(gameObject);
+        }
+    }
 }

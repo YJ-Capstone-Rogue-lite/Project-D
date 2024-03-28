@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     private Vector2 mousePos;
 
+    public float player_hp = 100;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         {
             fireTimer -= Time.deltaTime;
         }
-
+        player_die();
     }
 
     private void FixedUpdate()
@@ -57,4 +59,18 @@ public class Player : MonoBehaviour
         Instantiate(bulletPrefebs,firingPoint.position,firingPoint.rotation);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy")) //Bullet에 접촉했을 때
+        {
+            player_hp -= 20;
+        }
+    }
+    private void player_die()
+    {
+        if (player_hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

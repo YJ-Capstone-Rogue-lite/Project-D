@@ -6,8 +6,9 @@ public class Enemy : MonoBehaviour
 {
     public Transform target;
     public float speed = 3f;
-    public float rotateSpeed = 0.0025f;
+    public float rotateSpeed = 0.25f;
     public Rigidbody2D rb;
+    public float enemy_hp = 100;
 
     private void Start()
     {
@@ -23,7 +24,9 @@ public class Enemy : MonoBehaviour
         {
             RotateTowardTarget();
         }
-        
+
+        Enemy_die();
+
     }
     private void FixedUpdate()
     {
@@ -43,21 +46,22 @@ public class Enemy : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
-
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player")) //플레이어에게 접촉했을 때
+        if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
         {
-            Destroy(other.gameObject);
-            target = null;
-        }else if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            enemy_hp -= 20;
         }
     }
 
+    private void Enemy_die()
+    {
+        if (enemy_hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
