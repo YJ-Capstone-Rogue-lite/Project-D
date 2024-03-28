@@ -340,6 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1c82d143db31f478c79d68846c8024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorTile: {fileID: 11400000, guid: c9d4d831a49fe4a4a8a2ae21651dfcaa, type: 2}
+  doorTile: {fileID: 11400000, guid: b9d2c908ff33c2f4b9c623ea3dec503c, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

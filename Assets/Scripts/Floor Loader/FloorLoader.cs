@@ -5,6 +5,7 @@ using System.Text;
 using DelaunatorSharp;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public partial class FloorLoader : MonoBehaviour
 {
@@ -24,9 +25,13 @@ public partial class FloorLoader : MonoBehaviour
     private bool[,]                         m_selectedRoomTablel    = new bool[floorSize, floorSize];
     private int[,]                          m_roomNumberTablel      = new int[floorSize, floorSize];
     private RoomData[,]                     m_RoomTablel            = new RoomData[floorSize, floorSize];
-    private int                             roomIdx                 = 0;
     Dictionary<Point, List<Point>>          nodes                   = new();
+    Dictionary<int, System.Action<Tilemap>> RoomAction              = new();
+    private int                             roomIdx                 = 0;
     Point                                   startPoint;
+
+    [SerializeField] private TileBase       floorTile;
+    [SerializeField] private TileBase       doorTile;
 
     private class Point : IPoint
     {
@@ -65,6 +70,23 @@ public partial class FloorLoader : MonoBehaviour
         // }
 
         // instance = this;
+
+        RoomAction.Add(0, (tilemap)=>{
+            tilemap.SetTile(new Vector3Int(7, 0, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(8, 0, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(7, -1, 0), floorTile);
+            tilemap.SetTile(new Vector3Int(8, -1, 0), floorTile);
+        });
+        RoomAction.Add(1, (tilemap)=>{
+            tilemap.SetTile(new Vector3Int(0, -6, 0), doorTile);
+        });
+        RoomAction.Add(2, (tilemap)=>{
+            tilemap.SetTile(new Vector3Int(15, -6, 0), doorTile);
+        });
+        RoomAction.Add(3, (tilemap)=>{
+            tilemap.SetTile(new Vector3Int(7, -11, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(8, -11, 0), doorTile);
+        });
     }
 
     void Start() => FloorLoad();
@@ -87,27 +109,6 @@ public partial class FloorLoader : MonoBehaviour
     {
         roomIdx = 0;
         StartCoroutine(enumerator1());
-
-        // StringBuilder temp = new();
-        // for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
-        // {
-        //     for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
-        //     {
-        //         temp.Append(m_roomNumberTablel[i, j] + " ");
-        //     }
-        //     temp.AppendLine();
-        // }
-        // Debug.Log(temp);
-        // temp.Clear();
-        // for(int i=0; i< m_roomNumberTablel.GetLength(0); i++)
-        // {
-        //     for(int j=0; j<m_roomNumberTablel.GetLength(1); j++)
-        //     {
-        //         temp.Append(m_selectedRoomTablel[i, j] + " ");
-        //     }
-        //     temp.AppendLine();
-        // }
-        // Debug.Log(temp);
     }
 
 
@@ -257,7 +258,7 @@ public partial class FloorLoader : MonoBehaviour
                 }
                 for (int y = System.Math.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= System.Math.Max((int)hashPoint1.Y, (int)hashPoint2.Y); y++)
                 {
-                    m_selectedRoomTablel[(int)hashPoint2.X, y] = true;
+                    m_selectedRoomTablel[(int)hashPoint1.X, y] = true;
                 }
             }
         }
@@ -288,9 +289,19 @@ public partial class FloorLoader : MonoBehaviour
                 // if(m_selectedRoomTablel[i, j])
                 if(m_selectedRoomTablel[i, j] && !ints.Contains(m_roomNumberTablel[i, j]))
                 {
-                    GameObject temp = Resources.Load(m_RoomTablel[i, j].path) as GameObject;
-                    temp = Instantiate(temp, gameObject.transform);
+                    GameObject temp = Instantiate(Resources.Load(m_RoomTablel[i, j].path) as GameObject, gameObject.transform);
                     temp.transform.position = new Vector2(j*roomSize_Width, -(i*roomSize_Height));
+
+                    bool[] nextRooms = NextRoomCheck(i, j);
+                    for(int k=0; k<4; k++)
+                    {
+                        if(nextRooms[k])
+                        {
+                            var tilemap = temp.GetComponent<Tilemap>();
+                            RoomAction[k](tilemap);
+                        }
+                    }
+
                     ints.Add(m_roomNumberTablel[i, j]);
                 }
             }
@@ -298,9 +309,27 @@ public partial class FloorLoader : MonoBehaviour
         // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
     }
 
+    private bool[] NextRoomCheck(int x, int y)
+    {
+        bool[] temp = new bool[4];
+        int idx = 0;
+        for(int i= x-1; i<=x+1; i++)
+        {
+            for(int j=y-1; j<=y+1; j++)
+            {
+                if(System.Math.Abs(x-i) != System.Math.Abs(y-j))
+                {
+                    temp[idx++] = SelectedRoomCheck(i, j);
+                }
+            }
+        }
+        return temp;
+    }
+
     private bool SelectedRoomCheck(int x, int y)
     {
-        return m_selectedRoomTablel[x, y];
+        try { return m_selectedRoomTablel[x, y]; }
+        catch { return false; }
     }
     private bool SelectedRoomCheck(RoomData roomData, int x, int y)
     {
