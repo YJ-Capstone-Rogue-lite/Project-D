@@ -15,23 +15,23 @@ public partial class FloorLoader : MonoBehaviour
         get { return instance; }
     }
 
-    public const int                        floorSize               = 8;
-    public const int                        roomSize_Width          = 16;
-    public const int                        roomSize_Height         = 12;
-    public const int                        selectRoomInt           = 5;
+    public const int                                    floorSize               = 8;
+    public const int                                    roomSize_Width          = 16;
+    public const int                                    roomSize_Height         = 12;
+    public const int                                    selectRoomInt           = 5;
 
-    public static readonly RoomContainer    roomContainer           = InitRoomContainer.roomContainer;
+    public static readonly RoomContainer                roomContainer           = InitRoomContainer.roomContainer;
 
-    private bool[,]                         m_selectedRoomTablel    = new bool[floorSize, floorSize];
-    private int[,]                          m_roomNumberTablel      = new int[floorSize, floorSize];
-    private RoomData[,]                     m_RoomTablel            = new RoomData[floorSize, floorSize];
-    Dictionary<Point, List<Point>>          nodes                   = new();
-    Dictionary<int, System.Action<Tilemap>> RoomAction              = new();
-    private int                             roomIdx                 = 0;
-    Point                                   startPoint;
+    private bool[,]                                     m_selectedRoomTablel    = new bool[floorSize, floorSize];
+    private int[,]                                      m_roomNumberTablel      = new int[floorSize, floorSize];
+    private RoomData[,]                                 m_RoomTablel            = new RoomData[floorSize, floorSize];
+    Dictionary<Point, List<Point>>                      nodes                   = new();
+    Dictionary<int, System.Action<Tilemap, int, int>>   RoomAction              = new();
+    private int                                         roomIdx                 = 0;
+    Point                                               startPoint;
 
-    [SerializeField] private TileBase       floorTile;
-    [SerializeField] private TileBase       doorTile;
+    [SerializeField] private TileBase                   floorTile;
+    [SerializeField] private TileBase                   doorTile;
 
     private class Point : IPoint
     {
@@ -71,21 +71,21 @@ public partial class FloorLoader : MonoBehaviour
 
         // instance = this;
 
-        RoomAction.Add(0, (tilemap)=>{
-            tilemap.SetTile(new Vector3Int(7, 0, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(8, 0, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(7, -1, 0), floorTile);
-            tilemap.SetTile(new Vector3Int(8, -1, 0), floorTile);
+        RoomAction.Add(0, (tilemap, x, y)=>{
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), floorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), floorTile);
         });
-        RoomAction.Add(1, (tilemap)=>{
-            tilemap.SetTile(new Vector3Int(0, -6, 0), doorTile);
+        RoomAction.Add(1, (tilemap, x, y)=>{
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTile);
         });
-        RoomAction.Add(2, (tilemap)=>{
-            tilemap.SetTile(new Vector3Int(15, -6, 0), doorTile);
+        RoomAction.Add(2, (tilemap, x, y)=>{
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTile);
         });
-        RoomAction.Add(3, (tilemap)=>{
-            tilemap.SetTile(new Vector3Int(7, -11, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(8, -11, 0), doorTile);
+        RoomAction.Add(3, (tilemap, x, y)=>{
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTile);
         });
     }
 
@@ -291,22 +291,36 @@ public partial class FloorLoader : MonoBehaviour
                 {
                     GameObject temp = Instantiate(Resources.Load(m_RoomTablel[i, j].path) as GameObject, gameObject.transform);
                     temp.transform.position = new Vector2(j*roomSize_Width, -(i*roomSize_Height));
-
-                    bool[] nextRooms = NextRoomCheck(i, j);
-                    for(int k=0; k<4; k++)
-                    {
-                        if(nextRooms[k])
-                        {
-                            var tilemap = temp.GetComponent<Tilemap>();
-                            RoomAction[k](tilemap);
-                        }
-                    }
+                    
+                    Temp(temp, i, j);
 
                     ints.Add(m_roomNumberTablel[i, j]);
                 }
             }
         }
         // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
+    }
+
+    private void Temp(GameObject room, int x, int y)
+    {
+        var tilemap = room.GetComponent<Tilemap>();
+        for(int i=x; i<x+m_RoomTablel[x, y].roomSize.GetLength(0); i++)
+        {
+            for(int j=y; j<y+m_RoomTablel[x, y].roomSize.GetLength(1); j++)
+            {
+                if(m_RoomTablel[x, y].roomSize[i-x, j-y])
+                {
+                    bool[] nextRooms = NextRoomCheck(i, j);
+                    for(int k=0; k<4; k++)
+                    {
+                        if(nextRooms[k])
+                        {
+                            RoomAction[k](tilemap, i-x, j-y);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private bool[] NextRoomCheck(int x, int y)
@@ -319,7 +333,8 @@ public partial class FloorLoader : MonoBehaviour
             {
                 if(System.Math.Abs(x-i) != System.Math.Abs(y-j))
                 {
-                    temp[idx++] = SelectedRoomCheck(i, j);
+                    if(SelectedRoomCheck(i, j) && m_roomNumberTablel[x, y] != m_roomNumberTablel[i, j]) temp[idx++] = SelectedRoomCheck(i, j);
+                    else temp[idx++] = false;
                 }
             }
         }
