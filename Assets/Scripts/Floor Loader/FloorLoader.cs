@@ -30,8 +30,7 @@ public partial class FloorLoader : MonoBehaviour
     private int                                         roomIdx                 = 0;
     Point                                               startPoint;
 
-    [SerializeField] private TileBase                   floorTile;
-    [SerializeField] private TileBase                   doorTile;
+    [SerializeField] private TileBase[]                   floorTiles;
 
     private class Point : IPoint
     {
@@ -72,20 +71,30 @@ public partial class FloorLoader : MonoBehaviour
         // instance = this;
 
         RoomAction.Add(0, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), floorTile);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), floorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-1, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)-1, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)+0, 0), floorTiles[1]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)+0, 0), floorTiles[2]);
         });
         RoomAction.Add(1, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-4, 0), floorTiles[1]);
         });
         RoomAction.Add(2, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-4, 0), floorTiles[2]);
         });
         RoomAction.Add(3, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTile);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTile);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-11, 0), floorTiles[3]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)-11, 0), floorTiles[4]);
         });
     }
 
@@ -170,8 +179,8 @@ public partial class FloorLoader : MonoBehaviour
         do
         {
             x = Random.Range(0, floorSize);
-            y = Random.Range(0, floorSize-1);
-        } while(!SelectedRoomCheck(x, y) && SelectedRoomCheck(x, ++y));
+            y = Random.Range(0, floorSize);
+        } while(SelectedRoomCheck(x, y));
 
         m_RoomTablel[x, y] = roomContainer.specialRoomData[0];
         m_roomNumberTablel[x, y] = roomIdx++;
@@ -370,8 +379,8 @@ public partial class FloorLoader : MonoBehaviour
         {
             foreach(var line in nodes1[keys])
             {
-                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, 1);
-                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, 1);
+                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, -1);
+                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, -1);
                 Gizmos.DrawLine(p1, p2);
             }
         }
@@ -381,8 +390,8 @@ public partial class FloorLoader : MonoBehaviour
         {
             foreach(var line in nodes[keys])
             {
-                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, 0);
-                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, 0);
+                var p1 = new Vector3((float)keys.Y*roomSize_Width + 6, -((float)keys.X*roomSize_Height) - 9, -1);
+                var p2 = new Vector3((float)line.Y*roomSize_Width + 6, -((float)line.X*roomSize_Height) - 9, -1);
                 Gizmos.DrawLine(p1, p2);
             }
         }
@@ -393,7 +402,7 @@ public partial class FloorLoader : MonoBehaviour
             {
                 if(m_selectedRoomTablel[i, j])
                 {
-                    var p = new Vector3((float)j*roomSize_Width + 6, -((float)i*roomSize_Height) - 9, 0);
+                    var p = new Vector3((float)j*roomSize_Width + 6, -((float)i*roomSize_Height) - 9, -1);
                     Gizmos.DrawWireSphere(p, 3);
                 }
             }
@@ -401,7 +410,7 @@ public partial class FloorLoader : MonoBehaviour
         if(startPoint != null)
         {
             Gizmos.color = Color.blue;
-            var sp = new Vector3((float)startPoint.Y*roomSize_Width + 6, -((float)startPoint.X*roomSize_Height) - 9, 0);
+            var sp = new Vector3((float)startPoint.Y*roomSize_Width + 6, -((float)startPoint.X*roomSize_Height) - 9, -1);
             Gizmos.DrawWireSphere(sp, 3);
         }
     }

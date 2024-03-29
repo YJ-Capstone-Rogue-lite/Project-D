@@ -30,6 +30,15 @@ public partial class FloorLoader : MonoBehaviour
                         roomSize = new bool[,] { { true }, 
                                                  { true } },
                         path = "TileMap/Rooms/OverSize Room 2"               
+                    },
+                    new RoomData{
+                        roomSize = new bool[,] { { true, true }, 
+                                                 { true, true } },
+                        path = "TileMap/Rooms/OverSize Room 3"               
+                    },
+                    new RoomData{
+                        roomSize = new bool[,] { { true, true, true } },
+                        path = "TileMap/Rooms/OverSize Room 4"               
                     }
                 },
                 specialRoomData = new RoomData[] {
