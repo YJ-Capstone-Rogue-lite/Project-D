@@ -9,16 +9,16 @@ using UnityEngine.Tilemaps;
 
 public partial class FloorLoader : MonoBehaviour
 {
-    private static FloorLoader              instance;
-    public static FloorLoader               Instance
+    private static FloorLoader                          instance;
+    public static FloorLoader                           Instance
     {
         get { return instance; }
     }
 
-    public const int                                    floorSize               = 8;
+    public const int                                    floorSize               = 10;
     public const int                                    roomSize_Width          = 16;
     public const int                                    roomSize_Height         = 12;
-    public const int                                    selectRoomInt           = 5;
+    public const int                                    selectRoomInt           = 3;
 
     public static readonly RoomContainer                roomContainer           = InitRoomContainer.roomContainer;
 
@@ -29,8 +29,11 @@ public partial class FloorLoader : MonoBehaviour
     Dictionary<int, System.Action<Tilemap, int, int>>   RoomAction              = new();
     private int                                         roomIdx                 = 0;
     Point                                               startPoint;
+    Point                                               bossPoint;
 
-    [SerializeField] private TileBase[]                   floorTiles;
+    [SerializeField] private TileBase[]                 floorTiles;
+    [SerializeField] private TileBase[]                 doorTiles;
+    private Queue<(Tilemap, Vector3Int, TileBase)>      waittingDoorQueue       = new();
 
     private class Point : IPoint
     {
@@ -71,55 +74,66 @@ public partial class FloorLoader : MonoBehaviour
         // instance = this;
 
         RoomAction.Add(0, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-1, 0), floorTiles[0]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)-1, 0), floorTiles[0]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)+0, 0), floorTiles[1]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)+0, 0), floorTiles[2]);
+
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
+
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[0]));
         });
         RoomAction.Add(1, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), floorTiles[0]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-4, 0), floorTiles[1]);
+            
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), null);
+
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTiles[1]));
         });
         RoomAction.Add(2, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), floorTiles[0]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-4, 0), floorTiles[2]);
+            
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), null);
+
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTiles[1]));
         });
         RoomAction.Add(3, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-11, 0), floorTiles[3]);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)-11, 0), floorTiles[4]);
+
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), null);
+
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTiles[0]));
         });
     }
 
     void Start() => FloorLoad();
 
-    IEnumerator enumerator1()
-    {
-        CreateDefaultRoom();
-        ChangeOverSizeRoom();
-        SelectPorintRoom();
-        ChangeStartRoom();
-        Triangulator();
-        yield return new WaitForSecondsRealtime(2f);
-        MinimumSpanningTree();
-        ConnenctRooms();
-        ChangeSpacialRoom();
-        CreateRooms();
-    }
-
-    public void FloorLoad()
+    void FloorLoad()
     {
         roomIdx = 0;
-        StartCoroutine(enumerator1());
+        
+        CreateDefaultRoom();
+        SelectPorintRoom();
+        ChangeOverSizeRoom();
+        ChangeStartRoom();
+        Triangulator();
+        MinimumSpanningTree();
+        ConnenctRooms();
+        CreateBossRoom();
+        CreateSpecialRoom();
+        CreateRooms();
+        DoorPP();
+        Destroy(this);
     }
-
 
     private void CreateDefaultRoom()
     {
@@ -142,20 +156,7 @@ public partial class FloorLoader : MonoBehaviour
                 x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
                 y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1));
             } while(SelectedRoomCheck(roomData, x, y));
-
-            for(int i=x; i<x+roomData.roomSize.GetLength(0); i++)
-            {
-                for(int j=y; j<y+roomData.roomSize.GetLength(1); j++)
-                {
-                    if(roomData.roomSize[i-x, j-y])
-                    {
-                        m_RoomTablel[i, j] = roomData;
-                        m_roomNumberTablel[i, j] = roomIdx;
-                        m_selectedRoomTablel[i, j] = true;
-                    }
-                }
-            }
-            roomIdx++;
+            OverSizeInject(roomData, x, y);
         }
     }
     private void SelectPorintRoom()
@@ -173,6 +174,18 @@ public partial class FloorLoader : MonoBehaviour
             m_roomNumberTablel[x, y] = roomIdx++;
         }
     }
+    private void CreateBossRoom()
+    {
+        int x = 0, y = 0;
+        var roomData = roomContainer.specialRoomData[1];
+        do
+        {                
+            x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
+            y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
+        } while(!SelectedRoomCheck(x, y) || SelectedRoomCheck(x, ++y));
+        OverSizeInject(roomData, x, y);
+        bossPoint = new(x, y);
+    }
     private void ChangeStartRoom()
     {
         int x = 0, y = 0;
@@ -185,7 +198,7 @@ public partial class FloorLoader : MonoBehaviour
         m_RoomTablel[x, y] = roomContainer.specialRoomData[0];
         m_roomNumberTablel[x, y] = roomIdx++;
         m_selectedRoomTablel[x, y] = true;
-        startPoint = new (x, y);
+        startPoint = new(x, y);
     }
     private void Triangulator()
     {
@@ -272,20 +285,18 @@ public partial class FloorLoader : MonoBehaviour
             }
         }
     }
-    private void ChangeSpacialRoom()
+    private void CreateSpecialRoom()
     {
         int x = 0, y = 0;
-        for(int i=1; i<roomContainer.specialRoomData.Length; i++)
+        for(int i=2; i<roomContainer.specialRoomData.Length; i++)
         {
+            var roomData = roomContainer.specialRoomData[i];
             do
-            {
-                x = Random.Range(0, floorSize);
-                y = Random.Range(0, floorSize-1);
-            } while(!SelectedRoomCheck(x, y) && SelectedRoomCheck(x, ++y));
-
-            m_RoomTablel[x, y] = roomContainer.specialRoomData[i];
-            m_roomNumberTablel[x, y] = roomIdx++;
-            m_selectedRoomTablel[x, y] = true;
+            {                
+                x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
+                y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
+            } while(!SelectedRoomCheck(roomData, x, y) || SelectedRoomCheck(roomData, x, ++y));
+            OverSizeInject(roomData, x, y);
         }
     }
     private void CreateRooms()
@@ -301,7 +312,7 @@ public partial class FloorLoader : MonoBehaviour
                     GameObject temp = Instantiate(Resources.Load(m_RoomTablel[i, j].path) as GameObject, gameObject.transform);
                     temp.transform.position = new Vector2(j*roomSize_Width, -(i*roomSize_Height));
                     
-                    Temp(temp, i, j);
+                    SetDoors(temp, i, j);
 
                     ints.Add(m_roomNumberTablel[i, j]);
                 }
@@ -309,8 +320,23 @@ public partial class FloorLoader : MonoBehaviour
         }
         // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
     }
-
-    private void Temp(GameObject room, int x, int y)
+    private void OverSizeInject(RoomData roomData, int x, int y)
+    {
+        for(int i=x; i<x+roomData.roomSize.GetLength(0); i++)
+        {
+            for(int j=y; j<y+roomData.roomSize.GetLength(1); j++)
+            {
+                if(roomData.roomSize[i-x, j-y])
+                {
+                    m_RoomTablel[i, j] = roomData;
+                    m_roomNumberTablel[i, j] = roomIdx;
+                    m_selectedRoomTablel[i, j] = true;
+                }
+            }
+        }
+        roomIdx++;
+    }
+    private void SetDoors(GameObject room, int x, int y)
     {
         var tilemap = room.GetComponent<Tilemap>();
         for(int i=x; i<x+m_RoomTablel[x, y].roomSize.GetLength(0); i++)
@@ -329,6 +355,17 @@ public partial class FloorLoader : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    private void DoorPP()
+    {
+        while(waittingDoorQueue.Count > 0)
+        {
+            var temp = waittingDoorQueue.Dequeue();
+            Door door = temp.Item1.gameObject.AddComponent<Door>();
+            door.doorTile = temp.Item3;
+            door.vector = temp.Item2;
+            temp.Item1.gameObject.transform.parent = temp.Item1.gameObject.transform;
         }
     }
 

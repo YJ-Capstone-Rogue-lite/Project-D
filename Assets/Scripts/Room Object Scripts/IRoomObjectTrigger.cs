@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IRoomObjectTrigger
 {
-    public abstract void RoomEnter();
-    public abstract void RoomExit();
+    public abstract void RoomEnter(Room room);
+    public abstract void RoomExit(Room room);
 }

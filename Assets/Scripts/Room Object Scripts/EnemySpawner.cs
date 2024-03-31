@@ -4,24 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour, IRoomObjectTrigger
 {
-    public void RoomEnter()
+    [SerializeField] private GameObject enemy;
+    public void RoomEnter(Room room)
     {
-        throw new System.NotImplementedException();
+        Instantiate(enemy, transform.position, Quaternion.identity);
     }
 
-    public void RoomExit()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    public void RoomExit(Room room)
     {
         
     }

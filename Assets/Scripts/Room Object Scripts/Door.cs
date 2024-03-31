@@ -1,28 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Door : MonoBehaviour, IRoomObjectTrigger
 {
-    public void RoomEnter()
+    public Vector3Int vector { get; set; }
+    public TileBase doorTile { get; set; }
+    public void RoomEnter(Room room)
     {
-        throw new System.NotImplementedException();
+        room.tilemap.SetTile(vector, doorTile);
     }
 
-    public void RoomExit()
+    public void RoomExit(Room room)
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        room.tilemap.SetTile(vector, null);
     }
 }

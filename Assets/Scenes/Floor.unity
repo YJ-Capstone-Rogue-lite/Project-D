@@ -346,6 +346,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a545dc64ef6c9a342aa1f6617a382360, type: 2}
   - {fileID: 11400000, guid: 145ffd787f895fd448c547f49a737e22, type: 2}
   - {fileID: 11400000, guid: 8bc24871f67afca48af7d31733434624, type: 2}
+  doorTiles:
+  - {fileID: 11400000, guid: 1ea6dba156a4aba47a5f0571f9c76194, type: 2}
+  - {fileID: 11400000, guid: 1ea6dba156a4aba47a5f0571f9c76194, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
