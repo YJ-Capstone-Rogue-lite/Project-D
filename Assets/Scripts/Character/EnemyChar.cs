@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EnemyChar : Character
 {
+
+    // 데미지 데이터
+    [SerializeField]
+    protected DamageData damageData;
+
+
     protected override void Start()
     {
         base.Start();
