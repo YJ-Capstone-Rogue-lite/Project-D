@@ -123,16 +123,16 @@ public partial class FloorLoader : MonoBehaviour
         
         CreateDefaultRoom();
         SelectPorintRoom();
+        CreateBossRoom();
+        CreateSpecialRoom();
         ChangeOverSizeRoom();
         ChangeStartRoom();
         Triangulator();
         MinimumSpanningTree();
         ConnenctRooms();
-        CreateBossRoom();
-        CreateSpecialRoom();
         CreateRooms();
         DoorPP();
-        Destroy(this);
+        // Destroy(this);
     }
 
     private void CreateDefaultRoom()
@@ -181,9 +181,10 @@ public partial class FloorLoader : MonoBehaviour
         do
         {                
             x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
-            y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
-        } while(!SelectedRoomCheck(x, y) || SelectedRoomCheck(x, ++y));
-        OverSizeInject(roomData, x, y);
+            y = floorSize - 1;
+        } while(SelectedRoomCheck(x, y));
+        m_selectedRoomTablel[x, y] = true;
+        m_roomNumberTablel[x, y] = roomIdx++;
         bossPoint = new(x, y);
     }
     private void ChangeStartRoom()
@@ -203,11 +204,17 @@ public partial class FloorLoader : MonoBehaviour
     private void Triangulator()
     {
         HashSet<IPoint> points = new();
+        HashSet<int> ints = new();
         for(int i=0; i<floorSize; i++)
         {
             for(int j=0; j<floorSize; j++)
             {
-                if(m_selectedRoomTablel[i, j]) points.Add(new Point(i, j));
+                if(m_RoomTablel[i, j].Equals(roomContainer.specialRoomData)) ints.Add(m_roomNumberTablel[i, j]);
+                if(m_selectedRoomTablel[i, j] && !ints.Contains(m_roomNumberTablel[i, j]))
+                {
+                    points.Add(new Point(i, j));
+                    ints.Add(m_roomNumberTablel[i, j]);
+                }
             }
         }
         Dictionary<Point, HashSet<Point>> nodes = new();
@@ -295,8 +302,10 @@ public partial class FloorLoader : MonoBehaviour
             {                
                 x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
                 y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
-            } while(!SelectedRoomCheck(roomData, x, y) || SelectedRoomCheck(roomData, x, ++y));
-            OverSizeInject(roomData, x, y);
+            } while(SelectedRoomCheck(x, y) || SelectedRoomCheck(roomData, x, y+1));
+            m_selectedRoomTablel[x, y] = true;
+            m_roomNumberTablel[x, y] = roomIdx++;
+            OverSizeInject(roomData, x, ++y);
         }
     }
     private void CreateRooms()
@@ -307,6 +316,7 @@ public partial class FloorLoader : MonoBehaviour
             for(int j=0; j<floorSize; j++)
             {
                 // if(m_selectedRoomTablel[i, j])
+                if((int)bossPoint.X == i && (int)bossPoint.Y == j) ints.Add(m_roomNumberTablel[i, j]);
                 if(m_selectedRoomTablel[i, j] && !ints.Contains(m_roomNumberTablel[i, j]))
                 {
                     GameObject temp = Instantiate(Resources.Load(m_RoomTablel[i, j].path) as GameObject, gameObject.transform);
@@ -318,6 +328,17 @@ public partial class FloorLoader : MonoBehaviour
                 }
             }
         }
+        GameObject bossEnter = Instantiate(Resources.Load(m_RoomTablel[(int)bossPoint.X, (int)bossPoint.Y].path) as GameObject, gameObject.transform);
+        bossEnter.transform.position = new Vector2(((int)bossPoint.Y)*roomSize_Width, -((int)bossPoint.X*roomSize_Height));
+        SetDoors(bossEnter, (int)bossPoint.X, (int)bossPoint.Y);
+        RoomAction[2](bossEnter.GetComponent<Tilemap>(), 0, 0);
+
+        GameObject boss = Instantiate(Resources.Load(roomContainer.specialRoomData[1].path) as GameObject, gameObject.transform);
+        boss.transform.position = new Vector2(((int)bossPoint.Y+1)*roomSize_Width, -((int)bossPoint.X*roomSize_Height));
+        
+        var tilemap = boss.GetComponent<Tilemap>();
+        RoomAction[1](tilemap, 0, 0);
+
         // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
     }
     private void OverSizeInject(RoomData roomData, int x, int y)
