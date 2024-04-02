@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField]
-    private     EffectController    effectController;
+    public      EffectController    effectController    { get; private set; }
     [SerializeField]
     protected   CharStateData       charStateData;
     protected   float               m_health;
@@ -15,7 +15,6 @@ public class Character : MonoBehaviour
     
     protected virtual void Start()
     {
-        effectController = new();
         charStateData = new();
         m_health = charStateData.health;
         m_health = charStateData.shield;
@@ -27,20 +26,15 @@ public class Character : MonoBehaviour
     {
         m_sheild -= damageData.damage;
         m_health -= m_sheild<0 ? -m_sheild : 0;
+        if(m_sheild <= 0) m_sheild = 0;
+        effectController.Operation(damageData.effect);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet"))
+        if(collision.CompareTag("DamageObject"))
         {
             Damaged(collision.GetComponent<DamageData>());
-            return;
-        }
-        if(collision.CompareTag("Item"))
-        {
-            var item = collision.GetComponent<Item>();
-            if(item is IEquipableItem<Effect>) effectController.Operation(((IEquipableItem<Effect>)item).Acquir());
-            else ((IAcquisableItem)item).Acquir();
             return;
         }
     }

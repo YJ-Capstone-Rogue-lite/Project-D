@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private DamageData  m_damageData;
     private float       m_speed;
     private float       m_range;
     private Vector3     m_targetPosition;
 
-    public void Set(DamageData damageData, Vector3 targetPosition, float speed, float range, float radius)
+    public void Set(Vector3 targetPosition, float speed, float range)
     {
-        m_damageData = damageData;
         m_speed = speed;
         m_range = range;
-
-        var c2d = gameObject.GetComponent<CircleCollider2D>();
-        c2d.radius = radius;
-        c2d.excludeLayers = damageData.ignoreLayer;
         m_targetPosition = targetPosition;
     }
 
