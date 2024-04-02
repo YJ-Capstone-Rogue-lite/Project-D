@@ -3,6 +3,8 @@ using System.Collections;
 
 namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
 {
+
+
     public class PlayerFire : MonoBehaviour
     {
         public Pool BulletPool;
