@@ -27,14 +27,24 @@ public class Character : MonoBehaviour
         m_sheild -= damageData.damage;
         m_health -= m_sheild<0 ? -m_sheild : 0;
         if(m_sheild <= 0) m_sheild = 0;
-        effectController.Operation(damageData.effect);
+        if(effectController != null) effectController.Operation(damageData.effect);
+        Debug.Log(damageData.damage);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.CompareTag("DamageObject"))
+        if(collider.CompareTag("DamageObject"))
         {
-            Damaged(collision.GetComponent<DamageData>());
+            Damaged(collider.GetComponent<DamageData>());
+            return;
+        }
+    }
+    protected virtual void OnCollionEnter2D(Collision2D collision)
+    {
+        var collider = collision.collider;
+        if(collider.CompareTag("DamageObject"))
+        {
+            Damaged(collider.GetComponent<DamageData>());
             return;
         }
     }
