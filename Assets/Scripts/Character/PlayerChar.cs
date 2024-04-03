@@ -15,8 +15,12 @@ public class PlayerChar : Character
         
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collider)
     {
-        base.OnTriggerEnter2D(collision);
+        base.OnTriggerEnter2D(collider);
+    }
+    protected override void OnCollionEnter2D(Collision2D collision)
+    {
+        base.OnCollionEnter2D(collision);
     }
 }

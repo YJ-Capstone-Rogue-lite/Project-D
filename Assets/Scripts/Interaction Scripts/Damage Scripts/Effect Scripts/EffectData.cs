@@ -7,6 +7,8 @@ public struct EffectData
 {
     public enum EffectType { BUFF, DEBUFF }
 
+    public int                  number;
+    public string               name;
     public int                  stack;
     public float                duriation;
     public bool                 isDuriationReset;
@@ -22,6 +24,8 @@ public static class EffectDatas
     {
         effectDatas = new EffectData[]{
             new(){
+                number = 1,
+                name = "A",
                 stack = 1,
                 duriation = 10,
                 isDuriationReset = false,

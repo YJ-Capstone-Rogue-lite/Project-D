@@ -24,7 +24,7 @@ public class Effect : MonoBehaviour
     }
     public override int GetHashCode()
     {
-        return HashCode.Combine(m_effectData);
+        return HashCode.Combine(m_effectData.number, m_effectData.name);
     }
 
     private IEnumerator Run()
