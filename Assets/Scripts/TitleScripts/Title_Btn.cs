@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Title_Btn : MonoBehaviour
@@ -52,16 +53,17 @@ public class Title_Btn : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우
         {
             popUP.SetActive(true);
+            popup_Text.text = "Saved data is present. Do you want to clear it and proceed?";
         }
         else
         {
-            // 데이터가 없을 때 씬 변경
+            play_inGame(); //없을 경우 씬 변경
         }
     }
 
     public void Click_loadGame()
     {
-        // 인게임 씬으로 변경
+        play_inGame();// 인게임 씬으로 변경
     }
 
     public void Click_option()
@@ -87,6 +89,18 @@ public class Title_Btn : MonoBehaviour
         }
     }
 
+    public void Yes_Btn()
+    {
+        if(popup_Text.text == "Are you sure you want to exit the game?")
+        {
+            Application.Quit();
+        }
+        else if(popup_Text.text == "Saved data is present. Do you want to clear it and proceed?")
+        {
+            play_inGame();
+        }
+    }
+
     public void quit_Btn()
     {
         Application.Quit();
@@ -108,6 +122,9 @@ public class Title_Btn : MonoBehaviour
         Screen.SetResolution(1600, 900, false);
     }
 
-
+    public void play_inGame()
+    {
+        SceneManager.LoadScene("In_game");
+    }
 
 }
