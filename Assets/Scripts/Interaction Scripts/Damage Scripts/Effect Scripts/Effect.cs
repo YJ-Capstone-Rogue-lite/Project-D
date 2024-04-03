@@ -3,26 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect : MonoBehaviour, IEquipableItem<Effect>
+public class Effect : MonoBehaviour
 {
     public      float       m_duration;
     public      int         m_stack;
     public      EffectData  m_effectData;
     protected   Coroutine   m_coroutine;
-    protected   Coroutine   m_effectCoroutine;
 
-    public      int         m_number        { get; set; }
-    public      string      m_name          { get; set; }
-    public      Sprite      m_img           { get; set; }
-    public      string      m_info          { get; set; }
-    public      Action      startAcion      { get; set; }
-
-    public Effect(Effect effect)
+    public void OnEnable()
     {
         m_duration = 0;
         m_stack = 0;
         m_coroutine = null;
-        m_effectData = effect.m_effectData;
     }
 
     public override bool Equals(object other)
@@ -32,15 +24,21 @@ public class Effect : MonoBehaviour, IEquipableItem<Effect>
     }
     public override int GetHashCode()
     {
-        return HashCode.Combine(m_number, m_name);
+        return HashCode.Combine(m_effectData);
     }
 
     private IEnumerator Run()
     {
-        m_effectCoroutine = StartCoroutine(m_effectData.effectAction(ref m_duration, ref m_stack));
+        float effectTick = 0;
         while(m_duration < m_effectData.duriation)
         {
             m_duration += Time.fixedDeltaTime;
+            effectTick += Time.fixedDeltaTime;
+            if(effectTick > m_effectData.effectTick)
+            {
+                effectTick = 0;
+                m_effectData.effectAction(m_duration, m_stack);
+            }
             yield return null;
         }
         Termination();
@@ -53,7 +51,6 @@ public class Effect : MonoBehaviour, IEquipableItem<Effect>
     }
     public void Termination()
     {
-        if(m_effectCoroutine != null) StopCoroutine(m_effectCoroutine);
         if(m_coroutine != null) StopCoroutine(m_coroutine);
     }
 }

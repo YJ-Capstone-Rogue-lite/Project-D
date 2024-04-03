@@ -17,7 +17,7 @@ public class EffectController : MonoBehaviour
     }
     public void Operation(Effect effect)
     {
-        if(m_isInvalidation) return;
+        if(m_isInvalidation && effect == null) return;
 
         StartCoroutine(IvalidationTimer());
         Effect temp;

@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 데미지 정보를 저장하는 구조체
-[System.Serializable]
-public struct DamageData
+public class DamageData : MonoBehaviour
 {
-    public Transform ownerTransform; // 데미지를 가한 개체의 Transform 정보
-    public LayerMask ignoreLayer; // 데미지를 입힐 때 무시할 레이어 정보
-    public float damage; // 입힐 데미지 양
-    public EffectData effectData; // 데미지에 연관된 효과 데이터
+    public  Transform    ownerTransform;
+    private LayerMask    ignoreLayer;
+    public  float        damage;
+    private float        radius;
+    public  Effect       effect;
+
+    public void Set(Transform ownerTransform, LayerMask ignoreLayer, float damage, float radius, Effect effect)
+    {
+        this.ownerTransform = ownerTransform;
+        this.damage = damage;
+        var c2d = gameObject.GetComponent<CircleCollider2D>();
+        c2d.radius = radius;
+        c2d.excludeLayers = ignoreLayer;
+    }
 }
