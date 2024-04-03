@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     
     protected virtual void Start()
     {
-        charStateData = new();
+        //charStateData = new();
         m_health = charStateData.health;
         m_health = charStateData.shield;
         m_movementSpeed = 0;
@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
             return;
         }
     }
-    protected virtual void OnCollionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         var collider = collision.collider;
         if(collider.CompareTag("DamageObject"))

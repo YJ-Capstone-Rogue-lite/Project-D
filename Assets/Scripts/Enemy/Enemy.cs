@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Weapon weapon;
+    
     public Transform target;
     public float speed = 3f;
     public float rotateSpeed = 0.25f;
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
          rb = GetComponent<Rigidbody2D>();
+
     }
     private void Update()
     {
@@ -53,7 +56,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
         {
-            enemy_hp -= 20;
+            enemy_hp -= weapon.Damage;
         }
     }
 

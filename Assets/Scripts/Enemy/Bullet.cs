@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [Range(1, 10)]
-    [SerializeField] private float speed = 10f;
+    public Weapon weapon;
 
-    [Range(1, 10)]
-    [SerializeField] private float lifeTime = 3f;
+    private float speed; //탄속
 
-    private Rigidbody2D rb;
 
-    private void Start()
+    private float lifeTime; //총알이 맵에 머물러있는 시간(사거리)
+
+    private Rigidbody2D rb; //리지드바디
+
+
+
+
+    //private void Start()
+    //{
+    //    rb = GetComponent<Rigidbody2D>();
+    //    setup();
+    //    Destroy(gameObject, lifeTime);
+
+
+    //}
+
+    public void setup(Weapon weapon)
     {
         rb = GetComponent<Rigidbody2D>();
+        speed = weapon.bullet_velocity;
+        lifeTime = weapon.bullet_range;
         Destroy(gameObject, lifeTime);
     }
 
@@ -24,9 +39,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy")) //Bullet에 접촉했을 때
+        if (other.gameObject.CompareTag("Player")) //Bullet에 접촉했을 때
         {
             Destroy(gameObject);
+            Debug.Log("총을을 지움!");
+        }
         }
     }
-}

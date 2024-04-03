@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1243911367035946396}
-  - component: {fileID: 9075222824695139489}
+  - component: {fileID: 2621965065447473764}
   m_Layer: 0
   m_Name: testBullet 1
   m_TagString: Untagged
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 2930750322599432659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9075222824695139489
+--- !u!114 &2621965065447473764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,14 +125,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3728512299843536851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73760018380f4748a8a8ee90dc01612, type: 3}
+  m_Script: {fileID: 11500000, guid: cb15e844894a3df42a46c1dfb27a2dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item_Manager: {fileID: 0}
-  BulletDuration: 0
-  BulletSpeed: 0
-  BulletDamage: 0
-  SkinWidth: 0
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 0
+  weapon: {fileID: 0}
+  speed: 0
+  lifeTime: 0
