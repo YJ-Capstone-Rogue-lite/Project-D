@@ -7,20 +7,25 @@ using UnityEngine.UI;
 
 public class Title_Btn : MonoBehaviour
 {
-    [SerializeReference] private GameObject newGame;
-    [SerializeReference] private GameObject loadGame;
-    [SerializeReference] private GameObject option;
-    [SerializeReference] private GameObject quitGame;
-    [SerializeReference] private GameObject popUP;
-    [SerializeReference] private GameObject option_Popup;
-    [SerializeReference] private GameObject apply;
-    [SerializeReference] private GameObject yes;
-    [SerializeReference] private GameObject no;
+    [SerializeField] private GameObject newGame;
+    [SerializeField] private GameObject loadGame;
+    [SerializeField] private GameObject option;
+    [SerializeField] private GameObject quitGame;
+    [SerializeField] private GameObject popUP;
+    [SerializeField] private GameObject option_Popup;
+    [SerializeField] private GameObject apply;
+    [SerializeField] private GameObject yes;
+    [SerializeField] private GameObject no;
+    [SerializeField] private Image fullScreen_Box;
+    [SerializeField] private Image windowScreen_Box;
+    [SerializeField] private Sprite checkBox;
+    [SerializeField] private Sprite emptyBox;
 
-    [SerializeReference] private Button Load_Btn;
 
-    [SerializeReference] private TMP_Text popup_Text;
-    
+    [SerializeField] private Button Load_Btn;
+
+    [SerializeField] private TMP_Text popup_Text;
+
 
     private void Start()
     {
@@ -87,7 +92,21 @@ public class Title_Btn : MonoBehaviour
         Application.Quit();
     }
 
+    public void FullScreen_Btn()
+    {
+        fullScreen_Box.sprite = checkBox;
+        windowScreen_Box.sprite = emptyBox;
 
+        Screen.SetResolution(1920, 1080, true);
+
+    }
+    public void WindowScreen_btn()
+    {
+        fullScreen_Box.sprite = emptyBox;
+        windowScreen_Box.sprite = checkBox;
+
+        Screen.SetResolution(1600, 900, false);
+    }
 
 
 
