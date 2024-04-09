@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class Weapon : ScriptableObject
 {
-    public enum RatingType { NONE, COMMON, RARE, UNIQUE, LEGENDARY } //¾ÆÀÌÅÛ µî±Ş
+    public enum RatingType { NONE, COMMON, RARE, UNIQUE, LEGENDARY } //ì•„ì´í…œ ë“±ê¸‰
 
-    public enum WeaponType { Pistol, Assaultt_Rifle, Sniper_Rifle } //¹«±â Å¸ÀÔ
+    public enum WeaponType { Pistol, Assaultt_Rifle, Sniper_Rifle } //ë¬´ê¸° íƒ€ì…
 
-    [Header(" # ¾ÆÀÌÅÛ ±âº» Á¤º¸")]
-    public int number; //¾ÆÀÌÅÛ ¹øÈ£
-    public string name; //¾ÆÀÌÅÛ ÀÌ¸§
-    public Sprite img; //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
-    public string info; //¾ÆÀÌÅÛ Á¤º¸(¼³¸í) 
-    public RatingType ratingType; //¾ÆÀÌÅÛ µî±Ş
-    public WeaponType weaponType; // ¹«±âÅ¸ÀÔ
-    public float bullet_range; //»ç°Å¸®
-    public float bullet_velocity; //Åº¼Ó
-    public float Fire_rate; //¿¬»ç¼Óµµ
-    public float Damage; // µ¥¹ÌÁö
+    [Header(" # ì•„ì´í…œ ê¸°ë³¸ ì •ë³´")]
+    public int number; //ì•„ì´í…œ ë²ˆí˜¸
+    public string name; //ì•„ì´í…œ ì´ë¦„
+    public Sprite img; //ì•„ì´í…œ ì´ë¯¸ì§€
+    public string info; //ì•„ì´í…œ ì •ë³´(ì„¤ëª…) 
+    public RatingType ratingType; //ì•„ì´í…œ ë“±ê¸‰
+    public WeaponType weaponType; // ë¬´ê¸°íƒ€ì…
+    public float bullet_range; //ì‚¬ê±°ë¦¬
+    public float bullet_velocity; //íƒ„ì†
+    public float Fire_rate; //ì—°ì‚¬ì†ë„
+    public float Damage; // ë°ë¯¸ì§€
 
     
 }

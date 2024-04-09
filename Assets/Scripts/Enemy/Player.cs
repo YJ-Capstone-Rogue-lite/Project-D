@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
 
-    //Gun º¯¼ö
+    //Gun ë³€ìˆ˜
     [SerializeField] private GameObject bulletPrefebs;
     [SerializeField] private Transform firingPoint;
     [Range(0.1f, 1f)]
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy")) //Bullet¿¡ Á¢ÃËÇßÀ» ¶§
+        if (other.gameObject.CompareTag("Enemy")) //Bulletì— ì ‘ì´‰í–ˆì„ ë•Œ
         {
             player_hp -= 20;
         }

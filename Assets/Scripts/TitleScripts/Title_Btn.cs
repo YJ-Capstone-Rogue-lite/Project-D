@@ -26,19 +26,19 @@ public class Title_Btn : MonoBehaviour
 
     public void Click_newGame()
     {
-        if (true) // ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ°¡ ÀÖÀ»°æ¿ì Àû±â
+        if (true) // í”Œë ˆì´ì–´ ë°ì´í„°ê°€ ìˆì„ê²½ìš° ì ê¸°
         {
             popUP.SetActive(true);
         }
         else
         {
-            // µ¥ÀÌÅÍ°¡ ¾øÀ» ¶§ ¾À º¯°æ
+            // ë°ì´í„°ê°€ ì—†ì„ ë•Œ ì”¬ ë³€ê²½
         }
     }
 
     public void Click_loadGame()
     {
-        // ÀÎ°ÔÀÓ ¾ÀÀ¸·Î º¯°æ
+        // ì¸ê²Œì„ ì”¬ìœ¼ë¡œ ë³€ê²½
     }
 
     public void Click_option()

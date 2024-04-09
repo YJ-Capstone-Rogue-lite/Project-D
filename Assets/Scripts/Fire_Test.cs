@@ -1,88 +1,88 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class FIre_Test : MonoBehaviour
 {
-    public Weapon weapon; // Weapon ½ºÅ©¸³ÅÍºí °´Ã¼
+    public Weapon weapon; // Weapon ìŠ¤í¬ë¦½í„°ë¸” ê°ì²´
 
-    [SerializeField] private float speed = 5f; // ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¼Óµµ
+    [SerializeField] private float speed = 5f; // í”Œë ˆì´ì–´ ì´ë™ ì†ë„
 
-    // ÃÑ º¯¼ö
-    [SerializeField] private GameObject bulletPrefebs; // ÃÑ¾Ë ÇÁ¸®ÆÕ
-    [SerializeField] private Transform firingPoint; // ¹ß»ç ÁöÁ¡
-    private Rigidbody2D rb; // Rigidbody2D ÄÄÆ÷³ÍÆ®
+    // ì´ ë³€ìˆ˜
+    [SerializeField] private GameObject bulletPrefebs; // ì´ì•Œ í”„ë¦¬íŒ¹
+    [SerializeField] private Transform firingPoint; // ë°œì‚¬ ì§€ì 
+    private Rigidbody2D rb; // Rigidbody2D ì»´í¬ë„ŒíŠ¸
 
-    private float mx; // ¼öÆò ÀÔ·Â
-    private float my; // ¼öÁ÷ ÀÔ·Â
+    private float mx; // ìˆ˜í‰ ì…ë ¥
+    private float my; // ìˆ˜ì§ ì…ë ¥
 
-    private float fireTimer; // ¹ß»ç Å¸ÀÌ¸Ó
-    private float fireRate; // ¹ß»ç ¼Óµµ
+    private float fireTimer; // ë°œì‚¬ íƒ€ì´ë¨¸
+    private float fireRate; // ë°œì‚¬ ì†ë„
 
-    private Vector2 mousePos; // ¸¶¿ì½º À§Ä¡
+    private Vector2 mousePos; // ë§ˆìš°ìŠ¤ ìœ„ì¹˜
 
-    public float player_hp = 100; // ÇÃ·¹ÀÌ¾î Ã¼·Â
+    public float player_hp = 100; // í”Œë ˆì´ì–´ ì²´ë ¥
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
 
        
     }
 
     private void Update()
     {
-        // Weapon ½ºÅ©¸³ÅÍºí °´Ã¼¿¡¼­ fireRate ¼Ó¼ºÀ» °¡Á®¿Í ÃÊ±âÈ­
+        // Weapon ìŠ¤í¬ë¦½í„°ë¸” ê°ì²´ì—ì„œ fireRate ì†ì„±ì„ ê°€ì ¸ì™€ ì´ˆê¸°í™”
         fireRate = weapon.Fire_rate;
 
-        mx = Input.GetAxisRaw("Horizontal"); // ¼öÆò ÀÔ·Â
-        my = Input.GetAxisRaw("Vertical"); // ¼öÁ÷ ÀÔ·Â
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // ¸¶¿ì½º À§Ä¡ °è»ê
+        mx = Input.GetAxisRaw("Horizontal"); // ìˆ˜í‰ ì…ë ¥
+        my = Input.GetAxisRaw("Vertical"); // ìˆ˜ì§ ì…ë ¥
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // ë§ˆìš°ìŠ¤ ìœ„ì¹˜ ê³„ì‚°
 
-        float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // ÇÃ·¹ÀÌ¾î°¡ ¸¶¿ì½º¸¦ ¹Ù¶óº¸µµ·Ï °¢µµ °è»ê
+        float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // í”Œë ˆì´ì–´ê°€ ë§ˆìš°ìŠ¤ë¥¼ ë°”ë¼ë³´ë„ë¡ ê°ë„ ê³„ì‚°
 
-        transform.localRotation = Quaternion.Euler(0, 0, angle); // ÇÃ·¹ÀÌ¾î È¸Àü ¼³Á¤
+        transform.localRotation = Quaternion.Euler(0, 0, angle); // í”Œë ˆì´ì–´ íšŒì „ ì„¤ì •
 
-        // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ´©¸£°í ¹ß»ç Å¸ÀÌ¸Ó°¡ 0º¸´Ù ÀÛ°Å³ª °°À¸¸é ¹ß»ç
+        // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ë°œì‚¬ íƒ€ì´ë¨¸ê°€ 0ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ ë°œì‚¬
         if (Input.GetMouseButton(0) && fireTimer <= 0f)
         {
-            Shoot(); // ¹ß»ç ÇÔ¼ö È£Ãâ
-            fireTimer = fireRate; // ¹ß»ç Å¸ÀÌ¸Ó ¼³Á¤
+            Shoot(); // ë°œì‚¬ í•¨ìˆ˜ í˜¸ì¶œ
+            fireTimer = fireRate; // ë°œì‚¬ íƒ€ì´ë¨¸ ì„¤ì •
         }
         else
         {
-            fireTimer -= Time.deltaTime; // ¹ß»ç Å¸ÀÌ¸Ó °¨¼Ò
+            fireTimer -= Time.deltaTime; // ë°œì‚¬ íƒ€ì´ë¨¸ ê°ì†Œ
         }
-        player_die(); // ÇÃ·¹ÀÌ¾î Ã¼·Â È®ÀÎ ÇÔ¼ö È£Ãâ
+        player_die(); // í”Œë ˆì´ì–´ ì²´ë ¥ í™•ì¸ í•¨ìˆ˜ í˜¸ì¶œ
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(mx, my).normalized * speed; // ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¼³Á¤
+        rb.velocity = new Vector2(mx, my).normalized * speed; // í”Œë ˆì´ì–´ ì´ë™ ì„¤ì •
     }
 
     private void Shoot()
     {
-        var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation ); // ÃÑ¾Ë »ı¼º
+        var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation ); // ì´ì•Œ ìƒì„±
         temp.GetComponent<Bullet>().setup(weapon);
 
-        Debug.Log("ÃÑÀ» ½ô! " + "¹«±â ÀÌ¸§ : " +weapon.name + weapon.Damage + " µ¥¹ÌÁö " + " ¾ÆÀÌÅÛ ¹øÈ£: " + weapon.number + " ¿¬»ç¼Óµµ: " + weapon.Fire_rate + " »ç°Å¸® : " + weapon.bullet_range);
+        Debug.Log("ì´ì„ ì¨! " + "ë¬´ê¸° ì´ë¦„ : " +weapon.name + weapon.Damage + " ë°ë¯¸ì§€ " + " ì•„ì´í…œ ë²ˆí˜¸: " + weapon.number + " ì—°ì‚¬ì†ë„: " + weapon.Fire_rate + " ì‚¬ê±°ë¦¬ : " + weapon.bullet_range);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy")) // Àû°ú Ãæµ¹ÇßÀ» ¶§
+        if (other.gameObject.CompareTag("Enemy")) // ì ê³¼ ì¶©ëŒí–ˆì„ ë•Œ
         {
-            player_hp -= 20; // ÇÃ·¹ÀÌ¾î Ã¼·Â °¨¼Ò
+            player_hp -= 20; // í”Œë ˆì´ì–´ ì²´ë ¥ ê°ì†Œ
         }
     }
     
     private void player_die()
     {
-        if (player_hp <= 0) // ÇÃ·¹ÀÌ¾î Ã¼·ÂÀÌ 0º¸´Ù ÀÛ°Å³ª °°À¸¸é
+        if (player_hp <= 0) // í”Œë ˆì´ì–´ ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´
         {
-            Destroy(gameObject); // °ÔÀÓ ¿ÀºêÁ§Æ® ÆÄ±«
+            Destroy(gameObject); // ê²Œì„ ì˜¤ë¸Œì íŠ¸ íŒŒê´´
         }
     }
 }

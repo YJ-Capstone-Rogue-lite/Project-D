@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class collider : MonoBehaviour
 {
-    // OnCollisionEnter2D´Â Ãæµ¹ÀÌ ¹ß»ıÇßÀ» ¶§ È£ÃâµË´Ï´Ù.
+    // OnCollisionEnter2DëŠ” ì¶©ëŒì´ ë°œìƒí–ˆì„ ë•Œ í˜¸ì¶œë©ë‹ˆë‹¤.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®°¡ Rigidbody2D ÄÄÆ÷³ÍÆ®¸¦ °¡Áö°í ÀÖ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+        // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ê°€ Rigidbody2D ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì§€ê³  ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         Rigidbody2D rigidbody2D = collision.collider.GetComponent<Rigidbody2D>();
 
         if (rigidbody2D)
         {
-            // Rigidbody2D¿¡ ÈûÀ» Ãß°¡ÇÕ´Ï´Ù. ¿øÇÏ´Â ·ÎÁ÷¿¡ ¸Â°Ô ¼öÁ¤ÇÏ¼¼¿ä.
+            // Rigidbody2Dì— í˜ì„ ì¶”ê°€í•©ë‹ˆë‹¤. ì›í•˜ëŠ” ë¡œì§ì— ë§ê²Œ ìˆ˜ì •í•˜ì„¸ìš”.
             rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         }
     }

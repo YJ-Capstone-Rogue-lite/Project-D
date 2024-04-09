@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +6,12 @@ public class Bullet : MonoBehaviour
 {
     public Weapon weapon;
 
-    private float speed; //Åº¼Ó
+    private float speed; //íƒ„ì†
 
 
-    private float lifeTime; //ÃÑ¾ËÀÌ ¸Ê¿¡ ¸Ó¹°·¯ÀÖ´Â ½Ã°£(»ç°Å¸®)
+    private float lifeTime; //ì´ì•Œì´ ë§µì— ë¨¸ë¬¼ëŸ¬ìˆëŠ” ì‹œê°„(ì‚¬ê±°ë¦¬)
 
-    private Rigidbody2D rb; //¸®Áöµå¹Ùµğ
+    private Rigidbody2D rb; //ë¦¬ì§€ë“œë°”ë””
 
 
 
@@ -39,10 +39,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player")) //Bullet¿¡ Á¢ÃËÇßÀ» ¶§
+        if (other.gameObject.CompareTag("Player")) //Bulletì— ì ‘ì´‰í–ˆì„ ë•Œ
         {
             Destroy(gameObject);
-            Debug.Log("ÃÑÀ»À» Áö¿ò!");
+            Debug.Log("ì´ì„ì„ ì§€ì›€!");
         }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyChar : Character
 {
 
-    // µ¥¹ÌÁö µ¥ÀÌÅÍ
+    // ë°ë¯¸ì§€ ë°ì´í„°
     [SerializeField]
     protected DamageData damageData;
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
     }
 
-    private void GetTarget() //ÇÃ·¹ÀÌ¾î À§Ä¡ Ã£±â
+    private void GetTarget() //í”Œë ˆì´ì–´ ìœ„ì¹˜ ì°¾ê¸°
     {
         if (GameObject.FindGameObjectWithTag("Player"))
         {
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Bullet")) //Bullet¿¡ Á¢ÃËÇßÀ» ¶§
+        if (other.gameObject.CompareTag("Bullet")) //Bulletì— ì ‘ì´‰í–ˆì„ ë•Œ
         {
             enemy_hp -= weapon.Damage;
         }

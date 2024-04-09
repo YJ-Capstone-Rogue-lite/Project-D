@@ -1,32 +1,32 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Camera_Player : MonoBehaviour
 {
-    public float cameraSpeed = 5.0f; // Ä«¸Ş¶ó°¡ ÇÃ·¹ÀÌ¾î¸¦ µû¶ó°¡´Â ¼Óµµ
-    public float maxDistanceFromPlayer = 2f; // ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÃÖ´ë °Å¸®
+    public float cameraSpeed = 5.0f; // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ë¥¼ ë”°ë¼ê°€ëŠ” ì†ë„
+    public float maxDistanceFromPlayer = 2f; // í”Œë ˆì´ì–´ë¡œë¶€í„° ìµœëŒ€ ê±°ë¦¬
 
-    public GameObject player; // ÇÃ·¹ÀÌ¾î GameObject
+    public GameObject player; // í”Œë ˆì´ì–´ GameObject
 
     private void Update()
     {
-        // ¸¶¿ì½ºÀÇ ÇöÀç À§Ä¡¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
+        // ë§ˆìš°ìŠ¤ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = -10f; // Ä«¸Ş¶óÀÇ z Ãà À§Ä¡¸¦ °íÁ¤½ÃÅ´
+        mousePos.z = -10f; // ì¹´ë©”ë¼ì˜ z ì¶• ìœ„ì¹˜ë¥¼ ê³ ì •ì‹œí‚´
 
-        // ÇÃ·¹ÀÌ¾î¿Í ¸¶¿ì½º »çÀÌÀÇ °Å¸®¸¦ °è»ê
+        // í”Œë ˆì´ì–´ì™€ ë§ˆìš°ìŠ¤ ì‚¬ì´ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°
         Vector3 direction = mousePos - player.transform.position;
         float distance = direction.magnitude;
 
-        // ¸¸¾à ÇÃ·¹ÀÌ¾î¿Í ¸¶¿ì½º »çÀÌÀÇ °Å¸®°¡ ÃÖ´ë °Å¸®º¸´Ù Å©´Ù¸é
+        // ë§Œì•½ í”Œë ˆì´ì–´ì™€ ë§ˆìš°ìŠ¤ ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ìµœëŒ€ ê±°ë¦¬ë³´ë‹¤ í¬ë‹¤ë©´
         if (distance > maxDistanceFromPlayer)
         {
-            // ÇÃ·¹ÀÌ¾î¿Í ¸¶¿ì½º »çÀÌÀÇ ¹æÇâÀ¸·Î Ä«¸Ş¶ó¸¦ ÀÌµ¿
+            // í”Œë ˆì´ì–´ì™€ ë§ˆìš°ìŠ¤ ì‚¬ì´ì˜ ë°©í–¥ìœ¼ë¡œ ì¹´ë©”ë¼ë¥¼ ì´ë™
             Vector3 targetPosition = player.transform.position + direction.normalized * maxDistanceFromPlayer;
             transform.position = Vector3.Lerp(transform.position, targetPosition, cameraSpeed * Time.deltaTime);
         }
         else
         {
-            // Ä«¸Ş¶ó°¡ ÇÃ·¹ÀÌ¾î¿Í ¸¶¿ì½º »çÀÌ¿¡ À§Ä¡ÇÒ ¶§´Â ÇÃ·¹ÀÌ¾î¸¦ Áß½ÉÀ¸·Î ÀÌµ¿ÇÏÁö ¾ÊÀ½
+            // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ì™€ ë§ˆìš°ìŠ¤ ì‚¬ì´ì— ìœ„ì¹˜í•  ë•ŒëŠ” í”Œë ˆì´ì–´ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ì´ë™í•˜ì§€ ì•ŠìŒ
             transform.position = Vector3.Lerp(transform.position, new Vector3(mousePos.x, mousePos.y, transform.position.z), cameraSpeed * Time.deltaTime);
         }
     }
