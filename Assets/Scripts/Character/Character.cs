@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
         //charStateData = new();
         m_health = charStateData.health;
         m_health = charStateData.shield;
-        m_movementSpeed = 0;
+        m_movementSpeed = 5;
         m_protectionTime = 0;
     }
 
