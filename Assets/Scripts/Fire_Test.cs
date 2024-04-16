@@ -14,7 +14,7 @@ public class FIre_Test : MonoBehaviour
 
     private float fireTimer; // 발사 타이머
     private float fireRate; // 발사 속도
-
+    float angle;
     private Vector2 mousePos; // 마우스 위치
 
     //public float player_hp = 100; // 플레이어 체력
@@ -24,16 +24,16 @@ public class FIre_Test : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
     }
 
-    private void Update()
+        private void Update()
     {
         // Weapon 스크립터블 객체에서 fireRate 속성을 가져와 초기화
         fireRate = weapon.Fire_rate;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 마우스 위치 계산
 
-        float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // 플레이어가 마우스를 바라보도록 각도 계산
+        angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // 플레이어가 마우스를 바라보도록 각도 계산
 
-        transform.localRotation = Quaternion.Euler(0, 0, angle); // 플레이어 회전 설정
-        
+        transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
+
         // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작거나 같으면 발사
         if (Input.GetMouseButton(0) && fireTimer <= 0f)
         {
@@ -45,11 +45,6 @@ public class FIre_Test : MonoBehaviour
             fireTimer -= Time.deltaTime; // 발사 타이머 감소
         }
         //player_die(); // 플레이어 체력 확인 함수 호출
-
-    }
-
-    private void FixedUpdate()
-    {
 
     }
 
