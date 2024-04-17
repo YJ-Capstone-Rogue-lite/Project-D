@@ -6,25 +6,23 @@ public class IngameUI : MonoBehaviour
 {
     public Animator MainWeapon_Swap;
     public Animator SubWeapon_Swap;
-    public GameObject MainWeapon;
-    public GameObject SubWeapon;
     
 
     public bool current_Weapon; // true¸é MainWeapon false¸é SubWeapon
 
     private void Update()
     {
-        if(current_Weapon == true && Input.GetKeyDown("SubWeapon"))
+        if(Input.GetButtonDown("MainWeapon"))
         {
-            current_Weapon = false;
-            MainWeapon_Swap.SetFloat("MainWeapon_Swap", 1.0f);
-            SubWeapon_Swap.SetFloat("SubWeapon_Swap", 1.0f);
+            Debug.Log("MainSwap");
+            MainWeapon_Swap.SetBool("Current_Weapon", true);
+            SubWeapon_Swap.SetBool("Current_Weapon", true);
         }
-        else if (current_Weapon == false && Input.GetKeyDown("MainWeapon"))
+        else if (Input.GetButtonDown("SubWeapon"))
         {
-            current_Weapon = true;
-            MainWeapon_Swap.SetFloat("MainWeapon_Swap", -1.0f);
-            SubWeapon_Swap.SetFloat("SubWeapon_Swap", -1.0f);
+            Debug.Log("SubSwap");
+            MainWeapon_Swap.SetBool("Current_Weapon", false);
+            SubWeapon_Swap.SetBool("Current_Weapon", false);
         }
     }
 }
