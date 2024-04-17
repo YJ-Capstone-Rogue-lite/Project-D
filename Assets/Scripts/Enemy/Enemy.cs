@@ -1,10 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Weapon weapon;
     
     public Transform target;
     public float speed = 3f;
@@ -56,7 +55,11 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
         {
-            enemy_hp -= weapon.Damage;
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            if (bullet == null)
+                return;
+
+            enemy_hp -= bullet.Damage;
         }
     }
 

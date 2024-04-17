@@ -23,7 +23,7 @@ public class Title_Btn : MonoBehaviour
         option_Popup.SetActive(false);
         popUP.SetActive(false);
     }
-
+    // ppt용 주석추가
     public void Click_newGame()
     {
         if (true) // 플레이어 데이터가 있을경우 적기

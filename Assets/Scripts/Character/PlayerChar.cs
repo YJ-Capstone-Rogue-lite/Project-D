@@ -26,7 +26,7 @@ public class PlayerChar : Character
         player_anim.SetFloat("MoveX", player_Rb.velocity.x);
         player_anim.SetFloat("MoveY", player_Rb.velocity.y);
 
-        if (player_Rb.velocity.x < 0) //flip
+        if (player_Rb.velocity.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
