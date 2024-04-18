@@ -21,7 +21,7 @@ MonoBehaviour:
   bullet_velocity: 20
   Fire_rate: 1
   reload_time: 1.5
-  magazine_capacity: 4
+  magazine_capacity: 8
   backup_magazine_capacity: 8
   Damage: 5
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uC0F7\uAC74\uC774\uB2E4.\n5\uBC1C\uC774

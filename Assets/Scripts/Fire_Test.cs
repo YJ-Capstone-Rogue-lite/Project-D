@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class FIre_Test : MonoBehaviour
 {
-    public Weapon weapon; // Weapon 스크립터블 객체
+    public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값1)
+
+    public Weapon default_weapon; //기본 무기(피스톨)
 
     // 총 변수
     [SerializeField] private GameObject bulletPrefebs; // 총알 프리팹
@@ -15,6 +17,9 @@ public class FIre_Test : MonoBehaviour
 
     private float fireTimer; // 발사 타이머
     private float fireRate; // 발사 속도
+
+
+
     private bool isReloading = false; // 재장전 중인지 여부를 나타내는 변수
 
     float angle;
@@ -25,7 +30,11 @@ public class FIre_Test : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
+        weapon = default_weapon;
+        Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon.magazine_capacity = weapon.backup_magazine_capacity; // 게임 시작시 한번 장탄수들 초기화
+
+
     }
 
     private void Update()
@@ -38,12 +47,14 @@ public class FIre_Test : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
 
-        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 장탄수가 0보다 크고, isReloading이 false일때 총알 발사
-        if (Input.GetMouseButton(0) && fireTimer <= 0f && weapon.magazine_capacity > 0 && isReloading == false)
+
+
+        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 장탄수가 0보다 크고, isReloading이 false이고 무기가 할당되어 있을 때 총알 발사
+        if (Input.GetMouseButton(0) && fireTimer <= 0f && weapon.magazine_capacity > 0 && isReloading == false && weapon != null)
         {
             fireTimer = fireRate; // 발사 타이머 설정
-            
-            if(weapon.weaponType==Weapon.WeaponType.Shoot_Gun) //웨폰의 타입이 샷건이라면
+
+            if (weapon.weaponType == Weapon.WeaponType.Shoot_Gun) //웨폰의 타입이 샷건이라면
             {
                 Shoot_Gun_Shoot(); //샷건 총알 발사
             }
@@ -54,17 +65,16 @@ public class FIre_Test : MonoBehaviour
 
             weapon.magazine_capacity -= 1; // 쏠때마다 장탄수 값 1 감소
 
-            if(weapon.magazine_capacity <= 0) //만약 장탄수 값이 0보다 작거나 같을때
-            {
-                Reload(); //isRealoding 값 true
-            }
-
         }
         else
         {
             fireTimer -= Time.deltaTime; // 발사 타이머 감소
         }
-        //player_die(); // 플레이어 체력 확인 함수 호출
+
+        if (weapon.magazine_capacity <= 0) //만약 장탄수 값이 0보다 작거나 같을때
+        {
+            Reload(); //isRealoding 값 true
+        }
 
     }
 
@@ -72,7 +82,7 @@ public class FIre_Test : MonoBehaviour
     {
         var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation ); // 총알 생성
         temp.GetComponent<Bullet>().setup(weapon);
-        Debug.Log("총을 쏨! " + "무기 이름 : " +weapon.name +" "+ weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
+        Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name +" "+ weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
     }
 
     private void Shoot_Gun_Shoot()
@@ -108,6 +118,8 @@ public class FIre_Test : MonoBehaviour
         // 재장전이 끝났으므로 재장전 중인 상태 해제
         isReloading = false;
     }
+
+
 
     //private void OnCollisionEnter2D(Collision2D other)
     //{

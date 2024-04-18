@@ -17,16 +17,6 @@ public class Bullet : MonoBehaviour
 
 
 
-
-    //private void Start()
-    //{
-    //    rb = GetComponent<Rigidbody2D>();
-    //    setup();
-    //    Destroy(gameObject, lifeTime);
-
-
-    //}
-
     public void setup(Weapon weapon)
     {
         rb = GetComponent<Rigidbody2D>();
