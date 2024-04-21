@@ -794,7 +794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ff48912e5166e914da914cacc5857bc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1359,7 +1359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 49edc3cbaad6d1e4e90b6692af3539e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2093,7 +2093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainWeapon_Swap: {fileID: 482613118}
   SubWeapon_Swap: {fileID: 2057936261}
-  current_Weapon: 0
+  MainWeapon: 0
+  SubWeapon: 1
 --- !u!1 &2057936257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,8 +2153,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ff48912e5166e914da914cacc5857bc7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2180,7 +2181,7 @@ Animator:
   m_GameObject: {fileID: 2057936257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ebf6142427d11e44eb7c4f926aa1dd0b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 425f1facd543fc049912ddfa57d9229d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
