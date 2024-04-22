@@ -20,8 +20,8 @@ MonoBehaviour:
   bullet_range: 20
   bullet_velocity: 20
   Fire_rate: 1
-  reload_time: 2
-  magazine_capacity: 0
+  reload_time: 10
+  magazine_capacity: 5
   backup_magazine_capacity: 5
   Damage: 50
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uC800\uACA9\uCD1D\uC774\uB2E4.\n\uAD00\uD1B5\uD6A8\uACFC."

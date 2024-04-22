@@ -504,6 +504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot1: {fileID: 286293950}
   weaponSlot2: {fileID: 715798046}
+  magazineCapacitySlot1: 0
+  magazineCapacitySlot2: 0
 --- !u!1 &286293950
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+  weapon_Slot: {fileID: 91040850}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 1719720220}
@@ -819,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+  weapon_Slot: {fileID: 91040850}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 655702466}

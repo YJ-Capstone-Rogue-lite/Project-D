@@ -7,10 +7,28 @@ public class Weapon_Slot : MonoBehaviour
     public GameObject weaponSlot1; // 무기 슬롯 1 게임 오브젝트
     public GameObject weaponSlot2; // 무기 슬롯 2 게임 오브젝트
 
-    private GameObject activeWeaponSlot; // 활성화된 무기 슬롯 게임 오브젝트
+    private FIre_Test fire_test;
 
-    private float magazineCapacity; // 현재 활성화된 슬롯의 장탄수
+    public GameObject activeWeaponSlot { get; private set; } // 활성화된 무기 슬롯 게임 오브젝트
 
+    public float magazineCapacitySlot1; // 슬롯 1의 장탄수
+    public float magazineCapacitySlot2; // 슬롯 2의 장탄수
+
+    private bool isReloadingSlot1 = false;
+    private bool isReloadingSlot2 = false;
+
+    private void Start()
+    {
+        // 게임 시작시 기본 무기 슬롯 설정
+        EnableWeaponSlot(weaponSlot1);
+    }
+
+   
+
+    private void Update()
+    {
+        slotchange();
+    }
 
     // 무기를 슬롯에 할당하는 메서드
     public void ReceiveWeapon(Weapon weapon)
@@ -20,6 +38,9 @@ public class Weapon_Slot : MonoBehaviour
         {
             // 활성화된 무기 슬롯에만 무기를 할당합니다.
             activeWeaponSlot.GetComponent<FIre_Test>().weapon = weapon;
+
+            // 활성화된 슬롯의 무기를 가져와서 장탄수를 설정합니다.
+            UpdateMagazineCapacity();
         }
         else
         {
@@ -27,40 +48,6 @@ public class Weapon_Slot : MonoBehaviour
             Debug.LogError("활성화된 무기 슬롯이 없습니다.");
         }
     }
-
-    private void Start()
-    {
-        // 게임 시작시 기본 무기 슬롯 설정
-        EnableWeaponSlot(weaponSlot1);
-    }
-
-    // 무기 슬롯을 활성화하는 메서드
-    private void EnableWeaponSlot(GameObject weaponSlot)
-    {
-        // 선택된 무기 슬롯을 활성화하고 다른 슬롯은 비활성화
-        weaponSlot.SetActive(true);
-        activeWeaponSlot = weaponSlot; // 활성화된 무기 슬롯을 업데이트합니다.
-        if (weaponSlot == weaponSlot1)
-        {
-            weaponSlot2.SetActive(false);
-        }
-        else if (weaponSlot == weaponSlot2)
-        {
-            weaponSlot1.SetActive(false);
-        }
-
-        // 활성화된 슬롯의 무기를 가져와서 장탄수를 설정합니다.
-        magazineCapacity = weaponSlot.GetComponent<FIre_Test>().weapon.magazine_capacity;
-    }
-
-
-
-
-    private void Update()
-    {
-        slotchange();
-    }
-
 
     //슬롯 변경 기능
     void slotchange()
@@ -79,11 +66,11 @@ public class Weapon_Slot : MonoBehaviour
         }
 
         // 숫자 1, 2 키를 사용하여 무기 슬롯 변경
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(("1")))
         {
             EnableWeaponSlot(weaponSlot1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(("2")))
         {
             EnableWeaponSlot(weaponSlot2);
         }
@@ -113,5 +100,111 @@ public class Weapon_Slot : MonoBehaviour
         {
             EnableWeaponSlot(weaponSlot1);
         }
+    }
+
+    // 무기 슬롯을 활성화하는 메서드
+    public void EnableWeaponSlot(GameObject weaponSlot)
+    {
+        // 선택된 무기 슬롯을 활성화하고 다른 슬롯은 비활성화
+        weaponSlot.SetActive(true);
+        activeWeaponSlot = weaponSlot; // 활성화된 무기 슬롯을 업데이트합니다.
+        if (weaponSlot == weaponSlot1)
+        {
+            weaponSlot2.SetActive(false);
+        }
+        else if (weaponSlot == weaponSlot2)
+        {
+            weaponSlot1.SetActive(false);
+        }
+
+    }
+
+    //장탄수 업데이트
+    public void UpdateMagazineCapacity()
+    {
+        // 현재 활성화된 슬롯의 장탄수를 설정
+        if (activeWeaponSlot == weaponSlot1)
+        {
+            magazineCapacitySlot1 = activeWeaponSlot.GetComponent<FIre_Test>().weapon.backup_magazine_capacity;
+        }
+        else if (activeWeaponSlot == weaponSlot2)
+        {
+            magazineCapacitySlot2 = activeWeaponSlot.GetComponent<FIre_Test>().weapon.backup_magazine_capacity;
+        }
+    }
+
+    // 무기 슬롯의 장탄수 감소 메서드
+    public void DecreaseMagazineCapacity(GameObject slot)
+    {
+        if (slot == weaponSlot1)
+        {
+            magazineCapacitySlot1 -= 1;
+            Debug.Log("무기 슬롯 1의 장탄수 감소: " + magazineCapacitySlot1);
+
+            if (magazineCapacitySlot1 <= 0)
+            {
+                Reload(slot);
+            }
+        }
+        else if (slot == weaponSlot2)
+        {
+            magazineCapacitySlot2 -= 1;
+            Debug.Log("무기 슬롯 2의 장탄수 감소: " + magazineCapacitySlot2);
+
+            if (magazineCapacitySlot2 <= 0)
+            {
+                Reload(slot);
+            }
+        }
+        else
+        {
+            Debug.LogError("해당 무기 슬롯의 장탄수를 찾을 수 없습니다.");
+        }
+    }
+
+    // 재장전 메서드
+    private void Reload(GameObject slot)
+    {
+        // slot1에 대한 재장전 중복 방지
+        if (slot == weaponSlot1 && !isReloadingSlot1)
+        {
+            StartCoroutine(ReloadCoroutine(slot, 1));
+
+        }
+        // slot2에 대한 재장전 중복 방지
+        else if (slot == weaponSlot2 && !isReloadingSlot2)
+        {
+            StartCoroutine(ReloadCoroutine(slot, 2));
+        }
+        fire_test.isReloading = true;
+
+    }
+
+    private IEnumerator ReloadCoroutine(GameObject slot, int slotNumber)
+    {
+        // 코루틴 실행 상태 업데이트
+        if (slotNumber == 1) isReloadingSlot1 = true;
+        else if (slotNumber == 2) isReloadingSlot2 = true;
+
+        Debug.Log("무기 슬롯 재장전 시작: " + slot.name);
+        yield return new WaitForSeconds(slot.GetComponent<FIre_Test>().weapon.reload_time);
+
+        if (slot == weaponSlot1)
+        {
+            magazineCapacitySlot1 = slot.GetComponent<FIre_Test>().weapon.backup_magazine_capacity;
+            Debug.Log("무기 슬롯 1 재장전 완료: " + slot.name + ", 장탄수: " + magazineCapacitySlot1);
+        }
+        else if (slot == weaponSlot2)
+        {
+            magazineCapacitySlot2 = slot.GetComponent<FIre_Test>().weapon.backup_magazine_capacity;
+            Debug.Log("무기 슬롯 2 재장전 완료: " + slot.name + ", 장탄수: " + magazineCapacitySlot2);
+        }
+
+        // 코루틴 실행 상태 업데이트
+        if (slotNumber == 1) isReloadingSlot1 = false;
+        else if (slotNumber == 2) isReloadingSlot2 = false;
+
+        fire_test.isReloading = false; //fire_test의 isReloading 값 false로 변경시켜 다시 쏘게 만들기
+
     }
 }
