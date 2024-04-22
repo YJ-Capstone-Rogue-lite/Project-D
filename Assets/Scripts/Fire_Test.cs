@@ -5,23 +5,33 @@ using UnityEngine;
 
 public class FIre_Test : MonoBehaviour
 {
+<<<<<<< HEAD
     public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값1)
 
     public Weapon default_weapon; //기본 무기(피스톨)
+=======
+    public Weapon weapon; // Weapon 스크립터블 객체
+>>>>>>> System
 
     // 총 변수
     [SerializeField] private GameObject bulletPrefebs; // 총알 프리팹
     [SerializeField] private Transform firingPoint; // 발사 지점
+<<<<<<< HEAD
 
+=======
+>>>>>>> System
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
 
     private float fireTimer; // 발사 타이머
     private float fireRate; // 발사 속도
+<<<<<<< HEAD
 
 
 
     private bool isReloading = false; // 재장전 중인지 여부를 나타내는 변수
 
+=======
+>>>>>>> System
     float angle;
     private Vector2 mousePos; // 마우스 위치
 
@@ -30,6 +40,7 @@ public class FIre_Test : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
+<<<<<<< HEAD
         weapon = default_weapon;
         Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon.magazine_capacity = weapon.backup_magazine_capacity; // 게임 시작시 한번 장탄수들 초기화
@@ -38,6 +49,11 @@ public class FIre_Test : MonoBehaviour
     }
 
     private void Update()
+=======
+    }
+
+        private void Update()
+>>>>>>> System
     {
         // Weapon 스크립터블 객체에서 fireRate 속성을 가져와 초기화
         fireRate = weapon.Fire_rate;
@@ -47,6 +63,7 @@ public class FIre_Test : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
 
+<<<<<<< HEAD
 
 
         // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 장탄수가 0보다 크고, isReloading이 false이고 무기가 할당되어 있을 때 총알 발사
@@ -65,16 +82,27 @@ public class FIre_Test : MonoBehaviour
 
             weapon.magazine_capacity -= 1; // 쏠때마다 장탄수 값 1 감소
 
+=======
+        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작거나 같으면 발사
+        if (Input.GetMouseButton(0) && fireTimer <= 0f)
+        {
+            Shoot(); // 발사 함수 호출
+            fireTimer = fireRate; // 발사 타이머 설정
+>>>>>>> System
         }
         else
         {
             fireTimer -= Time.deltaTime; // 발사 타이머 감소
         }
+<<<<<<< HEAD
 
         if (weapon.magazine_capacity <= 0) //만약 장탄수 값이 0보다 작거나 같을때
         {
             Reload(); //isRealoding 값 true
         }
+=======
+        //player_die(); // 플레이어 체력 확인 함수 호출
+>>>>>>> System
 
     }
 
@@ -82,6 +110,7 @@ public class FIre_Test : MonoBehaviour
     {
         var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation ); // 총알 생성
         temp.GetComponent<Bullet>().setup(weapon);
+<<<<<<< HEAD
         Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name +" "+ weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
     }
 
@@ -121,6 +150,12 @@ public class FIre_Test : MonoBehaviour
 
 
 
+=======
+
+        Debug.Log("총을 쏨! " + "무기 이름 : " +weapon.name + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range);
+    }
+
+>>>>>>> System
     //private void OnCollisionEnter2D(Collision2D other)
     //{
     //    if (other.gameObject.CompareTag("Enemy")) // 적과 충돌했을 때
@@ -128,7 +163,11 @@ public class FIre_Test : MonoBehaviour
     //        player_hp -= 20; // 플레이어 체력 감소
     //    }
     //}
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> System
     //private void player_die()
     //{
     //    if (player_hp <= 0) // 플레이어 체력이 0보다 작거나 같으면

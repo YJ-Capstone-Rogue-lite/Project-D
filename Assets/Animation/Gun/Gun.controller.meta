@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animation/Gun/Gun.controller.meta
 guid: 2ec779ad04a5e8b45a4ef8332568f19e
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
+========
+guid: 130ab261d5fed07448a025b31575a15e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+>>>>>>>> System:Assets/Animation/Gun/HandGunIdle.anim.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

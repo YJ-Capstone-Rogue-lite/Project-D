@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 using System.Collections;
+=======
+﻿using System.Collections;
+>>>>>>> System
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+<<<<<<< HEAD
+=======
+    [SerializeField] private Weapon weapon;
+>>>>>>> System
     
     public Transform target;
     public float speed = 3f;
@@ -55,11 +63,15 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet")) //Bullet에 접촉했을 때
         {
+<<<<<<< HEAD
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
             if (bullet == null)
                 return;
 
             enemy_hp -= bullet.Damage;
+=======
+            enemy_hp -= weapon.Damage;
+>>>>>>> System
         }
     }
 
@@ -67,6 +79,10 @@ public class Enemy : MonoBehaviour
     {
         if (enemy_hp <= 0)
         {
+<<<<<<< HEAD
+=======
+            transform.parent.GetComponent<Room>().EnemyTemp(-1);
+>>>>>>> System
             Destroy(gameObject);
         }
     }

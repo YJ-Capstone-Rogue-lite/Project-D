@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &12182973
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +161,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> System
 --- !u!1001 &23232892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,10 +180,13 @@ PrefabInstance:
       value: Enemy(melee) (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+<<<<<<< HEAD
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+=======
+>>>>>>> System
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -241,6 +247,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+<<<<<<< HEAD
 --- !u!1 &45911512
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +337,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+=======
+>>>>>>> System
 --- !u!1001 &47289633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -347,10 +356,13 @@ PrefabInstance:
       value: Enemy(melee) (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+<<<<<<< HEAD
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+=======
+>>>>>>> System
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -423,7 +435,10 @@ GameObject:
   - component: {fileID: 91040843}
   - component: {fileID: 91040844}
   - component: {fileID: 91040846}
+<<<<<<< HEAD
   - component: {fileID: 91040850}
+=======
+>>>>>>> System
   - component: {fileID: 91040849}
   - component: {fileID: 91040848}
   - component: {fileID: 91040847}
@@ -509,7 +524,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 286293951}
+<<<<<<< HEAD
   - {fileID: 715798047}
+=======
+>>>>>>> System
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -616,6 +634,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91040841}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!114 &91040850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,6 +910,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> System
 --- !u!1 &286293950
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +923,11 @@ GameObject:
   - component: {fileID: 286293951}
   - component: {fileID: 286293952}
   m_Layer: 0
+<<<<<<< HEAD
   m_Name: weapon_slot1
+=======
+  m_Name: GameObject (1)
+>>>>>>> System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,7 +946,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+<<<<<<< HEAD
   - {fileID: 1719720220}
+=======
+>>>>>>> System
   - {fileID: 1051165621}
   m_Father: {fileID: 91040845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -937,6 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382b28ea74b55ef419dac3e609154a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   weapon: {fileID: 0}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
@@ -1685,6 +1714,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725077913}
   m_CullTransparentMesh: 1
+=======
+  weapon: {fileID: 11400000, guid: f529e200f49174444a0b7cf278093ebd, type: 2}
+  bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  firingPoint: {fileID: 1719720220}
+>>>>>>> System
 --- !u!1 &798439631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1787,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &810276785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,6 +2207,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900186355}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> System
 --- !u!1 &950459310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,6 +2332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursuricon: {fileID: 2800000, guid: 400fd22928340b3459a16e582799e627, type: 3}
   hotSpot: {x: 0, y: 0}
+<<<<<<< HEAD
 --- !u!1 &1004100680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2595,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009528380}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> System
 --- !u!1 &1051165620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,10 +2608,17 @@ GameObject:
   - component: {fileID: 1051165621}
   - component: {fileID: 1051165624}
   - component: {fileID: 1051165625}
+<<<<<<< HEAD
   - component: {fileID: 1051165627}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
+=======
+  - component: {fileID: 1051165626}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Player
+>>>>>>> System
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2587,13 +2634,22 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+<<<<<<< HEAD
   m_Children: []
+=======
+  m_Children:
+  - {fileID: 1719720220}
+>>>>>>> System
   m_Father: {fileID: 286293951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.1, y: 1}
+<<<<<<< HEAD
   m_SizeDelta: {x: 20, y: 20}
+=======
+  m_SizeDelta: {x: 1.3, y: 1}
+>>>>>>> System
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1051165624
 CanvasRenderer:
@@ -2644,7 +2700,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
   m_Sprite: {fileID: 0}
+=======
+  m_Sprite: {fileID: 1706657260, guid: d44939ca98b3eb74a8caeb91716ea53d, type: 3}
+>>>>>>> System
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2652,17 +2712,27 @@ SpriteRenderer:
   m_Size: {x: 0.33, y: 0.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+<<<<<<< HEAD
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1051165627
 MonoBehaviour:
+=======
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &1051165626
+Animator:
+  serializedVersion: 5
+>>>>>>> System
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051165620}
   m_Enabled: 1
+<<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9797778dc541fd04dac999a492e098aa, type: 3}
   m_Name: 
@@ -4011,6 +4081,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707197178}
   m_CullTransparentMesh: 1
+=======
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ec779ad04a5e8b45a4ef8332568f19e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+>>>>>>> System
 --- !u!1 &1719720219
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,8 +4106,13 @@ GameObject:
   - component: {fileID: 1719720220}
   m_Layer: 0
   m_Name: FirePoint
+<<<<<<< HEAD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+=======
+  m_TagString: Player
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+>>>>>>> System
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4035,6 +4124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719720219}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.049999923, y: 1.5000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -4564,6 +4654,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147181597}
   m_CullTransparentMesh: 1
+=======
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.5, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1051165621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+>>>>>>> System
 --- !u!1001 &5208415285679877960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4581,10 +4680,13 @@ PrefabInstance:
       value: Enemy(melee)
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+<<<<<<< HEAD
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
+=======
+>>>>>>> System
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -4654,6 +4756,7 @@ SceneRoots:
   - {fileID: 23232892}
   - {fileID: 47289633}
   - {fileID: 798439634}
+<<<<<<< HEAD
   - {fileID: 1504981743}
   - {fileID: 91040845}
   - {fileID: 861731060}
@@ -4663,3 +4766,6 @@ SceneRoots:
   - {fileID: 1004100686}
   - {fileID: 1227815424}
   - {fileID: 2031060856}
+=======
+  - {fileID: 91040845}
+>>>>>>> System

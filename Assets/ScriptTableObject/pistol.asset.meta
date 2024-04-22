@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 22a6fb2301e85a340ad1d192aa762141
+=======
+<<<<<<<< HEAD:Assets/Scripts/Floor Loader/Item Rates/Floor 1.asset.meta
+guid: f529e200f49174444a0b7cf278093ebd
+========
+guid: 22a6fb2301e85a340ad1d192aa762141
+>>>>>>>> origin/Enemy:Assets/ScriptTableObject/pistol.asset.meta
+>>>>>>> System
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

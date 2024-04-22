@@ -9,9 +9,12 @@ public class PlayerChar : Character
     private Animator player_anim;
     private float rollDuration = 0.7f; //구르는시간
     bool is_rolling = false;
+<<<<<<< HEAD
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
+=======
+>>>>>>> System
     protected override void Start()
     {
         player_Rb = GetComponent<Rigidbody2D>();
@@ -29,6 +32,7 @@ public class PlayerChar : Character
         player_anim.SetFloat("MoveX", player_Rb.velocity.x);
         player_anim.SetFloat("MoveY", player_Rb.velocity.y);
 
+<<<<<<< HEAD
         if (player_Rb.velocity.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
         {
             transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
@@ -36,12 +40,20 @@ public class PlayerChar : Character
 
 
 
+=======
+        if (player_Rb.velocity.x < 0) //flip
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+>>>>>>> System
         }
         else if (player_Rb.velocity.x > 0)
         {
             transform.localScale = Vector3.one;
+<<<<<<< HEAD
             //gunSpriteRenderer.transform.localScale = Vector3.one;
 
+=======
+>>>>>>> System
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) //Idle

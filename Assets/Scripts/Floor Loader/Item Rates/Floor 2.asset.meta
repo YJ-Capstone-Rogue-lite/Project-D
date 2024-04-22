@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Floor Loader/Item Rates/Floor 2.asset.meta
+guid: 3de6fd6c728f5e143ba62b1bba0c821f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+========
+guid: 2ec779ad04a5e8b45a4ef8332568f19e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+>>>>>>>> origin/Enemy:Assets/Animation/Gun/Gun.controller.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

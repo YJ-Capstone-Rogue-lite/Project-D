@@ -50,20 +50,32 @@ public class Title_Btn : MonoBehaviour
 
     public void Click_newGame()
     {
+<<<<<<< HEAD
         if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ°¡ ÀÖÀ»°æ¿ì
+=======
+        if (true) // í”Œë ˆì´ì–´ ë°ì´í„°ê°€ ìžˆì„ê²½ìš° ì ê¸°
+>>>>>>> System
         {
             popUP.SetActive(true);
             popup_Text.text = "Saved data is present. Do you want to clear it and proceed?";
         }
         else
         {
+<<<<<<< HEAD
             play_inGame(); //¾øÀ» °æ¿ì ¾À º¯°æ
+=======
+            // ë°ì´í„°ê°€ ì—†ì„ ë•Œ ì”¬ ë³€ê²½
+>>>>>>> System
         }
     }
 
     public void Click_loadGame()
     {
+<<<<<<< HEAD
         play_inGame();// ÀÎ°ÔÀÓ ¾ÀÀ¸·Î º¯°æ
+=======
+        // ì¸ê²Œìž„ ì”¬ìœ¼ë¡œ ë³€ê²½
+>>>>>>> System
     }
 
     public void Click_option()
