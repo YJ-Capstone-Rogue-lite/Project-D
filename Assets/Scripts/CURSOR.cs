@@ -5,10 +5,13 @@ using UnityEngine;
 public class CURSOR : MonoBehaviour
 {
     public Texture2D cursuricon;
-    // Start is called before the first frame update
+    public Vector2 hotSpot = Vector2.zero;
+
     void Start()
     {
-        Cursor.SetCursor(cursuricon, Vector2.zero, CursorMode.Auto);
+        hotSpot.x = cursuricon.width / 2;
+        hotSpot.y = cursuricon.height / 2;
+        Cursor.SetCursor(cursuricon, hotSpot, CursorMode.Auto);
     }
 
    
