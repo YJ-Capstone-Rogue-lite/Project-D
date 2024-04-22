@@ -7,8 +7,13 @@ public class IngameUI : MonoBehaviour
     public Animator MainWeapon_Swap;
     public Animator SubWeapon_Swap;
 
-    public bool MainWeapon = false; // true¸é MainWeapon false¸é SubWeapon
-    public bool SubWeapon = true; // true¸é MainWeapon false¸é SubWeapon
+    [SerializeField] private GameObject reloading;
+    [SerializeField] private GameObject player;
+    
+
+
+    public bool MainWeapon = false; // trueë©´ MainWeapon falseë©´ SubWeapon
+    public bool SubWeapon = true; // trueë©´ MainWeapon falseë©´ SubWeapon
 
     private void Update()
     {
@@ -32,5 +37,7 @@ public class IngameUI : MonoBehaviour
             SubWeapon = false;
             Debug.Log("SubClick");
         }
+        reloading.transform.position = player.transform.position;
     }
+    
 }
