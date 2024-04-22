@@ -15,11 +15,7 @@ public partial class FloorLoader : MonoBehaviour
         get { return instance; }
     }
 
-<<<<<<< HEAD
     public const int                                    floorSize               = 10;
-=======
-    public const int                                    floorSize               = 8;
->>>>>>> System
     public const int                                    roomSize_Width          = 16;
     public const int                                    roomSize_Height         = 12;
     public const int                                    selectRoomInt           = 3;
@@ -35,11 +31,6 @@ public partial class FloorLoader : MonoBehaviour
     Point                                               startPoint;
     Point                                               bossPoint;
 
-<<<<<<< HEAD
-=======
-    public GameObject                                   player;
-
->>>>>>> System
     [SerializeField] private TileBase[]                 floorTiles;
     [SerializeField] private TileBase[]                 doorTiles;
     private Queue<(Tilemap, Vector3Int, TileBase)>      waittingDoorQueue       = new();
@@ -122,23 +113,6 @@ public partial class FloorLoader : MonoBehaviour
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTiles[0]));
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTiles[0]));
         });
-<<<<<<< HEAD
-=======
-        RoomAction.Add(4, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-1, 0), floorTiles[0]);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)-1, 0), floorTiles[0]);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)+0, 0), floorTiles[1]);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+9, -(x*roomSize_Height)+0, 0), floorTiles[2]);
-
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
-
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[2]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[2]));
-        });
->>>>>>> System
     }
 
     void Start() => FloorLoad();
@@ -158,10 +132,6 @@ public partial class FloorLoader : MonoBehaviour
         ConnenctRooms();
         CreateRooms();
         DoorPP();
-<<<<<<< HEAD
-=======
-        player.transform.position = new Vector3((float)(startPoint.Y*roomSize_Width)+roomSize_Width/2, (float)-(startPoint.X*roomSize_Height)-(roomSize_Height/2));
->>>>>>> System
         // Destroy(this);
     }
 
@@ -210,13 +180,8 @@ public partial class FloorLoader : MonoBehaviour
         var roomData = roomContainer.specialRoomData[1];
         do
         {                
-<<<<<<< HEAD
             x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
             y = floorSize - 1;
-=======
-            x = floorSize - 1;
-            y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1));
->>>>>>> System
         } while(SelectedRoomCheck(x, y));
         m_selectedRoomTablel[x, y] = true;
         m_roomNumberTablel[x, y] = roomIdx++;
@@ -360,17 +325,12 @@ public partial class FloorLoader : MonoBehaviour
                     SetDoors(temp, i, j);
 
                     ints.Add(m_roomNumberTablel[i, j]);
-<<<<<<< HEAD
-=======
-                    if(i == startPoint.X && j == startPoint.Y) temp.GetComponent<Room>().state = Room.State.CLEAR;
->>>>>>> System
                 }
             }
         }
         GameObject bossEnter = Instantiate(Resources.Load(m_RoomTablel[(int)bossPoint.X, (int)bossPoint.Y].path) as GameObject, gameObject.transform);
         bossEnter.transform.position = new Vector2(((int)bossPoint.Y)*roomSize_Width, -((int)bossPoint.X*roomSize_Height));
         SetDoors(bossEnter, (int)bossPoint.X, (int)bossPoint.Y);
-<<<<<<< HEAD
         RoomAction[2](bossEnter.GetComponent<Tilemap>(), 0, 0);
 
         GameObject boss = Instantiate(Resources.Load(roomContainer.specialRoomData[1].path) as GameObject, gameObject.transform);
@@ -378,15 +338,6 @@ public partial class FloorLoader : MonoBehaviour
         
         var tilemap = boss.GetComponent<Tilemap>();
         RoomAction[1](tilemap, 0, 0);
-=======
-        RoomAction[3](bossEnter.GetComponent<Tilemap>(), 0, 0);
-
-        GameObject boss = Instantiate(Resources.Load(roomContainer.specialRoomData[1].path) as GameObject, gameObject.transform);
-        boss.transform.position = new Vector2(((int)bossPoint.Y-1)*roomSize_Width, -(((int)bossPoint.X+roomContainer.specialRoomData[1].roomSize.GetLength(1)-2)*roomSize_Height));
-        
-        var tilemap = boss.GetComponent<Tilemap>();
-        RoomAction[4](tilemap, 0, 1);
->>>>>>> System
 
         // Debug.Log(System.S)tring.Join(" ",ints.ToArray()));
     }

@@ -7839,10 +7839,6 @@ GameObject:
   - component: {fileID: -8432220801058925825}
   - component: {fileID: 7720203826706086445}
   - component: {fileID: 6169692088517538838}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 4340230093478038946}
->>>>>>> System
   m_Layer: 0
   m_Name: OverSize Room 3
   m_TagString: Untagged
@@ -7863,10 +7859,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-<<<<<<< HEAD
   - {fileID: 7511118367643003139}
-=======
->>>>>>> System
   - {fileID: 1306411612403950040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9533,10 +9526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3775cbc1dfbbf0045834e2c321d23a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
-  state: 0
->>>>>>> System
 --- !u!19719996 &6169692088517538838
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9573,18 +9562,12 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
-<<<<<<< HEAD
 --- !u!1 &8988471024721927274
 GameObject:
-=======
---- !u!61 &4340230093478038946
-BoxCollider2D:
->>>>>>> System
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7511118367643003139}
@@ -9624,44 +9607,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
-=======
-  m_GameObject: {fileID: 7914687273976411706}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 15.985649, y: -11.481734}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 28.040699, y: 18.97304}
-  m_EdgeRadius: 0
->>>>>>> System

@@ -54,19 +54,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-<<<<<<< HEAD
     m_Name: SubWeapon
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 2
-=======
-    m_Name: Roll
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: space
->>>>>>> System
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -98,7 +90,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: space
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
