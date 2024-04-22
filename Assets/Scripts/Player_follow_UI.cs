@@ -18,7 +18,6 @@ public class Player_follow_UI : MonoBehaviour
         // hpBar가 할당되지 않은 경우 경고 출력 및 스크립트 비활성화
         if (hpBar == null)
         {
-            Debug.LogError("hpBar is not assigned!");
             enabled = false; // 스크립트 비활성화
         }
     }
