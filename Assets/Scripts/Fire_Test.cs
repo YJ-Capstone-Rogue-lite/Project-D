@@ -56,6 +56,9 @@ public class FIre_Test : MonoBehaviour
         if (Input.GetMouseButton(0) && fireTimer <= 0f && weapon != null && weapon.weaponType != Weapon.WeaponType.None)
         {
             // 한 슬롯이 재장전 중이면서 현재 활성화된 슬롯이 재장전 중이 아닌 경우에만 발사
+            // - 현재 활성화된 슬롯이 슬롯 1인 경우, 슬롯 1이 재장전 중인지 확인합니다.
+            // - 현재 활성화된 슬롯이 슬롯 2인 경우, 슬롯 2가 재장전 중인지 확인합니다.
+            // 위 두 조건 중 하나라도 만족하지 않는 경우에만 아래의 코드 블록이 실행됩니다.
             if (!((weapon_Slot.isReloadingSlot1 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot1) ||
                   (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)))
             {
