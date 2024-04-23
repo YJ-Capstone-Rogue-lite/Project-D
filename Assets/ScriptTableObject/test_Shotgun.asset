@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: test_Shotgun
   m_EditorClassIdentifier: 
   ratingType: 1
-  weaponType: 3
+  weaponType: 4
   number: 2
   name: "\uAE30\uBCF8\uC0F7\uAC74"
   sprite: {fileID: 45444755, guid: 0cf31600b5f898c43b6bacb707a08c9a, type: 3}
   bullet_range: 0.3
   bullet_velocity: 20
   Fire_rate: 1
-  reload_time: 1.5
+  reload_time: 5
   magazine_capacity: 8
   backup_magazine_capacity: 8
   Damage: 5
