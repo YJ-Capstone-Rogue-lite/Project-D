@@ -3,7 +3,7 @@ using UnityEngine;
 public class Camera_Player : MonoBehaviour
 {
     public float cameraSpeed = 6.0f; // 카메라가 플레이어를 따라가는 속도
-    public float maxDistanceFromPlayer = 5f; // 플레이어로부터 최대 거리
+    public float maxDistanceFromPlayer = 3f; // 플레이어로부터 최대 거리
 
     public GameObject player; // 플레이어 GameObject
     Vector3 mousePos;
