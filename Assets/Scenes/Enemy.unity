@@ -222,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1039019153509472436, guid: d35c189b577397f449f09f54ef7afcc2, type: 3}
       propertyPath: m_TagString
@@ -1190,8 +1190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b978a5d105139cb45801963041f7aad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 5
-  maxDistanceFromPlayer: 2
+  cameraSpeed: 8
+  maxDistanceFromPlayer: 5
   player: {fileID: 91040841}
 --- !u!114 &950459315
 MonoBehaviour:
