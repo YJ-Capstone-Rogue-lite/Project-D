@@ -8,7 +8,7 @@ public class Weapon : ScriptableObject
 {
     public enum RatingType { NONE, COMMON, RARE, UNIQUE, LEGENDARY } //아이템 등급
 
-    public enum WeaponType { Pistol, Assaultt_Rifle, Sniper_Rifle, Shoot_Gun } //무기 타입
+    public enum WeaponType {None, Pistol, Assaultt_Rifle, Sniper_Rifle, Shoot_Gun } //무기 타입
 
     [Header(" # 아이템 기본 정보")]
     public RatingType ratingType; //아이템 등급

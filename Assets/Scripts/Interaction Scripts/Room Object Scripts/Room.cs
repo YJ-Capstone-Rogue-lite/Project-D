@@ -15,7 +15,11 @@ public class Room : MonoBehaviour
     public void RoomEnterTrigger() => BroadcastMessage("RoomEnter", this, SendMessageOptions.DontRequireReceiver);
     public void RoomExitTrigger() => BroadcastMessage("RoomExit", this, SendMessageOptions.DontRequireReceiver);
 
-    public void EnemyTemp(int i) => enemyCount += i;
+    public void EnemyTemp(int i)
+    {
+        enemyCount += i;
+        if (enemyCount <= 0) RoomExitTrigger();
+    }
 
     protected void OnTriggerEnter2D(Collider2D collider)
     {
@@ -24,7 +28,6 @@ public class Room : MonoBehaviour
         {
             state = State.ING;
             RoomEnterTrigger();
-            if(enemyCount == 0) RoomExitTrigger();
         }
     }
 }

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
-  m_Name: pistol
+  m_Name: test_AR
   m_EditorClassIdentifier: 
   ratingType: 1
-  weaponType: 1
+  weaponType: 2
   number: 1
-  name: "\uAE30\uBCF8\uAD8C\uCD1D"
-  sprite: {fileID: 1706657260, guid: d44939ca98b3eb74a8caeb91716ea53d, type: 3}
+  name: "\uAE30\uBCF8\uB3CC\uACA9\uC18C\uCD1D"
+  sprite: {fileID: 991190962, guid: be630e7b09b3c1d459d99aa147d56f6e, type: 3}
   bullet_range: 3
-  bullet_velocity: 20
-  Fire_rate: 0.5
-  reload_time: 1
-  magazine_capacity: 15
-  backup_magazine_capacity: 15
-  Damage: 10
+  bullet_velocity: 30
+  Fire_rate: 0.05
+  reload_time: 2
+  magazine_capacity: 30
+  backup_magazine_capacity: 30
+  Damage: 8
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uAD8C\uCD1D\uC774\uB2E4."

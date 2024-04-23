@@ -9,6 +9,8 @@ public class PlayerChar : Character
     private Animator player_anim;
     private float rollDuration = 0.7f; //구르는시간
     bool is_rolling = false;
+    public GameObject camera_;
+    private GameObject cameraInstance;
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
@@ -16,11 +18,16 @@ public class PlayerChar : Character
     {
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
-
+        cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
+        //cameraInstance.SetActive(false);
+        cameraInstance.GetComponent<Camera_Player>().player = gameObject;
         base.Start();
 
     }
-
+    private void OnEnable()
+    {
+        //cameraInstance.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {

@@ -148,7 +148,7 @@ public partial class FloorLoader : MonoBehaviour
         ConnenctRooms();
         CreateRooms();
         DoorPP();
-        player.transform.position = new Vector3((float)(startPoint.Y*roomSize_Width)+roomSize_Width/2, (float)-(startPoint.X*roomSize_Height)-(roomSize_Height/2));
+        //player.transform.position = new Vector3((float)(startPoint.Y*roomSize_Width)+roomSize_Width/2, (float)-(startPoint.X*roomSize_Height)-(roomSize_Height/2));
         // Destroy(this);
     }
 
