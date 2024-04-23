@@ -5967,7 +5967,7 @@ GameObject:
   - component: {fileID: 3499346832894530349}
   m_Layer: 0
   m_Name: OverSize Room 4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7892,6 +7892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3775cbc1dfbbf0045834e2c321d23a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!19719996 &4196030263723026512
 TilemapCollider2D:
   m_ObjectHideFlags: 0

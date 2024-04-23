@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
     {
         if (enemy_hp <= 0)
         {
+            transform.parent.parent.GetComponent<Room>().EnemyTemp(-1);
             Destroy(gameObject);
         }
     }
