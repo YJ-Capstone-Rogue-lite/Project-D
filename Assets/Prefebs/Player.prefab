@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+  weapon_Slot: {fileID: 5046371043250726752}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 5235055429781835418}
@@ -189,6 +190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot1: {fileID: 7077782313363950043}
   weaponSlot2: {fileID: 1635687973870340071}
+  activeWeaponSlot: {fileID: 0}
+  magazineCapacitySlot1: 0
+  magazineCapacitySlot2: 0
+  isReloadingSlot1: 0
+  isReloadingSlot2: 0
 --- !u!222 &9038497741270039512
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -348,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+  weapon_Slot: {fileID: 5046371043250726752}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 3013202222953634518}
