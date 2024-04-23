@@ -52,29 +52,33 @@ public class FIre_Test : MonoBehaviour
 
     void All_Shooting_Code()
     {
-        
-        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 재장전 상태가 아니고, 무기가 할당되어 있을 때 총알 발사. 무기타입이 None일 경우 작동안함
-        if (Input.GetMouseButton(0) && fireTimer <= 0f && (weapon_Slot.isReloadingSlot1 == false && weapon_Slot.isReloadingSlot2 == false) && weapon != null && weapon.weaponType != Weapon.WeaponType.None) 
+        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 무기가 할당되어 있을 때 총알 발사. 무기타입이 None일 경우 작동안함
+        if (Input.GetMouseButton(0) && fireTimer <= 0f && weapon != null && weapon.weaponType != Weapon.WeaponType.None)
         {
-            fireTimer = fireRate; // 발사 타이머 설정
-
-            if (weapon.weaponType == Weapon.WeaponType.Shoot_Gun) //웨폰의 타입이 샷건이라면
+            // 한 슬롯이 재장전 중이면서 현재 활성화된 슬롯이 재장전 중이 아닌 경우에만 발사
+            if (!((weapon_Slot.isReloadingSlot1 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot1) ||
+                  (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)))
             {
-                Shoot_Gun_Shoot(); //샷건 총알 발사
-            }
-            else
-            {
-                Shoot(); // 일반 발사 함수 호출
-            }
-            weapon_Slot.DecreaseMagazineCapacity(weapon_Slot.activeWeaponSlot); // 쏠때마다 장탄수 값 1 감소
+                fireTimer = fireRate; // 발사 타이머 설정
 
+                if (weapon.weaponType == Weapon.WeaponType.Shoot_Gun) // 무기의 타입이 샷건이라면
+                {
+                    Shoot_Gun_Shoot(); // 샷건 총알 발사
+                }
+                else
+                {
+                    Shoot(); // 일반 발사 함수 호출
+                }
+
+                weapon_Slot.DecreaseMagazineCapacity(weapon_Slot.activeWeaponSlot); // 쏠 때마다 장탄수 값 1 감소
+            }
         }
         else
         {
             fireTimer -= Time.deltaTime; // 발사 타이머 감소
         }
-
     }
+
 
 
     private void Shoot()
