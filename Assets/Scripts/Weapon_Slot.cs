@@ -9,13 +9,13 @@ public class Weapon_Slot : MonoBehaviour
 
     private FIre_Test fire_test;
 
-    public GameObject activeWeaponSlot { get; private set; } // 활성화된 무기 슬롯 게임 오브젝트
+    public GameObject activeWeaponSlot; // 활성화된 무기 슬롯 게임 오브젝트
 
     public float magazineCapacitySlot1; // 슬롯 1의 장탄수
     public float magazineCapacitySlot2; // 슬롯 2의 장탄수
 
-    private bool isReloadingSlot1 = false;
-    private bool isReloadingSlot2 = false;
+    public bool isReloadingSlot1 = false;
+    public bool isReloadingSlot2 = false;
 
     private void Start()
     {
@@ -28,6 +28,14 @@ public class Weapon_Slot : MonoBehaviour
     private void Update()
     {
         slotchange();
+
+        if (Input.GetButtonDown("Reloading"))
+        {
+            Reload(activeWeaponSlot);
+            Debug.Log("R 키 누름" + activeWeaponSlot.name);
+            
+        }
+
     }
 
     // 무기를 슬롯에 할당하는 메서드
@@ -163,7 +171,7 @@ public class Weapon_Slot : MonoBehaviour
     }
 
     // 재장전 메서드
-    private void Reload(GameObject slot)
+    public void Reload(GameObject slot)
     {
         // slot1에 대한 재장전 중복 방지
         if (slot == weaponSlot1 && !isReloadingSlot1)
@@ -176,7 +184,6 @@ public class Weapon_Slot : MonoBehaviour
         {
             StartCoroutine(ReloadCoroutine(slot, 2));
         }
-        fire_test.isReloading = true;
 
     }
 
@@ -204,7 +211,7 @@ public class Weapon_Slot : MonoBehaviour
         if (slotNumber == 1) isReloadingSlot1 = false;
         else if (slotNumber == 2) isReloadingSlot2 = false;
 
-        fire_test.isReloading = false; //fire_test의 isReloading 값 false로 변경시켜 다시 쏘게 만들기
+
 
     }
 }
