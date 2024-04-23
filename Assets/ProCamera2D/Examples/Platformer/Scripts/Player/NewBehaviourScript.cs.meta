@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Floor Loader/FloorLoader.cs.meta
+guid: 824c7498983b2fd43b1898f657254cf9
+========
 guid: 3c859c75fc1033f4b92fe664552b6714
+>>>>>>>> main:Assets/ProCamera2D/Examples/Platformer/Scripts/Player/NewBehaviourScript.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
     public float defaultspeed = 5f;
     public float moveSpeed = 5f;
     public float dashSpeed;
-    public float dashDuration = 0.5f; // ´ë½¬ Áö¼Ó ½Ã°£ (ÃÊ ´ÜÀ§)
-    public float dashCoolTime = 1.5f; // ´ë½¬ ÄğÅ¸ÀÓ (ÃÊ ´ÜÀ§)
+    public float dashDuration = 0.5f; // ëŒ€ì‰¬ ì§€ì† ì‹œê°„ (ì´ˆ ë‹¨ìœ„)
+    public float dashCoolTime = 1.5f; // ëŒ€ì‰¬ ì¿¨íƒ€ì„ (ì´ˆ ë‹¨ìœ„)
 
     private Rigidbody2D rigid2d;
     private Vector3 movement;
     private bool isDashing = false;
-    private float dashCoolTimer = 0f; // ´ë½¬ ÄğÅ¸ÀÓÀ» ÃßÀûÇÏ±â À§ÇÑ Å¸ÀÌ¸Ó
+    private float dashCoolTimer = 0f; // ëŒ€ì‰¬ ì¿¨íƒ€ì„ì„ ì¶”ì í•˜ê¸° ìœ„í•œ íƒ€ì´ë¨¸
 
     private void Start()
     {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             isDashing = true;
         }
 
-        // ´ë½¬ ÄğÅ¸ÀÓ Å¸ÀÌ¸Ó °¨¼Ò
+        // ëŒ€ì‰¬ ì¿¨íƒ€ì„ íƒ€ì´ë¨¸ ê°ì†Œ
         if (dashCoolTimer > 0)
         {
             dashCoolTimer -= Time.deltaTime;
@@ -51,9 +51,9 @@ public class Player : MonoBehaviour
 
     IEnumerator DoDash()
     {
-        moveSpeed *= 3; // ´ë½¬ ¼Óµµ Áõ°¡
+        moveSpeed *= 3; // ëŒ€ì‰¬ ì†ë„ ì¦ê°€
         yield return new WaitForSeconds(dashDuration);
-        moveSpeed /= 3; // ¿ø·¡ ÀÌµ¿ ¼Óµµ·Î µÇµ¹¸²
+        moveSpeed /= 3; // ì›ë˜ ì´ë™ ì†ë„ë¡œ ë˜ëŒë¦¼
         Debug.Log("Dash Ended");
         StartCoroutine(StartDashCoolTime());
     }
