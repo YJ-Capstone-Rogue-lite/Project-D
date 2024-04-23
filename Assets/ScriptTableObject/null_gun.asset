@@ -17,12 +17,12 @@ MonoBehaviour:
   number: 0
   name: "\uBE48\uCD1D"
   sprite: {fileID: 0}
-  bullet_range: 0
-  bullet_velocity: 0
-  Fire_rate: 0
-  reload_time: 0
-  magazine_capacity: 0
-  backup_magazine_capacity: 0
-  Damage: 0
+  bullet_range: 1
+  bullet_velocity: 1
+  Fire_rate: 1
+  reload_time: 1
+  magazine_capacity: 1
+  backup_magazine_capacity: 1
+  Damage: 1
   info: "\uBE44\uC5B4\uC788\uB294 \uCD1D.\n2\uC2AC\uB86F\uC5D0 \uB514\uD3F4\uD2B8
     \uAC12\uC73C\uB85C \uC7A5\uCC29\uD560 "

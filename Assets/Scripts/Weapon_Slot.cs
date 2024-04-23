@@ -11,6 +11,7 @@ public class Weapon_Slot : MonoBehaviour
 
     public GameObject activeWeaponSlot; // 활성화된 무기 슬롯 게임 오브젝트
 
+
     public float magazineCapacitySlot1; // 슬롯 1의 장탄수
     public float magazineCapacitySlot2; // 슬롯 2의 장탄수
 

@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 502190026}
   - component: {fileID: 502190029}
   - component: {fileID: 502190028}
+  - component: {fileID: 502190030}
   - component: {fileID: 502190027}
   m_Layer: 5
   m_Name: Reloading
@@ -822,6 +823,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502190025}
   m_CullTransparentMesh: 1
+--- !u!114 &502190030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502190025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8dcc4ea4d96bc4ab28a359a207b552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animSpeed: 1
+  Weapon_Slot: {fileID: 5046371043250726752, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+  animator: {fileID: 502190027}
 --- !u!1 &509165373
 GameObject:
   m_ObjectHideFlags: 0

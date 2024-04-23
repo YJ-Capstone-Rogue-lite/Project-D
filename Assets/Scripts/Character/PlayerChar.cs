@@ -21,12 +21,13 @@ public class PlayerChar : Character
         cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
         cameraInstance.GetComponent<Camera_Player>().player = gameObject;
+        //FloorLoader.Instance.player = gameObject;
         base.Start();
 
     }
     private void OnEnable()
     {
-        //cameraInstance.SetActive(true);
+        //FloorLoader.Instance.player = gameObject;
     }
     // Update is called once per frame
     void Update()

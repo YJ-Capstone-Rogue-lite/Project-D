@@ -8,6 +8,8 @@ public class FIre_Test : MonoBehaviour
     public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값)
     public Weapon_Slot weapon_Slot;
 
+
+
     public Weapon default_weapon; //기본 무기(피스톨)
 
     // 총 변수
@@ -31,7 +33,7 @@ public class FIre_Test : MonoBehaviour
         weapon = default_weapon;
         Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
-
+        // Reload_anim 스크립트 가져오기
 
     }
 
