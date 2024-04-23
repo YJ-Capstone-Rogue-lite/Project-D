@@ -53,8 +53,8 @@ public class FIre_Test : MonoBehaviour
     void All_Shooting_Code()
     {
         
-        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 재장전 상태가 아니고, 무기가 할당되어 있을 때 총알 발사
-        if (Input.GetMouseButton(0) && fireTimer <= 0f && (weapon_Slot.isReloadingSlot1 == false && weapon_Slot.isReloadingSlot2 == false) && weapon != null) //지금 둘중 하나라도 0보다 크면 총이 발사된다. 나중에 수정함
+        // 마우스 왼쪽 버튼을 누르고 발사 타이머가 0보다 작고, 재장전 상태가 아니고, 무기가 할당되어 있을 때 총알 발사. 무기타입이 None일 경우 작동안함
+        if (Input.GetMouseButton(0) && fireTimer <= 0f && (weapon_Slot.isReloadingSlot1 == false && weapon_Slot.isReloadingSlot2 == false) && weapon != null && weapon.weaponType != Weapon.WeaponType.None) 
         {
             fireTimer = fireRate; // 발사 타이머 설정
 

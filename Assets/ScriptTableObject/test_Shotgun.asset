@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: test_Shotgun
   m_EditorClassIdentifier: 
   ratingType: 1
-  weaponType: 3
+  weaponType: 4
   number: 2
   name: "\uAE30\uBCF8\uC0F7\uAC74"
   sprite: {fileID: 45444755, guid: 0cf31600b5f898c43b6bacb707a08c9a, type: 3}
