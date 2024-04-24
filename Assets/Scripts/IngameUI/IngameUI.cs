@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class IngameUI : MonoBehaviour
 {
+    [SerializeField] private Weapon_Slot Weapon_Slot;
+
+    public Image main_slot_sprite;
+    public Image sub_slot_sprite;
+
     public Animator MainWeapon_Swap;
     public Animator SubWeapon_Swap;
 
-    public bool MainWeapon = false; // true¸é MainWeapon false¸é SubWeapon
-    public bool SubWeapon = true; // true¸é MainWeapon false¸é SubWeapon
+    public bool MainWeapon = false; // trueë©´ MainWeapon falseë©´ SubWeapon
+    public bool SubWeapon = true; // trueë©´ MainWeapon falseë©´ SubWeapon
+
+   
 
     private void Update()
     {
+        Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+        main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<FIre_Test>().weapon.sprite;
+        sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<FIre_Test>().weapon.sprite;
+
         if (Input.GetButtonDown("MainWeapon") && MainWeapon == true)
         {
             MainWeapon_Swap.SetBool("MainWeapon_Up", true);
@@ -21,6 +34,8 @@ public class IngameUI : MonoBehaviour
             MainWeapon = false;
             SubWeapon = true;
             Debug.Log("MainClick");
+            
+
         }
         else if (Input.GetButtonDown("SubWeapon") && SubWeapon == true)
         {
@@ -31,6 +46,9 @@ public class IngameUI : MonoBehaviour
             MainWeapon = true;
             SubWeapon = false;
             Debug.Log("SubClick");
+
         }
+
+
     }
 }

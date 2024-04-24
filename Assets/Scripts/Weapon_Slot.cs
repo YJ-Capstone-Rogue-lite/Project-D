@@ -18,6 +18,7 @@ public class Weapon_Slot : MonoBehaviour
     public bool isReloadingSlot1 = false;
     public bool isReloadingSlot2 = false;
 
+
     private void Start()
     {
         // 게임 시작시 기본 무기 슬롯 설정
@@ -43,7 +44,19 @@ public class Weapon_Slot : MonoBehaviour
     public void ReceiveWeapon(Weapon weapon)
     {
         // 활성화된 무기 슬롯이 있는지 확인
-        if (activeWeaponSlot != null)
+        //만약 웨폰슬롯2의 타입이 None이 아니라면
+        if (activeWeaponSlot != null && weaponSlot2.GetComponent<FIre_Test>().weapon.weaponType == Weapon.WeaponType.None)
+        {
+
+            // 우선적으로 웨폰슬롯2에 무기를 할당함
+            weaponSlot2.GetComponent<FIre_Test>().weapon = weapon;
+
+            // 활성화된 슬롯의 무기를 가져와서 장탄수를 설정합니다.
+            UpdateMagazineCapacity();
+
+
+        }
+        else if(weaponSlot2.GetComponent<FIre_Test>().weapon.weaponType != Weapon.WeaponType.None)
         {
             // 활성화된 무기 슬롯에만 무기를 할당합니다.
             activeWeaponSlot.GetComponent<FIre_Test>().weapon = weapon;
@@ -56,6 +69,7 @@ public class Weapon_Slot : MonoBehaviour
             // 에러 메시지 출력
             Debug.LogError("활성화된 무기 슬롯이 없습니다.");
         }
+        
     }
 
     //슬롯 변경 기능
@@ -190,6 +204,8 @@ public class Weapon_Slot : MonoBehaviour
 
     private IEnumerator ReloadCoroutine(GameObject slot, int slotNumber)
     {
+        
+
         // 코루틴 실행 상태 업데이트
         if (slotNumber == 1) isReloadingSlot1 = true;
         else if (slotNumber == 2) isReloadingSlot2 = true;

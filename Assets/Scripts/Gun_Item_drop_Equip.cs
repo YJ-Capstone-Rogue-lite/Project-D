@@ -28,8 +28,8 @@ public class Gun_Item_drop_Equip : MonoBehaviour
             Destroy(this.gameObject);
             Debug.Log(gameObject.name + " 아이템 먹음");
 
-            Weapon_Slot weaponSlotScript = FindObjectOfType<Weapon_Slot>();
-            if (weaponSlotScript != null)
+            Weapon_Slot weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
+            if (weaponSlotScript != null) //웨폰슬롯의 값이 비어있지 않을때
             {
                 // 무기 슬롯 스크립트가 있다면 해당 무기를 전달
                 weaponSlotScript.ReceiveWeapon(Weapon);

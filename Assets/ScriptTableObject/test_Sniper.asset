@@ -20,7 +20,7 @@ MonoBehaviour:
   bullet_range: 20
   bullet_velocity: 20
   Fire_rate: 1
-  reload_time: 5
+  reload_time: 2
   magazine_capacity: 5
   backup_magazine_capacity: 5
   Damage: 50
