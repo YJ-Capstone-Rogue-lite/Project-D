@@ -17,13 +17,18 @@ public class IngameUI : MonoBehaviour
     public bool MainWeapon = false; // true면 MainWeapon false면 SubWeapon
     public bool SubWeapon = true; // true면 MainWeapon false면 SubWeapon
 
-   
+    [SerializeField]  private GameObject reload_img;
+
 
     private void Update()
     {
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-        main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<FIre_Test>().weapon.sprite;
-        sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<FIre_Test>().weapon.sprite;
+        main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
+        sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
+
+        //플레이어 따라다니는 재장전 애니메이션 이미지
+        reload_img.transform.position = Weapon_Slot.transform.position + new Vector3(0, 0, 0);
+
 
         if (Input.GetButtonDown("MainWeapon") && MainWeapon == true)
         {
@@ -48,7 +53,7 @@ public class IngameUI : MonoBehaviour
             Debug.Log("SubClick");
 
         }
-
-
     }
+
 }
+

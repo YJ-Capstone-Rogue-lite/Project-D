@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FIre_Test : MonoBehaviour
+public class Fire_Test : MonoBehaviour
 {
     public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값)
     public Weapon_Slot weapon_Slot;
