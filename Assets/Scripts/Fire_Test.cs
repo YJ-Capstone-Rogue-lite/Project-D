@@ -41,10 +41,25 @@ public class FIre_Test : MonoBehaviour
         fireRate = weapon.Fire_rate;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 마우스 위치 계산
 
-        angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // 플레이어가 마우스를 바라보도록 각도 계산
+        angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90; // 플레이어가 마우스를 바라보도록 각도 계산
+        var angleX = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg; // 플레이어가 마우스를 바라보도록 각도 계산
+        var angleY = angle >= -180 ? angle : 360 + angle;
+        // transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
 
-        transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
-
+        var slotRenders = transform.GetComponentsInChildren<SpriteRenderer>();
+        var rcts = transform.GetComponentsInChildren<RectTransform>();
+        foreach (var r in slotRenders)
+        {
+            if(Mathf.Sign(angleY) < 0) r.flipY = false;
+            else r.flipY = true;
+        }
+        foreach(var r in rcts)
+        {
+            r.localEulerAngles = new Vector3(0, 0, angleY+90);
+            var x = -(Mathf.Abs(angleX)/90-1);
+            var y = -(Mathf.Abs(angleY)/90-1);
+            r.localPosition = new Vector3(Mathf.Clamp(x, -0.5f, 0.5f), y);
+        }
         All_Shooting_Code();
 
     }
