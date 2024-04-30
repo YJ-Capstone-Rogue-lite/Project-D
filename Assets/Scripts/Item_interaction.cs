@@ -39,7 +39,7 @@ public class Item_interaction : MonoBehaviour
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
             // 충돌한 객체가 "Item" 태그를 가지고 있으면 행동 텍스트를 활성화합니다.
             actionText.gameObject.SetActive(true);
-            actionText.text = item_PickUp.weapon.name + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+            actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
 
         }
 
@@ -70,8 +70,7 @@ public class Item_interaction : MonoBehaviour
                 weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
             }
             else
-            {
-                Debug.LogError("Weapon_Slot 스크립트를 찾을 수 없습니다.");
+            { 
             }
             Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리 넣기
             Destroy(item_PickUp.gameObject);
