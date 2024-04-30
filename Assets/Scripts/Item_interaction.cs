@@ -56,7 +56,9 @@ public class Item_interaction : MonoBehaviour
 
 
     }
-
+    
+    //해당 코드는 임시로 무기만 넣도록 만들어둠. 악세사리 및 버프기도 해야함
+    //현재 UI의 1,2번 슬롯에만 들어가고 있어서 인벤토리의 무기 슬롯에 들어가는 작업도 따로 해줘야함.
     private void CanPickUp()
     {
         if (Input.GetKeyDown(KeyCode.E) && pickupActivated)
