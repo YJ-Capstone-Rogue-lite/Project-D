@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
     public Tilemap tilemap { get; set; }
     public State state = State.READY;
     private int enemyCount = 0;
-    [SerializeField] GameObject PlayerMinimap;
+    [SerializeField] private GameObject PlayerMinimap;
 
     public void OnEnable() => tilemap = gameObject.GetComponent<Tilemap>();
 
@@ -28,16 +28,20 @@ public class Room : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collider)
     {
-        if(!collider.CompareTag("Player")) return;
+        if (!collider.CompareTag("Player")) return;
         if(state == State.READY)
         {
-            PlayerMinimap.SetActive(true);
             state = State.ING;
             RoomEnterTrigger();
         }
     }
     protected void OnTriggerExit2D(Collider2D collider)
     {
-        if(state == State.ING) state = State.CLEAR;
+        PlayerMinimap.SetActive(false);
+        if (state == State.ING && enemyCount <= 0) state = State.CLEAR;
+    }
+    protected void OnTriggerStay2D(Collider2D other)
+    {
+        PlayerMinimap.SetActive(true);
     }
 }

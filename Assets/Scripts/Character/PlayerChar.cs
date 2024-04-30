@@ -19,9 +19,9 @@ public class PlayerChar : Character
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
         bodyRender = GetComponent<SpriteRenderer>();
-        // cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
+        cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
-        // cameraInstance.GetComponent<Camera_Player>().player = gameObject;
+        cameraInstance.GetComponent<Camera_Player>().player = gameObject;
         base.Start();
 
     }
