@@ -13,7 +13,11 @@ public class Room : MonoBehaviour
     public void OnEnable() => tilemap = gameObject.GetComponent<Tilemap>();
 
     public void RoomEnterTrigger() => BroadcastMessage("RoomEnter", this, SendMessageOptions.DontRequireReceiver);
-    public void RoomExitTrigger() => BroadcastMessage("RoomExit", this, SendMessageOptions.DontRequireReceiver);
+    public void RoomExitTrigger()
+    {
+        BroadcastMessage("RoomExit", this, SendMessageOptions.DontRequireReceiver);
+        state = State.CLEAR;
+    }
 
     public void EnemyTemp(int i)
     {
@@ -29,5 +33,9 @@ public class Room : MonoBehaviour
             state = State.ING;
             RoomEnterTrigger();
         }
+    }
+    protected void OnTriggerExit2D(Collider2D collider)
+    {
+        if(state == State.ING) state = State.CLEAR;
     }
 }
