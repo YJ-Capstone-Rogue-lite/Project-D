@@ -5,10 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
-    public enum State { RAEDY, ING, CLEAR }
+    public enum State { READY, ING, CLEAR }
     public Tilemap tilemap { get; set; }
-    public State state = State.RAEDY;
+    public State state = State.READY;
     private int enemyCount = 0;
+    [SerializeField] GameObject PlayerMinimap;
 
     public void OnEnable() => tilemap = gameObject.GetComponent<Tilemap>();
 
@@ -24,8 +25,9 @@ public class Room : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collider)
     {
         if(!collider.CompareTag("Player")) return;
-        if(state == State.RAEDY)
+        if(state == State.READY)
         {
+            PlayerMinimap.SetActive(true);
             state = State.ING;
             RoomEnterTrigger();
         }
