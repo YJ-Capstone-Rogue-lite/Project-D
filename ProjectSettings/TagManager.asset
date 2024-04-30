@@ -18,7 +18,7 @@ TagManager:
   - UI
   - Accessible
   - Inaccessible
-  - 
+  - Player_minimap
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UseWeapon
+    uniqueID: 3562456989
     locked: 0
