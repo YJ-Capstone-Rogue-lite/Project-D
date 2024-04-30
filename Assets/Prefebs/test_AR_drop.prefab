@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5315826086121663334}
   - component: {fileID: 947589940918649451}
   - component: {fileID: 4093018583842118803}
-  m_Layer: 0
+  - component: {fileID: 2981253785263212825}
+  m_Layer: 8
   m_Name: test_AR_drop
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,3 +188,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2981253785263212825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379812772196415641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6bbac3fd762ca4ca534f74bbc72540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accessory: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 24e37ad5016e5fe498271cd7667c870a, type: 2}
+  consumable: {fileID: 0}
