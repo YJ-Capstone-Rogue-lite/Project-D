@@ -30,6 +30,10 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.isPlaying)
+        {
+            return;
+        }
         player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
 
         player_anim.SetFloat("MoveX", player_Rb.velocity.x);
