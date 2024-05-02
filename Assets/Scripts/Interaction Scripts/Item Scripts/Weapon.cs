@@ -13,11 +13,11 @@ public class Weapon : ScriptableObject
     [Header(" # 아이템 기본 정보")]
     public RatingType ratingType; //아이템 등급
     public WeaponType weaponType; // 무기타입
-    
-    [Header(" # 무기 기본 정보")]
-    public int number; //무기 번호
+    public int number; //무기 번호 //해당 부분을 DB쪽 PK로 쓸듯
     public string name; //무기 이름
     public Sprite sprite; //아이템 스프라이트
+
+    [Header(" # 무기 기본 정보")]
     public float bullet_range; //사거리
     public float bullet_velocity; //탄속
     public float Fire_rate; //연사속도
