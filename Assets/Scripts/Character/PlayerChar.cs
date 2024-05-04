@@ -6,6 +6,7 @@ public class PlayerChar : Character
 {
     private Rigidbody2D player_Rb;
     private Animator player_anim;
+    private SpriteRenderer bodyRender;
     private float rollDuration = 0.7f; //구르는시간
     bool is_rolling = false;
     public GameObject camera_;
@@ -17,6 +18,7 @@ public class PlayerChar : Character
     {
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
+        bodyRender = GetComponent<SpriteRenderer>();
         cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
         cameraInstance.GetComponent<Camera_Player>().player = gameObject;
@@ -41,16 +43,17 @@ public class PlayerChar : Character
 
         if (player_Rb.velocity.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
+            // transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
             //gunSpriteRenderer.transform.localScale = new Vector3(1f, -1f, 1f); //x y z
 
-
+            bodyRender.flipX = true;
 
         }
         else if (player_Rb.velocity.x > 0)
         {
-            transform.localScale = Vector3.one;
+            // transform.localScale = Vector3.one;
             //gunSpriteRenderer.transform.localScale = Vector3.one;
+            bodyRender.flipX = false;
 
         }
 

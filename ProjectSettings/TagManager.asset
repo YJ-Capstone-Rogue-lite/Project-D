@@ -9,6 +9,7 @@ TagManager:
   - Item
   - DamageObject
   - Wall
+  - player_mini
   layers:
   - Default
   - TransparentFX
