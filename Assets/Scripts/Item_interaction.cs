@@ -68,12 +68,12 @@ public class Item_interaction : MonoBehaviour
             {
                 // 무기 슬롯 스크립트가 있다면 해당 무기를 전달
                 weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
+
+                Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리 넣기
+
             }
-            else
-            { 
-            }
-            Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리 넣기
             Destroy(item_PickUp.gameObject);
+
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon_Slot : MonoBehaviour
 {
-
+    public static Weapon_Slot weapon_slot_instance;
     public GameObject weaponSlot1; // 무기 슬롯 1 게임 오브젝트
     public GameObject weaponSlot2; // 무기 슬롯 2 게임 오브젝트
 
@@ -37,11 +37,7 @@ public class Weapon_Slot : MonoBehaviour
         // weaponSlot2에서 Fire_Test 컴포넌트를 가져와 fire_test 변수에 할당합니다.
         weapon_slot2 = weaponSlot2.GetComponent<Fire_Test>();
         activeWeaponSlot_Component = activeWeaponSlot.GetComponent<Fire_Test>();
-
-
     }
-
-
 
     private void Update()
     {

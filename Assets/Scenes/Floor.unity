@@ -1002,6 +1002,9 @@ MonoBehaviour:
   MainWeapon: 0
   SubWeapon: 1
   reload_img: {fileID: 4144628358222961968, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
+  inv_slot: {fileID: 900186355}
+  inv_slot_active_bool: 0
+  inventory_slot: {fileID: 900186359}
 --- !u!4 &739562288
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,6 +1360,7 @@ GameObject:
   - component: {fileID: 900186356}
   - component: {fileID: 900186358}
   - component: {fileID: 900186357}
+  - component: {fileID: 900186359}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -1422,6 +1426,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900186355}
   m_CullTransparentMesh: 1
+--- !u!114 &900186359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900186355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb9a81d659a0246918d8e13f0d6a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon_Slot: {fileID: 0}
+  inv_weapon1_image: {fileID: 1983338767}
+  inv_weapon2_image: {fileID: 725077915}
+  inv_accessory_image: {fileID: 0}
+  inv_consumableItem_image: {fileID: 1707197180}
+  weapon: {fileID: 0}
+  accessory: {fileID: 0}
+  consumableItem: {fileID: 0}
 --- !u!1001 &917106004
 PrefabInstance:
   m_ObjectHideFlags: 0

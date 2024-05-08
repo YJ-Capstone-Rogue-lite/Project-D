@@ -17,7 +17,6 @@ public class Fire_Test : MonoBehaviour
     [SerializeField] private Transform firingPoint; // 발사 지점
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
-
     private float fireTimer; // 발사 타이머
     private float fireRate; // 발사 속도
 
