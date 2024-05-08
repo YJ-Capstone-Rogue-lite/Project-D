@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerChar : Character
 {
+    public static PlayerChar single;
+
     private Rigidbody2D player_Rb;
     private Animator player_anim;
     private SpriteRenderer bodyRender;
@@ -14,20 +16,28 @@ public class PlayerChar : Character
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
+    private void Awake()
+    {
+        single = this;
+    }
+
     protected override void Start()
     {
+        
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
         bodyRender = GetComponent<SpriteRenderer>();
         cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
         cameraInstance.GetComponent<Camera_Player>().player = gameObject;
+        //FloorLoader.Instance.player = gameObject;
         base.Start();
+
 
     }
     private void OnEnable()
     {
-        //cameraInstance.SetActive(true);
+        //FloorLoader.Instance.player = gameObject;
     }
     // Update is called once per frame
     void Update()
