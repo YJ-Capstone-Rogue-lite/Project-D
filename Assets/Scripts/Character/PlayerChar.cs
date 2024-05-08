@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerChar : Character
 {
     public static PlayerChar single;
+
+    public Fire_Test fire;
 
     private Rigidbody2D player_Rb;
     private Animator player_anim;
@@ -13,6 +16,9 @@ public class PlayerChar : Character
     bool is_rolling = false;
     public GameObject camera_;
     private GameObject cameraInstance;
+
+    public Transform player_location;
+    public Transform gun_rotation;
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
@@ -47,19 +53,28 @@ public class PlayerChar : Character
             return;
         }
         player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
-
-        player_anim.SetFloat("MoveX", player_Rb.velocity.x);
-        player_anim.SetFloat("MoveY", player_Rb.velocity.y);
-
-        if (player_Rb.velocity.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
+        var temp = (Vector3)fire.mousePos - transform.position;
+        Debug.Log(player_Rb.velocity);
+        if (player_Rb.velocity.x != 0 || player_Rb.velocity.y != 0)
         {
+            player_anim.SetFloat("MoveX", Mathf.Sign(temp.x));
+            player_anim.SetFloat("MoveY", Mathf.Sign(temp.y));
+        }
+        else
+        {
+            player_anim.SetFloat("MoveX", 0);
+            player_anim.SetFloat("MoveY", 0);
+        }
+        if (temp.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
+        {
+
             // transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
             //gunSpriteRenderer.transform.localScale = new Vector3(1f, -1f, 1f); //x y z
 
             bodyRender.flipX = true;
 
         }
-        else if (player_Rb.velocity.x > 0)
+        else if (temp.x > 0)
         {
             // transform.localScale = Vector3.one;
             //gunSpriteRenderer.transform.localScale = Vector3.one;

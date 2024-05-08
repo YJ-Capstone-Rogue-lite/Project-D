@@ -22,7 +22,7 @@ public class Fire_Test : MonoBehaviour
 
 
     float angle;
-    private Vector2 mousePos; // 마우스 위치
+    public Vector2 mousePos; // 마우스 위치
 
     //public float player_hp = 100; // 플레이어 체력
 

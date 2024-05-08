@@ -18,6 +18,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mini_camera.transform.position = GameObject.FindWithTag("player_mini").transform.position;
+        //mini_camera.transform.position = GameObject.FindWithTag("player_mini").transform.position;
     }
 }

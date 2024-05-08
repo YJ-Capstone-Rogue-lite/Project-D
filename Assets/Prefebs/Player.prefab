@@ -50,6 +50,7 @@ MonoBehaviour:
   default_weapon: {fileID: 11400000, guid: 9a6ef2619e1cf2b4b82e1236df39a5b5, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 5235055429781835418}
+  mousePos: {x: 0, y: 0}
 --- !u!1 &2530009614169799429
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +178,10 @@ MonoBehaviour:
     stamina: 0
     movementSpeed: 0
     protectiontime: 0
+  fire: {fileID: 2795944204507669091}
   camera_: {fileID: 3105846115308698877, guid: b108e3970c042f44fb38629c1e557322, type: 3}
+  player_location: {fileID: 0}
+  gun_rotation: {fileID: 0}
 --- !u!114 &5046371043250726752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +415,7 @@ MonoBehaviour:
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
   firingPoint: {fileID: 3013202222953634518}
+  mousePos: {x: 0, y: 0}
 --- !u!1 &7245815989575347042
 GameObject:
   m_ObjectHideFlags: 0
