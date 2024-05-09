@@ -48,13 +48,15 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
+
+
         if (!GameManager.Instance.isPlaying)
         {
             return;
         }
         player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
         var temp = (Vector3)fire.mousePos - transform.position;
-        Debug.Log(player_Rb.velocity);
+        Debug.Log(temp);
         if (player_Rb.velocity.x != 0 || player_Rb.velocity.y != 0)
         {
             player_anim.SetFloat("MoveX", Mathf.Sign(temp.x));
@@ -65,21 +67,18 @@ public class PlayerChar : Character
             player_anim.SetFloat("MoveX", 0);
             player_anim.SetFloat("MoveY", 0);
         }
-        if (temp.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
+        if (temp.x < 0 && !is_rolling) //마우스가 왼쪽으로 향할때 flip
         {
-
             // transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
             //gunSpriteRenderer.transform.localScale = new Vector3(1f, -1f, 1f); //x y z
 
             bodyRender.flipX = true;
-
         }
-        else if (temp.x > 0)
+        else if (temp.x > 0 && !is_rolling)
         {
             // transform.localScale = Vector3.one;
             //gunSpriteRenderer.transform.localScale = Vector3.one;
             bodyRender.flipX = false;
-
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) //Idle
@@ -99,11 +98,19 @@ public class PlayerChar : Character
     {
         if (Input.GetButtonDown("Roll"))
         {
+            if(player_Rb.velocity.x < 0)
+            {
+                bodyRender.flipX = true;
+            }
+            else if(player_Rb.velocity.x > 0)
+            {
+                bodyRender.flipX = false;
+            }
+            is_rolling = true;
             Debug.Log("roll");
             player_anim.SetBool("isRolling", true);
             player_anim.SetFloat("RollX", Input.GetAxisRaw("Horizontal"));
             player_anim.SetFloat("RollY", Input.GetAxisRaw("Vertical"));
-            is_rolling = true;
 
             StartCoroutine(EndRoll());
         }
