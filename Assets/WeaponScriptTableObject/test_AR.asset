@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: test_AR
   m_EditorClassIdentifier: 
+  weapnPrefab: {fileID: 2379812772196415641, guid: bb0c297d62d44874794e48700dbd4ed8, type: 3}
   ratingType: 1
   weaponType: 2
   number: 1
