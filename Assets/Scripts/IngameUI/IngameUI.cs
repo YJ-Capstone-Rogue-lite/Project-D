@@ -69,7 +69,7 @@ public class IngameUI : MonoBehaviour
 
     public void inventory_open() //탭키를 눌렀을때
     {
-        if(inv_slot_active_bool == false) //만약 인벤슬롯의 불 값이 false면
+        if (inv_slot_active_bool == false) //만약 인벤슬롯의 불 값이 false면
         {
             inv_refresh(); //인벤토리 갱신
         }
