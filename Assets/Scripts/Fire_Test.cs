@@ -7,14 +7,17 @@ public class Fire_Test : MonoBehaviour
 {
     public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값)
     public Weapon_Slot weapon_Slot;
-
+    public Gun_Sprite_Change Gun_Sprite_Change;
 
 
     public Weapon default_weapon; //기본 무기(피스톨)
 
     // 총 변수
     [SerializeField] private GameObject bulletPrefebs; // 총알 프리팹
-    [SerializeField] private Transform firingPoint; // 발사 지점
+    //[SerializeField] private Transform firingPoint; // 발사 지점
+    [SerializeField] private Transform PistolfiringPoint; // 권총발사 지점
+    [SerializeField] private Transform ARandSGfiringPoint; // 샷건&라이플 발사 지점
+    [SerializeField] private Transform SRfiringPoint; // 스나 발사 지점
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private float fireTimer; // 발사 타이머
@@ -45,7 +48,7 @@ public class Fire_Test : MonoBehaviour
         angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // 플레이어가 마우스를 바라보도록 각도 계산
 
         transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
-
+        
         All_Shooting_Code();
 
     }
@@ -87,10 +90,29 @@ public class Fire_Test : MonoBehaviour
 
     private void Shoot()
     {
-        var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation ); // 총알 생성
-        temp.GetComponent<Bullet>().setup(weapon);
-        Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name +" "+ weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
+        if(weapon.weaponType == Weapon.WeaponType.Pistol)
+        {
+            var temp = Instantiate(bulletPrefebs, PistolfiringPoint.position, PistolfiringPoint.rotation); // 총알 생성
+            temp.GetComponent<Bullet>().setup(weapon);
+            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
+
+        }
+        else if (weapon.weaponType == Weapon.WeaponType.Assaultt_Rifle)
+        {
+            var temp = Instantiate(bulletPrefebs, ARandSGfiringPoint.position, ARandSGfiringPoint.rotation); // 총알 생성
+            temp.GetComponent<Bullet>().setup(weapon);
+            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
+
+        }
+        else
+        {
+            var temp = Instantiate(bulletPrefebs, SRfiringPoint.position, SRfiringPoint.rotation); // 총알 생성
+            temp.GetComponent<Bullet>().setup(weapon);
+            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
+
+        }
     }
+
 
     private void Shoot_Gun_Shoot()
     {
@@ -103,8 +125,10 @@ public class Fire_Test : MonoBehaviour
             // 에임 방향에 따라 회전을 적용하여 발사 각도 조정
             Quaternion spreadRotation = Quaternion.Euler(0, 0, spreadAngle);
 
+           
+
             // 총알 생성
-            var temp = Instantiate(bulletPrefebs, firingPoint.position, firingPoint.rotation * spreadRotation);
+            var temp = Instantiate(bulletPrefebs, ARandSGfiringPoint.position, ARandSGfiringPoint.rotation * spreadRotation);
             temp.GetComponent<Bullet>().setup(weapon);
         }
         Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + weapon.Damage +" " + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
