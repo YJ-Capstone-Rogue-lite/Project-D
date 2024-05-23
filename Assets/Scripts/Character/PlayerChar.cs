@@ -13,7 +13,7 @@ public class PlayerChar : Character
     private Animator player_anim;
     private SpriteRenderer bodyRender;
     private float rollDuration = 0.7f; //구르는시간
-    bool is_rolling = false;
+    public bool is_rolling = false;
     public GameObject camera_;
     private GameObject cameraInstance;
 
@@ -56,7 +56,6 @@ public class PlayerChar : Character
         }
         player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
         var temp = (Vector3)fire.mousePos - transform.position;
-        Debug.Log(temp);
         if (player_Rb.velocity.x != 0 || player_Rb.velocity.y != 0)
         {
             player_anim.SetFloat("MoveX", Mathf.Sign(temp.x));

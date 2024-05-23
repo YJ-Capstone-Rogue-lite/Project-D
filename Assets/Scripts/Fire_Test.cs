@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Fire_Test : MonoBehaviour
     public Weapon weapon; // Weapon1 스크립터블 객체(플레이어 무기값)
     public Weapon_Slot weapon_Slot;
 
+    public PlayerChar player;
 
 
     public Weapon default_weapon; //기본 무기(피스톨)
@@ -32,6 +34,7 @@ public class Fire_Test : MonoBehaviour
         weapon = default_weapon;
         Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
+        player = FindObjectOfType<PlayerChar>();
         // Reload_anim 스크립트 가져오기
 
     }
@@ -76,7 +79,7 @@ public class Fire_Test : MonoBehaviour
             // - 현재 활성화된 슬롯이 슬롯 2인 경우, 슬롯 2가 재장전 중인지 확인합니다.
             // 위 두 조건 중 하나라도 만족하지 않는 경우에만 아래의 코드 블록이 실행됩니다.
             if (!((weapon_Slot.isReloadingSlot1 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot1) ||
-                  (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)))
+                  (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)) && !(player.is_rolling))
             {
                 fireTimer = fireRate; // 발사 타이머 설정
 
