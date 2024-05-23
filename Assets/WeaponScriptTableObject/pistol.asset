@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: pistol
   m_EditorClassIdentifier: 
+  weapnPrefab: {fileID: 5879571492669396754, guid: 16a0462fdfc82884ab08d9cfaa901a0c, type: 3}
   ratingType: 1
   weaponType: 1
   number: 1

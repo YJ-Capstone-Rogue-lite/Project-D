@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: test_Sniper
   m_EditorClassIdentifier: 
+  weapnPrefab: {fileID: 2535805243376421247, guid: ccc79de140738134bab14fa31155856c, type: 3}
   ratingType: 1
   weaponType: 3
   number: 3

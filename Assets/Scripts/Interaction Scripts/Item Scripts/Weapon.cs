@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Weapon : ScriptableObject
 {
+    public GameObject weapnPrefab;//해당 무기 값을 가지고있는 프리팹
     public enum RatingType { NONE, COMMON, RARE, UNIQUE, LEGENDARY } //아이템 등급
 
     public enum WeaponType {None, Pistol, Assaultt_Rifle, Sniper_Rifle, Shoot_Gun } //무기 타입

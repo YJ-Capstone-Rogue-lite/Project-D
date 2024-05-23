@@ -7,8 +7,11 @@ public class PlayerChar : Character
 {
     public static PlayerChar single;
 
+<<<<<<< HEAD
     public Fire_Test fire;
 
+=======
+>>>>>>> Enemy
     private Rigidbody2D player_Rb;
     private Animator player_anim;
     private SpriteRenderer bodyRender;

@@ -14,12 +14,16 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bullet
   - Water
   - UI
   - Accessible
   - Inaccessible
+<<<<<<< HEAD
   - Player_minimap
+=======
+  - Item
+>>>>>>> Enemy
   - 
   - 
   - 
