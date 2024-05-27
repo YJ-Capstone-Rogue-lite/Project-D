@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Weapon weapon;
-    private FIre_Test fire_test;
+    private Fire_Test fire_test;
 
     private float speed; //탄속
 

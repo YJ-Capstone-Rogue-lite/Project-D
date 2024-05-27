@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefebs/Minimap_Player.prefab.meta
 guid: 1f6f8fa22596de14283b186170ddb471
+========
+guid: 20271c1d5b54c6142bf4403fd31fa896
+>>>>>>>> restore:Assets/Prefebs/Reload_img.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

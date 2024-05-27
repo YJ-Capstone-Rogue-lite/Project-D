@@ -9,16 +9,16 @@ public class FloorItemTable : ScriptableObject
     [Serializable]
     public class Data
     {
-        public ItemData.RatingType ratingType;
+        //public ItemData.RatingType ratingType;
         public float rate;
     }
 
     public Data[] datas;
 
-    public Dictionary<ItemData.RatingType, float> ratingMap = new Dictionary<ItemData.RatingType, float>();
+   // public Dictionary<ItemData.RatingType, float> ratingMap = new Dictionary<ItemData.RatingType, float>();
 
     void Awake()
     {
-        foreach(var item in datas) ratingMap.Add(item.ratingType, item.rate);
+        //foreach(var item in datas) ratingMap.Add(item.ratingType, item.rate);
     }
 }

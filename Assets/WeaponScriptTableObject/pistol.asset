@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
+  m_Name: pistol
+  m_EditorClassIdentifier: 
+  weapnPrefab: {fileID: 5879571492669396754, guid: 16a0462fdfc82884ab08d9cfaa901a0c, type: 3}
+  ratingType: 1
+  weaponType: 1
+  number: 1
+  name: "\uAE30\uBCF8\uAD8C\uCD1D"
+  sprite: {fileID: 1706657260, guid: d44939ca98b3eb74a8caeb91716ea53d, type: 3}
+  bullet_range: 3
+  bullet_velocity: 20
+  Fire_rate: 0.5
+  reload_time: 1
+  magazine_capacity: 15
+  backup_magazine_capacity: 15
+  Damage: 10
+  info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uAD8C\uCD1D\uC774\uB2E4."
