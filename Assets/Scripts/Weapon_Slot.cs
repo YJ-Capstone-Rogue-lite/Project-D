@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Weapon_Slot : MonoBehaviour
 {
+<<<<<<< HEAD
+
+=======
     public static Weapon_Slot weapon_slot_instance;
+>>>>>>> Enemy
     public GameObject weaponSlot1; // 무기 슬롯 1 게임 오브젝트
     public GameObject weaponSlot2; // 무기 슬롯 2 게임 오브젝트
 
 
+<<<<<<< HEAD
+    private Fire_Test weapon_slot2;
+=======
     private Fire_Test weapon_slot2_weapon;
+>>>>>>> Enemy
     private Fire_Test activeWeaponSlot_Component;
 
 
@@ -33,11 +41,23 @@ public class Weapon_Slot : MonoBehaviour
         // 게임 시작시 기본 무기 슬롯 설정
         EnableWeaponSlot(weaponSlot1);
         reload_object.SetActive(true);
+<<<<<<< HEAD
+
+        // weaponSlot2에서 Fire_Test 컴포넌트를 가져와 fire_test 변수에 할당합니다.
+        weapon_slot2 = weaponSlot2.GetComponent<Fire_Test>();
+        activeWeaponSlot_Component = activeWeaponSlot.GetComponent<Fire_Test>();
+
+
+    }
+
+
+=======
 
         // weaponSlot2에서 Fire_Test 컴포넌트를 가져와 fire_test 변수에 할당합니다.
         weapon_slot2_weapon = weaponSlot2.GetComponent<Fire_Test>();
         activeWeaponSlot_Component = activeWeaponSlot.GetComponent<Fire_Test>();
     }
+>>>>>>> Enemy
 
     private void Update()
     {
@@ -58,9 +78,30 @@ public class Weapon_Slot : MonoBehaviour
     // 무기를 슬롯에 할당하는 메서드
     public void ReceiveWeapon(Weapon weapon)
     {
+
         // 활성화된 무기 슬롯이 있는지 확인
-        if (activeWeaponSlot != null)
+        //만약 웨폰슬롯2의 타입이 None아면
+        if (activeWeaponSlot != null && weapon_slot2.weapon.weaponType == Weapon.WeaponType.None)
         {
+
+            // 우선적으로 웨폰슬롯2에 무기를 할당함
+            weapon_slot2.weapon = weapon;
+
+            // 활성화된 슬롯의 무기를 가져와서 장탄수를 설정합니다.
+            UpdateMagazineCapacity();
+
+
+        }
+        //만약 웨폰슬롯2의 무기 타입이 None이 아니라면
+        else if(weapon_slot2.weapon.weaponType != Weapon.WeaponType.None)
+        {
+<<<<<<< HEAD
+            // 활성화된 무기 슬롯에만 무기를 할당합니다.
+            activeWeaponSlot_Component.weapon = weapon;
+
+            // 활성화된 슬롯의 무기를 가져와서 장탄수를 설정합니다.
+            UpdateMagazineCapacity();
+=======
             // 슬롯 2이 비어있는 경우에만 무기를 할당합니다.
             if (weaponSlot2.GetComponent<Fire_Test>().weapon.weaponType == Weapon.WeaponType.None)
             {
@@ -73,11 +114,13 @@ public class Weapon_Slot : MonoBehaviour
                 activeWeaponSlot.GetComponent<Fire_Test>().weapon = weapon;
                 UpdateMagazineCapacity();
             }
+>>>>>>> Enemy
         }
         else
         {
             Debug.LogError("활성화된 무기 슬롯이 없습니다.");
         }
+        
     }
 
 
@@ -162,7 +205,11 @@ public class Weapon_Slot : MonoBehaviour
         }
         else if (activeWeaponSlot == weaponSlot2)
         {
+<<<<<<< HEAD
+            magazineCapacitySlot2 = activeWeaponSlot_Component.weapon.backup_magazine_capacity;
+=======
             magazineCapacitySlot2 = weapon_slot2_weapon.weapon.backup_magazine_capacity;
+>>>>>>> Enemy
         }
     }
 

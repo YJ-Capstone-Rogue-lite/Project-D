@@ -9,6 +9,7 @@ TagManager:
   - Item
   - DamageObject
   - Wall
+  - player_mini
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,11 @@ TagManager:
   - UI
   - Accessible
   - Inaccessible
+<<<<<<< HEAD
+  - Player_minimap
+=======
   - Item
+>>>>>>> Enemy
   - 
   - 
   - 
@@ -45,4 +50,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UseWeapon
+    uniqueID: 3562456989
     locked: 0

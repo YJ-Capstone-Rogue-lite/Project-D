@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerChar : Character
 {
     public static PlayerChar single;
 
+<<<<<<< HEAD
+    public Fire_Test fire;
+
+=======
+>>>>>>> Enemy
     private Rigidbody2D player_Rb;
     private Animator player_anim;
+    private SpriteRenderer bodyRender;
     private float rollDuration = 0.7f; //구르는시간
-    bool is_rolling = false;
+    public bool is_rolling = false;
     public GameObject camera_;
     private GameObject cameraInstance;
+
+    public Transform player_location;
+    public Transform gun_rotation;
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
@@ -26,6 +35,7 @@ public class PlayerChar : Character
         
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
+        bodyRender = GetComponent<SpriteRenderer>();
         cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
         cameraInstance.GetComponent<Camera_Player>().player = gameObject;
@@ -41,24 +51,36 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
-        player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
 
-        player_anim.SetFloat("MoveX", player_Rb.velocity.x);
-        player_anim.SetFloat("MoveY", player_Rb.velocity.y);
 
-        if (player_Rb.velocity.x < 0) //flip << 총 까지 같이 돌아가서 나중에 수정할것
+        if (!GameManager.Instance.isPlaying)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
+            return;
+        }
+        player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
+        var temp = (Vector3)fire.mousePos - transform.position;
+        if (player_Rb.velocity.x != 0 || player_Rb.velocity.y != 0)
+        {
+            player_anim.SetFloat("MoveX", Mathf.Sign(temp.x));
+            player_anim.SetFloat("MoveY", Mathf.Sign(temp.y));
+        }
+        else
+        {
+            player_anim.SetFloat("MoveX", 0);
+            player_anim.SetFloat("MoveY", 0);
+        }
+        if (temp.x < 0 && !is_rolling) //마우스가 왼쪽으로 향할때 flip
+        {
+            // transform.localScale = new Vector3(-1f, 1f, 1f); //x y z
             //gunSpriteRenderer.transform.localScale = new Vector3(1f, -1f, 1f); //x y z
 
-
-
+            bodyRender.flipX = true;
         }
-        else if (player_Rb.velocity.x > 0)
+        else if (temp.x > 0 && !is_rolling)
         {
-            transform.localScale = Vector3.one;
+            // transform.localScale = Vector3.one;
             //gunSpriteRenderer.transform.localScale = Vector3.one;
-
+            bodyRender.flipX = false;
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) //Idle
@@ -78,11 +100,19 @@ public class PlayerChar : Character
     {
         if (Input.GetButtonDown("Roll"))
         {
+            if(player_Rb.velocity.x < 0)
+            {
+                bodyRender.flipX = true;
+            }
+            else if(player_Rb.velocity.x > 0)
+            {
+                bodyRender.flipX = false;
+            }
+            is_rolling = true;
             Debug.Log("roll");
             player_anim.SetBool("isRolling", true);
             player_anim.SetFloat("RollX", Input.GetAxisRaw("Horizontal"));
             player_anim.SetFloat("RollY", Input.GetAxisRaw("Vertical"));
-            is_rolling = true;
 
             StartCoroutine(EndRoll());
         }
