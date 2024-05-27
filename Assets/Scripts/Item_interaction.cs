@@ -5,19 +5,6 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
-<<<<<<< HEAD
-using static UnityEditor.Progress;
-
-public class Item_interaction : MonoBehaviour
-{
-
-    private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
-
-    private Item_PickUp item_PickUp;
-
-    [SerializeField]
-    private TMP_Text actionText ;  // 행동을 보여 줄 텍스트
-=======
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
@@ -29,7 +16,6 @@ public class Item_interaction : MonoBehaviour
     [SerializeField] private TMP_Text actionText ;  // 행동을 보여 줄 텍스트
     [SerializeField] private Weapon_Slot Weapon_Slot; //웨폰 슬롯의 무기슬롯을 받아오기 위함
     public GameObject player_postion;
->>>>>>> Enemy
 
     private void Start()
     {
@@ -37,34 +23,24 @@ public class Item_interaction : MonoBehaviour
         actionText = GameObject.Find("actionText").GetComponent<TMP_Text>();
         // actionText를 비활성화합니다.
         actionText.gameObject.SetActive(false);
-<<<<<<< HEAD
-=======
 
->>>>>>> Enemy
     }
 
     private void Update()
     {
         CanPickUp();
-<<<<<<< HEAD
-=======
         
         //if (Input.GetKeyDown(KeyCode.T))
         //{
         //    PickUp_Item_Change();
         //}
->>>>>>> Enemy
     }
 
 
     private void OnTriggerEnter2D(Collider2D collider2D) //만약 트리거 범위에 닿은 거의 태그가 아이템이 포함되어 있으면
     {
         if (collider2D.gameObject.CompareTag("Item"))
-<<<<<<< HEAD
-        {
-=======
         {           
->>>>>>> Enemy
             pickupActivated = true;
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
             // 충돌한 객체가 "Item" 태그를 가지고 있으면 행동 텍스트를 활성화합니다.
@@ -73,10 +49,6 @@ public class Item_interaction : MonoBehaviour
 
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Enemy
     }
 
     private void OnTriggerExit2D(Collider2D collider2D)
@@ -96,21 +68,6 @@ public class Item_interaction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && pickupActivated)
         {
-<<<<<<< HEAD
-            Weapon_Slot weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
-            if (weaponSlotScript != null) //웨폰슬롯의 값이 비어있지 않을때
-            {
-                // 무기 슬롯 스크립트가 있다면 해당 무기를 전달
-                weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
-            }
-            else
-            { 
-            }
-            Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리 넣기
-            Destroy(item_PickUp.gameObject);
-        }
-    }
-=======
 
             Weapon_Slot weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
             if (weaponSlotScript != null) //웨폰슬롯의 값이 비어있지 않을때
@@ -176,5 +133,4 @@ public class Item_interaction : MonoBehaviour
     }
 
 
->>>>>>> Enemy
 }

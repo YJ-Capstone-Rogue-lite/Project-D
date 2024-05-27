@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3747812305170465231}
   - component: {fileID: 4708207722729153024}
   - component: {fileID: -342716382715773909}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: test_sniper_drop
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: {fileID: 11400000, guid: 0873d1a3534540842869881878371d62, type: 2}
-  player_Equip_Weapon: {fileID: 0}
   gunSpriteRenderer: {fileID: 7236552719153271707}
 --- !u!212 &7236552719153271707
 SpriteRenderer:

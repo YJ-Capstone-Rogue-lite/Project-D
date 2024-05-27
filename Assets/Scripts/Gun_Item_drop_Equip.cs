@@ -6,11 +6,7 @@ using UnityEngine.UIElements;
 public class Gun_Item_drop_Equip : MonoBehaviour
 {
     public Weapon Weapon; //웨폰 스크립트테이블
-<<<<<<< HEAD
-    public Fire_Test player_Equip_Weapon; //캐릭터가 가지고있는 웨폰값
-=======
     //public Fire_Test player_Equip_Weapon; //캐릭터가 가지고있는 웨폰값
->>>>>>> Enemy
     public SpriteRenderer gunSpriteRenderer; // 총의 스프라이트 렌더러를 참조할 변수
 
 

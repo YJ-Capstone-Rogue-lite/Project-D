@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +9,6 @@ public class Fire_Test : MonoBehaviour
     public Gun_Sprite_Change Gun_Sprite_Change;
 
 
-    public PlayerChar player;
 
 
     public Weapon default_weapon; //기본 무기(피스톨)
@@ -38,10 +36,6 @@ public class Fire_Test : MonoBehaviour
         weapon = default_weapon;
         Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
-<<<<<<< HEAD
-        player = FindObjectOfType<PlayerChar>();
-=======
->>>>>>> Enemy
         // Reload_anim 스크립트 가져오기
 
     }
@@ -51,8 +45,6 @@ public class Fire_Test : MonoBehaviour
         // Weapon 스크립터블 객체에서 fireRate 속성을 가져와 초기화
         fireRate = weapon.Fire_rate;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 마우스 위치 계산
-
-<<<<<<< HEAD
         angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90; // 플레이어가 마우스를 바라보도록 각도 계산
         var angleX = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg; // 플레이어가 마우스를 바라보도록 각도 계산
         var angleY = angle >= -180 ? angle : 360 + angle;
@@ -72,12 +64,6 @@ public class Fire_Test : MonoBehaviour
             var y = -(Mathf.Abs(angleY)/90-1);
             r.localPosition = new Vector3(Mathf.Clamp(x, -0.5f, 0.5f), y);
         }
-=======
-        angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg - 90f; // 플레이어가 마우스를 바라보도록 각도 계산
-
-        transform.rotation = Quaternion.Euler(0, 0, angle); // Gun 회전 설정
-        
->>>>>>> Enemy
         All_Shooting_Code();
 
     }
@@ -93,7 +79,7 @@ public class Fire_Test : MonoBehaviour
             // - 현재 활성화된 슬롯이 슬롯 2인 경우, 슬롯 2가 재장전 중인지 확인합니다.
             // 위 두 조건 중 하나라도 만족하지 않는 경우에만 아래의 코드 블록이 실행됩니다.
             if (!((weapon_Slot.isReloadingSlot1 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot1) ||
-                  (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)) && !(player.is_rolling))
+                  (weapon_Slot.isReloadingSlot2 && weapon_Slot.activeWeaponSlot == weapon_Slot.weaponSlot2)))
             {
                 fireTimer = fireRate; // 발사 타이머 설정
 
