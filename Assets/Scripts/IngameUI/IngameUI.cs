@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class IngameUI : MonoBehaviour
 {
     [SerializeField] private Weapon_Slot Weapon_Slot;
@@ -17,6 +16,8 @@ public class IngameUI : MonoBehaviour
     public bool MainWeapon = false; // true면 MainWeapon false면 SubWeapon
     public bool SubWeapon = true; // true면 MainWeapon false면 SubWeapon
     public bool openOption = true;
+    public bool openInventory = true;
+
 
     [SerializeField]  private GameObject reload_img;
 
@@ -28,6 +29,7 @@ public class IngameUI : MonoBehaviour
     {
         inv_slot_active_bool = false;
     }
+
 
     [SerializeField] private RectTransform WeaponSlot1;
     [SerializeField] private RectTransform WeaponSlot2;
@@ -55,6 +57,10 @@ public class IngameUI : MonoBehaviour
         {
             inventory_open(); //인벤토리 오픈
         }
+        if (Input.GetButtonDown("Option"))
+        {
+            option_open();
+        }
 
         if (Input.GetButtonDown("MainWeapon") && MainWeapon == true)
         {
@@ -80,26 +86,29 @@ public class IngameUI : MonoBehaviour
             WeaponSlot2.SetAsLastSibling();
             WeaponSlot1.SetAsFirstSibling();
         }
-
-        if (Input.GetButtonDown("Option") && openOption)
+        
+        if(ingameOption.activeSelf == true || inv_slot.activeSelf == true)
         {
-            Debug.Log("open Option");
-            ingameOption.SetActive(true);
-            openOption = false;
+            IngameTime(false);
+        }
+        else if(ingameOption.activeSelf == false && inv_slot.activeSelf == false)
+        {
+            IngameTime(true);
+        }
+
+    }
+    public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
+    {
+        if (!ingameTime)  // 시간멈추기
+        {
             Time.timeScale = 0f;
             GameManager.Instance.isPlaying = false;
-            //인게임 시간 멈추게 하기
         }
-        else if (Input.GetButtonDown("Option") && !openOption)
+        else if(ingameTime) // 시간흘러가게하기
         {
-            Debug.Log("open Option");
-            ingameOption.SetActive(false);
-            openOption = true;
             Time.timeScale = 1f;
             GameManager.Instance.isPlaying = true;
-            //인게임 다시 시작
         }
-
     }
     public void Resume_Btn()
     {
@@ -151,6 +160,19 @@ public class IngameUI : MonoBehaviour
         {
             inv_slot.SetActive(false); //false가 아니라면 인벤토리 슬롯 끄기
             inv_slot_active_bool = false; //인벤슬롯 끄고 다시 false로 바꿔주기
+        }
+    }
+    public void option_open()
+    {
+        if (openOption)
+        {
+            ingameOption.SetActive(true);
+            openOption = false;
+        }
+        else if (!openOption)
+        {
+            ingameOption.SetActive(false);
+            openOption = true;
         }
     }
     public void inv_refresh() //인벤토리 갱신

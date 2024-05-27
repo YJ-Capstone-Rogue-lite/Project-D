@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5811418617846298616}
   - component: {fileID: 2536573577163907773}
   - component: {fileID: -3739979967827259681}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: test_shotgunl_drop (1)
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon: {fileID: 11400000, guid: c042fd3640f77e947bd29ab343a5ceaa, type: 2}
-  player_Equip_Weapon: {fileID: 0}
   gunSpriteRenderer: {fileID: 4204560682436263093}
 --- !u!212 &4204560682436263093
 SpriteRenderer:

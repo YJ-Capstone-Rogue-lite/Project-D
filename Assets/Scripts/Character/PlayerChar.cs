@@ -6,17 +6,12 @@ using UnityEngine;
 public class PlayerChar : Character
 {
     public static PlayerChar single;
-
-<<<<<<< HEAD
     public Fire_Test fire;
-
-=======
->>>>>>> Enemy
     private Rigidbody2D player_Rb;
     private Animator player_anim;
     private SpriteRenderer bodyRender;
     private float rollDuration = 0.7f; //구르는시간
-    public bool is_rolling = false;
+    bool is_rolling = false;
     public GameObject camera_;
     private GameObject cameraInstance;
 

@@ -3,27 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - Enemy
-  - Item
-  - DamageObject
-  - Wall
-  - player_mini
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Bullet
+  - 
   - Water
   - UI
-  - Accessible
-  - Inaccessible
-<<<<<<< HEAD
-  - Player_minimap
-=======
-  - Item
->>>>>>> Enemy
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -50,7 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UseWeapon
-    uniqueID: 3562456989
     locked: 0
