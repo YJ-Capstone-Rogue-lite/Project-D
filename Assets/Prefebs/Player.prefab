@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706431505829958723}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SR_positon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5720569793203799302}
   - component: {fileID: 832817811394115914}
   - component: {fileID: 5014049332957080491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: weapon_slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 9038497741270039512}
   - component: {fileID: 5144176817245314020}
   - component: {fileID: 7588977539650931924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 8229427787177616930}
   - component: {fileID: 5619781969839244633}
   - component: {fileID: 8065557434445378665}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_pistol2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 7640240801377867859}
   - component: {fileID: 8737025114984254089}
   - component: {fileID: 8262015323131776367}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_rifle&shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 2567275615699376334}
   - component: {fileID: 9112494991943352582}
   - component: {fileID: 6996041058531841090}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 4545488504576599970}
   - component: {fileID: 379188188232874329}
   - component: {fileID: 8377657067992975816}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ItemGain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 3002444556178219722}
   - component: {fileID: 1207859857785079783}
   - component: {fileID: 6806470902093840527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_sniper2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 705085495076521104}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol_positon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6028978066512127325}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AR&SG_positon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 5448411803320117600}
   - component: {fileID: 2795944204507669091}
   - component: {fileID: 3726036735996454616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: weapon_slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 1087684697426086778}
   - component: {fileID: 6758888178373337562}
   - component: {fileID: 4182304501953947113}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_rifle&shotgun2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1059,7 +1059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3013202222953634518}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SR_positon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1090,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5136492783977247199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AR&SG_positon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 4424788623378119582}
   - component: {fileID: 169967990069097605}
   - component: {fileID: 8852524199952484245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1219,7 +1219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3504955199803169069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol_positon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,6 +1252,14 @@ PrefabInstance:
     - target: {fileID: 4144628358222961968, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
       propertyPath: m_Name
       value: Reload_img
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144628358222961968, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970362936216759767, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8304092276969953785, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
       propertyPath: m_PresetInfoIsWorld

@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
         PlayerMinimap.SetActive(false);
         if (state == State.ING && enemyCount <= 0) state = State.CLEAR;
     }
-    protected void OnTriggerStay2D(Collider2D other)
+    protected void OnTriggerStay2D(Collider2D collider)
     {
         PlayerMinimap.SetActive(true);
     }
