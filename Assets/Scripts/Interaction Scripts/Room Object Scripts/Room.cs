@@ -5,6 +5,22 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
+    private static GameObject _focusedMinimapChar = null;
+    public static GameObject focusedMinimapChar {
+        private set {
+            if (value == _focusedMinimapChar)
+                return;
+            if(value != _focusedMinimapChar && _focusedMinimapChar != null)
+                _focusedMinimapChar.SetActive(false);
+
+            _focusedMinimapChar = value;
+            if (_focusedMinimapChar == null)
+                return;
+            _focusedMinimapChar.SetActive(true);
+        }
+        get => _focusedMinimapChar;
+    }
+
     public enum State { READY, ING, CLEAR }
     public Tilemap tilemap { get; set; }
     public State state = State.READY;
@@ -29,7 +45,8 @@ public class Room : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collider)
     {
         if (!collider.CompareTag("Player")) return;
-        if(state == State.READY)
+        focusedMinimapChar = PlayerMinimap;
+        if (state == State.READY)
         {
             state = State.ING;
             RoomEnterTrigger();
@@ -37,11 +54,15 @@ public class Room : MonoBehaviour
     }
     protected void OnTriggerExit2D(Collider2D collider)
     {
-        PlayerMinimap.SetActive(false);
+        if (collider.CompareTag("Player")) 
+            focusedMinimapChar = null;
+
         if (state == State.ING && enemyCount <= 0) state = State.CLEAR;
     }
     protected void OnTriggerStay2D(Collider2D collider)
     {
-        PlayerMinimap.SetActive(true);
+        
+        //focusedMinimapChar = PlayerMinimap;
+        
     }
 }
