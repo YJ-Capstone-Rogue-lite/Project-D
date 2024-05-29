@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 9038497741270039512}
   - component: {fileID: 5144176817245314020}
   - component: {fileID: 7588977539650931924}
-  - component: {fileID: -6495561650192054717}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -230,12 +229,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectController: {fileID: 0}
   charStateData:
-    health: 0
+    health: 100
+    max_hp: 0
     shield: 0
     stamina: 0
     movementSpeed: 0
     protectiontime: 0
     player_damage: 0
+  m_health: 0
+  m_maxHealth: 0
+  m_shield: 0
+  m_movementSpeed: 0
+  m_protectionTime: 0
+  m_damage: 0
   fire: {fileID: 2795944204507669091}
   camera_: {fileID: 3105846115308698877, guid: b108e3970c042f44fb38629c1e557322, type: 3}
   player_location: {fileID: 0}
@@ -344,26 +350,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-6495561650192054717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2530009614169799429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15420ba56ea03aa468d488c882acf703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectController: {fileID: 0}
-  charStateData:
-    health: 100
-    shield: 0
-    stamina: 0
-    movementSpeed: 0
-    protectiontime: 0
-    player_damage: 0
 --- !u!1 &2783111838422316892
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public struct CharStateData
 {
     public float health;
+    public float max_hp;
     public float shield;
     public float stamina;
     public float movementSpeed;

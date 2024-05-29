@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
+    public static IngameUI single;
     [SerializeField] private Weapon_Slot Weapon_Slot;
 
+    [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
     public Image sub_slot_sprite;
 
+    [Header("무기 슬롯 교체 애니메이션")]
     public Animator MainWeapon_Swap;
     public Animator SubWeapon_Swap;
 
@@ -21,15 +24,17 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField]  private GameObject reload_img;
 
+    [Header("인벤토리 관련")]
+
     public GameObject inv_slot;
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
 
-    private void Start()
-    {
-        inv_slot_active_bool = false;
-    }
+    [Header("체력바 관련")]
+    public Image HPbar; //hp바 관련 이미지
 
+
+    [Header("기타등등")]
 
     [SerializeField] private RectTransform WeaponSlot1;
     [SerializeField] private RectTransform WeaponSlot2;
@@ -44,6 +49,12 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField] private Sprite checkBox;
     [SerializeField] private Sprite emptyBox;
+
+    private void Start()
+    {
+        inv_slot_active_bool = false;
+    }
+
     private void Update()
     {
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
@@ -95,7 +106,6 @@ public class IngameUI : MonoBehaviour
         {
             IngameTime(true);
         }
-
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
@@ -183,5 +193,8 @@ public class IngameUI : MonoBehaviour
         Debug.Log("인벤토리 열림");
 
     }
+
+
+
 }
 

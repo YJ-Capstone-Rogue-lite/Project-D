@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - player_mini
   - Enemy
+  - Undefined
+  - Bullet
+  - Hit_radius
+  - attackEnemy
   layers:
   - Default
   - TransparentFX
