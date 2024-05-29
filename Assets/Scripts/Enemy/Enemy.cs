@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
-    }
+
 
     private void Update()
     {
@@ -78,15 +78,11 @@ public class Enemy : MonoBehaviour
         currentAngle = Mathf.Repeat(currentAngle, 360);
         endPosition = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
     }
-
-    // 각도로부터 벡터를 반환하는 메서드
     Vector3 Vector3FromAngle(float inputAngle)
     {
         float inputAngleRadians = inputAngle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(inputAngleRadians), Mathf.Sin(inputAngleRadians), 0);
     }
-
-    // 플레이어를 찾는 코루틴
     public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)
     {
         float remainingDistance = (transform.position - endPosition).sqrMagnitude;
@@ -99,20 +95,21 @@ public class Enemy : MonoBehaviour
 
             if (rigbodyToMove != null)
             {
-                enemy_animator.SetBool("FindPlayer", true); // 플레이어 발견 상태를 설정
+                enemy_animator.SetBool("FindPlayer", true);
                 Vector3 currentPosition = new Vector3(rigbodyToMove.position.x, rigbodyToMove.position.y, 0f);
                 Vector3 direction = (endPosition - currentPosition).normalized;
 
-                // 이동 방향에 따라 애니메이션 파라미터 설정
+                // 이동 방향에 따라 MoveX와 MoveY 설정
                 float moveX = direction.x;
                 float moveY = direction.y;
+
+                // 애니메이션 파라미터 설정
                 enemy_animator.SetFloat("MoveX", moveX);
                 enemy_animator.SetFloat("MoveY", moveY);
 
-                // 이동 로직
+                // 이동 로직...
                 Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
                 enemy_rb.MovePosition(newPosition);
-                // 좌우 반전 로직
                 if (moveX > 0)
                 {
                     spriteRenderer.flipX = true;
@@ -154,6 +151,46 @@ public class Enemy : MonoBehaviour
             // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
             ChooseNewEndPoint();
         }
+        else if (collision.gameObject.CompareTag("Player") && followPlayer)
+        {
+            targetTransform = collision.gameObject.transform;
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+            }
+            moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
+        }
+        else if (collision.gameObject.CompareTag("Wall")) // 벽에 접촉했을 때
+        {
+            // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
+            ChooseNewEndPoint();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            enemy_animator.SetBool("FindPlayer", false);
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+            }
+            targetTransform = null;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (circleCollider2D != null)
+        {
+            Gizmos.DrawWireSphere(transform.position, circleCollider2D.radius);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        //enemy_rb.velocity = transform.up * Enemy_speed;
     }
 
     private void OnCollisionExit2D(Collision2D collision)

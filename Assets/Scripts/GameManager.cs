@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
     //미니맵에 표시되는 카메라
     void Update()
     {
-        playerIcon = GameObject.FindWithTag("player_mini");
-        mini_camera_transform = new Vector3(playerIcon.transform.position.x, playerIcon.transform.position.y, -40);
+        if (Room.focusedMinimapChar == null)
+            return;
+        
+        mini_camera_transform = new Vector3(Room.focusedMinimapChar.transform.position.x, Room.focusedMinimapChar.transform.position.y, -40);
         mini_camera.transform.position = mini_camera_transform;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerChar : Character
     private Rigidbody2D player_Rb;
     private Animator player_anim;
     private SpriteRenderer bodyRender;
+    private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
     bool is_rolling = false;
     public GameObject camera_;
@@ -38,6 +39,7 @@ public class PlayerChar : Character
         cameraInstance.GetComponent<Camera_Player>().player = gameObject;
         //FloorLoader.Instance.player = gameObject;
         base.Start();
+        originalSortingOrder = bodyRender.sortingOrder;
 
 
     }
@@ -52,6 +54,25 @@ public class PlayerChar : Character
         {
             return;
         }
+        Debug.DrawRay(player_Rb.position, Vector2.down, new Color(1, 0, 0));
+        RaycastHit2D [] hit = Physics2D.RaycastAll(player_Rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
+        for(int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider != null && !hit[i].collider.isTrigger)
+            {
+                // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
+                Debug.Log("닿음");
+                bodyRender.sortingOrder = 0;
+            }
+            // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
+            else
+            {
+                // 원래 sortingOrder 값을 복원합니다.
+                bodyRender.sortingOrder = originalSortingOrder;
+            }
+        }
+        
+
         player_Rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * m_movementSpeed;
         var temp = (Vector3)fire.mousePos - transform.position;
         if (player_Rb.velocity.x != 0 || player_Rb.velocity.y != 0)
@@ -88,7 +109,6 @@ public class PlayerChar : Character
         {
             player_Roll();
         }
-        
 
     }
  

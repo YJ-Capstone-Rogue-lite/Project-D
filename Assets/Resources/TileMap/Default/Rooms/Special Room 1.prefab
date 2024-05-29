@@ -867,7 +867,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 3282449879217212087}
   - component: {fileID: 1016349894615712741}
   - component: {fileID: 7280550432703486383}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3122,7 +3122,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3254,9 +3254,33 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4182304501953947113, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182304501953947113, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182304501953947113, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4374143932584327913, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144176817245314020, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144176817245314020, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144176817245314020, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5168708267808769163, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
@@ -3265,6 +3289,30 @@ PrefabInstance:
     - target: {fileID: 5454812208901183316, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806470902093840527, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806470902093840527, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806470902093840527, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996041058531841090, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996041058531841090, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996041058531841090, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7077782313363950043, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
@@ -3358,13 +3406,49 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8065557434445378665, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065557434445378665, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065557434445378665, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8068497352586836922, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8262015323131776367, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262015323131776367, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262015323131776367, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8566307938428794663, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852524199952484245, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852524199952484245, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852524199952484245, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9023294284379663249, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Layer
