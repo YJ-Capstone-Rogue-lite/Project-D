@@ -37,6 +37,9 @@ public class Weapon_Slot : MonoBehaviour
         // weaponSlot2에서 Fire_Test 컴포넌트를 가져와 fire_test 변수에 할당합니다.
         weapon_slot2_weapon = weaponSlot2.GetComponent<Fire_Test>();
         activeWeaponSlot_Component = activeWeaponSlot.GetComponent<Fire_Test>();
+
+        //게임 시작시 장탄수 한번 초기화
+        UpdateMagazineCapacity();
     }
 
     private void Update()
@@ -65,7 +68,7 @@ public class Weapon_Slot : MonoBehaviour
             if (weaponSlot2.GetComponent<Fire_Test>().weapon.weaponType == Weapon.WeaponType.None)
             {
                 weaponSlot2.GetComponent<Fire_Test>().weapon = weapon;
-                UpdateMagazineCapacity();
+                slot2_whenPickup_magazinUpdate();
             }
             else
             {
@@ -149,6 +152,12 @@ public class Weapon_Slot : MonoBehaviour
         {
             weaponSlot1.SetActive(false);
         }
+
+    }
+
+    public void slot2_whenPickup_magazinUpdate()
+    {
+        magazineCapacitySlot2 = weapon_slot2_weapon.weapon.backup_magazine_capacity;
 
     }
 
