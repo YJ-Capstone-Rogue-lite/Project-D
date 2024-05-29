@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
-
+    }
 
     private void Update()
     {
@@ -165,32 +165,6 @@ public class Enemy : MonoBehaviour
             // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
             ChooseNewEndPoint();
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            enemy_animator.SetBool("FindPlayer", false);
-            if (moveCoroutine != null)
-            {
-                StopCoroutine(moveCoroutine);
-            }
-            targetTransform = null;
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        if (circleCollider2D != null)
-        {
-            Gizmos.DrawWireSphere(transform.position, circleCollider2D.radius);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        //enemy_rb.velocity = transform.up * Enemy_speed;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
