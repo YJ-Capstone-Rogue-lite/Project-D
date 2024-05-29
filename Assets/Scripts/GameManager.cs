@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Camera mini_camera;
     public bool isPlaying = true;
     Room room;
+    public Vector3 mini_camera_transform;
+    public GameObject playerIcon;
 
     private void Awake()
     {
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mini_camera.transform.position = GameObject.FindWithTag("player_mini").transform.position;
+        playerIcon = GameObject.FindWithTag("player_mini");
+        mini_camera_transform = new Vector3(playerIcon.transform.position.x, playerIcon.transform.position.y, -40);
+        mini_camera.transform.position = mini_camera_transform;
     }
 }

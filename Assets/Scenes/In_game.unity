@@ -738,7 +738,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 289
+    m_Bits: 480
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6c369be711ab9524486c1b4521f07005, type: 2}
   m_TargetDisplay: 0
@@ -6543,6 +6543,7 @@ MonoBehaviour:
   MainWeapon: 0
   SubWeapon: 1
   openOption: 1
+  openInventory: 1
   reload_img: {fileID: 4144628358222961968, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
   inv_slot: {fileID: 900186355}
   inv_slot_active_bool: 0
@@ -6568,8 +6569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c8dc4f35ca2a64db63ee3a469c830d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mini_camera: {fileID: 0}
+  mini_camera: {fileID: 289488199}
   isPlaying: 1
+  mini_camera_transform: {x: 0, y: 0, z: 0}
+  playerIcon: {fileID: 0}
 --- !u!1 &2057936257
 GameObject:
   m_ObjectHideFlags: 0
