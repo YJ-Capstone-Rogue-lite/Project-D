@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1306411612403950040}
   - component: {fileID: 6692593893309291630}
   - component: {fileID: 9001741571766281376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7840,7 +7840,7 @@ GameObject:
   - component: {fileID: 7720203826706086445}
   - component: {fileID: 6169692088517538838}
   - component: {fileID: 2139406745728938461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OverSize Room 3
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -9621,7 +9621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7511118367643003139}
   - component: {fileID: 1034041945030490182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9667,6 +9667,10 @@ PrefabInstance:
     - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_Name
       value: Minimap_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_IsActive
