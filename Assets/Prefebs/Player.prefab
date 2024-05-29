@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 490302764250462203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.70997566, y: 0.06301266, z: 0}
+  m_LocalPosition: {x: 0.772, y: -0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,7 +83,10 @@ MonoBehaviour:
   weapon_Slot: {fileID: 5046371043250726752}
   Gun_Sprite_Change: {fileID: 5014049332957080491}
   default_weapon: {fileID: 11400000, guid: 9a6ef2619e1cf2b4b82e1236df39a5b5, type: 2}
-  bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  Handgun_bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  AR_bulletPrefebs: {fileID: 6253837210304923167, guid: 7a387ed5a03a81840bc2e34ab1fe705e, type: 3}
+  SG_bulletPrefebs: {fileID: 6253837210304923167, guid: 8d4f48dc627dedf4395f446be344ba24, type: 3}
+  SR_bulletPrefebs: {fileID: 6253837210304923167, guid: 5c78506d8c5eed94a8fa0926e140791a, type: 3}
   PistolfiringPoint: {fileID: 3504955199803169069}
   ARandSGfiringPoint: {fileID: 5136492783977247199}
   SRfiringPoint: {fileID: 6706431505829958723}
@@ -120,6 +123,7 @@ GameObject:
   - component: {fileID: 9038497741270039512}
   - component: {fileID: 5144176817245314020}
   - component: {fileID: 7588977539650931924}
+  - component: {fileID: -6495561650192054717}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -224,12 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3b8d4de0c6f5a44b14dd3b880d4852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectController: {fileID: 0}
   charStateData:
     health: 0
     shield: 0
     stamina: 0
     movementSpeed: 0
     protectiontime: 0
+    player_damage: 0
   fire: {fileID: 2795944204507669091}
   camera_: {fileID: 3105846115308698877, guid: b108e3970c042f44fb38629c1e557322, type: 3}
   player_location: {fileID: 0}
@@ -338,6 +344,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6495561650192054717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530009614169799429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15420ba56ea03aa468d488c882acf703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectController: {fileID: 0}
+  charStateData:
+    health: 100
+    shield: 0
+    stamina: 0
+    movementSpeed: 0
+    protectiontime: 0
+    player_damage: 0
 --- !u!1 &2783111838422316892
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,8 +867,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5168708267808769163}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.38000983, y: 0.06301266, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.38, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -873,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 5454812208901183316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.57998544, y: 0.11098629, z: 0}
+  m_LocalPosition: {x: 0.57998544, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -931,7 +957,10 @@ MonoBehaviour:
   weapon_Slot: {fileID: 5046371043250726752}
   Gun_Sprite_Change: {fileID: 3726036735996454616}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
-  bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  Handgun_bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  AR_bulletPrefebs: {fileID: 6253837210304923167, guid: 7a387ed5a03a81840bc2e34ab1fe705e, type: 3}
+  SG_bulletPrefebs: {fileID: 6253837210304923167, guid: 8d4f48dc627dedf4395f446be344ba24, type: 3}
+  SR_bulletPrefebs: {fileID: 6253837210304923167, guid: 5c78506d8c5eed94a8fa0926e140791a, type: 3}
   PistolfiringPoint: {fileID: 705085495076521104}
   ARandSGfiringPoint: {fileID: 6028978066512127325}
   SRfiringPoint: {fileID: 3013202222953634518}
@@ -1075,7 +1104,7 @@ Transform:
   m_GameObject: {fileID: 8026177712577112447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.70997566, y: 0.06301266, z: 0}
+  m_LocalPosition: {x: 0.772, y: -0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1106,7 +1135,7 @@ Transform:
   m_GameObject: {fileID: 8566307938428794663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.57998544, y: 0.11098629, z: 0}
+  m_LocalPosition: {x: 0.57998544, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1235,7 +1264,7 @@ Transform:
   m_GameObject: {fileID: 9211292944727738355}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.38000983, y: 0.06301266, z: 0}
+  m_LocalPosition: {x: 0.38000983, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

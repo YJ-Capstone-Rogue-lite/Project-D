@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    //미니맵에 표시되는 카메라
     void Update()
     {
         playerIcon = GameObject.FindWithTag("player_mini");

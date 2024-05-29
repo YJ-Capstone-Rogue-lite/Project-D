@@ -10,4 +10,5 @@ public struct CharStateData
     public float stamina;
     public float movementSpeed;
     public float protectiontime;
+    public float player_damage;
 }

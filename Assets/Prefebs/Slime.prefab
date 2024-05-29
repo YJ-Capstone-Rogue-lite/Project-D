@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3847048085334236217}
   - component: {fileID: 847375035382296079}
   - component: {fileID: 3402610893816206822}
+  - component: {fileID: -7847443032760364087}
   - component: {fileID: 1408360845080943993}
   - component: {fileID: 1071569849421755225}
   - component: {fileID: 2620150170107279935}
@@ -133,9 +134,25 @@ MonoBehaviour:
   enemy_speed: 3
   rotateSpeed: 0.25
   enemy_hp: 100
+  enemy_body_damage: 0
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 5
+--- !u!114 &-7847443032760364087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039019153509472436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7bb0641ad12fa43ab93759c833104c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerTransform: {fileID: 5733876780262991768}
+  damage: 20
+  effect: {fileID: 0}
 --- !u!95 &1408360845080943993
 Animator:
   serializedVersion: 5

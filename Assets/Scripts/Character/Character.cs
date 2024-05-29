@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected CharStateData charStateData;
 
+    [Header("플레이어 스탯")]
     // 캐릭터의 체력
     protected float m_health;
 
@@ -24,6 +25,9 @@ public class Character : MonoBehaviour
     // 캐릭터의 보호 시간
     protected float m_protectionTime;
 
+    // 캐릭터의 자체 데미지(버프나 악세사리 스탯 증감용)
+    protected float m_damage;
+
     protected virtual void Start()
     {
         // 캐릭터의 상태 데이터로 초기화
@@ -31,6 +35,7 @@ public class Character : MonoBehaviour
         m_shield = charStateData.shield;
         m_movementSpeed = 5;
         m_protectionTime = 0;
+        m_damage = charStateData.player_damage;
     }
 
     protected virtual void Damaged(DamageData damageData)
@@ -45,7 +50,7 @@ public class Character : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("DamageObject"))
+        if (collider.CompareTag("DamageObject") || collider.CompareTag("Enemy"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());
@@ -56,7 +61,7 @@ public class Character : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         var collider = collision.collider;
-        if (collider.CompareTag("DamageObject"))
+        if (collider.CompareTag("DamageObject") || collider.CompareTag("Enemy"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());

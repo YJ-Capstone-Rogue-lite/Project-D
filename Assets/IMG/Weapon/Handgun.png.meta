@@ -113,18 +113,18 @@ TextureImporter:
       name: Handgun_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 2
         y: 0
-        width: 22
+        width: 20
         height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.72403264}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a14d10ad147173441b6ad2372e06796d
+      spriteID: f0dd33f381b5c3c4e88025d04b0336e4
       internalID: 1706657260
       vertices: []
       indices: 
@@ -136,38 +136,17 @@ TextureImporter:
         serializedVersion: 2
         x: 23
         y: 0
-        width: 21
+        width: 43
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 22, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fd5988feb9039c4b889bf82c5658a9f
+      spriteID: 65037713ac2cde349a307500924e1248
       internalID: 686608153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Handgun_2
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 0
-        width: 22
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 54843ad6b08ce2d4ba7e77e09f904418
-      internalID: -791642772
       vertices: []
       indices: 
       edges: []
@@ -185,7 +164,6 @@ TextureImporter:
     nameFileIdTable:
       Handgun_0: 1706657260
       Handgun_1: 686608153
-      Handgun_2: -791642772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

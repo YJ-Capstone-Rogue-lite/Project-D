@@ -17,6 +17,8 @@ public class PlayerChar : Character
 
     public Transform player_location;
     public Transform gun_rotation;
+
+
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
@@ -46,8 +48,6 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
-
-
         if (!GameManager.Instance.isPlaying)
         {
             return;
@@ -91,6 +91,9 @@ public class PlayerChar : Character
         
 
     }
+ 
+
+
     public void player_Roll()
     {
         if (Input.GetButtonDown("Roll"))
