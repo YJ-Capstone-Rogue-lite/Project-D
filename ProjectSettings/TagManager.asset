@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - Hit_radius
   - attackEnemy
+  - Weapon
   layers:
   - Default
   - TransparentFX

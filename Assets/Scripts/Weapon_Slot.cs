@@ -27,6 +27,7 @@ public class Weapon_Slot : MonoBehaviour
     public Animator reload_animator;
 
     [SerializeField] private GameObject reload_object;
+    public PlayerChar playerchar;
 
     private void Start()
     {

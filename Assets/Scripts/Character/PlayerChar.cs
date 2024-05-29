@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerChar : Character
 {
     public static PlayerChar single;
+
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
     private Animator player_anim;
@@ -18,7 +19,6 @@ public class PlayerChar : Character
 
     public Transform player_location;
     public Transform gun_rotation;
-
 
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
@@ -109,10 +109,10 @@ public class PlayerChar : Character
         {
             player_Roll();
         }
-
+        fire = GameObject.FindWithTag("Weapon").GetComponent<Fire_Test>();
     }
  
-
+    
 
     public void player_Roll()
     {
