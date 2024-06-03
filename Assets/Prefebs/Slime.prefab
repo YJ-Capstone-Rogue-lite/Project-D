@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3402610893816206822}
   - component: {fileID: 1408360845080943993}
   - component: {fileID: 2620150170107279935}
+  - component: {fileID: 5104547443972504249}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -193,6 +194,41 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
+--- !u!58 &5104547443972504249
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039019153509472436}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.45833334
 --- !u!1 &2637716999783611454
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +296,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.013507366, y: 0}
   serializedVersion: 2
-  m_Radius: 0.39492846
+  m_Radius: 0.83
 --- !u!114 &8948497751932598232
 MonoBehaviour:
   m_ObjectHideFlags: 0

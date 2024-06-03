@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
                 enemy_animator.SetFloat("MoveX", moveX);
                 enemy_animator.SetFloat("MoveY", moveY);
 
-                // 이동 로직...
+                // 이동 로직
                 Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
                 enemy_rb.MovePosition(newPosition);
                 if (moveX > 0)
@@ -135,6 +135,14 @@ public class Enemy : MonoBehaviour
                 return;
 
             enemy_hp -= bullet.Damage; // 적의 체력 감소
+
+            // 적이 밀려나지 않도록 속도를 0으로 설정
+            enemy_rb.velocity = Vector2.zero;
+            enemy_rb.angularVelocity = 0f;
+
+            // 적의 위치를 고정하여 밀리지 않도록 설정
+            enemy_rb.isKinematic = true;
+            StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
         else if (collision.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
         {
@@ -151,20 +159,12 @@ public class Enemy : MonoBehaviour
             // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
             ChooseNewEndPoint();
         }
-        else if (collision.gameObject.CompareTag("Player") && followPlayer)
-        {
-            targetTransform = collision.gameObject.transform;
-            if (moveCoroutine != null)
-            {
-                StopCoroutine(moveCoroutine);
-            }
-            moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
-        }
-        else if (collision.gameObject.CompareTag("Wall")) // 벽에 접촉했을 때
-        {
-            // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
-            ChooseNewEndPoint();
-        }
+    }
+
+    private IEnumerator ResetKinematic()
+    {
+        yield return new WaitForFixedUpdate(); // 물리 업데이트 후에 다시 false로 설정
+        enemy_rb.isKinematic = false;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -199,8 +199,14 @@ public class Enemy : MonoBehaviour
     {
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
+            enemy_animator.SetBool("State", false);
+            enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
+            this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
-            Destroy(gameObject); // 적 오브젝트 제거
         }
+    }
+    private void Destroy_Enemy()
+    {
+        Destroy(gameObject); // 적 오브젝트 제거
     }
 }
