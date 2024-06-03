@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ConsumableItem", menuName = "Scriptable Object/ConsumableItemData")]
 public class ConsumableItem : ScriptableObject
 {
+    public GameObject ConsumItemPrefab;//해당 소비템 값을 가지고있는 프리팹
+
     public enum RatingType { NONE, COMMON, RARE, UNIQUE, LEGENDARY } //아이템 등급
     public enum ItemType { None, Potion, Throwing_Weapon } //아이템 타입(None, 악세서리, 투척무기)
 
