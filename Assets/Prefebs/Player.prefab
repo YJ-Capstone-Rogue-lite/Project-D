@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectController: {fileID: 0}
   charStateData:
-    health: 0
+    health: 100
     max_hp: 0
     shield: 0
     stamina: 0
@@ -237,8 +237,8 @@ MonoBehaviour:
     protectiontime: 0
     player_damage: 0
   HPbar: {fileID: 0}
-  m_health: 0
-  m_maxHealth: 0
+  m_health: 100
+  m_maxHealth: 100
   m_shield: 0
   m_movementSpeed: 0
   m_protectionTime: 0

@@ -3651,7 +3651,7 @@ GameObject:
   - component: {fileID: 1208734720}
   - component: {fileID: 1208734719}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: HP_Bar_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6598,6 +6598,7 @@ MonoBehaviour:
   inv_slot: {fileID: 900186355}
   inv_slot_active_bool: 0
   inventory_slot: {fileID: 900186359}
+  HPbar: {fileID: 1208734719}
   WeaponSlot1: {fileID: 482613115}
   WeaponSlot2: {fileID: 2057936258}
   ingameOption: {fileID: 984497733}
@@ -6622,6 +6623,7 @@ MonoBehaviour:
   mini_camera: {fileID: 289488199}
   isPlaying: 1
   mini_camera_transform: {x: 0, y: 0, z: 0}
+  playerIcon: {fileID: 0}
 --- !u!1 &2057936257
 GameObject:
   m_ObjectHideFlags: 0
