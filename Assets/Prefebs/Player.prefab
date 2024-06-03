@@ -83,10 +83,10 @@ MonoBehaviour:
   weapon_Slot: {fileID: 5046371043250726752}
   Gun_Sprite_Change: {fileID: 5014049332957080491}
   default_weapon: {fileID: 11400000, guid: 9a6ef2619e1cf2b4b82e1236df39a5b5, type: 2}
-  Handgun_bulletPrefebs: {fileID: 0}
-  AR_bulletPrefebs: {fileID: 0}
-  SG_bulletPrefebs: {fileID: 0}
-  SR_bulletPrefebs: {fileID: 0}
+  Handgun_bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
+  AR_bulletPrefebs: {fileID: 6253837210304923167, guid: 7a387ed5a03a81840bc2e34ab1fe705e, type: 3}
+  SG_bulletPrefebs: {fileID: 6253837210304923167, guid: 8d4f48dc627dedf4395f446be344ba24, type: 3}
+  SR_bulletPrefebs: {fileID: 6253837210304923167, guid: 5c78506d8c5eed94a8fa0926e140791a, type: 3}
   PistolfiringPoint: {fileID: 3504955199803169069}
   ARandSGfiringPoint: {fileID: 5136492783977247199}
   SRfiringPoint: {fileID: 6706431505829958723}
@@ -946,7 +946,7 @@ MonoBehaviour:
   Gun_Sprite_Change: {fileID: 3726036735996454616}
   default_weapon: {fileID: 11400000, guid: 22a6fb2301e85a340ad1d192aa762141, type: 2}
   Handgun_bulletPrefebs: {fileID: 6253837210304923167, guid: 8ec9a49194d9f83478641436e7261de4, type: 3}
-  AR_bulletPrefebs: {fileID: 0}
+  AR_bulletPrefebs: {fileID: 6253837210304923167, guid: 7a387ed5a03a81840bc2e34ab1fe705e, type: 3}
   SG_bulletPrefebs: {fileID: 6253837210304923167, guid: 8d4f48dc627dedf4395f446be344ba24, type: 3}
   SR_bulletPrefebs: {fileID: 6253837210304923167, guid: 5c78506d8c5eed94a8fa0926e140791a, type: 3}
   PistolfiringPoint: {fileID: 705085495076521104}
