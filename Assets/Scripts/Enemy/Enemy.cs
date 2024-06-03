@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // 플레이어를 추적하기 위한 타겟
-    public Transform target;
     public Transform targetTransform;
     public Coroutine moveCoroutine;
 
@@ -34,6 +33,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D enemy_rb;
     private SpriteRenderer spriteRenderer;
     private float currentAngle = 0;
+    private bool Attack_the_Player = false;
+    [SerializeField] GameObject hit;
 
     private void Start()
     {
@@ -128,12 +129,12 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision detected with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Bullet")) // 총알에 접촉했을 때
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet == null)
                 return;
-
             enemy_hp -= bullet.Damage; // 적의 체력 감소
 
             // 적이 밀려나지 않도록 속도를 0으로 설정
@@ -144,20 +145,26 @@ public class Enemy : MonoBehaviour
             enemy_rb.isKinematic = true;
             StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
-        else if (collision.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
+        else if (collision.gameObject.CompareTag("Wall")) // 벽에 접촉했을 때
         {
-            targetTransform = collision.gameObject.transform;
+            // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
+            ChooseNewEndPoint();
+        }
+        
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
+        {
+            Debug.Log("플레이어를 찾음");
+            targetTransform = collider.gameObject.transform;
             if (moveCoroutine != null)
             {
                 StopCoroutine(moveCoroutine);
             }
             // 플레이어를 추적하는 코루틴 시작
             moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
-        }
-        else if (collision.gameObject.CompareTag("Wall")) // 벽에 접촉했을 때
-        {
-            // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
-            ChooseNewEndPoint();
         }
     }
 
@@ -179,7 +186,6 @@ public class Enemy : MonoBehaviour
             targetTransform = null; // 타겟을 초기화
         }
     }
-
     // Circle Collider를 그리는 메서드
     void OnDrawGizmos()
     {
@@ -205,8 +211,27 @@ public class Enemy : MonoBehaviour
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
         }
     }
+
     private void Destroy_Enemy()
     {
         Destroy(gameObject); // 적 오브젝트 제거
+    }
+
+    void Attack_of_Enemy()
+    {
+        if (!Attack_the_Player)
+        {
+            enemy_rb.velocity = Vector2.zero;
+            Attack_the_Player = true;
+            hit.SetActive(true);
+            enemy_animator.SetBool("Attack", true);
+
+        }
+    }
+    void End_Attack()
+    {
+        Attack_the_Player = false;
+        hit.SetActive(false);
+        enemy_animator.SetBool("Attack", false);
     }
 }
