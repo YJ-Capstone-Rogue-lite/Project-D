@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
     public static IngameUI single;
-    [SerializeField] private Weapon_Slot Weapon_Slot;
     public Character character;
+    [SerializeField] private Weapon_Slot Weapon_Slot;
+
 
     [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
@@ -18,17 +18,23 @@ public class IngameUI : MonoBehaviour
     public Animator MainWeapon_Swap;
     public Animator SubWeapon_Swap;
 
+    [Header("소비 슬롯 이미지")]
+    public Image ConsumableItem_Img; //소비 슬롯 이미지
+    public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
+
+
+    [Header("기타 불 값들")]
     public bool MainWeapon = false; // true면 MainWeapon false면 SubWeapon
     public bool SubWeapon = true; // true면 MainWeapon false면 SubWeapon
     public bool openOption = true;
     public bool openInventory = true;
 
-   
 
+    [Header("재장전 이미지 오브젝트")]
     [SerializeField]  private GameObject reload_img;
 
-    [Header("인벤토리 관련")]
 
+    [Header("인벤토리 관련")]
     public GameObject inv_slot;
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
@@ -41,7 +47,6 @@ public class IngameUI : MonoBehaviour
 
     [SerializeField] private RectTransform WeaponSlot1;
     [SerializeField] private RectTransform WeaponSlot2;
-
 
 
     [SerializeField] private GameObject ingameOption;
@@ -58,11 +63,14 @@ public class IngameUI : MonoBehaviour
     {
         inv_slot_active_bool = false;
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
+        ConsumableItem_Img.sprite = default_consumableItem.sprite;
     }
+    
+
 
     private void Update()
     {
-        Weapon_Slot = PlayerChar.single1.GetComponent<Weapon_Slot>();
+        Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
         sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
 
@@ -117,8 +125,6 @@ public class IngameUI : MonoBehaviour
             IngameTime(false);
         }
     }
-
-
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
         if (!ingameTime)  // 시간멈추기
@@ -131,7 +137,6 @@ public class IngameUI : MonoBehaviour
             Time.timeScale = 1f;
             GameManager.Instance.isPlaying = true;
         }
-        
     }
     public void Resume_Btn()
     {
@@ -203,6 +208,7 @@ public class IngameUI : MonoBehaviour
         inv_slot.SetActive(true); //인벤슬롯 활성화
         inv_slot_active_bool = true; //불값 true
         inventory_slot.AddWeapon(); //인벤 슬롯에 무기 할당 코드
+        inventory_slot.AddConsumableItem();//인벤 소비슬롯에 소비아이템 할당
         Debug.Log("인벤토리 열림");
 
     }

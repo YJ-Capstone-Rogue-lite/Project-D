@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    public static Character single;
+    public static Character charsingle;
     private bool player_state = true;
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected CharStateData charStateData;
     public GameObject HPbar;
+    public GameObject Shield_bar;
 
     // 무적 상태 여부를 나타내는 변수
     private bool invincible = false;
@@ -32,6 +33,9 @@ public class Character : MonoBehaviour
     // 캐릭터의 방패
     public float m_shield;
 
+    //캐릭터의 최대 방패량
+    public float m_maxShield;
+
     // 캐릭터의 이동 속도
     public float m_movementSpeed;
 
@@ -48,16 +52,14 @@ public class Character : MonoBehaviour
         m_health = charStateData.health;
         m_maxHealth = 100;
         m_shield = charStateData.shield;
+        m_maxShield = charStateData.max_shield;
         m_movementSpeed = 5;
         m_protectionTime = 0;
         m_damage = charStateData.player_damage;
-        player_state = true;//플레이어 생존상태 true면 생존 false면 사망
+        Shield_bar = GameObject.Find("Shield_Bar_Img");
+        HPbar = GameObject.Find("HP_Bar_Img");
     }
 
-    private void Awake()
-    {
-        single = this;
-    }
 
     //protected virtual void OnTriggerEnter2D(Collider2D collider)
     //{
@@ -87,19 +89,38 @@ public class Character : MonoBehaviour
         if (invincible)
             return;
 
-        // 캐릭터가 피해를 받았을 때 호출되는 메서드
-        m_shield -= damageData.damage; // 방패에서 피해 감소
-        m_health -= damageData.damage; // 체력에서 피해 감소
-        if (m_shield <= 0) m_shield = 0; // 방패가 음수가 되지 않도록 보정
-        if (effectController != null) effectController.Operation(damageData.effect); // 효과가 있는 경우 효과 적용
+        if (m_shield > 0) // 쉴드가 있을 때
+        {
+            m_shield -= damageData.damage; // 쉴드에서 피해 감소
+
+            // 쉴드가 아직 남아있는 경우에만 쉴드 바 업데이트
+            player_shieldbar_update();
+            if (m_shield <= 0) // 쉴드가 음수가 되지 않도록 보정
+            {
+                m_shield = 0;
+            }
+        }
+        else // 쉴드가 없을 때
+        {
+            m_health -= damageData.damage; // 체력에서 피해 감소
+                                           // 체력이 아직 남아있는 경우에만 체력 바 업데이트
+            player_hpbar_update();
+            if (m_health <= 0) // 체력이 음수가 되지 않도록 보정
+            {
+                m_health = 0;
+            }
+          
+        }
+
+        if (effectController != null)
+            effectController.Operation(damageData.effect); // 효과가 있는 경우 효과 적용
+        Debug.Log(damageData.damage + "현재 남은 쉴드 " + m_shield); // 디버그 로그 출력
         Debug.Log(damageData.damage + "현재 남은 체력 " + m_health); // 디버그 로그 출력
 
         // 피격 후 무적 상태로 변경
         StartCoroutine(InvincibleCoroutine());
 
-        player_hpbar_update();
         player_die();
-
     }
     public bool GetPlayerState()
     {
@@ -119,7 +140,7 @@ public class Character : MonoBehaviour
     {
         if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
         {
-            player_anim.SetBool("State",false);
+            player_anim.SetBool("State", false);
             Debug.Log("플레이어 사망");
         }
     }
@@ -128,14 +149,20 @@ public class Character : MonoBehaviour
         player_state = false;
     }
 
-    public void player_hpbar_update() //플레이어 캐릭터 바 업데이트
+
+
+    public void player_shieldbar_update() // 쉴드 바 업데이트
     {
-        //hp바의 fill 값은 캐릭터의 현재hp/최대체력
-        HPbar = GameObject.Find("HP_Bar_Img");
-        Image HPbarImage = HPbar.GetComponent<Image>();
-
-        HPbarImage.fillAmount = m_health / m_maxHealth;
-
+        Image ShieldBarImage = Shield_bar.GetComponent<Image>();
+        ShieldBarImage.fillAmount = m_shield / m_maxShield; // 쉴드 비율로 fillAmount 설정
     }
+
+    public void player_hpbar_update() // 체력 바 업데이트
+    {
+        Image HPbarImage = HPbar.GetComponent<Image>();
+        HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
+    }
+
 }
+
 

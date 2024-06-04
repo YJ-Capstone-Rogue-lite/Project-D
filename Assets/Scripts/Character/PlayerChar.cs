@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerChar : Character
 {
-    public static PlayerChar single1;
+    public static PlayerChar single;
 
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
@@ -24,8 +24,9 @@ public class PlayerChar : Character
 
     private void Awake()
     {
-        single1 = this;
+        single = this;
     }
+
     protected override void Start()
     {
         
@@ -38,8 +39,9 @@ public class PlayerChar : Character
         //FloorLoader.Instance.player = gameObject;
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
-    }
 
+
+    }
     private void OnEnable()
     {
         //FloorLoader.Instance.player = gameObject;
@@ -147,5 +149,4 @@ public class PlayerChar : Character
     {
         base.OnCollisionEnter2D(collision);
     }
-    
 }
