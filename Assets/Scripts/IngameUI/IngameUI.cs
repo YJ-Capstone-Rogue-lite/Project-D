@@ -119,6 +119,11 @@ public class IngameUI : MonoBehaviour
         {
             IngameTime(true);
         }
+        //플레이어가 사망할경우 시간멈춤
+        if (!character.GetPlayerState())
+        {
+            IngameTime(false);
+        }
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {

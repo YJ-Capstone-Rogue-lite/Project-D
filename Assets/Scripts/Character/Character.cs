@@ -56,18 +56,20 @@ public class Character : MonoBehaviour
         m_movementSpeed = 5;
         m_protectionTime = 0;
         m_damage = charStateData.player_damage;
+        Shield_bar = GameObject.Find("Shield_Bar_Img");
+        HPbar = GameObject.Find("HP_Bar_Img");
     }
 
 
-    protected virtual void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
-        {
-            // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
-            Damaged(collider.GetComponent<DamageData>());
-            return;
-        }
-    }
+    //protected virtual void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+    //    {
+    //        // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
+    //        Damaged(collider.GetComponent<DamageData>());
+    //        return;
+    //    }
+    //}
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -120,6 +122,10 @@ public class Character : MonoBehaviour
 
         player_die();
     }
+    public bool GetPlayerState()
+    {
+        return player_state;
+    }
 
     IEnumerator InvincibleCoroutine()
     {
@@ -147,17 +153,14 @@ public class Character : MonoBehaviour
 
     public void player_shieldbar_update() // 쉴드 바 업데이트
     {
-        Shield_bar = GameObject.Find("Shield_Bar_Img");
         Image ShieldBarImage = Shield_bar.GetComponent<Image>();
         ShieldBarImage.fillAmount = m_shield / m_maxShield; // 쉴드 비율로 fillAmount 설정
     }
 
     public void player_hpbar_update() // 체력 바 업데이트
     {
-        HPbar = GameObject.Find("HP_Bar_Img");
         Image HPbarImage = HPbar.GetComponent<Image>();
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
-
     }
 
 }
