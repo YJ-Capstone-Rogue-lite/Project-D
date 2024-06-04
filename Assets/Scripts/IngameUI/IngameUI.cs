@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
     public static IngameUI single;
     [SerializeField] private Weapon_Slot Weapon_Slot;
-    public Character character;
 
 
     [Header("무기 슬롯 이미지")]
@@ -30,7 +28,6 @@ public class IngameUI : MonoBehaviour
     public bool openOption = true;
     public bool openInventory = true;
 
-   
 
     [Header("재장전 이미지 오브젝트")]
     [SerializeField]  private GameObject reload_img;
@@ -51,7 +48,6 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private RectTransform WeaponSlot2;
 
 
-
     [SerializeField] private GameObject ingameOption;
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
@@ -65,15 +61,18 @@ public class IngameUI : MonoBehaviour
     private void Start()
     {
         inv_slot_active_bool = false;
+<<<<<<< HEAD
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
+=======
+>>>>>>> parent of 0a57471 (Player DIe 추가)
     }
     
 
 
     private void Update()
     {
-        Weapon_Slot = PlayerChar.single1.GetComponent<Weapon_Slot>();
+        Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
         sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
 
@@ -122,14 +121,7 @@ public class IngameUI : MonoBehaviour
         {
             IngameTime(true);
         }
-        //플레이어가 사망할경우 시간멈춤
-        if (!character.GetPlayerState())
-        {
-            IngameTime(false);
-        }
     }
-
-
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
         if (!ingameTime)  // 시간멈추기
@@ -142,7 +134,6 @@ public class IngameUI : MonoBehaviour
             Time.timeScale = 1f;
             GameManager.Instance.isPlaying = true;
         }
-        
     }
     public void Resume_Btn()
     {

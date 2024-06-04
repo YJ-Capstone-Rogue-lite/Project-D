@@ -117,6 +117,10 @@ public class Character : MonoBehaviour
         StartCoroutine(InvincibleCoroutine());
 
         player_die();
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 0a57471 (Player DIe 추가)
     }
 
     IEnumerator InvincibleCoroutine()
@@ -135,6 +139,7 @@ public class Character : MonoBehaviour
             Debug.Log("플레이어 사망");
         }
     }
+<<<<<<< HEAD
 
 
     public void player_shieldbar_update() // 쉴드 바 업데이트
@@ -143,12 +148,21 @@ public class Character : MonoBehaviour
         Image ShieldBarImage = Shield_bar.GetComponent<Image>();
         ShieldBarImage.fillAmount = m_shield / m_maxShield; // 쉴드 비율로 fillAmount 설정
     }
+=======
+>>>>>>> parent of 0a57471 (Player DIe 추가)
 
     public void player_hpbar_update() // 체력 바 업데이트
     {
         HPbar = GameObject.Find("HP_Bar_Img");
         Image HPbarImage = HPbar.GetComponent<Image>();
+<<<<<<< HEAD
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
+=======
+
+
+        HPbarImage.fillAmount = m_health / m_maxHealth;
+
+>>>>>>> parent of 0a57471 (Player DIe 추가)
     }
 
 }
