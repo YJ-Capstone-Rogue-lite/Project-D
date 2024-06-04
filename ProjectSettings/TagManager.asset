@@ -13,6 +13,7 @@ TagManager:
   - Hit_radius
   - attackEnemy
   - Weapon
+  - NPC
   layers:
   - Default
   - TransparentFX
