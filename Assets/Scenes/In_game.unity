@@ -4634,6 +4634,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483967216}
   m_CullTransparentMesh: 1
+--- !u!1 &1495495328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495495329}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1495495329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495495328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.35059336, y: -1.0488873, z: -0.048053052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1504981739
 GameObject:
   m_ObjectHideFlags: 0
@@ -6586,6 +6617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon_Slot: {fileID: 0}
+  character: {fileID: 0}
   main_slot_sprite: {fileID: 1785130103}
   sub_slot_sprite: {fileID: 2011943746}
   MainWeapon_Swap: {fileID: 482613118}
@@ -6771,3 +6803,4 @@ SceneRoots:
   - {fileID: 1795150630}
   - {fileID: 856353060}
   - {fileID: 5909284}
+  - {fileID: 1495495329}
