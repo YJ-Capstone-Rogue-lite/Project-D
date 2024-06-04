@@ -230,9 +230,9 @@ MonoBehaviour:
   effectController: {fileID: 0}
   charStateData:
     health: 100
-    max_hp: 0
+    max_hp: 100
     shield: 100
-    max_shield: 0
+    max_shield: 100
     stamina: 0
     movementSpeed: 0
     protectiontime: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_health: 100
   m_maxHealth: 100
   m_shield: 100
-  m_maxShield: 0
+  m_maxShield: 100
   m_movementSpeed: 0
   m_protectionTime: 0
   m_damage: 0

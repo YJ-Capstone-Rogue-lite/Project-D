@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
@@ -13,11 +14,12 @@ public class Item_interaction : MonoBehaviour
 
     private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
     public Item_PickUp item_PickUp;
-    [SerializeField] private TMP_Text actionText ;  // 행동을 보여 줄 텍스트
+    [SerializeField] private TMP_Text actionText;  // 행동을 보여 줄 텍스트
     //[SerializeField] private Weapon_Slot Weapon_Slot;
     public GameObject player_postion;
     private Weapon_Slot weaponSlotScript; //웨폰 슬롯의 무기슬롯을 받아오기 위함
-    private IngameUI ingameUI;
+    [SerializeField]  private IngameUI ingameUI;
+    [SerializeField] private Character character;
 
 
     private void Start()
@@ -33,14 +35,15 @@ public class Item_interaction : MonoBehaviour
     private void Awake()
     {
         weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
-        ingameUI = FindObjectOfType<IngameUI>(); 
+        ingameUI = FindObjectOfType<IngameUI>();
+        character = FindAnyObjectByType<Character>();
 
     }
 
     private void Update()
     {
         CanPickUp();
-        
+        active_Potion();
         //if (Input.GetKeyDown(KeyCode.T))
         //{
         //    PickUp_Item_Change();
@@ -51,17 +54,17 @@ public class Item_interaction : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider2D) //만약 트리거 범위에 닿은 거의 태그가 아이템이 포함되어 있으면
     {
         if (collider2D.gameObject.CompareTag("Item"))
-        {           
+        {
             pickupActivated = true;
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
             // 충돌한 객체가 "Item" 태그를 가지고 있으면 행동 텍스트를 활성화합니다.
             actionText.gameObject.SetActive(true);
-            if(item_PickUp.weapon != null) //만약 아이템 픽업의 코드에 웨폰이 존재한다면
+            if (item_PickUp.weapon != null) //만약 아이템 픽업의 코드에 웨폰이 존재한다면
             {
                 actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
 
             }
-            else if(item_PickUp.consumable != null)
+            else if (item_PickUp.consumable != null)
             {
                 actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
 
@@ -81,15 +84,15 @@ public class Item_interaction : MonoBehaviour
 
 
     }
-    
+
     //해당 코드는 임시로 무기만 넣도록 만들어둠. 악세사리 및 버프기도 해야함
     //현재 UI의 1,2번 슬롯에만 들어가고 있어서 인벤토리의 무기 슬롯에 들어가는 작업도 따로 해줘야함.
     private void CanPickUp()
     {
         if (Input.GetKeyDown(KeyCode.E) && pickupActivated) //E를 누르고 픽업이 할성화 될때
         {
-           
-            if (weaponSlotScript != null && item_PickUp.weapon!=null) //웨폰슬롯의 값이 비어있지 않을때
+
+            if (weaponSlotScript != null && item_PickUp.weapon != null) //웨폰슬롯의 값이 비어있지 않을때
             {
                 PickUp_Weapon_Change();
 
@@ -194,5 +197,40 @@ public class Item_interaction : MonoBehaviour
         }
 
     }
+    //포션 사용 기능
+    public void active_Potion()
+    {
+
+        // 왼쪽 Shift 키를 누르고, 인게임 슬롯의 스프라이트가 기본값이 아니며, 캐릭터의 현재 체력이 최대 체력이 아닌 경우에만
+        if (Input.GetKeyDown(KeyCode.LeftShift) &&
+            ingameUI.ConsumableItem_Img.sprite != null &&
+            ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
+            character.m_health <= character.m_maxHealth)
+            {
+            Debug.Log("쉬프트 키를 누르고 모든 조건을 충족함");
+            // item_PickUp 또는 consumable이 null인 경우를 대비한 검사 필요
+            if (item_PickUp.consumable != null &&
+                item_PickUp.consumable.itemType == ConsumableItem.ItemType.Potion)
+            {
+                // 캐릭터의 현재 체력 값에 포션의 힐링 값 더하기
+                character.m_health += item_PickUp.consumable.HPHealing;
+                Debug.Log("캐릭터의 체력을 " + item_PickUp.consumable.HPHealing +" 만큼 회복합니다.");
+                Debug.Log("현재 캐릭터의 체력 : " +  character.m_health);
+
+                // 만약 회복시 현재 체력이 최대 체력보다 더 커지면 최대 체력으로 설정
+                if (character.m_health > character.m_maxHealth)
+                {
+                    character.m_health = character.m_maxHealth;
+                    Debug.Log("캐릭터의 체력이 최대체력을 넘어서 최대체력으로 변경");
+                }
+                character.player_hpbar_update();
+
+                // 회복을 시키면 소비템 슬롯의 스프라이트를 기본값으로 변경
+                ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
+                Debug.Log("소비템을 사용해서 슬롯의 이미지를 기본값으로 변경");
+            }
+        }
+    }
+
 
 }
