@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    public static Character single;
+    public static Character charsingle;
+    private bool player_state = true;
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
     private EffectController effectController;
@@ -44,6 +45,7 @@ public class Character : MonoBehaviour
     // 캐릭터의 자체 데미지(버프나 악세사리 스탯 증감용)
     public float m_damage;
 
+    public Animator player_anim;
     protected virtual void Start()
     {
         // 캐릭터의 상태 데이터로 초기화
@@ -117,10 +119,6 @@ public class Character : MonoBehaviour
         StartCoroutine(InvincibleCoroutine());
 
         player_die();
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 0a57471 (Player DIe 추가)
     }
 
     IEnumerator InvincibleCoroutine()
@@ -134,12 +132,17 @@ public class Character : MonoBehaviour
     }
     protected void player_die()
     {
-        if (m_health <= 0 && m_shield <= 0)
+        if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
         {
+            player_anim.SetBool("State", false);
             Debug.Log("플레이어 사망");
         }
     }
-<<<<<<< HEAD
+    private void playerDie_State() // Die애니메이션 끝에 실행되는 메소드
+    {
+        player_state = false;
+    }
+
 
 
     public void player_shieldbar_update() // 쉴드 바 업데이트
@@ -148,21 +151,13 @@ public class Character : MonoBehaviour
         Image ShieldBarImage = Shield_bar.GetComponent<Image>();
         ShieldBarImage.fillAmount = m_shield / m_maxShield; // 쉴드 비율로 fillAmount 설정
     }
-=======
->>>>>>> parent of 0a57471 (Player DIe 추가)
 
     public void player_hpbar_update() // 체력 바 업데이트
     {
         HPbar = GameObject.Find("HP_Bar_Img");
         Image HPbarImage = HPbar.GetComponent<Image>();
-<<<<<<< HEAD
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
-=======
 
-
-        HPbarImage.fillAmount = m_health / m_maxHealth;
-
->>>>>>> parent of 0a57471 (Player DIe 추가)
     }
 
 }

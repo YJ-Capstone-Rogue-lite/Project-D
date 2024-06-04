@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class IngameUI : MonoBehaviour
 {
     public static IngameUI single;
+    public Character character;
     [SerializeField] private Weapon_Slot Weapon_Slot;
 
 
@@ -61,11 +62,8 @@ public class IngameUI : MonoBehaviour
     private void Start()
     {
         inv_slot_active_bool = false;
-<<<<<<< HEAD
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
-=======
->>>>>>> parent of 0a57471 (Player DIe 추가)
     }
     
 

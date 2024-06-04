@@ -9,7 +9,6 @@ public class PlayerChar : Character
 
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
-    private Animator player_anim;
     private SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
