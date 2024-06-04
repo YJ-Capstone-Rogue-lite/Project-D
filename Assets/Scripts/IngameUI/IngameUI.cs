@@ -7,7 +7,6 @@ public class IngameUI : MonoBehaviour
 {
     public static IngameUI single;
     [SerializeField] private Weapon_Slot Weapon_Slot;
-    public Item_PickUp Item_PickUp;
 
 
     [Header("무기 슬롯 이미지")]

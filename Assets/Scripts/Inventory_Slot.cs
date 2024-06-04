@@ -13,6 +13,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
     public static Inventory_Slot inv_slot_Instance;
     [SerializeField]  private Weapon_Slot weapon_Slot;
     private IngameUI ingameUI;
+    private Item_interaction item_Interaction;
 
 
     public Image inv_weapon1_image; // 인벤토리 슬롯의 무기 이미지
@@ -36,6 +37,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
     {
         weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         ingameUI = FindObjectOfType<IngameUI>();
+        item_Interaction = FindObjectOfType<Item_interaction>();
 
 
         // 1. 해당 이미지 객체에 EventTrigger 컴포넌트 추가
@@ -121,14 +123,17 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
             Debug.Log("아이템2 설명 이미지 실행");
         }
         //인게임 ui의 소비 슬롯의 스프라이트가 존재하고 인게임 ui의 스프라이트가 기본값이 아닐때
-        else if (inv_consumableItem_image.gameObject == eventData.pointerEnter)
-            Debug.Log("소비아이템 설명");
+        else if (inv_consumableItem_image.sprite != ingameUI.default_consumableItem.sprite && inv_consumableItem_image.gameObject == eventData.pointerEnter)
         {
-            item_info_text.text = inv_consumableItem_image.GetComponent<IngameUI>().Item_PickUp.consumable.info; // 왜 안되는지 모르겠음:
-            Debug.Log("소비슬롯 설명 텍스트 실행");
+            Debug.Log("소비아이템 설명");
 
             item_info_image.sprite = inv_consumableItem_image.sprite;
             Debug.Log("소비슬롯 설명 이미지 실행");
+
+            item_info_text.text = item_Interaction.item_PickUp.consumable.info;
+            Debug.Log("소비슬롯 설명 텍스트 실행");
+
+            
         }
     }
 

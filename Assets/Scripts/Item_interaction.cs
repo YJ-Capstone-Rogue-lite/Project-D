@@ -12,7 +12,7 @@ public class Item_interaction : MonoBehaviour
 { //아이템 상호작용코드
 
     private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
-    private Item_PickUp item_PickUp;
+    public Item_PickUp item_PickUp;
     [SerializeField] private TMP_Text actionText ;  // 행동을 보여 줄 텍스트
     //[SerializeField] private Weapon_Slot Weapon_Slot;
     public GameObject player_postion;
