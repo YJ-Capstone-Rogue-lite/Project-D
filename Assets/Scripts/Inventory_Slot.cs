@@ -125,7 +125,6 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
         //인게임 ui의 소비 슬롯의 스프라이트가 존재하고 인게임 ui의 스프라이트가 기본값이 아닐때
         else if (inv_consumableItem_image.sprite != ingameUI.default_consumableItem.sprite && inv_consumableItem_image.gameObject == eventData.pointerEnter)
         {
-            Debug.Log("소비아이템 설명");
 
             item_info_image.sprite = inv_consumableItem_image.sprite;
             Debug.Log("소비슬롯 설명 이미지 실행");
