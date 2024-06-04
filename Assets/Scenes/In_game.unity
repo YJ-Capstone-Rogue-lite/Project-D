@@ -6719,6 +6719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapon_Slot: {fileID: 0}
+  character: {fileID: 0}
   main_slot_sprite: {fileID: 1785130103}
   sub_slot_sprite: {fileID: 2011943746}
   MainWeapon_Swap: {fileID: 482613118}
