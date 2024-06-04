@@ -21,10 +21,10 @@ public class EnemyChar : Character
         
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collider)
-    {
-        base.OnTriggerEnter2D(collider);
-    }
+    //protected override void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    base.OnTriggerEnter2D(collider);
+    //}
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);

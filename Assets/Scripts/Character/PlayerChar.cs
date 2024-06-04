@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class PlayerChar : Character
 {
-    public static PlayerChar single;
+    public static PlayerChar single1;
 
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
-    private Animator player_anim;
     private SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
@@ -25,9 +24,8 @@ public class PlayerChar : Character
 
     private void Awake()
     {
-        single = this;
+        single1 = this;
     }
-
     protected override void Start()
     {
         
@@ -40,9 +38,8 @@ public class PlayerChar : Character
         //FloorLoader.Instance.player = gameObject;
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
-
-
     }
+
     private void OnEnable()
     {
         //FloorLoader.Instance.player = gameObject;
@@ -142,12 +139,13 @@ public class PlayerChar : Character
         is_rolling = false;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collider)
-    {
-        base.OnTriggerEnter2D(collider);
-    }
+    //protected override void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    base.OnTriggerEnter2D(collider);
+    //}
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
     }
+    
 }

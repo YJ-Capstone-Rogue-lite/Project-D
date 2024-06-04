@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     public static Character single;
+    private bool player_state = true;
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
     private EffectController effectController;
@@ -40,6 +41,7 @@ public class Character : MonoBehaviour
     // 캐릭터의 자체 데미지(버프나 악세사리 스탯 증감용)
     public float m_damage;
 
+    public Animator player_anim;
     protected virtual void Start()
     {
         // 캐릭터의 상태 데이터로 초기화
@@ -49,18 +51,23 @@ public class Character : MonoBehaviour
         m_movementSpeed = 5;
         m_protectionTime = 0;
         m_damage = charStateData.player_damage;
+        player_state = true;//플레이어 생존상태 true면 생존 false면 사망
     }
 
-
-    protected virtual void OnTriggerEnter2D(Collider2D collider)
+    private void Awake()
     {
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
-        {
-            // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
-            Damaged(collider.GetComponent<DamageData>());
-            return;
-        }
+        single = this;
     }
+
+    //protected virtual void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+    //    {
+    //        // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
+    //        Damaged(collider.GetComponent<DamageData>());
+    //        return;
+    //    }
+    //}
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -94,6 +101,10 @@ public class Character : MonoBehaviour
         player_die();
 
     }
+    public bool GetPlayerState()
+    {
+        return player_state;
+    }
 
     IEnumerator InvincibleCoroutine()
     {
@@ -106,10 +117,15 @@ public class Character : MonoBehaviour
     }
     protected void player_die()
     {
-        if (m_health <= 0 && m_shield <= 0)
+        if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
         {
+            player_anim.SetBool("State",false);
             Debug.Log("플레이어 사망");
         }
+    }
+    private void playerDie_State() // Die애니메이션 끝에 실행되는 메소드
+    {
+        player_state = false;
     }
 
     public void player_hpbar_update() //플레이어 캐릭터 바 업데이트
@@ -117,7 +133,6 @@ public class Character : MonoBehaviour
         //hp바의 fill 값은 캐릭터의 현재hp/최대체력
         HPbar = GameObject.Find("HP_Bar_Img");
         Image HPbarImage = HPbar.GetComponent<Image>();
-
 
         HPbarImage.fillAmount = m_health / m_maxHealth;
 

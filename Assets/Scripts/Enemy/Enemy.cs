@@ -212,12 +212,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Destroy_Enemy()
-    {
-        Destroy(gameObject); // 적 오브젝트 제거
-    }
-
-    void Attack_of_Enemy()
+    void Attack_of_Enemy() //EnemyAttack에서 SendMessage로 불러와서 코드가 활성화됨
     {
         if (!Attack_the_Player)
         {
@@ -225,13 +220,17 @@ public class Enemy : MonoBehaviour
             Attack_the_Player = true;
             hit.SetActive(true);
             enemy_animator.SetBool("Attack", true);
-
         }
     }
-    void End_Attack()
+    void End_Attack() // 공격 애니메이션에 추가
     {
         Attack_the_Player = false;
         hit.SetActive(false);
         enemy_animator.SetBool("Attack", false);
+    }
+
+    private void Destroy_Enemy()
+    {
+        Destroy(gameObject); // 적 오브젝트 제거
     }
 }
