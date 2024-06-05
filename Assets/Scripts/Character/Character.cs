@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
     private EffectController effectController;
+    [SerializeField] protected bool is_rolling = false;
 
     // 캐릭터 상태 데이터
     [SerializeField]
@@ -86,7 +87,7 @@ public class Character : MonoBehaviour
     protected virtual void Damaged(DamageData damageData)
     {
         // 무적 상태인 경우 피해를 받지 않음
-        if (invincible)
+        if (invincible || is_rolling)
             return;
 
         if (m_shield > 0) // 쉴드가 있을 때

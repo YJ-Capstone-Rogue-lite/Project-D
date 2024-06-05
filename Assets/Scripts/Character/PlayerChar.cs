@@ -12,7 +12,6 @@ public class PlayerChar : Character
     private SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
-    bool is_rolling = false;
     public GameObject camera_;
     private GameObject cameraInstance;
 
