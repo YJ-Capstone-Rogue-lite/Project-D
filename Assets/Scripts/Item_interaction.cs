@@ -44,6 +44,7 @@ public class Item_interaction : MonoBehaviour
     {
         CanPickUp();
         active_Potion();
+        active_Shield();
         //if (Input.GetKeyDown(KeyCode.T))
         //{
         //    PickUp_Item_Change();
@@ -205,7 +206,7 @@ public class Item_interaction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) &&
             ingameUI.ConsumableItem_Img.sprite != null &&
             ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
-            character.m_health <= character.m_maxHealth)
+            character.m_health < character.m_maxHealth)
             {
             Debug.Log("쉬프트 키를 누르고 모든 조건을 충족함");
             // item_PickUp 또는 consumable이 null인 경우를 대비한 검사 필요
@@ -232,5 +233,38 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
+    //쉴드 사용 기능
+    public void active_Shield()
+    {
 
+        // 왼쪽 Shift 키를 누르고, 인게임 슬롯의 스프라이트가 기본값이 아니며, 캐릭터의 현재 쉴드가 최대 쉴드보다 작은 경우에만
+        if (Input.GetKeyDown(KeyCode.LeftShift) &&
+            ingameUI.ConsumableItem_Img.sprite != null &&
+            ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
+            character.m_shield < character.m_maxShield)
+        {
+            Debug.Log("쉬프트 키를 누르고 모든 조건을 충족함");
+            // item_PickUp 또는 consumable이 null인 경우를 대비한 검사 필요
+            if (item_PickUp.consumable != null &&
+                item_PickUp.consumable.itemType == ConsumableItem.ItemType.Shield)
+            {
+                // 캐릭터의 현재 쉴드 값에 아이템 쉴드 값 더하기
+                character.m_shield += item_PickUp.consumable.AddShield;
+                Debug.Log("캐릭터의 쉴드 " + item_PickUp.consumable.AddShield + " 만큼 회복합니다.");
+                Debug.Log("현재 캐릭터의 쉴드 : " + character.m_shield);
+
+                // 만약 회복시 현재 체력이 최대 체력보다 더 커지면 최대 체력으로 설정
+                if (character.m_shield > character.m_maxShield)
+                {
+                    character.m_shield = character.m_maxShield;
+                    Debug.Log("캐릭터의 현재 쉴드가 최대 쉴드량을 넘어서 현재 쉴드를 최대 쉴드량으로 변경");
+                }
+                character.player_shieldbar_update();
+
+                // 회복을 시키면 소비템 슬롯의 스프라이트를 기본값으로 변경
+                ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
+                Debug.Log("소비템을 사용해서 슬롯의 이미지를 기본값으로 변경");
+            }
+        }
+    }
 }
