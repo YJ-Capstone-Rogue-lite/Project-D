@@ -419,10 +419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentences:
-  - "\uBC18\uAC11\uB2E4"
-  - "\uCCAD\uB144"
+  - "\uC548\uB155\uD558\uC2E0\uAC00"
+  - "\uBC18\uAC11"
   chatTr: {fileID: 1511253111}
-  chatBoxPrefab: {fileID: 7419030682720360436, guid: 3ab501cd2a74f584e8a28422e460a7f3, type: 3}
+  chatBoxPrefab: {fileID: 8571164637538174383, guid: 2ce74c9f27cdd72429bc07a949df8407, type: 3}
 --- !u!1 &161829093
 GameObject:
   m_ObjectHideFlags: 0
@@ -6123,6 +6123,10 @@ PrefabInstance:
     - target: {fileID: 2530009614169799429, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685181059802742643, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5144176817245314020, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_SortingOrder
