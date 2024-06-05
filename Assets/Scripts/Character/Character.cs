@@ -54,6 +54,13 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
+        // DataManager를 통해 데이터 불러오기
+        DataManager.Instance.LoadGameData();
+
+        // DataManager에서 불러온 데이터를 playerdata에 할당
+        playerdata = DataManager.Instance.data;
+
+        // 플레이어 데이터가 제대로 할당되었는지 확인
         Debug.Log("Player Max HP: " + playerdata.player_maxhp);
         Debug.Log("Player HP: " + playerdata.player_hp);
         Debug.Log("Player Max Shield: " + playerdata.player_maxshield);
