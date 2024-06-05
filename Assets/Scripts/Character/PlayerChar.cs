@@ -13,6 +13,7 @@ public class PlayerChar : Character
     private SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
+    private float stamina_recovery_value  = 25;//스태미나 재충전 값
     public GameObject camera_;
     private GameObject cameraInstance;
 
@@ -28,6 +29,8 @@ public class PlayerChar : Character
     private void Awake()
     {
         single = this;
+
+
     }
 
     protected override void Start()
@@ -129,13 +132,14 @@ public class PlayerChar : Character
             SortingGroup_Weapon_slot2.enabled = true;
         }
 
+
     }
- 
-    
+
+
 
     public void player_Roll()
     {
-        if (Input.GetButtonDown("Roll"))
+        if (Input.GetButtonDown("Roll") && m_stamina > 0)
         {
             if(player_Rb.velocity.x < 0)
             {
@@ -145,13 +149,24 @@ public class PlayerChar : Character
             {
                 bodyRender.flipX = false;
             }
+            //플레이어가 구를때마다
             is_rolling = true;
-            Debug.Log("roll");
+            m_stamina -= 25; //현재 스태미나 값 -25 하고
+
+            Debug.Log("구르기! " + "현재 스태미나 : " + m_stamina);
             player_anim.SetBool("isRolling", true);
             player_anim.SetFloat("RollX", Input.GetAxisRaw("Horizontal"));
             player_anim.SetFloat("RollY", Input.GetAxisRaw("Vertical"));
+            // 기존에 실행 중인 InvokeRepeating을 취소한다.
+            CancelInvoke("stamina_recovery");
+            // 새로운 InvokeRepeating을 설정한다.
+            InvokeRepeating("stamina_recovery", 2f, 1f); //스태미나 리커버리를, n초후에 n1초마다 불러옴
 
             StartCoroutine(EndRoll());
+        }
+        else if( m_stamina <=0)
+        {
+            Debug.Log("현재 스태미나가 " + m_stamina +" 값이라 구르기 불가");
         }
     }
     IEnumerator EndRoll()
@@ -159,6 +174,22 @@ public class PlayerChar : Character
         yield return new WaitForSeconds(rollDuration);
         player_anim.SetBool("isRolling", false);
         is_rolling = false;
+    }
+
+    // 스태미나 회복 코드
+    public void stamina_recovery()
+    {
+        if (m_stamina < m_maxStamina) // 현재 스태미나가 최대 스태미나보다 작을 때만 실행
+        {
+            m_stamina += stamina_recovery_value; // 스태미나를 회복 값만큼 더함
+            Debug.Log("스태미나 회복 : " + m_stamina);
+
+            if (m_stamina >= m_maxStamina) // 회복 후 스태미나가 최대치에 도달하면
+            {
+                Debug.Log("최대 스태미나에 도달함");
+                CancelInvoke("stamina_recovery"); // 회복을 멈춤
+            }
+        }
     }
 
     //protected override void OnTriggerEnter2D(Collider2D collider)

@@ -46,6 +46,12 @@ public class Character : MonoBehaviour
     // 캐릭터의 자체 데미지(버프나 악세사리 스탯 증감용)
     public float m_damage;
 
+    //캐릭터의 현재 스태미나(대쉬 관련)
+    public float m_stamina;
+
+    //스태미나 최대치(임시)
+    public float m_maxStamina = 100;
+
     public Animator player_anim;
     protected virtual void Start()
     {
@@ -56,6 +62,7 @@ public class Character : MonoBehaviour
         m_maxShield = charStateData.max_shield;
         m_movementSpeed = 5;
         m_protectionTime = 0;
+        m_stamina = m_maxStamina;
         m_damage = charStateData.player_damage;
         Shield_bar = GameObject.Find("Shield_Bar_Img");
         HPbar = GameObject.Find("HP_Bar_Img");
