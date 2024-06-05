@@ -5,7 +5,7 @@ public class DataManager : MonoBehaviour
 {
     static GameObject container;
 
-    // ---½Ì±ÛÅæÀ¸·Î ¼±¾ğ--- //
+    // ---ì‹±ê¸€í†¤ìœ¼ë¡œ ì„ ì–¸--- //
     static DataManager instance;
     public static DataManager Instance
     {
@@ -22,47 +22,40 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // --- °ÔÀÓ µ¥ÀÌÅÍ ÆÄÀÏÀÌ¸§ ¼³Á¤ ("¿øÇÏ´Â ÀÌ¸§(¿µ¹®).json") --- //
+    // --- ê²Œì„ ë°ì´í„° íŒŒì¼ì´ë¦„ ì„¤ì • ("ì›í•˜ëŠ” ì´ë¦„(ì˜ë¬¸).json") --- //
     public string GameDataFileName = "SaveData.json";
 
-    // --- ÀúÀå¿ë Å¬·¡½º º¯¼ö --- //
-    public Data data = new Data();
+    // --- ì €ì¥ìš© í´ë˜ìŠ¤ ë³€ìˆ˜ --- //
+    public PlayerData data = new PlayerData();
 
 
 
-    // ºÒ·¯¿À±â
+    // ë¶ˆëŸ¬ì˜¤ê¸°
     public void LoadGameData()
     {
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
         print(filePath);
-        // ÀúÀåµÈ °ÔÀÓÀÌ ÀÖ´Ù¸é
+        // ì €ì¥ëœ ê²Œì„ì´ ìˆë‹¤ë©´
         if (File.Exists(filePath))
         {
-            // ÀúÀåµÈ ÆÄÀÏ ÀĞ¾î¿À°í JsonÀ» Å¬·¡½º Çü½ÄÀ¸·Î ÀüÈ¯ÇØ¼­ ÇÒ´ç
+            // ì €ì¥ëœ íŒŒì¼ ì½ì–´ì˜¤ê³  Jsonì„ í´ë˜ìŠ¤ í˜•ì‹ìœ¼ë¡œ ì „í™˜í•´ì„œ í• ë‹¹
             string FromJsonData = File.ReadAllText(filePath);
-            data = JsonUtility.FromJson<Data>(FromJsonData);
-            print("ºÒ·¯¿À±â ¿Ï·á");
+            data = JsonUtility.FromJson<PlayerData>(FromJsonData);
+            print("ë¶ˆëŸ¬ì˜¤ê¸° ì™„ë£Œ");
         }
     }
 
-    // ÀúÀåÇÏ±â
+    // ì €ì¥í•˜ê¸°
     public void SaveGameData()
     {
-        // Å¬·¡½º¸¦ Json Çü½ÄÀ¸·Î ÀüÈ¯ (true : °¡µ¶¼º ÁÁ°Ô ÀÛ¼º)
+        // í´ë˜ìŠ¤ë¥¼ Json í˜•ì‹ìœ¼ë¡œ ì „í™˜ (true : ê°€ë…ì„± ì¢‹ê²Œ ì‘ì„±)
         string ToJsonData = JsonUtility.ToJson(data, true);
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
-        // ÀÌ¹Ì ÀúÀåµÈ ÆÄÀÏÀÌ ÀÖ´Ù¸é µ¤¾î¾²°í, ¾ø´Ù¸é »õ·Î ¸¸µé¾î¼­ ÀúÀå
+        // ì´ë¯¸ ì €ì¥ëœ íŒŒì¼ì´ ìˆë‹¤ë©´ ë®ì–´ì“°ê³ , ì—†ë‹¤ë©´ ìƒˆë¡œ ë§Œë“¤ì–´ì„œ ì €ì¥
         File.WriteAllText(filePath, ToJsonData);
 
-        // ¿Ã¹Ù¸£°Ô ÀúÀåµÆ´ÂÁö È®ÀÎ (ÀÚÀ¯·Ó°Ô º¯Çü)
-        print("ÀúÀå ¿Ï·á");
+        // ì˜¬ë°”ë¥´ê²Œ ì €ì¥ëëŠ”ì§€ í™•ì¸ (ììœ ë¡­ê²Œ ë³€í˜•)
+        print("ì €ì¥ ì™„ë£Œ");
     }
-}
-public class Data
-{
-    string player_name;
-    int player_hp;
-    int player_shield;
-    int player_speed;
 }
