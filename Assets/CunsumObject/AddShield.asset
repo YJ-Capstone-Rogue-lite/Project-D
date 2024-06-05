@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa8e22c6194d104dbb89be24388ff36, type: 3}
+  m_Name: AddShield
+  m_EditorClassIdentifier: 
+  ConsumItemPrefab: {fileID: 805075022979082322, guid: bfe80f0ea2b933a41b8774b218bd2d17, type: 3}
+  ratingType: 1
+  itemType: 2
+  number: 1
+  name: "\uAE30\uBCF8 \uC274\uB4DC"
+  sprite: {fileID: 21300000, guid: da0c215894d1c5943a8bec1d77c76d77, type: 3}
+  HPHealing: 0
+  RemoveToxic: 0
+  AddShield: 10
+  Throwing_Weapon_Damage: 0
+  Throwing_Weapon_Range: 0
+  info: "\uD14C\uC2A4\uD2B8\uC6A9 \uAE30\uBCF8 \uC274\uB4DC\uB2E4."
