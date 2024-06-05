@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerChar : Character
 {
@@ -17,6 +18,9 @@ public class PlayerChar : Character
 
     public Transform player_location;
     public Transform gun_rotation;
+
+    public SortingGroup SortingGroup_Weapon_slot1;
+    public SortingGroup SortingGroup_Weapon_slot2;
 
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
@@ -108,6 +112,23 @@ public class PlayerChar : Character
             player_Roll();
         }
         fire = GameObject.FindWithTag("Weapon").GetComponent<Fire_Test>();
+
+
+        //플레이어가 위를 보고있는지 확인해 무기 레이어 값 조절 하기
+        if ((player_anim.GetFloat("MoveX") == 1) && (player_anim.GetFloat("MoveY") == 1) 
+            || (player_anim.GetFloat("MoveX") == -1) && (player_anim.GetFloat("MoveY") == 1)
+            ||(player_anim.GetFloat("LastMoveY") == 1))
+        {
+            SortingGroup_Weapon_slot1.enabled = false;
+            SortingGroup_Weapon_slot2.enabled = false;
+
+        }
+        else
+        {
+            SortingGroup_Weapon_slot1.enabled = true;
+            SortingGroup_Weapon_slot2.enabled = true;
+        }
+
     }
  
     
