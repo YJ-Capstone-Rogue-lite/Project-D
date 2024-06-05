@@ -5,14 +5,15 @@ using UnityEngine;
 
 public struct EffectData
 {
-    public enum EffectType { BUFF, DEBUFF }
+    public enum Type { BUFF, DEBUFF }
 
     public int                  number;
     public string               name;
+    public Type                 type;
     public int                  stack;
     public float                duriation;
     public bool                 isDuriationReset;
-    public Action<float, int>   effectAction;
+    public Action<Character, float, int>   effectAction;
     public float                effectTick;
 }
 
@@ -26,12 +27,32 @@ public static class EffectDatas
             new(){
                 number = 1,
                 name = "A",
+                type = EffectData.Type.BUFF,
                 stack = 1,
                 duriation = 10,
                 isDuriationReset = false,
-                effectAction = (d, s)=>{
-
-                }
+                effectAction = (c, d, s)=>{
+                    Debug.Log("Effect A On");
+                    c.m_health += 1;
+                },
+                effectTick = 1f
+            }
+        };
+        effectDatas = new EffectData[]{
+            new(){
+                number = 2,
+                name = "B",
+                type = EffectData.Type.DEBUFF,
+                stack = 3,
+                duriation = 1,
+                isDuriationReset = false,
+                effectAction = (c, d, s)=>{
+                    Debug.Log("Effect B On");
+                    var temp = new DamageData();
+                    temp.Set(null, 0, 10 * s, 0, null);
+                    c.Damaged(temp);
+                },
+                effectTick = 0.2f
             }
         };
     }

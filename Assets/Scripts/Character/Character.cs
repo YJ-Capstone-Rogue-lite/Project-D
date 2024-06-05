@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -96,7 +97,7 @@ public class Character : MonoBehaviour
     }
 
 
-    protected virtual void Damaged(DamageData damageData)
+    public virtual void Damaged(DamageData damageData)
     {
         // 무적 상태인 경우 피해를 받지 않음
         if (invincible)
@@ -126,7 +127,7 @@ public class Character : MonoBehaviour
         }
 
         if (effectController != null)
-            effectController.Operation(damageData.effect); // 효과가 있는 경우 효과 적용
+            effectController.Operation(this, damageData.effect); // 효과가 있는 경우 효과 적용
         Debug.Log(damageData.damage + "현재 남은 쉴드 " + m_shield); // 디버그 로그 출력
         Debug.Log(damageData.damage + "현재 남은 체력 " + m_health); // 디버그 로그 출력
 
@@ -175,7 +176,6 @@ public class Character : MonoBehaviour
         Image HPbarImage = HPbar.GetComponent<Image>();
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
     }
-
 }
 
 

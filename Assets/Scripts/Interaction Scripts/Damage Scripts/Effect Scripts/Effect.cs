@@ -27,7 +27,7 @@ public class Effect : MonoBehaviour
         return HashCode.Combine(m_effectData.number, m_effectData.name);
     }
 
-    private IEnumerator Run()
+    private IEnumerator Run(Character character)
     {
         float effectTick = 0;
         while(m_duration < m_effectData.duriation)
@@ -37,15 +37,15 @@ public class Effect : MonoBehaviour
             if(effectTick > m_effectData.effectTick)
             {
                 effectTick = 0;
-                m_effectData.effectAction(m_duration, m_stack);
+                m_effectData.effectAction(character, m_duration, m_stack);
             }
             yield return null;
         }
         Termination();
     }
-    public void Additional()
+    public void Additional(Character character)
     {
-        if(m_coroutine != null) m_coroutine = StartCoroutine(Run());
+        if(m_coroutine != null) m_coroutine = StartCoroutine(Run(character));
         if(m_effectData.isDuriationReset) m_effectData.duriation = 0;
         if(m_effectData.stack > m_stack) m_stack++;
     }

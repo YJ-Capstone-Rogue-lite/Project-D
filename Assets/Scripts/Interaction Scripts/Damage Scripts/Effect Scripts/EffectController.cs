@@ -15,14 +15,14 @@ public class EffectController : MonoBehaviour
         m_isInvalidation = false;
         m_invalidationTimer = 0;
     }
-    public void Operation(Effect effect)
+    public void Operation(Character character, Effect effect)
     {
         if(m_isInvalidation && effect == null) return;
 
         StartCoroutine(IvalidationTimer());
         Effect temp;
         if(!m_effectList.TryGetValue(effect, out temp)) m_effectList.Add(effect);
-        temp.Additional();
+        temp.Additional(character);
     }
     public IEnumerator IvalidationTimer()
     {
