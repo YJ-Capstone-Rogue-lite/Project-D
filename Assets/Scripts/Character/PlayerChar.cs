@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerChar : Character
 {
@@ -22,6 +23,8 @@ public class PlayerChar : Character
 
     public SortingGroup SortingGroup_Weapon_slot1;
     public SortingGroup SortingGroup_Weapon_slot2;
+
+    public Image stamina_bar; //플레이어 스태미나 바
 
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
@@ -45,7 +48,7 @@ public class PlayerChar : Character
         //FloorLoader.Instance.player = gameObject;
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
-
+        stamina_bar.gameObject.SetActive(false);
 
     }
     private void OnEnable()
@@ -55,6 +58,10 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
+
+        //스태미나 바 업데이트
+        staminaba_update();
+
         if (!GameManager.Instance.isPlaying)
         {
             return;
@@ -132,6 +139,8 @@ public class PlayerChar : Character
             SortingGroup_Weapon_slot2.enabled = true;
         }
 
+       
+
 
     }
 
@@ -161,7 +170,7 @@ public class PlayerChar : Character
             CancelInvoke("stamina_recovery");
             // 새로운 InvokeRepeating을 설정한다.
             InvokeRepeating("stamina_recovery", 2f, 1f); //스태미나 리커버리를, n초후에 n1초마다 불러옴
-
+           
             StartCoroutine(EndRoll());
         }
         else if( m_stamina <=0)
@@ -189,6 +198,22 @@ public class PlayerChar : Character
                 Debug.Log("최대 스태미나에 도달함");
                 CancelInvoke("stamina_recovery"); // 회복을 멈춤
             }
+        }
+    }
+
+    //스태미나 바 업데이트
+    public void staminaba_update()
+    {
+        if (m_stamina < m_maxStamina) //현재 스태미나가 최대 스태미나보다 작은 동안
+        {
+            stamina_bar.gameObject.SetActive(true); //스태미나 바 활성화
+            stamina_bar.fillAmount = m_stamina/m_maxStamina;
+            Debug.Log("스태미나 바 활성화");
+        }
+        else
+        {
+           stamina_bar.gameObject.SetActive(false); //아니면 비활성화
+            Debug.Log("스태미나 바 비활성화");
         }
     }
 
