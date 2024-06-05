@@ -32,10 +32,11 @@ public class DataManager : MonoBehaviour
 
 
 
-    public enum TEST { SAVE, LOAD };
+    public enum TEST { CREATE, SAVE, LOAD };
     public string id;
     public string pw;
     
+    public void CreateUser() => StartCoroutine(UnityWebRequestGETTest(TEST.CREATE));
 
     // 불러오기
     public void LoadGameData()
@@ -78,6 +79,9 @@ public class DataManager : MonoBehaviour
         
         switch(test)
         {
+            case TEST.CREATE:
+                url += "CreateUser.jsp";
+            break;
             case TEST.SAVE:
                 url += "DataSave.jsp";
             break;
