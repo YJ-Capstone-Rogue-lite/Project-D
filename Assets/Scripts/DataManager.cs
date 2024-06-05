@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
     // --- 저장용 클래스 변수 --- //
     public PlayerData data = new PlayerData();
 
-
+    
 
     // 불러오기
     public void LoadGameData()
@@ -42,6 +42,7 @@ public class DataManager : MonoBehaviour
             string FromJsonData = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<PlayerData>(FromJsonData);
             print("불러오기 완료");
+            // 불러온 데이터 출력
         }
     }
 

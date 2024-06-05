@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class Character : MonoBehaviour
 {
     public static Character charsingle;
     private bool player_state = true;
+
+    
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
     private EffectController effectController;
@@ -20,10 +23,9 @@ public class Character : MonoBehaviour
     // 무적 상태 여부를 나타내는 변수
     private bool invincible = false;
 
-    // 무적 지속 시간
-    private float invincibleDuration = 0.2f;
-
     [Header("플레이어 스탯")]
+    public string m_name;
+
     // 캐릭터의 체력
     public float m_health;
 
@@ -46,15 +48,26 @@ public class Character : MonoBehaviour
     public float m_damage;
 
     public Animator player_anim;
+
+    public PlayerData playerdata = new PlayerData();
+
     protected virtual void Start()
     {
+        Debug.Log("Player Max HP: " + playerdata.player_maxhp);
+        Debug.Log("Player HP: " + playerdata.player_hp);
+        Debug.Log("Player Max Shield: " + playerdata.player_maxshield);
+        Debug.Log("Player Shield: " + playerdata.player_shield);
+        Debug.Log("Player Move Speed: " + playerdata.player_movespeed);
+        Debug.Log("Player Protection Time: " + playerdata.player_protectionTime);
+
         // 캐릭터의 상태 데이터로 초기화
-        m_health = charStateData.health;
-        m_maxHealth = 100;
-        m_shield = charStateData.shield;
-        m_maxShield = charStateData.max_shield;
-        m_movementSpeed = 5;
-        m_protectionTime = 0;
+        m_name = playerdata.player_name;
+        m_health = playerdata.player_hp;
+        m_maxHealth = playerdata.player_maxhp;
+        m_shield = playerdata.player_shield;
+        m_maxShield = playerdata.player_maxshield;
+        m_movementSpeed = playerdata.player_movespeed;
+        m_protectionTime = playerdata.player_protectionTime;
         m_damage = charStateData.player_damage;
         Shield_bar = GameObject.Find("Shield_Bar_Img");
         HPbar = GameObject.Find("HP_Bar_Img");
@@ -132,7 +145,7 @@ public class Character : MonoBehaviour
         Debug.Log("피격 후 무적");
         // 무적 상태로 설정
         invincible = true;
-        yield return new WaitForSeconds(invincibleDuration); // 일정 시간 동안 대기
+        yield return new WaitForSeconds(m_protectionTime); // 일정 시간 동안 대기
         // 무적 상태 해제
         invincible = false;
     }
