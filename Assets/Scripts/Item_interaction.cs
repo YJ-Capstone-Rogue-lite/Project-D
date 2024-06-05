@@ -20,6 +20,7 @@ public class Item_interaction : MonoBehaviour
     private Weapon_Slot weaponSlotScript; //웨폰 슬롯의 무기슬롯을 받아오기 위함
     [SerializeField]  private IngameUI ingameUI;
     [SerializeField] private Character character;
+    [SerializeField] private GameObject pickedUpConsumablePrefab; // 픽업한 소비 아이템의 프리팹을 저장할 변수
 
 
     private void Start()
@@ -86,8 +87,8 @@ public class Item_interaction : MonoBehaviour
 
     }
 
+  
     //해당 코드는 임시로 무기만 넣도록 만들어둠. 악세사리 및 버프기도 해야함
-    //현재 UI의 1,2번 슬롯에만 들어가고 있어서 인벤토리의 무기 슬롯에 들어가는 작업도 따로 해줘야함.
     private void CanPickUp()
     {
         if (Input.GetKeyDown(KeyCode.E) && pickupActivated) //E를 누르고 픽업이 할성화 될때
@@ -105,11 +106,13 @@ public class Item_interaction : MonoBehaviour
             else if (item_PickUp.consumable != null)
             {
                 PickUp_Item_Change();
+                pickedUpConsumablePrefab = item_PickUp.consumable.ConsumItemPrefab;
 
                 // 소비 아이템을 인게임 UI에 표시
                 ingameUI.ConsumableItem_Img.sprite = item_PickUp.consumable.sprite;
                 Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");  // 인벤토리 넣기
                 Debug.Log("아이템 생성함");
+
             }
             Destroy(item_PickUp.gameObject);
 
@@ -164,6 +167,7 @@ public class Item_interaction : MonoBehaviour
 
     }
 
+    //바닥에 생성하고 인벤토리로 넣는다
 
     //----------소비슬롯 코드---------//
     public void PickUp_Item_Change()
@@ -171,30 +175,32 @@ public class Item_interaction : MonoBehaviour
         //만약 아이템 픽업의 소비아이템이 존재하고 인게임 ui의 소비슬롯 이미지가 존재하고 소비아이템슬롯의 스프라이트가 기본값이 아닌 경우에만
         if (item_PickUp.consumable != null && ingameUI.ConsumableItem_Img.sprite != null && ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite) //!= ConsumableItem.ItemType.None)
         {
-            Debug.Log("소비아이템과 소비 슬롯 이미지가 존재합니다."); // 디버그 문장 추가
+            Debug.Log("소비아이템과 소비 슬롯 이미지가 존재합니다.");
 
-            //소비아이템이 가지고있는 프리펩 할당
-            GameObject ConsumItemPrefab = item_PickUp.consumable.ConsumItemPrefab;
 
-            if (ConsumItemPrefab != null)
+            //소비아이템 슬롯에 가지고있는 프리펩 할당
+            GameObject ConsumItem_Prefab = pickedUpConsumablePrefab;
+
+            if (ConsumItem_Prefab != null)
             {
-                Debug.Log("프리팹이 존재합니다."); // 디버그 문장 추가
+                Debug.Log(ConsumItem_Prefab.name);
+                Debug.Log("프리팹이 존재합니다."); 
 
                 // 플레이어 위치를 가져와서 아이템을 생성할 위치로 설정합니다.
                 Vector3 spawnPosition = player_postion.transform.position;
                 spawnPosition.z = 0f; // z 축 위치를 0으로 설정 (2D 게임에서는 z 축이 필요 없음)
 
                 // 아이템 프리팹을 복제하여 새로운 아이템을 생성합니다.
-                GameObject new_Consum_Item = Instantiate(ConsumItemPrefab, spawnPosition, Quaternion.identity);
+                GameObject new_Consum_Item = Instantiate(ConsumItem_Prefab, spawnPosition, Quaternion.identity);
             }
             else
             {
-                Debug.LogWarning("프리펩이 존재하지 않습니다."); // 프리펩이 없는 경우에 대한 경고 추가
+                Debug.LogWarning("프리펩이 존재하지 않습니다."); 
             }
         }
         else
         {
-            Debug.LogWarning("소비아이템이나 소비 슬롯 이미지가 존재하지 않습니다."); // 소비아이템이나 소비 슬롯 이미지가 없는 경우에 대한 경고 추가
+            Debug.LogWarning("소비아이템이나 소비 슬롯 이미지가 존재하지 않습니다."); 
         }
 
     }
