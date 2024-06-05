@@ -90,20 +90,24 @@ public partial class FloorLoader : MonoBehaviour
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[0]));
         });
         RoomAction.Add(1, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), floorTiles[0]);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-4, 0), floorTiles[1]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-4, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-3, 0), floorTiles[1]);
             
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), null);
 
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), doorTiles[1]));
         });
         RoomAction.Add(2, (tilemap, x, y)=>{
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), floorTiles[0]);
-            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-4, 0), floorTiles[2]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-4, 0), floorTiles[0]);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-3, 0), floorTiles[2]);
             
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), null);
+            tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), null);
 
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), doorTiles[1]));
         });
         RoomAction.Add(3, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-11, 0), floorTiles[3]);
