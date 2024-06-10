@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerData
 {
-    // 플레이어 이름
+    //플레이어 ID
+    public string player_ID;
+
+    //플레이어 PW
+    public string player_PW;
+
+    // 플레이어 닉네임
     public string player_name;
 
     // 플레이어 최대 체력
