@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +17,10 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed = 0.25f;
     // 적의 체력
     public float enemy_hp = 100;
+
+    //적의 최대 체력
+    public float max_enemy_hp = 100;
+
 
     // 적의 몸박 데미지
     public float enemy_body_damage;
@@ -36,6 +43,9 @@ public class Enemy : MonoBehaviour
     private bool Attack_the_Player = false;
     [SerializeField] GameObject hit;
 
+    //몬스터 hpbar
+    public GameObject enemy_hp_bar;
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -43,6 +53,8 @@ public class Enemy : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
+        enemy_hp_bar = GameObject.Find("enemy_hp_bar");
+
     }
 
     private void Update()
@@ -136,6 +148,7 @@ public class Enemy : MonoBehaviour
             if (bullet == null)
                 return;
             enemy_hp -= bullet.Damage; // 적의 체력 감소
+            enemy_hpbar_update();//적의 체력바 업데이트
 
             // 적이 밀려나지 않도록 속도를 0으로 설정
             enemy_rb.velocity = Vector2.zero;
@@ -165,6 +178,7 @@ public class Enemy : MonoBehaviour
             }
             // 플레이어를 추적하는 코루틴 시작
             moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
+            
         }
     }
 
@@ -206,6 +220,8 @@ public class Enemy : MonoBehaviour
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
             enemy_animator.SetBool("State", false);
+            StopCoroutine(moveCoroutine);
+
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
@@ -232,5 +248,15 @@ public class Enemy : MonoBehaviour
     private void Destroy_Enemy()
     {
         Destroy(gameObject); // 적 오브젝트 제거
+    }
+
+    public void enemy_hpbar_update() // 체력 바 업데이트
+    {
+        Image enemy_hp_bar_img = enemy_hp_bar.GetComponent<Image>();
+        enemy_hp_bar_img.fillAmount = enemy_hp / max_enemy_hp;
+        if(enemy_hp <= 0)
+        {
+            enemy_hp_bar.SetActive(false);
+        }
     }
 }
