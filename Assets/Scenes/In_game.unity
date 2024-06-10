@@ -7189,7 +7189,6 @@ MonoBehaviour:
   inv_slot: {fileID: 900186355}
   inv_slot_active_bool: 0
   inventory_slot: {fileID: 900186359}
-  HPbar: {fileID: 1208734719}
   WeaponSlot1: {fileID: 482613115}
   WeaponSlot2: {fileID: 2057936258}
   ingameOption: {fileID: 984497733}
