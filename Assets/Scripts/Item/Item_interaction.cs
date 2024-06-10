@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -43,7 +44,10 @@ public class Item_interaction : MonoBehaviour
 
     private void Update()
     {
-        CanPickUp();
+        if (pickupActivated && item_PickUp != null) // pickupActivated와 item_PickUp이 초기화된 경우에만 CanPickUp 호출
+        {
+            CanPickUp();
+        }
         active_Potion();
         active_Shield();
         //if (Input.GetKeyDown(KeyCode.T))
@@ -74,11 +78,20 @@ public class Item_interaction : MonoBehaviour
 
         }
 
+        else if (collider2D.gameObject.CompareTag("Box"))
+        {
+            pickupActivated = true;
+            actionText.gameObject.SetActive(true);
+
+            actionText.text = "<b>" + " 상자 열기  " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collider2D)
     {
-        if (collider2D.gameObject.CompareTag("Item"))
+        if (collider2D.gameObject.CompareTag("Item") || (collider2D.gameObject.CompareTag("Box")))
         {
             pickupActivated = false;
             actionText.gameObject.SetActive(false);
@@ -87,21 +100,25 @@ public class Item_interaction : MonoBehaviour
 
     }
 
-  
+
     //해당 코드는 임시로 무기만 넣도록 만들어둠. 악세사리 및 버프기도 해야함
     private void CanPickUp()
     {
-        if (Input.GetKeyDown(KeyCode.E) && pickupActivated) //E를 누르고 픽업이 할성화 될때
+        if (Input.GetKeyDown(KeyCode.E) && pickupActivated) // E를 누르고 픽업이 활성화될 때
         {
-
-            if (weaponSlotScript != null && item_PickUp.weapon != null) //웨폰슬롯의 값이 비어있지 않을때
+            if (gameObject.CompareTag("Box"))
+            {
+                tresure_box_open();
+            }
+            else if (weaponSlotScript != null && item_PickUp.weapon != null) // 웨폰슬롯의 값이 비어있지 않을 때
             {
                 PickUp_Weapon_Change();
 
                 // 무기 슬롯 스크립트가 있다면 해당 무기를 전달
                 weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
-                Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리 넣기
+                Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");  // 인벤토리에 넣기
                 Debug.Log("아이템 생성함");
+                Destroy(item_PickUp.gameObject);
             }
             else if (item_PickUp.consumable != null)
             {
@@ -109,13 +126,14 @@ public class Item_interaction : MonoBehaviour
                 pickedUpConsumablePrefab = item_PickUp.consumable.ConsumItemPrefab;
 
                 // 소비 아이템을 인게임 UI에 표시
-                ingameUI.ConsumableItem_Img.sprite = item_PickUp.consumable.sprite;
-                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");  // 인벤토리 넣기
+                if (ingameUI != null && ingameUI.ConsumableItem_Img != null)
+                {
+                    ingameUI.ConsumableItem_Img.sprite = item_PickUp.consumable.sprite;
+                }
+                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");  // 인벤토리에 넣기
                 Debug.Log("아이템 생성함");
-
+                Destroy(item_PickUp.gameObject);
             }
-            Destroy(item_PickUp.gameObject);
-
         }
     }
 
@@ -144,7 +162,14 @@ public class Item_interaction : MonoBehaviour
 
                         // 아이템 프리팹을 복제하여 새로운 아이템을 생성합니다.
                         GameObject newItem = Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
-                    }
+                        // 생성된 아이템의 Sprite Renderer를 가져옵니다.
+                        SpriteRenderer itemRenderer = newItem.GetComponent<SpriteRenderer>();
+                        if (itemRenderer != null)
+                            {
+                                // 아이템의 Sorting Layer를 플레이어와 동일하게 설정합니다.
+                                itemRenderer.sortingLayerName = "Item"; // 여기에는 실제로 사용하는 Sorting Layer의 이름을 입력하세요.
+                            }
+                        }
                     else
                     {
                         Debug.LogError("현재 무기의 프리팹이 없습니다.");
@@ -192,6 +217,13 @@ public class Item_interaction : MonoBehaviour
 
                 // 아이템 프리팹을 복제하여 새로운 아이템을 생성합니다.
                 GameObject new_Consum_Item = Instantiate(ConsumItem_Prefab, spawnPosition, Quaternion.identity);
+                // 생성된 아이템의 Sprite Renderer를 가져옵니다.
+                SpriteRenderer itemRenderer = new_Consum_Item.GetComponent<SpriteRenderer>();
+                if (itemRenderer != null)
+                {
+                    // 아이템의 Sorting Layer를 플레이어와 동일하게 설정합니다.
+                    itemRenderer.sortingLayerName = "Item"; // 여기에는 실제로 사용하는 Sorting Layer의 이름을 입력하세요.
+                }
             }
             else
             {
@@ -273,4 +305,17 @@ public class Item_interaction : MonoBehaviour
             }
         }
     }
+
+    public void tresure_box_open()
+    {
+        // 박스 태그인 경우 애니메이션 작동
+        Animator boxAnimator = gameObject.GetComponent<Animator>();
+        if (boxAnimator != null)
+        {
+            boxAnimator.SetBool("State", true); // 상호작용을 해서 true인 경우에 애니메이션 실행
+            Debug.Log("상자를 열음");
+        }
+    }
+
+
 }

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class FloatingItem : MonoBehaviour
 {
-    public float floatSpeed = 10f; // 위아래로 움직이는 속도
-    public float floatAmplitude = 0.01f; // 움직이는 범위
+    public float floatSpeed; // 위아래로 움직이는 속도
+    public float floatAmplitude; // 움직이는 범위
 
     private Vector3 startPosition;
 
     void Start()
     {
         startPosition = transform.position;
+        floatSpeed = 10f;
+        floatAmplitude = 0.01f;
     }
 
     void Update()
