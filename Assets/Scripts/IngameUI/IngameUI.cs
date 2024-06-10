@@ -40,8 +40,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
 
-    [Header("체력바 관련")]
-    public Image HPbar; //hp바 관련 이미지
+    //[Header("체력바 관련")]
+    //public Image HPbar; //hp바 관련 이미지
 
 
     [Header("기타등등")]

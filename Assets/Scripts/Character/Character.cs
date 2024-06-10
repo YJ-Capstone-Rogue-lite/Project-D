@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,10 @@ public class Character : MonoBehaviour
     protected CharStateData charStateData;
     public GameObject HPbar;
     public GameObject Shield_bar;
+
+    public GameObject hp_count;
+    public GameObject shield_count;
+
 
     // 무적 상태 여부를 나타내는 변수
     private bool invincible = false;
@@ -66,6 +71,8 @@ public class Character : MonoBehaviour
         m_damage = charStateData.player_damage;
         Shield_bar = GameObject.Find("Shield_Bar_Img");
         HPbar = GameObject.Find("HP_Bar_Img");
+        hp_count = GameObject.Find("hp_count");
+        shield_count = GameObject.Find("shield_count");
     }
 
 
@@ -163,12 +170,20 @@ public class Character : MonoBehaviour
     {
         Image ShieldBarImage = Shield_bar.GetComponent<Image>();
         ShieldBarImage.fillAmount = m_shield / m_maxShield; // 쉴드 비율로 fillAmount 설정
+        
+        TMP_Text shield_count_text = shield_count.GetComponent<TMP_Text>();
+        shield_count_text.text = m_shield.ToString();
+
     }
 
     public void player_hpbar_update() // 체력 바 업데이트
     {
         Image HPbarImage = HPbar.GetComponent<Image>();
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
+
+        TMP_Text hp_count_text = hp_count.GetComponent<TMP_Text>();
+        hp_count_text.text = m_health.ToString();
+
     }
 
 }
