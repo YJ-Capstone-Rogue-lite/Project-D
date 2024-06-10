@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Title_Manager : MonoBehaviour
+public class Title_Manager : LoginData
 {
     [SerializeField] private GameObject newGame;
     [SerializeField] private GameObject loadGame;
@@ -14,11 +14,15 @@ public class Title_Manager : MonoBehaviour
     [SerializeField] private GameObject quitGame;
     [SerializeField] private GameObject popUP;
     [SerializeField] private GameObject option_Popup;
+    [SerializeField] private GameObject pressBtnBG;
+    [SerializeField] private GameObject gameStartBtn_BG;
+    [SerializeField] private GameObject login_BG;
+    [SerializeField] private GameObject sign_up_BG;
+    [SerializeField] private GameObject login_Btn;
+    [SerializeField] private GameObject login_popup;
     [SerializeField] private GameObject apply;
     [SerializeField] private GameObject yes;
     [SerializeField] private GameObject no;
-    [SerializeField] private GameObject pressBtnBG;
-    [SerializeField] private GameObject gameStartBtn_BG;
 
     [SerializeField] private Image fullScreen_Box;
     [SerializeField] private Image windowScreen_Box;
@@ -28,13 +32,30 @@ public class Title_Manager : MonoBehaviour
 
 
     [SerializeField] private Button Load_Btn;
+    [SerializeField] private Button signup_TextBtn;
 
     [SerializeField] private TMP_Text popup_Text;
+    [SerializeField] private TMP_Text login_popup_Text;
 
 
     private void Start()
     {
-        if(File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName))
+        //DataManager에서 파일 가져와서 playerID와 PW에 저장
+        DataManager.Instance.LoadGameData();
+
+        playerdata = DataManager.Instance.data;
+        if (playerdata.player_ID != null && playerdata.player_PW != null)
+        {
+            m_playerID = playerdata.player_ID;
+            m_playerPW = playerdata.player_PW;
+        }
+        else
+        {
+            return;
+        }
+
+        // 저장된 게임 데이터가 있으면 로드 버튼 활성화
+        if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName))
         {
             Load_Btn.GetComponent<Button>().interactable = true;
         }
@@ -42,9 +63,13 @@ public class Title_Manager : MonoBehaviour
         {
             Load_Btn.GetComponent<Button>().interactable = false;
         }
-        DataManager.Instance.LoadGameData();
+
+
         option_Popup.SetActive(false);
         popUP.SetActive(false);
+        Debug.Log(playerdata.player_ID);
+        Debug.Log(playerdata.player_PW);
+
     }
 
     private void OnApplicationQuit()
@@ -81,7 +106,7 @@ public class Title_Manager : MonoBehaviour
         popup_Text.text = "Are you sure you want to exit the game?";
     }
 
-    public void Close_Btn()
+    public void Close_OPtion_Btn()
     {
         if(option_Popup.activeSelf == true)
         {
@@ -134,7 +159,57 @@ public class Title_Manager : MonoBehaviour
     public void pressBtn()
     {
         pressBtnBG.SetActive(false);
-        gameStartBtn_BG.SetActive(true);
+        login_BG.SetActive(true);
     }
 
+    //로그인
+    public void SignUp()
+    {
+        sign_up_BG.SetActive(true);
+        login_BG.SetActive(false);
+    }
+    public void Login()
+    {
+        if (login_ID.text == playerdata.player_ID && login_PW.text == playerdata.player_PW)
+        {
+            //로그인 성공
+            login_BG.SetActive(false);
+            gameStartBtn_BG.SetActive(true);
+        }
+        else if (login_ID.text != playerdata.player_ID)
+        {
+            login_popup.SetActive(true);
+            login_popup_Text.text = "아이디를 확인해주세요";
+        }
+        else if(login_PW.text != playerdata.player_PW)
+        {
+            login_popup.SetActive(true);
+            login_popup_Text.text = "비밀번호를 확인해주세요";
+        }
+    }
+
+    public void Close_LoginPopUp()
+    {
+        Debug.Log("눌림");
+        login_popup.SetActive(false);
+    }
+
+
+    public void CreateAccount()
+    {
+        playerdata.player_ID = createID.text;
+        if (createPW.text == checkPW.text)
+        {
+            playerdata.player_PW = createPW.text;
+            sign_up_BG.SetActive(false);
+            login_BG.SetActive(true);
+        }
+        else
+        {
+            login_popup.SetActive(true);
+            login_popup_Text.text = "비밀번호가 같지않습니다.";
+        }
+        playerdata.player_name = createname.text;
+
+    }
 }
