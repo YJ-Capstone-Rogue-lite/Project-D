@@ -13,7 +13,7 @@ public class Item_interaction : MonoBehaviour
     [SerializeField] private IngameUI ingameUI;
     [SerializeField] private Character character;
     [SerializeField] private GameObject pickedUpConsumablePrefab; // 픽업한 소비 아이템의 프리팹을 저장할 변수
-    [SerializeField] private ConsumableItem currentConsumable; // 현재 슬롯에 있는 소비 아이템
+    public ConsumableItem currentConsumable; // 현재 슬롯에 있는 소비 아이템
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
 

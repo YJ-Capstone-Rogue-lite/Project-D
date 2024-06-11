@@ -129,7 +129,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
             item_info_image.sprite = inv_consumableItem_image.sprite;
             Debug.Log("소비슬롯 설명 이미지 실행");
 
-            item_info_text.text = item_Interaction.item_PickUp.consumable.info;
+            item_info_text.text = item_Interaction.currentConsumable.info;
             Debug.Log("소비슬롯 설명 텍스트 실행");
 
             
