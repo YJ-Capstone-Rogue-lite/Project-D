@@ -60,6 +60,8 @@ public class Character : MonoBehaviour
         // DataManager에서 불러온 데이터를 playerdata에 할당
         playerdata = DataManager.Instance.data;
 
+        effectController = gameObject.AddComponent<EffectController>();
+
         // 플레이어 데이터가 제대로 할당되었는지 확인
         Debug.Log("Player Max HP: " + playerdata.player_maxhp);
         Debug.Log("Player HP: " + playerdata.player_hp);
@@ -103,6 +105,21 @@ public class Character : MonoBehaviour
         }
     }
 
+    public virtual void Heal(DamageData damageData)
+    {
+        m_health += damageData.damage;
+        if(m_health > m_maxHealth) m_health = m_maxHealth;
+        if(damageData.effect != null) EffectAction((EffectData)damageData.effect);
+        player_hpbar_update();
+    }
+
+    public virtual void Shield(DamageData damageData)
+    {
+        m_shield += damageData.damage;
+        if(m_shield > m_maxShield) m_shield = m_maxShield;
+        if(damageData.effect != null) EffectAction((EffectData)damageData.effect);
+        player_shieldbar_update();
+    }
 
     public virtual void Damaged(DamageData damageData)
     {
@@ -133,16 +150,21 @@ public class Character : MonoBehaviour
           
         }
 
-        if (effectController != null)
-            effectController.Operation(this, damageData.effect); // 효과가 있는 경우 효과 적용
-        Debug.Log(damageData.damage + "현재 남은 쉴드 " + m_shield); // 디버그 로그 출력
-        Debug.Log(damageData.damage + "현재 남은 체력 " + m_health); // 디버그 로그 출력
+        if(damageData.effect != null) EffectAction((EffectData)damageData.effect);
 
         // 피격 후 무적 상태로 변경
         StartCoroutine(InvincibleCoroutine());
 
         player_die();
     }
+
+    public void EffectAction(EffectData effect)
+    {
+        var temp = gameObject.AddComponent<Effect>();
+        temp.m_effectData = effect;
+        effectController.Operation(this, temp); // 효과가 있는 경우 효과 적용
+    }
+
     public bool GetPlayerState()
     {
         return player_state;

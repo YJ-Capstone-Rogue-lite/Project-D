@@ -10,6 +10,8 @@ public class Effect : MonoBehaviour
     public      EffectData  m_effectData;
     protected   Coroutine   m_coroutine;
 
+    public void Set(EffectData effectData) => m_effectData = effectData;
+
     public void OnEnable()
     {
         m_duration = 0;
@@ -45,12 +47,15 @@ public class Effect : MonoBehaviour
     }
     public void Additional(Character character)
     {
-        if(m_coroutine != null) m_coroutine = StartCoroutine(Run(character));
         if(m_effectData.isDuriationReset) m_effectData.duriation = 0;
         if(m_effectData.stack > m_stack) m_stack++;
+        if(m_coroutine == null) m_coroutine = StartCoroutine(Run(character));
     }
+    public void StackUp() => m_stack++;
     public void Termination()
     {
         if(m_coroutine != null) StopCoroutine(m_coroutine);
+        m_coroutine = null;
+        Destroy(this);
     }
 }

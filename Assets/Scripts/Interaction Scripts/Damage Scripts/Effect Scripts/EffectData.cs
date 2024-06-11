@@ -33,12 +33,12 @@ public static class EffectDatas
                 isDuriationReset = false,
                 effectAction = (c, d, s)=>{
                     Debug.Log("Effect A On");
-                    c.m_health += 1;
+                    var temp = new DamageData();
+                    temp.Set(10 * s);
+                    c.Heal(temp);
                 },
                 effectTick = 1f
-            }
-        };
-        effectDatas = new EffectData[]{
+            },
             new(){
                 number = 2,
                 name = "B",
@@ -49,7 +49,7 @@ public static class EffectDatas
                 effectAction = (c, d, s)=>{
                     Debug.Log("Effect B On");
                     var temp = new DamageData();
-                    temp.Set(null, 0, 10 * s, 0, null);
+                    temp.Set(10 * s);
                     c.Damaged(temp);
                 },
                 effectTick = 0.2f

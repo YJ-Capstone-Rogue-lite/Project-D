@@ -21,8 +21,13 @@ public class EffectController : MonoBehaviour
 
         StartCoroutine(IvalidationTimer());
         Effect temp;
-        if(!m_effectList.TryGetValue(effect, out temp)) m_effectList.Add(effect);
-        temp.Additional(character);
+        if(!m_effectList.TryGetValue(effect, out temp))
+        {
+            m_effectList.Add(effect);
+            temp = effect;
+            temp.Additional(character);
+        }
+        else if(temp.m_effectData.stack > temp.m_stack) temp.StackUp();
     }
     public IEnumerator IvalidationTimer()
     {

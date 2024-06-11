@@ -213,6 +213,8 @@ public class Item_interaction : MonoBehaviour
             if (item_PickUp.consumable != null &&
                 item_PickUp.consumable.itemType == ConsumableItem.ItemType.Potion)
             {
+                character.EffectAction(EffectDatas.effectDatas[0]);
+
                 // 캐릭터의 현재 체력 값에 포션의 힐링 값 더하기
                 character.m_health += item_PickUp.consumable.HPHealing;
                 Debug.Log("캐릭터의 체력을 " + item_PickUp.consumable.HPHealing +" 만큼 회복합니다.");
