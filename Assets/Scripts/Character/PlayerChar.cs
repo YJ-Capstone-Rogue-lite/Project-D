@@ -212,7 +212,7 @@ public class PlayerChar : Character
         }
         else
         {
-           stamina_bar.gameObject.SetActive(false); //아니면 비활성화
+            stamina_bar.gameObject.SetActive(false); //아니면 비활성화
             Debug.Log("스태미나 바 비활성화");
         }
     }

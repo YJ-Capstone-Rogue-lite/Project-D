@@ -93,6 +93,7 @@ public class Character : MonoBehaviour
         HPbar = GameObject.Find("HP_Bar_Img");
         hp_count = GameObject.Find("hp_count");
         shield_count = GameObject.Find("shield_count");
+        m_stamina = m_maxStamina;//시작시 플레이어 스태미나 최대치로 조정
     }
 
 
@@ -128,12 +129,15 @@ public class Character : MonoBehaviour
         {
             m_shield -= damageData.damage; // 쉴드에서 피해 감소
 
-            // 쉴드가 아직 남아있는 경우에만 쉴드 바 업데이트
-            player_shieldbar_update();
+           
             if (m_shield <= 0) // 쉴드가 음수가 되지 않도록 보정
             {
                 m_shield = 0;
+                // 쉴드가 아직 남아있는 경우에만 쉴드 바 업데이트
+                player_shieldbar_update();
             }
+            // 쉴드가 아직 남아있는 경우에만 쉴드 바 업데이트
+            player_shieldbar_update();
         }
         else // 쉴드가 없을 때
         {

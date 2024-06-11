@@ -23,7 +23,7 @@ public class PlayerData
     public int player_maxshield = 100;
 
     // 플레이어 현재 방어막
-    public int player_shield = 0;
+    public int player_shield = 100;
 
     // 플레이어 이동 속도
     public int player_movespeed = 5;
