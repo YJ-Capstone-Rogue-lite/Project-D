@@ -95,6 +95,9 @@ public class Character : MonoBehaviour
         HPbar = GameObject.Find("HP_Bar_Img");
         hp_count = GameObject.Find("hp_count");
         shield_count = GameObject.Find("shield_count");
+
+        player_hpbar_update();
+        player_shieldbar_update();
     }
 
 
