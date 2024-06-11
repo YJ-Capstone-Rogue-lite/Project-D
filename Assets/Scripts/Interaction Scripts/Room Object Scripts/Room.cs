@@ -57,7 +57,11 @@ public class Room : MonoBehaviour
         if (collider.CompareTag("Player")) 
             focusedMinimapChar = null;
 
-        if (state == State.ING && enemyCount <= 0) state = State.CLEAR;
+        if (state == State.ING && enemyCount <= 0)
+        {
+            state = State.CLEAR;
+            RoomExitTrigger();
+        }
     }
     protected void OnTriggerStay2D(Collider2D collider)
     {

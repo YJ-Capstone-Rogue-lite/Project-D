@@ -144,12 +144,12 @@ public partial class FloorLoader : MonoBehaviour
         CreateDefaultRoom();
         SelectPorintRoom();
         CreateBossRoom();
-        CreateSpecialRoom();
         ChangeOverSizeRoom();
         ChangeStartRoom();
         Triangulator();
         MinimumSpanningTree();
         ConnenctRooms();
+        CreateSpecialRoom();
         CreateRooms();
         DoorPP();
 
@@ -324,10 +324,10 @@ public partial class FloorLoader : MonoBehaviour
             {                
                 x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
                 y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
-            } while(SelectedRoomCheck(x, y) || SelectedRoomCheck(roomData, x, y+1));
-            m_selectedRoomTablel[x, y] = true;
+            } while(!(SelectedRoomCheck(x, y) && !SelectedRoomCheck(roomData, x, y+1)));
+            m_selectedRoomTablel[x, ++y] = true;
             m_roomNumberTablel[x, y] = roomIdx++;
-            OverSizeInject(roomData, x, ++y);
+            OverSizeInject(roomData, x, y);
         }
     }
     private void CreateRooms()

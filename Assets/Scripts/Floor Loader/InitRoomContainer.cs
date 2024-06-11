@@ -52,10 +52,8 @@ public partial class FloorLoader : MonoBehaviour
                                                  { true, true, true } },
                         path = "TileMap/Default/Rooms/Special Room 2"
                     },
-                                        new RoomData{
-                        roomSize = new bool[,] { { true, true, true }, 
-                                                 { true, true, true },
-                                                 { true, true, true } },
+                    new RoomData{
+                        roomSize = new bool[,] { { true } },
                         path = "TileMap/Default/Rooms/Special Room 3"
                     }
                 }
