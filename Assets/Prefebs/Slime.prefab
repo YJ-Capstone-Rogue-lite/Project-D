@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1408360845080943993}
   - component: {fileID: 2620150170107279935}
   - component: {fileID: 5104547443972504249}
-  - component: {fileID: 8932499743909842127}
+  - component: {fileID: 3740784252326495083}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -143,7 +143,7 @@ MonoBehaviour:
   find_Playersecond: 5
   hit: {fileID: 2637716999783611454}
   enemy_hp_bar: {fileID: 0}
-  item_Drop: {fileID: 8932499743909842127}
+  item_Drop: {fileID: 3740784252326495083}
 --- !u!95 &1408360845080943993
 Animator:
   serializedVersion: 5
@@ -235,7 +235,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45833334
---- !u!114 &8932499743909842127
+--- !u!114 &3740784252326495083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,9 +248,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConsumableItem_drop_prefeb:
-  - {fileID: 7693746447718644223, guid: cbd8674c263d12d42934440ecfc85c6f, type: 3}
   - {fileID: 5072211534383127828, guid: bfe80f0ea2b933a41b8774b218bd2d17, type: 3}
+  - {fileID: 7693746447718644223, guid: cbd8674c263d12d42934440ecfc85c6f, type: 3}
+  Weapon_drop_prefeb: []
   dropChance: 1
+  item_interaction: {fileID: 0}
+  floatSpeed: 4
+  floatAmplitude: 0.03
+  floatingDuration: 1
+  delayBeforeFloating: 0.7
 --- !u!1 &2028621583532895664
 GameObject:
   m_ObjectHideFlags: 0

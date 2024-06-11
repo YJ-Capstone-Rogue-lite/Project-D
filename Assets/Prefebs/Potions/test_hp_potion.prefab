@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 728435107056575707}
   - component: {fileID: 3853878180141512037}
   - component: {fileID: 7775161834795891941}
-  - component: {fileID: 2064934167726416873}
+  - component: {fileID: 8966218477148615943}
   m_Layer: 0
   m_Name: test_hp_potion
   m_TagString: Item
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConsumableItem: {fileID: 11400000, guid: 928bbccb6bb430841ac3ccd0b3952072, type: 2}
   ItemSpriteRenderer: {fileID: 3853878180141512037}
---- !u!114 &2064934167726416873
+--- !u!114 &8966218477148615943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4802e227ab2ac40bf89c7458591d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatSpeed: 10
-  floatAmplitude: 0.01
+  floatSpeed: 0
+  floatAmplitude: 0

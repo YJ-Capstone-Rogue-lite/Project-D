@@ -223,10 +223,11 @@ public class Enemy : MonoBehaviour
         {
             enemy_animator.SetBool("State", false);
             StopCoroutine(moveCoroutine);
-            item_Drop.enemy_item_drop();
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
+            item_Drop.enemy_item_drop();
+
         }
     }
 

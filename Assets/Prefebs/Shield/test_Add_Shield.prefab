@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 862590846836089511}
   - component: {fileID: 1794706577534850518}
   - component: {fileID: 5907817957401032611}
-  - component: {fileID: 7475372049084211688}
+  - component: {fileID: 88002335278467042}
   m_Layer: 0
   m_Name: test_Add_Shield
   m_TagString: Item
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConsumableItem: {fileID: 11400000, guid: 4ff3c419ca598f74982304401ff68210, type: 2}
   ItemSpriteRenderer: {fileID: 1794706577534850518}
---- !u!114 &7475372049084211688
+--- !u!114 &88002335278467042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4802e227ab2ac40bf89c7458591d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatSpeed: 10
-  floatAmplitude: 0.01
+  floatSpeed: 0
+  floatAmplitude: 0
