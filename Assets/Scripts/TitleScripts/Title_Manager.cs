@@ -170,22 +170,30 @@ public class Title_Manager : LoginData
     }
     public void Login()
     {
-        if (login_ID.text == playerdata.player_ID && login_PW.text == playerdata.player_PW)
-        {
-            //로그인 성공
-            login_BG.SetActive(false);
-            gameStartBtn_BG.SetActive(true);
-        }
-        else if (login_ID.text != playerdata.player_ID)
-        {
-            login_popup.SetActive(true);
-            login_popup_Text.text = "아이디를 확인해주세요";
-        }
-        else if(login_PW.text != playerdata.player_PW)
-        {
-            login_popup.SetActive(true);
-            login_popup_Text.text = "비밀번호를 확인해주세요";
-        }
+        DataManager.Instance.LoginUser(login_ID.text, login_PW.text, (x) => {
+        // if (login_ID.text == playerdata.player_ID && login_PW.text == playerdata.player_PW)
+            if(x)
+            {
+                //로그인 성공
+                login_BG.SetActive(false);
+                gameStartBtn_BG.SetActive(true);
+            }
+            else
+            {
+                login_popup.SetActive(true);
+                login_popup_Text.text = "로그인 실패";
+            }
+        });
+        // else if (login_ID.text != playerdata.player_ID)
+        // {
+        //     login_popup.SetActive(true);
+        //     login_popup_Text.text = "아이디를 확인해주세요";
+        // }
+        // else if(login_PW.text != playerdata.player_PW)
+        // {
+        //     login_popup.SetActive(true);
+        //     login_popup_Text.text = "비밀번호를 확인해주세요";
+        // }
     }
 
     public void Close_LoginPopUp()
@@ -201,8 +209,18 @@ public class Title_Manager : LoginData
         if (createPW.text == checkPW.text)
         {
             playerdata.player_PW = createPW.text;
-            sign_up_BG.SetActive(false);
-            login_BG.SetActive(true);
+            DataManager.Instance.LoginUser(createID.text, createPW.text, (x) => {
+                if(x)
+                {
+                    sign_up_BG.SetActive(false);
+                    login_BG.SetActive(true);
+                }
+                else
+                {
+                    login_popup.SetActive(true);
+                    login_popup_Text.text = "생성 실패";
+                }
+            });
         }
         else
         {

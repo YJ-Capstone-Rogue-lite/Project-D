@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -32,15 +33,60 @@ public class DataManager : MonoBehaviour
 
 
 
-    public enum TEST { CREATE, SAVE, LOAD };
+    public enum TEST { CHECK, CREATE, SAVE, LOAD };
     public string id;
     public string pw;
+
+    public bool isWaitingRequest;
     
-    public void CreateUser() => StartCoroutine(UnityWebRequestGETTest(TEST.CREATE));
+    public void CreateUser(string id, string pw, Action<bool> action)
+    {
+        this.id = id;
+        this.pw = pw;
+        StartCoroutine(UnityWebRequestGETTest(TEST.CREATE, (x) => {
+            switch(x)
+            {
+                case "false":
+                    action(false);
+                break;
+                case "true":
+                    action(true);
+                break;
+            }
+        }));
+    }
+
+    public void LoginUser(string id, string pw, Action<bool> action)
+    {
+        this.id = id;
+        this.pw = pw;
+        StartCoroutine(UnityWebRequestGETTest(TEST.CHECK, (x) => {
+            switch(x)
+            {
+                case "false":
+                    action(false);
+                break;
+                case "true":
+                    action(true);
+                break;
+            }
+        }));
+    }
 
     // 불러오기
-    public void LoadGameData()
+    public void LoadGameData() => StartCoroutine(LoadingData());
+    IEnumerator LoadingData()
     {
+        bool temp = false;
+        StartCoroutine(UnityWebRequestGETTest(TEST.LOAD, (x) => {
+            if(x == "false") return;
+            instance.data = JsonUtility.FromJson<PlayerData>(x);
+            temp = true;
+        }));
+
+        yield return new WaitUntil(() => !isWaitingRequest);
+        if(!temp) yield break;
+
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
         print(filePath);
         // 저장된 게임이 있다면
@@ -49,28 +95,42 @@ public class DataManager : MonoBehaviour
             // 저장된 파일 읽어오고 Json을 클래스 형식으로 전환해서 할당
             string FromJsonData = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<PlayerData>(FromJsonData);
-            StartCoroutine(UnityWebRequestGETTest(TEST.LOAD));
             print("불러오기 완료");
             // 불러온 데이터 출력
         }
     }
 
     // 저장하기
-    public void SaveGameData()
+    public bool SaveGameData()
     {
         // 클래스를 Json 형식으로 전환 (true : 가독성 좋게 작성)
         string ToJsonData = JsonUtility.ToJson(data, true);
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
         // 이미 저장된 파일이 있다면 덮어쓰고, 없다면 새로 만들어서 저장
-        StartCoroutine(UnityWebRequestGETTest(TEST.SAVE));
         File.WriteAllText(filePath, ToJsonData);
         // 올바르게 저장됐는지 확인 (자유롭게 변형)
         print("저장 완료");
+
+        bool temp = false;
+        StartCoroutine(UnityWebRequestGETTest(TEST.SAVE, (x) => {
+            switch(x)
+            {
+                case "false":
+                    temp = false;
+                break;
+                case "true":
+                    temp = true;
+                break;
+            }
+        }));
+        return temp;
     }
 
-    IEnumerator UnityWebRequestGETTest(TEST test)
+    IEnumerator UnityWebRequestGETTest(TEST test, Action<string> action = null)
     {
+        if(isWaitingRequest) yield break;
+        isWaitingRequest = true;
         WWWForm form = new WWWForm();
         string url = "http://localhost:8181/ProjectD/";
         form.AddField("id", id);
@@ -79,6 +139,9 @@ public class DataManager : MonoBehaviour
         
         switch(test)
         {
+            case TEST.CHECK:
+                url += "LoginCheck.jsp";
+            break;
             case TEST.CREATE:
                 url += "CreateUser.jsp";
             break;
@@ -97,11 +160,12 @@ public class DataManager : MonoBehaviour
         if (www.error == null)  // 에러가 나지 않으면 동작.
         {
             Debug.Log(www.downloadHandler.text);
-            if(test == TEST.LOAD) DataManager.Instance.data = JsonUtility.FromJson<PlayerData>(www.downloadHandler.text);
+            action(www.downloadHandler.text);
         }
         else
         {
             Debug.LogError("WebRequestException: " + www.error);
         }
+        isWaitingRequest = false;
     }
 }
