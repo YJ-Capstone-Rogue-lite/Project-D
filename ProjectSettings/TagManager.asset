@@ -13,7 +13,7 @@ TagManager:
   - Hit_radius
   - attackEnemy
   - Weapon
-  - NPC
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -59,4 +59,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 2347097777
+    locked: 0
+  - name: Item
+    uniqueID: 4291401071
     locked: 0

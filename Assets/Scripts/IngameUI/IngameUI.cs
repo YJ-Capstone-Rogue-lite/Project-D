@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,8 +40,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
 
-    [Header("체력바 관련")]
-    public Image HPbar; //hp바 관련 이미지
+    //[Header("체력바 관련")]
+    //public Image HPbar; //hp바 관련 이미지
 
 
     [Header("기타등등")]
@@ -59,6 +60,10 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private Sprite checkBox;
     [SerializeField] private Sprite emptyBox;
 
+
+    public TMP_Text enemyCountText; // UI Text를 연결할 변수
+
+
     private void Start()
     {
         inv_slot_active_bool = false;
@@ -76,6 +81,9 @@ public class IngameUI : MonoBehaviour
 
         //플레이어 따라다니는 재장전 애니메이션 이미지
         reload_img.transform.position = Weapon_Slot.transform.position + new Vector3(0, 0, 0);
+
+        enemy_count_update();
+
 
         if (Input.GetKeyDown(KeyCode.Tab)) //탭키를 눌렀을때
         {
@@ -124,6 +132,7 @@ public class IngameUI : MonoBehaviour
         {
             IngameTime(false);
         }
+
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
@@ -213,6 +222,14 @@ public class IngameUI : MonoBehaviour
 
     }
 
+    public void enemy_count_update()
+    {
+        // "enemy" 태그를 가진 오브젝트의 개수를 센다
+        int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+        // UI 텍스트 업데이트
+        enemyCountText.text = enemyCount.ToString();
+    }
 
 
 }

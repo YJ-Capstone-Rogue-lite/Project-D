@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerChar : Character
 {
@@ -12,12 +14,17 @@ public class PlayerChar : Character
     private SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
-    bool is_rolling = false;
+    private float stamina_recovery_value  = 25;//스태미나 재충전 값
     public GameObject camera_;
     private GameObject cameraInstance;
 
     public Transform player_location;
     public Transform gun_rotation;
+
+    public SortingGroup SortingGroup_Weapon_slot1;
+    public SortingGroup SortingGroup_Weapon_slot2;
+
+    public Image stamina_bar; //플레이어 스태미나 바
 
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
@@ -25,6 +32,8 @@ public class PlayerChar : Character
     private void Awake()
     {
         single = this;
+
+
     }
 
     protected override void Start()
@@ -39,7 +48,7 @@ public class PlayerChar : Character
         //FloorLoader.Instance.player = gameObject;
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
-
+        stamina_bar.gameObject.SetActive(false);
 
     }
     private void OnEnable()
@@ -49,6 +58,10 @@ public class PlayerChar : Character
     // Update is called once per frame
     void Update()
     {
+
+        //스태미나 바 업데이트
+        staminaba_update();
+
         if (!GameManager.Instance.isPlaying)
         {
             return;
@@ -109,13 +122,33 @@ public class PlayerChar : Character
             player_Roll();
         }
         fire = GameObject.FindWithTag("Weapon").GetComponent<Fire_Test>();
+
+
+        //플레이어가 위를 보고있는지 확인해 무기 레이어 값 조절 하기
+        if ((player_anim.GetFloat("MoveX") == 1) && (player_anim.GetFloat("MoveY") == 1) 
+            || (player_anim.GetFloat("MoveX") == -1) && (player_anim.GetFloat("MoveY") == 1)
+            ||(player_anim.GetFloat("LastMoveY") == 1))
+        {
+            SortingGroup_Weapon_slot1.enabled = false;
+            SortingGroup_Weapon_slot2.enabled = false;
+
+        }
+        else
+        {
+            SortingGroup_Weapon_slot1.enabled = true;
+            SortingGroup_Weapon_slot2.enabled = true;
+        }
+
+       
+
+
     }
- 
-    
+
+
 
     public void player_Roll()
     {
-        if (Input.GetButtonDown("Roll"))
+        if (Input.GetButtonDown("Roll") && m_stamina > 0)
         {
             if(player_Rb.velocity.x < 0)
             {
@@ -125,13 +158,24 @@ public class PlayerChar : Character
             {
                 bodyRender.flipX = false;
             }
+            //플레이어가 구를때마다
             is_rolling = true;
-            Debug.Log("roll");
+            m_stamina -= 25; //현재 스태미나 값 -25 하고
+
+            Debug.Log("구르기! " + "현재 스태미나 : " + m_stamina);
             player_anim.SetBool("isRolling", true);
             player_anim.SetFloat("RollX", Input.GetAxisRaw("Horizontal"));
             player_anim.SetFloat("RollY", Input.GetAxisRaw("Vertical"));
-
+            // 기존에 실행 중인 InvokeRepeating을 취소한다.
+            CancelInvoke("stamina_recovery");
+            // 새로운 InvokeRepeating을 설정한다.
+            InvokeRepeating("stamina_recovery", 2f, 1f); //스태미나 리커버리를, n초후에 n1초마다 불러옴
+           
             StartCoroutine(EndRoll());
+        }
+        else if( m_stamina <=0)
+        {
+            Debug.Log("현재 스태미나가 " + m_stamina +" 값이라 구르기 불가");
         }
     }
     IEnumerator EndRoll()
@@ -139,6 +183,38 @@ public class PlayerChar : Character
         yield return new WaitForSeconds(rollDuration);
         player_anim.SetBool("isRolling", false);
         is_rolling = false;
+    }
+
+    // 스태미나 회복 코드
+    public void stamina_recovery()
+    {
+        if (m_stamina < m_maxStamina) // 현재 스태미나가 최대 스태미나보다 작을 때만 실행
+        {
+            m_stamina += stamina_recovery_value; // 스태미나를 회복 값만큼 더함
+            Debug.Log("스태미나 회복 : " + m_stamina);
+
+            if (m_stamina >= m_maxStamina) // 회복 후 스태미나가 최대치에 도달하면
+            {
+                Debug.Log("최대 스태미나에 도달함");
+                CancelInvoke("stamina_recovery"); // 회복을 멈춤
+            }
+        }
+    }
+
+    //스태미나 바 업데이트
+    public void staminaba_update()
+    {
+        if (m_stamina < m_maxStamina) //현재 스태미나가 최대 스태미나보다 작은 동안
+        {
+            stamina_bar.gameObject.SetActive(true); //스태미나 바 활성화
+            stamina_bar.fillAmount = m_stamina/m_maxStamina;
+            Debug.Log("스태미나 바 활성화");
+        }
+        else
+        {
+           stamina_bar.gameObject.SetActive(false); //아니면 비활성화
+            Debug.Log("스태미나 바 비활성화");
+        }
     }
 
     //protected override void OnTriggerEnter2D(Collider2D collider)
