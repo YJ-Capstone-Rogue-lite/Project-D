@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,19 +113,19 @@ TextureImporter:
       name: Treasure box_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 1
         y: 0
         width: 32
-        height: 26
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1908edb0dbcbf4043a369f2795b4864b
-      internalID: -885824066
+      spriteID: b913c1f2d24e2fc49bdf4ac1b69799ba
+      internalID: -269200580
       vertices: []
       indices: 
       edges: []
@@ -134,19 +134,19 @@ TextureImporter:
       name: Treasure box_1
       rect:
         serializedVersion: 2
-        x: 53
+        x: 34
         y: 0
-        width: 32
-        height: 27
+        width: 34
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73109434d09f6f34bad235c16713d580
-      internalID: 735991319
+      spriteID: beaef7b7063e9a74388a13fe4d43afc3
+      internalID: -758356716
       vertices: []
       indices: 
       edges: []
@@ -155,19 +155,19 @@ TextureImporter:
       name: Treasure box_2
       rect:
         serializedVersion: 2
-        x: 99
+        x: 68
         y: 0
-        width: 32
-        height: 31
+        width: 34
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e085a2b458115884fa65fd357f1bd6bc
-      internalID: 826382255
+      spriteID: da6ade9accb369f439003bab2397d1c4
+      internalID: -1922572904
       vertices: []
       indices: 
       edges: []
@@ -176,19 +176,61 @@ TextureImporter:
       name: Treasure box_3
       rect:
         serializedVersion: 2
-        x: 145
+        x: 102
         y: 0
-        width: 32
-        height: 42
+        width: 34
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84291b7b69044264bbec5c07915fe309
-      internalID: -297461920
+      spriteID: d9f86a76b3aeb224b996e290a4a4c88a
+      internalID: 1163894791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Treasure box_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 34
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca854b67ad99ec4195c4306c4a819d4
+      internalID: 652726043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Treasure box_5
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 0
+        width: 34
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d616fda819b83f4993b45d7b0572c38
+      internalID: 1591400119
       vertices: []
       indices: 
       edges: []
@@ -204,10 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Treasure box_0: -885824066
-      Treasure box_1: 735991319
-      Treasure box_2: 826382255
-      Treasure box_3: -297461920
+      Treasure box_0: -269200580
+      Treasure box_1: -758356716
+      Treasure box_2: -1922572904
+      Treasure box_3: 1163894791
+      Treasure box_4: 652726043
+      Treasure box_5: 1591400119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -268,7 +269,8 @@ public class Item_interaction : MonoBehaviour
             {
                 boxAnimator.SetBool("State", true); // 애니메이션 실행
                 Debug.Log("상자를 열었습니다.");
-                item_Drop.Box_Open_Item_Drop();
+
+                StartCoroutine(DelayedItemDrop());
             }
             else
             {
@@ -280,5 +282,12 @@ public class Item_interaction : MonoBehaviour
             Debug.LogWarning("상자에 애니메이터가 없습니다.");
         }
     }
+
+    private IEnumerator DelayedItemDrop()
+    {
+        yield return new WaitForSeconds(0.35f); // 0.초 대기
+        item_Drop.Box_Open_Item_Drop(); // 아이템 드롭 실행
+    }
+
 
 }

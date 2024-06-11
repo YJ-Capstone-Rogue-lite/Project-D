@@ -7440,6 +7440,26 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4032287738337778571, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032287738337778571, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: m_Size.y
+      value: 0.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032287738337778571, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -269200580, guid: 13cde32102ef167459dc81e2b1cdcfc9, type: 3}
+    - target: {fileID: 4032287738337778571, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096448273799638828, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 806979cb50433ea4187dcf479e6112f9, type: 2}
     - target: {fileID: 4953927226758546786, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.07
@@ -7479,6 +7499,10 @@ PrefabInstance:
     - target: {fileID: 4953927226758546786, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970224971019161618, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
+      propertyPath: dropChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7970224971019161618, guid: 897c8220770c53d47b26a5d37d402f57, type: 3}
       propertyPath: floatAmplitude
