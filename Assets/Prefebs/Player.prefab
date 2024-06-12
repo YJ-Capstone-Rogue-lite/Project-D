@@ -243,17 +243,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectController: {fileID: 0}
   is_rolling: 0
-  charStateData:
-    health: 0
-    max_hp: 0
-    shield: 0
-    max_shield: 0
-    stamina: 0
-    movementSpeed: 0
-    protectiontime: 0
-    player_damage: 0
   HPbar: {fileID: 0}
   Shield_bar: {fileID: 0}
+  hp_count: {fileID: 0}
+  shield_count: {fileID: 0}
   m_name: 
   m_health: 0
   m_maxHealth: 0
@@ -682,7 +675,7 @@ GameObject:
   - component: {fileID: 4545488504576599970}
   - component: {fileID: 379188188232874329}
   - component: {fileID: 8377657067992975816}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: ItemGain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,12 +713,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3064091530bfc249b920073115b5cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupActivated: 0
   item_PickUp: {fileID: 0}
   actionText: {fileID: 0}
   player_postion: {fileID: 2530009614169799429}
   ingameUI: {fileID: 0}
   character: {fileID: 0}
   pickedUpConsumablePrefab: {fileID: 0}
+  currentConsumable: {fileID: 0}
+  currentBox: {fileID: 0}
+  item_Drop: {fileID: 0}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 13cde32102ef167459dc81e2b1cdcfc9
+guid: fa5f5746eb9748343b1bacc940badcf6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,127 +110,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Treasure box_0
+      name: Thorn Trap_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 32
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b913c1f2d24e2fc49bdf4ac1b69799ba
-      internalID: -269200580
+      spriteID: fb615aa7bbff38e47ad33b54620bc7f7
+      internalID: 687328421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Treasure box_1
+      name: Thorn Trap_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 64
         y: 0
-        width: 34
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beaef7b7063e9a74388a13fe4d43afc3
-      internalID: -758356716
+      spriteID: 88c32edd56bf2be42af0712e1e519143
+      internalID: 397779182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Treasure box_2
+      name: Thorn Trap_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 128
         y: 0
-        width: 34
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da6ade9accb369f439003bab2397d1c4
-      internalID: -1922572904
+      spriteID: 3390d6d90628cbf42aafcff79549d2a9
+      internalID: -347152436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Treasure box_3
+      name: Thorn Trap_3
       rect:
         serializedVersion: 2
-        x: 102
+        x: 192
         y: 0
-        width: 34
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9f86a76b3aeb224b996e290a4a4c88a
-      internalID: 1163894791
+      spriteID: 9b70006fc9d0a604fa00be83445d89dc
+      internalID: -2008025146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Treasure box_4
+      name: Thorn Trap_4
       rect:
         serializedVersion: 2
-        x: 136
+        x: 256
         y: 0
-        width: 34
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ca854b67ad99ec4195c4306c4a819d4
-      internalID: 652726043
+      spriteID: 0efcc6496b42cb947bf7214bc10442a3
+      internalID: 862059721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Treasure box_5
+      name: Thorn Trap_5
       rect:
         serializedVersion: 2
-        x: 170
+        x: 320
         y: 0
-        width: 34
-        height: 39
+        width: 64
+        height: 70
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d616fda819b83f4993b45d7b0572c38
-      internalID: 1591400119
+      spriteID: c5063f9fa54e89246a8c84ea000e935c
+      internalID: 1833826808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thorn Trap_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a563b0e4c0f58e459f4511403778938
+      internalID: 409883358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thorn Trap_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce9514bdca96732468ea4a294e712da4
+      internalID: -1207710086
       vertices: []
       indices: 
       edges: []
@@ -246,12 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Treasure box_0: -269200580
-      Treasure box_1: -758356716
-      Treasure box_2: -1922572904
-      Treasure box_3: 1163894791
-      Treasure box_4: 652726043
-      Treasure box_5: 1591400119
+      Thorn Trap_0: 687328421
+      Thorn Trap_1: 397779182
+      Thorn Trap_2: -347152436
+      Thorn Trap_3: -2008025146
+      Thorn Trap_4: 862059721
+      Thorn Trap_5: 1833826808
+      Thorn Trap_6: 409883358
+      Thorn Trap_7: -1207710086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
