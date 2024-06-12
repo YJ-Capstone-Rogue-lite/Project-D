@@ -11,7 +11,7 @@ public class PlayerChar : Character
 
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
-    private SpriteRenderer bodyRender;
+    public SpriteRenderer bodyRender;
     private int originalSortingOrder;
     private float rollDuration = 0.7f; //구르는시간
     private float stamina_recovery_value  = 25;//스태미나 재충전 값
@@ -143,6 +143,9 @@ public class PlayerChar : Character
 
 
     }
+
+  
+
 
 
 

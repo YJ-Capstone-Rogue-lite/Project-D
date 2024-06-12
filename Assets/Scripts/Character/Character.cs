@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
 
 
     // 무적 상태 여부를 나타내는 변수
-    private bool invincible = false;
+    public bool invincible = false;
 
     [Header("플레이어 스탯")]
     public string m_name;
@@ -97,15 +97,15 @@ public class Character : MonoBehaviour
     }
 
 
-    //protected virtual void OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
-    //    {
-    //        // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
-    //        Damaged(collider.GetComponent<DamageData>());
-    //        return;
-    //    }
-    //}
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+        {
+            // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
+            Damaged(collider.GetComponent<DamageData>());
+            return;
+        }
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -147,8 +147,10 @@ public class Character : MonoBehaviour
             if (m_health <= 0) // 체력이 음수가 되지 않도록 보정
             {
                 m_health = 0;
+                player_hpbar_update();
+
             }
-          
+
         }
 
         if (effectController != null)
@@ -171,10 +173,33 @@ public class Character : MonoBehaviour
         Debug.Log("피격 후 무적");
         // 무적 상태로 설정
         invincible = true;
+        StartCoroutine(playerBlink());
         yield return new WaitForSeconds(m_protectionTime); // 일정 시간 동안 대기
         // 무적 상태 해제
         invincible = false;
     }
+
+    IEnumerator playerBlink()
+    {
+        if (invincible)
+        {
+            // 깜빡이는 효과를 위해 while 루프 사용
+            float blinkInterval = 0.2f; // 각 깜빡이는 간격
+
+            while (invincible)
+            {
+                // 플레이어의 색상을 변경하여 깜빡이는 효과 생성
+                PlayerChar.single.bodyRender.material.color = new Color32(255, 255, 255, 180);
+                yield return new WaitForSeconds(blinkInterval);
+
+                PlayerChar.single.bodyRender.material.color = Color.white; // 기본 색상으로 돌아감
+                yield return new WaitForSeconds(blinkInterval);
+            }
+        }
+    }
+
+
+
     protected void player_die()
     {
         if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
