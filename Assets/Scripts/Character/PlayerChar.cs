@@ -74,13 +74,15 @@ public class PlayerChar : Character
             {
                 // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
                 Debug.Log("닿음");
-                bodyRender.sortingOrder = 0;
+                bodyRender.sortingOrder = -1;
+                bodyRender.sortingLayerName = "Wall";
             }
             // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
             else
             {
                 // 원래 sortingOrder 값을 복원합니다.
                 bodyRender.sortingOrder = originalSortingOrder;
+                bodyRender.sortingLayerName = "Player";
             }
         }
         
