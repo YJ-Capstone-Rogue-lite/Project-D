@@ -36,6 +36,8 @@ public class DataManager : MonoBehaviour
     public enum TEST { CHECK, CREATE, SAVE, LOAD };
     public string id;
     public string pw;
+
+    void OnApplicationQuit() => SaveGameData();
     
     public void CreateUser(string id, string pw, Action<bool> action)
     {
@@ -72,29 +74,26 @@ public class DataManager : MonoBehaviour
     }
 
     // 불러오기
-    public void LoadGameData() => StartCoroutine(LoadingData());
-    IEnumerator LoadingData()
+    public void LoadGameData()
     {
-        bool temp = false;
         StartCoroutine(UnityWebRequestGETTest(TEST.LOAD, (x) => {
-            if(x == "false") return;
             instance.data = JsonUtility.FromJson<PlayerData>(x);
-            temp = true;
+            if(x == "false")
+            {
+                string filePath = Application.persistentDataPath + "/" + GameDataFileName;
+                print(filePath);
+                // 저장된 게임이 있다면
+                if (File.Exists(filePath))
+                {
+                    // 저장된 파일 읽어오고 Json을 클래스 형식으로 전환해서 할당
+                    string FromJsonData = File.ReadAllText(filePath);
+                    data = JsonUtility.FromJson<PlayerData>(FromJsonData);
+                    print("불러오기 완료");
+                    // 불러온 데이터 출력
+                }
+            }
+            SaveGameData();
         }));
-
-        if(!temp) yield break;
-
-        string filePath = Application.persistentDataPath + "/" + GameDataFileName;
-        print(filePath);
-        // 저장된 게임이 있다면
-        if (File.Exists(filePath))
-        {
-            // 저장된 파일 읽어오고 Json을 클래스 형식으로 전환해서 할당
-            string FromJsonData = File.ReadAllText(filePath);
-            data = JsonUtility.FromJson<PlayerData>(FromJsonData);
-            print("불러오기 완료");
-            // 불러온 데이터 출력
-        }
     }
 
     // 저장하기
