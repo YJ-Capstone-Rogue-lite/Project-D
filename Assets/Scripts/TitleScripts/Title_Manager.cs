@@ -37,6 +37,7 @@ public class Title_Manager : LoginData
     [SerializeField] private TMP_Text popup_Text;
     [SerializeField] private TMP_Text login_popup_Text;
 
+    [SerializeField] private GameObject Web_Waitting;
 
     private void Start()
     {
@@ -170,6 +171,7 @@ public class Title_Manager : LoginData
     }
     public void Login()
     {
+        Web_Waitting.SetActive(true);
         DataManager.Instance.LoginUser(login_ID.text, login_PW.text, (x) => {
         // if (login_ID.text == playerdata.player_ID && login_PW.text == playerdata.player_PW)
             if(x)
@@ -183,6 +185,7 @@ public class Title_Manager : LoginData
                 login_popup.SetActive(true);
                 login_popup_Text.text = "로그인 실패";
             }
+            Web_Waitting.SetActive(false);
         });
         // else if (login_ID.text != playerdata.player_ID)
         // {
@@ -208,6 +211,7 @@ public class Title_Manager : LoginData
         playerdata.player_ID = createID.text;
         if (createPW.text == checkPW.text)
         {
+            Web_Waitting.SetActive(true);
             playerdata.player_PW = createPW.text;
             DataManager.Instance.CreateUser(createID.text, createPW.text, (x) => {
                 if(x)
@@ -220,6 +224,7 @@ public class Title_Manager : LoginData
                     login_popup.SetActive(true);
                     login_popup_Text.text = "생성 실패";
                 }
+                Web_Waitting.SetActive(false);
             });
         }
         else
