@@ -90,6 +90,8 @@ public class Character : MonoBehaviour
         m_maxShield = playerdata.player_maxshield;
         m_movementSpeed = playerdata.player_movespeed;
         m_protectionTime = playerdata.player_protectionTime;
+        m_stamina = playerdata.player_stamina;
+        m_maxStamina = playerdata.player_maxstamina;
         m_damage = charStateData.player_damage;
         Shield_bar = GameObject.Find("Shield_Bar_Img");
         HPbar = GameObject.Find("HP_Bar_Img");

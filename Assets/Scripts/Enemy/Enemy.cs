@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     private float currentAngle = 0;
     private bool Attack_the_Player = false;
     [SerializeField] GameObject hit;
+    private int originalSortingOrder;
 
     //몬스터 hpbar
     public GameObject enemy_hp_bar;
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         enemy_hp_bar = GameObject.Find("enemy_hp_bar");
+        originalSortingOrder = spriteRenderer.sortingOrder;
 
     }
 
@@ -64,6 +66,25 @@ public class Enemy : MonoBehaviour
         Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // 적의 현재 위치와 목표 위치 사이에 빨간색 선을 그림
 
         Enemy_die(); // 적의 사망 체크
+        Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
+        RaycastHit2D[] hit = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider != null && !hit[i].collider.isTrigger)
+            {
+                // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
+                Debug.Log("닿음");
+                spriteRenderer.sortingOrder = -1;
+                spriteRenderer.sortingLayerName = "Wall";
+            }
+            // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
+            else
+            {
+                // 원래 sortingOrder 값을 복원합니다.
+                spriteRenderer.sortingOrder = originalSortingOrder;
+                spriteRenderer.sortingLayerName = "Enemy";
+            }
+        }
     }
 
     // 무작위로 이동하는 코루틴
@@ -160,12 +181,11 @@ public class Enemy : MonoBehaviour
             enemy_rb.isKinematic = true;
             StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
-        else if (collision.gameObject.CompareTag("Wall")) // 벽에 접촉했을 때
+        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때
         {
             // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
             ChooseNewEndPoint();
         }
-        
     }
     
     private void OnTriggerEnter2D(Collider2D collider)

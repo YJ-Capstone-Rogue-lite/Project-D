@@ -28,6 +28,10 @@ public class PlayerData
     // 플레이어 이동 속도
     public int player_movespeed = 5;
 
+    public int player_stamina = 100;
+
+    public int player_maxstamina = 100;
+
     // 플레이어 보호 시간
     public float player_protectionTime = 0.2f;
 }

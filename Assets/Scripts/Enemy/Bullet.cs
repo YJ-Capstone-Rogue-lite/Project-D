@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
 
         }
 
-        else if(other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("NPC")) //Wall에 접촉하고 아이템 타입이 스나이퍼가인 경우에
+        else if(other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Object")) //Wall에 접촉하고 아이템 타입이 스나이퍼가인 경우에
         {
             Destroy(gameObject);
             Debug.Log("총알을 지움!");
