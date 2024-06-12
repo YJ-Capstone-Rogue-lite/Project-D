@@ -36,8 +36,6 @@ public class DataManager : MonoBehaviour
     public enum TEST { CHECK, CREATE, SAVE, LOAD };
     public string id;
     public string pw;
-
-    public bool isWaitingRequest;
     
     public void CreateUser(string id, string pw, Action<bool> action)
     {
@@ -84,7 +82,6 @@ public class DataManager : MonoBehaviour
             temp = true;
         }));
 
-        yield return new WaitUntil(() => !isWaitingRequest);
         if(!temp) yield break;
 
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
@@ -129,8 +126,6 @@ public class DataManager : MonoBehaviour
 
     IEnumerator UnityWebRequestGETTest(TEST test, Action<string> action = null)
     {
-        if(isWaitingRequest) yield break;
-        isWaitingRequest = true;
         WWWForm form = new WWWForm();
         string url = "http://localhost:8181/ProjectD/";
         form.AddField("id", id);
@@ -166,6 +161,5 @@ public class DataManager : MonoBehaviour
         {
             Debug.LogError("WebRequestException: " + www.error);
         }
-        isWaitingRequest = false;
     }
 }

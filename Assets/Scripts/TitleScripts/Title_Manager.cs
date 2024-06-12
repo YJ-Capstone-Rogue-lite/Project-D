@@ -209,7 +209,7 @@ public class Title_Manager : LoginData
         if (createPW.text == checkPW.text)
         {
             playerdata.player_PW = createPW.text;
-            DataManager.Instance.LoginUser(createID.text, createPW.text, (x) => {
+            DataManager.Instance.CreateUser(createID.text, createPW.text, (x) => {
                 if(x)
                 {
                     sign_up_BG.SetActive(false);
