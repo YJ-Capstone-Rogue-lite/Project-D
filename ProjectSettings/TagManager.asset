@@ -16,6 +16,7 @@ TagManager:
   - Box
   - Object
   - object
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -53,9 +54,6 @@ TagManager:
   - name: map
     uniqueID: 2605215157
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: object
     uniqueID: 3648026545
     locked: 0
@@ -73,4 +71,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 731657329
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

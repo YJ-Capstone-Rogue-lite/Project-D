@@ -63,7 +63,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private Sprite emptyBox;
 
 
-    public TMP_Text enemyCountText; // UI Text를 연결할 변수
+    [SerializeField] private TMP_Text enemyCountText; // UI Text를 연결할 변수
 
 
     private void Start()
