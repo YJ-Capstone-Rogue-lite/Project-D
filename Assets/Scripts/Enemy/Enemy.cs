@@ -222,6 +222,7 @@ public class Enemy : MonoBehaviour
             targetTransform = null; // 타겟을 초기화
         }
     }
+
     // Circle Collider를 그리는 메서드
     void OnDrawGizmos()
     {
@@ -255,7 +256,8 @@ public class Enemy : MonoBehaviour
     {
         if (!Attack_the_Player)
         {
-            enemy_rb.velocity = Vector2.zero;
+            StopCoroutine(moveCoroutine);
+            enemy_rb.velocity = Vector2.zero; 
             Attack_the_Player = true;
             hit.SetActive(true);
             enemy_animator.SetBool("Attack", true);
@@ -266,6 +268,7 @@ public class Enemy : MonoBehaviour
         Attack_the_Player = false;
         hit.SetActive(false);
         enemy_animator.SetBool("Attack", false);
+        StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
     }
 
     private void Destroy_Enemy()

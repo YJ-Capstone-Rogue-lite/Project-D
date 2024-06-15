@@ -213,12 +213,10 @@ public class PlayerChar : Character
         {
             stamina_bar.gameObject.SetActive(true); //스태미나 바 활성화
             stamina_bar.fillAmount = m_stamina/m_maxStamina;
-            Debug.Log("스태미나 바 활성화");
         }
         else
         {
             stamina_bar.gameObject.SetActive(false); //아니면 비활성화
-            Debug.Log("스태미나 바 비활성화");
         }
     }
 

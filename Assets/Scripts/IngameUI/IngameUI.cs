@@ -31,6 +31,7 @@ public class IngameUI : MonoBehaviour
     public bool SubWeapon = true; // true면 MainWeapon false면 SubWeapon
     public bool openOption = true;
     public bool openInventory = true;
+    public bool minimap_state = false; //false면 미니맵 off true면 미니맵 on
 
 
     [Header("재장전 이미지 오브젝트")]
@@ -55,6 +56,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject ingameOption;
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
+    [SerializeField] private GameObject minimap_camera;
 
     [SerializeField] private Image fullScreen_Box;
     [SerializeField] private Image windowScreen_Box;
@@ -84,8 +86,8 @@ public class IngameUI : MonoBehaviour
         //플레이어 따라다니는 재장전 애니메이션 이미지
         reload_img.transform.position = Weapon_Slot.transform.position + new Vector3(0, 0, 0);
 
+        MinimapOn_off();
         enemy_count_update();
-
 
         if (Input.GetKeyDown(KeyCode.Tab)) //탭키를 눌렀을때
         {
@@ -222,6 +224,20 @@ public class IngameUI : MonoBehaviour
         inventory_slot.AddConsumableItem();//인벤 소비슬롯에 소비아이템 할당
         Debug.Log("인벤토리 열림");
 
+    }
+
+    public void MinimapOn_off()
+    {
+        if(!minimap_state && Input.GetButtonDown("Minimap"))
+        {
+            minimap_camera.SetActive(true);
+            minimap_state = true;
+        }
+        else if(minimap_state && Input.GetButtonDown("Minimap"))
+        {
+            minimap_camera.SetActive(false);
+            minimap_state = false;
+        }
     }
 
     public void enemy_count_update()

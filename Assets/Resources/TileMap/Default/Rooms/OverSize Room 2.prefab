@@ -4023,7 +4023,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689752139
-  m_SortingLayer: 1
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5171,7 +5171,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966960217
-  m_SortingLayer: 3
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5510,7 +5510,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingOrder
@@ -5778,7 +5778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269852075283426048, guid: 6210927ec5f06794ebb85c3bbcf5473f, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4269852075283426048, guid: 6210927ec5f06794ebb85c3bbcf5473f, type: 3}
       propertyPath: m_SortingOrder
@@ -6100,7 +6100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingOrder
@@ -6236,7 +6236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1731138405471039113, guid: e403a08bee8a2924e916176d64f83dc2, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1731138405471039113, guid: e403a08bee8a2924e916176d64f83dc2, type: 3}
       propertyPath: m_SortingOrder
@@ -6772,7 +6772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7013,7 +7013,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1726595940427148009, guid: 9441f059aa6f95b4bb5356789e4b4582, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1726595940427148009, guid: 9441f059aa6f95b4bb5356789e4b4582, type: 3}
       propertyPath: m_SortingLayerID
@@ -7145,7 +7145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingOrder
@@ -7347,7 +7347,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1726595940427148009, guid: 9441f059aa6f95b4bb5356789e4b4582, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1726595940427148009, guid: 9441f059aa6f95b4bb5356789e4b4582, type: 3}
       propertyPath: m_SortingLayerID
@@ -7417,7 +7417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2832645600769446268, guid: 41468297e8eaf264087b729ac556337e, type: 3}
       propertyPath: m_SortingOrder

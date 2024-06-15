@@ -37,7 +37,6 @@ public class Boss_Pig : MonoBehaviour
     private void Update()
     {
         Boss_Die();
-        Debug.DrawRay(boss_rb.position, Vector2.down, new Color(1, 0, 0));
         RaycastHit2D[] hit = Physics2D.RaycastAll(boss_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
         for (int i = 0; i < hit.Length; i++)
         {
@@ -98,8 +97,6 @@ public class Boss_Pig : MonoBehaviour
         currentAngle = Random.Range(0, 360);
         currentAngle = Mathf.Repeat(currentAngle, 360);
         endPosition = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
-
-        Debug.Log("New endPosition chosen: " + endPosition);
     }
 
     Vector3 Vector3FromAngle(float inputAngle)
@@ -110,7 +107,6 @@ public class Boss_Pig : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision detected with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
@@ -168,18 +164,5 @@ public class Boss_Pig : MonoBehaviour
     private void Destroy_Enemy()
     {
         Destroy(gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (circleCollider2D != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, circleCollider2D.radius);
-        }
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, endPosition);
-        Gizmos.DrawSphere(endPosition, 0.1f);
     }
 }
