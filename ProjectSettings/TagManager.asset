@@ -17,6 +17,7 @@ TagManager:
   - Object
   - object
   - NPC
+  - Boss
   layers:
   - Default
   - TransparentFX
