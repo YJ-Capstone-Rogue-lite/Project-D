@@ -73,7 +73,6 @@ public class Enemy : MonoBehaviour
             if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
             {
                 // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
-                Debug.Log("닿음");
                 spriteRenderer.sortingOrder = -1;
                 spriteRenderer.sortingLayerName = "Wall";
             }
@@ -164,7 +163,6 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision detected with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Bullet")) // 총알에 접촉했을 때
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
@@ -243,12 +241,12 @@ public class Enemy : MonoBehaviour
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
             enemy_animator.SetBool("State", false);
-            StopCoroutine(moveCoroutine);
+            if (moveCoroutine != null)
+                StopCoroutine(moveCoroutine);
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
             item_Drop.enemy_item_drop();
-
         }
     }
 
@@ -256,8 +254,7 @@ public class Enemy : MonoBehaviour
     {
         if (!Attack_the_Player)
         {
-            StopCoroutine(moveCoroutine);
-            enemy_rb.velocity = Vector2.zero; 
+            enemy_speed = 0;
             Attack_the_Player = true;
             enemy_animator.SetBool("Attack", true);
         }
@@ -270,6 +267,7 @@ public class Enemy : MonoBehaviour
     {
         Attack_the_Player = false;
         hit.SetActive(false);
+        enemy_speed = 3;
         enemy_animator.SetBool("Attack", false);
         StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
     }
