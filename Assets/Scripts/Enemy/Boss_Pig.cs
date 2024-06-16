@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class Boss_Pig : MonoBehaviour
     public Vector3 endPosition;
     public bool followPlayer;
     [SerializeField] private float find_Playersecond;
+    [SerializeField] GameObject hit;
 
     private CircleCollider2D circleCollider2D;
     private Animator Boss_anim;
@@ -30,7 +32,7 @@ public class Boss_Pig : MonoBehaviour
         Boss_anim = GetComponent<Animator>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        StartCoroutine(WanderRoutine());
+        moveCoroutine = StartCoroutine(WanderRoutine());
         originalSortingOrder = spriteRenderer.sortingOrder;
     }
 
@@ -144,21 +146,31 @@ public class Boss_Pig : MonoBehaviour
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1);
         }
     }
-
-    void Attack_of_Enemy()
+    public void Attack_of_Enemy()
     {
+        Debug.Log("공격");
         if (!Attack_the_Player)
         {
             boss_rb.velocity = Vector2.zero;
             Attack_the_Player = true;
             Boss_anim.SetBool("Attack", true);
+            if (moveCoroutine != null) // moveCoroutine이 null인지 확인
+            {
+                StopCoroutine(moveCoroutine);
+            }
         }
+    }
+    public void Damage_of_Boss()
+    {
+        hit.SetActive(true);
     }
 
     void End_Attack()
     {
         Attack_the_Player = false;
+        hit.SetActive(false);
         Boss_anim.SetBool("Attack", false);
+        moveCoroutine = StartCoroutine(WanderRoutine());  // 코루틴 재시작
     }
 
     private void Destroy_Enemy()

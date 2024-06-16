@@ -67,10 +67,10 @@ public class Enemy : MonoBehaviour
 
         Enemy_die(); // 적의 사망 체크
         Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
-        RaycastHit2D[] hit = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
-        for (int i = 0; i < hit.Length; i++)
+        RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
+        for (int i = 0; i < hit_ray.Length; i++)
         {
-            if (hit[i].collider != null && !hit[i].collider.isTrigger)
+            if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
             {
                 // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
                 Debug.Log("닿음");
@@ -259,9 +259,12 @@ public class Enemy : MonoBehaviour
             StopCoroutine(moveCoroutine);
             enemy_rb.velocity = Vector2.zero; 
             Attack_the_Player = true;
-            hit.SetActive(true);
             enemy_animator.SetBool("Attack", true);
         }
+    }
+    public void Damage_of_Enemy()
+    {
+        hit.SetActive(true);
     }
     void End_Attack() // 공격 애니메이션에 추가
     {
