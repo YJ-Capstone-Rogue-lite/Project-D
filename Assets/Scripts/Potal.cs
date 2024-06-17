@@ -31,7 +31,7 @@ public class Potal : MonoBehaviour
         if (isPlayerColliding && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("넘어간다~");
-            SceneManager.LoadScene("Ingame");
+            SceneManager.LoadScene("In_game");
         }
     }
 }

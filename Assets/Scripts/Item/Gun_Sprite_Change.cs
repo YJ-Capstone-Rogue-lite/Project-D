@@ -49,19 +49,23 @@ public class Gun_Sprite_Change : MonoBehaviour
                 SgSpriteRenderer1.enabled = true;
                 SgSpriteRenderer1.sprite = fire_Test.weapon.sprite;
             }
-            else
+            else if (fire_Test.weapon.weaponType == Weapon.WeaponType.Sniper_Rifle)
             {
                 PistolgunSpriteRenderer1.enabled = false; ;
                 ArSpriteRenderer1.enabled = false;
                 SgSpriteRenderer1.enabled = false;
                 SRSpriteRenderer1.enabled = true;
                 SRSpriteRenderer1.sprite = fire_Test.weapon.sprite;
-
+            }
+            else
+            {
+                PistolgunSpriteRenderer1.enabled = false; ;
+                ArSpriteRenderer1.enabled = false;
+                SgSpriteRenderer1.enabled = false;
+                SRSpriteRenderer1.enabled = false;
+                SRSpriteRenderer1.sprite = fire_Test.weapon.sprite;
             }
         }
     }
 
-
- 
-  
 }
