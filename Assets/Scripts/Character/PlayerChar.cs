@@ -67,20 +67,29 @@ public class PlayerChar : Character
             return;
         }
         Debug.DrawRay(player_Rb.position, Vector2.down, new Color(1, 0, 0));
-        RaycastHit2D [] hit = Physics2D.RaycastAll(player_Rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
+        RaycastHit2D [] hit = Physics2D.RaycastAll(player_Rb.position, Vector2.down, 1, LayerMask.GetMask("Wall","Object"));
         for(int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider != null && !hit[i].collider.isTrigger)
             {
-                // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
-                Debug.Log("닿음");
-                bodyRender.sortingOrder = -1;
-                bodyRender.sortingLayerName = "Wall";
+                if (hit[i].collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                {
+                    // 레이캐스트가 "Wall" 레이어에 닿은 경우
+                    Debug.Log("Wall에 닿음");
+                    bodyRender.sortingOrder = -1;
+                    bodyRender.sortingLayerName = "Wall";
+                }
+                else if (hit[i].collider.gameObject.layer == LayerMask.NameToLayer("Object"))
+                {
+                    // 레이캐스트가 "Object" 레이어에 닿은 경우
+                    Debug.Log("Object에 닿음");
+                    bodyRender.sortingOrder = -1;
+                    bodyRender.sortingLayerName = "Object";
+                }
             }
-            // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
             else
             {
-                // 원래 sortingOrder 값을 복원합니다.
+                // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
                 bodyRender.sortingOrder = originalSortingOrder;
                 bodyRender.sortingLayerName = "Player";
             }
