@@ -18,14 +18,7 @@ public class Item_interaction : MonoBehaviour
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
 
-    private void Start()
-    {
-        // actionText를 찾아서 초기화합니다. 예를 들어, 해당 텍스트는 같은 게임 오브젝트 내에 있을 수 있습니다.
-        actionText = GameObject.Find("actionText").GetComponent<TMP_Text>();
-        // actionText를 비활성화합니다.
-        actionText.gameObject.SetActive(false);
 
-    }
 
     private void Awake()
     {
@@ -33,6 +26,25 @@ public class Item_interaction : MonoBehaviour
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
         item_Drop = FindAnyObjectByType<Item_drop>();
+
+        // Start 메서드에서 actionText를 초기화합니다.
+        StartCoroutine(FindActionText());
+    }
+    private IEnumerator FindActionText()
+    {
+        while (actionText == null)
+        {
+            actionText = GameObject.Find("actionText")?.GetComponent<TMP_Text>();
+            if (actionText != null)
+            {
+                actionText.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.LogWarning("actionText를 찾을 수 없습니다. actionText가 씬에 있는지 확인하세요.");
+            }
+            yield return null; // 다음 프레임까지 대기
+        }
     }
 
     private void Update()
@@ -285,6 +297,8 @@ public class Item_interaction : MonoBehaviour
 
     private IEnumerator DelayedItemDrop()
     {
+        item_Drop = FindAnyObjectByType<Item_drop>();
+
         yield return new WaitForSeconds(0.35f); // 0.초 대기
         item_Drop.Box_Open_Item_Drop(); // 아이템 드롭 실행
     }

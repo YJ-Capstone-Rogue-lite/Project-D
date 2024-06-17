@@ -16,6 +16,12 @@ public class Item_drop : MonoBehaviour
     public float floatingDuration = 1.0f; // 위아래로 움직이는 시간
     public float delayBeforeFloating = 0.7f; // 움직이기 전 대기 시간
 
+    private void Awake()
+    {
+        item_interaction = FindAnyObjectByType<Item_interaction>();
+
+    }
+
     //몬스터가 죽으면 일정 확률로 포션 또는 소비아이템 드랍
     public void enemy_item_drop()
     {

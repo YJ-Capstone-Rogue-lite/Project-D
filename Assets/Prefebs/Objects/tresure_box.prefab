@@ -166,7 +166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConsumableItem_drop_prefeb: []
-  Weapon_drop_prefeb: []
+  Weapon_drop_prefeb:
+  - {fileID: 2379812772196415641, guid: 62054b25b2679e6469e690b73fcd328e, type: 3}
+  - {fileID: 5879571492669396754, guid: 81a6b88ac46396f428d7fd05d8074b54, type: 3}
+  - {fileID: 3285234415937654582, guid: 1c488a53772fd8f4db8778e51dc4fb0d, type: 3}
+  - {fileID: 2535805243376421247, guid: 2ffa9eee37d4e844eb267600a1c32e75, type: 3}
   dropChance: 0.5
   item_interaction: {fileID: 0}
   floatSpeed: 4
