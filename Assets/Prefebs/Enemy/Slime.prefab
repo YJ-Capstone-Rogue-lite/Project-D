@@ -142,7 +142,7 @@ MonoBehaviour:
   followPlayer: 1
   find_Playersecond: 5
   hit: {fileID: 2637716999783611454}
-  enemy_hp_bar: {fileID: 0}
+  enemy_hp_bar: {fileID: 8658236728831378350}
   item_Drop: {fileID: 3740784252326495083}
 --- !u!95 &1408360845080943993
 Animator:

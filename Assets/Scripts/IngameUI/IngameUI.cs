@@ -40,6 +40,8 @@ public class IngameUI : MonoBehaviour
 
     [Header("인벤토리 관련")]
     public GameObject inv_slot;
+    public GameObject left_inv;
+    public GameObject right_inv;
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
 
@@ -193,16 +195,25 @@ public class IngameUI : MonoBehaviour
     }
     public void inventory_open() //탭키를 눌렀을때
     {
-        if (inv_slot_active_bool == false) //만약 인벤슬롯의 불 값이 false면
+        if (!inv_slot_active_bool) //만약 인벤슬롯의 불 값이 false면
         {
-            inv_refresh(); //인벤토리 갱신
+            inv_slot.SetActive(true); //인벤슬롯 활성화
+            StartCoroutine(InvRefreshCoroutine());
         }
-        else
+        else if (inv_slot_active_bool)
         {
             inv_slot.SetActive(false); //false가 아니라면 인벤토리 슬롯 끄기
             inv_slot_active_bool = false; //인벤슬롯 끄고 다시 false로 바꿔주기
+            left_inv.SetActive(false);
+            right_inv.SetActive(false);
         }
     }
+    private IEnumerator InvRefreshCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(0.6f); // 실제 시간 기준으로 대기
+        inv_refresh(); // 인벤토리 갱신 메서드 호출
+    }
+
     public void option_open()
     {
         if (openOption)
@@ -218,12 +229,12 @@ public class IngameUI : MonoBehaviour
     }
     public void inv_refresh() //인벤토리 갱신
     {
-        inv_slot.SetActive(true); //인벤슬롯 활성화
+        left_inv.SetActive(true);
+        right_inv.SetActive(true);
         inv_slot_active_bool = true; //불값 true
         inventory_slot.AddWeapon(); //인벤 슬롯에 무기 할당 코드
         inventory_slot.AddConsumableItem();//인벤 소비슬롯에 소비아이템 할당
         Debug.Log("인벤토리 열림");
-
     }
 
     public void MinimapOn_off()
