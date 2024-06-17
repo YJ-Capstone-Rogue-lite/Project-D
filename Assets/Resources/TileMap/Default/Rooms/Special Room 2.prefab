@@ -17496,7 +17496,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1689752139
-  m_SortingLayer: -7
+  m_SortingLayer: -8
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -21417,7 +21417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_Name
-      value: Minimap_Player
+      value: Boss_mini
       objectReference: {fileID: 0}
     - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_Layer
@@ -21425,11 +21425,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2776529658185099158, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.6666665
       objectReference: {fileID: 0}
     - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25
+      value: 22.44
       objectReference: {fileID: 0}
     - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21467,6 +21479,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5229500750350020703, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675086599339128461, guid: 1f6f8fa22596de14283b186170ddb471, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5844eac874aa2814ba4546df8da873ea, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

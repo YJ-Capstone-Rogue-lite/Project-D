@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager Instance { get => instance; }
+    public int enemyDestoryCount;
+
     public Camera mini_camera;
     public bool isPlaying = true;
     Room room;
@@ -15,7 +17,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()

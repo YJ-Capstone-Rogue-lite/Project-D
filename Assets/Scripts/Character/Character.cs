@@ -232,6 +232,7 @@ public class Character : MonoBehaviour
         if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
         {
             player_anim.SetBool("State", false);
+            m_movementSpeed = 0;
             Debug.Log("플레이어 사망");
         }
     }

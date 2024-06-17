@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
 
+        GameManager.Instance.enemyDestoryCount = 0;
+
     }
 
     private void Update()
@@ -240,12 +242,15 @@ public class Enemy : MonoBehaviour
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
             enemy_animator.SetBool("State", false);
+            enemy_speed = 0;
             if (moveCoroutine != null)
                 StopCoroutine(moveCoroutine);
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
             item_Drop.enemy_item_drop();
+
+            GameManager.Instance.enemyDestoryCount += 1;
         }
     }
 

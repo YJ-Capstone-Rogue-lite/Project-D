@@ -104,6 +104,7 @@ public class DataManager : MonoBehaviour
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
         // 이미 저장된 파일이 있다면 덮어쓰고, 없다면 새로 만들어서 저장
+
         File.WriteAllText(filePath, ToJsonData);
         // 올바르게 저장됐는지 확인 (자유롭게 변형)
         print("저장 완료");

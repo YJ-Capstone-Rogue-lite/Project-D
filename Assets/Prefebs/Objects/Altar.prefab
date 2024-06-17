@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2777211330317068267}
   - component: {fileID: 6660222355172325587}
   - component: {fileID: 5489774182093973274}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Altar
   m_TagString: object
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -646940751
-  m_SortingLayer: 2
+  m_SortingLayer: -6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cb7477c92cc36d846b5b67d48f3cefad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

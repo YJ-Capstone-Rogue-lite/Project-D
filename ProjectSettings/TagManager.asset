@@ -28,7 +28,7 @@ TagManager:
   - Minimap
   - Wall
   - Map
-  - 
+  - Object
   - 
   - 
   - 
@@ -58,7 +58,7 @@ TagManager:
   - name: Trap
     uniqueID: 2655481787
     locked: 0
-  - name: object
+  - name: Object
     uniqueID: 3648026545
     locked: 0
   - name: Wall
