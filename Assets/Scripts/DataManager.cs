@@ -140,7 +140,7 @@ public class DataManager : MonoBehaviour
     IEnumerator UnityWebRequestGETTest(TEST test, Action<string> action = null)
     {
         WWWForm form = new WWWForm();
-        string url = "http://localhost:8181/ProjectD/";
+        string url = "http://www.sonsejun.duckdns.org:8181/ProjectD/";
         form.AddField("id", id);
         form.AddField("pw", pw);
         form.AddField("playerdata", JsonUtility.ToJson(DataManager.Instance.data));

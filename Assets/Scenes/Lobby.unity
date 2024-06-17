@@ -2740,6 +2740,8 @@ MonoBehaviour:
   option_popup: {fileID: 166252171}
   quit_popup: {fileID: 289922391}
   minimap_camera: {fileID: 1203457794}
+  mainWeapon: {fileID: 2051429469}
+  subWeapon: {fileID: 737045483}
   fullScreen_Box: {fileID: 928327438}
   windowScreen_Box: {fileID: 86969583}
   checkBox: {fileID: 21300000, guid: 420aadf27c0b51f47861047973a664c5, type: 3}

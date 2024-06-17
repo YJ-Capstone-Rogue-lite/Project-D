@@ -22,8 +22,10 @@ public class IngameUI : MonoBehaviour
     public Image sub_slot_sprite;
 
     [Header("무기 슬롯 교체 애니메이션")]
-    public Animator MainWeapon_Swap;
-    public Animator SubWeapon_Swap;
+    [SerializeField]
+    private Animator MainWeapon_Swap;
+    [SerializeField]
+    private Animator SubWeapon_Swap;
 
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯 이미지
@@ -68,6 +70,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
     [SerializeField] private GameObject minimap_camera;
+    [SerializeField] private GameObject mainWeapon;
+    [SerializeField] private GameObject subWeapon;
 
     [SerializeField] private Image fullScreen_Box;
     [SerializeField] private Image windowScreen_Box;
@@ -89,7 +93,8 @@ public class IngameUI : MonoBehaviour
         inv_slot_active_bool = false;
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
-
+        MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
+        SubWeapon_Swap = subWeapon.GetComponent<Animator>();
         // 추가 카메라 설정
         screenshotCamera.enabled = false;
         renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
