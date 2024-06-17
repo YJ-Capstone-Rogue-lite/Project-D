@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("hit");
-        if (other.gameObject.CompareTag("Enemy") && (weapon.weaponType != Weapon.WeaponType.Sniper_Rifle) || other.gameObject.CompareTag("Boss") && (weapon.weaponType != Weapon.WeaponType.Sniper_Rifle)) //Enemy에 접촉하고 아이템 타입이 스나이퍼가 아닌 경우에
+        if (other.gameObject.CompareTag("Enemy") && (weapon.weaponType != Weapon.WeaponType.Sniper_Rifle) || other.gameObject.CompareTag("Boss")) //Enemy에 접촉하고 아이템 타입이 스나이퍼가 아닌 경우에
         {
             Destroy(gameObject);
             Debug.Log("총알을 지움!");

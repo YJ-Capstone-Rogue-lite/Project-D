@@ -8245,6 +8245,8 @@ MonoBehaviour:
   option_popup: {fileID: 1650184529}
   quit_popup: {fileID: 1008832545}
   minimap_camera: {fileID: 2101898435}
+  mainWeapon: {fileID: 0}
+  subWeapon: {fileID: 0}
   fullScreen_Box: {fileID: 1703680976}
   windowScreen_Box: {fileID: 1390164987}
   checkBox: {fileID: 21300000, guid: 420aadf27c0b51f47861047973a664c5, type: 3}
@@ -8460,7 +8462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2101898436
 Transform:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ public class Character : MonoBehaviour
 {
     public static Character charsingle;
     private bool player_state = true;
+    [SerializeField] private GameObject hit_sound;
 
-    
     // 캐릭터의 효과를 관리하는 컨트롤러
     [SerializeField]
     private EffectController effectController;
@@ -204,12 +204,14 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(m_protectionTime); // 일정 시간 동안 대기
         // 무적 상태 해제
         invincible = false;
+        hit_sound.SetActive(false);
     }
 
     IEnumerator playerBlink()
     {
         if (invincible)
         {
+            hit_sound.SetActive(true);
             // 깜빡이는 효과를 위해 while 루프 사용
             float blinkInterval = 0.2f; // 각 깜빡이는 간격
 
