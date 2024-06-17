@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d44939ca98b3eb74a8caeb91716ea53d
+guid: e4fbf6b2cd89c4749b2f26d1fb431e98
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,81 +93,47 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Handgun_0
+      name: Untitled (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 22
-        height: 13
-      alignment: 9
-      pivot: {x: 0.5, y: 0.69}
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0dd33f381b5c3c4e88025d04b0336e4
-      internalID: 1706657260
+      spriteID: 46b537827f582904fb7dbf9878c4ba3f
+      internalID: -1549247009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Handgun_1
+      name: Untitled (1)_1
       rect:
         serializedVersion: 2
-        x: 22
+        x: 16
         y: 0
-        width: 22
-        height: 13
-      alignment: 9
-      pivot: {x: 0.5, y: 0.69}
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65037713ac2cde349a307500924e1248
-      internalID: 686608153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Handgun_2
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 0
-        width: 22
-        height: 13
-      alignment: 9
-      pivot: {x: 0.5, y: 0.69}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8063c6f50273c344a8104e33d08d1c9
-      internalID: 452904939
+      spriteID: 92baca78c55175b4187674c2d6a26f06
+      internalID: 1266747337
       vertices: []
       indices: 
       edges: []
@@ -176,16 +142,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Handgun_0: 1706657260
-      Handgun_1: 686608153
-      Handgun_2: 452904939
+      Untitled (1)_0: -1549247009
+      Untitled (1)_1: 1266747337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
