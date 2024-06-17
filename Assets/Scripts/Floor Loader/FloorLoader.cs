@@ -35,7 +35,8 @@ public partial class FloorLoader : MonoBehaviour
 
     [SerializeField] private TileBase[]                 floorTiles;
     [SerializeField] private TileBase[]                 doorTiles;
-    private Queue<(Tilemap, Vector3Int, TileBase)>      waittingDoorQueue       = new();
+    [SerializeField] private TileBase[]                 closeDoorTiles;
+    private Queue<(Tilemap, Vector3Int, TileBase, TileBase)>      waittingDoorQueue       = new();
 
     private class Point : IPoint
     {
@@ -86,8 +87,8 @@ public partial class FloorLoader : MonoBehaviour
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
 
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[0]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[0], closeDoorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[0], closeDoorTiles[0]));
         });
         RoomAction.Add(1, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-4, 0), floorTiles[0]);
@@ -96,8 +97,8 @@ public partial class FloorLoader : MonoBehaviour
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), null);
 
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTiles[1]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), doorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-6, 0), doorTiles[1], closeDoorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+0, -(x*roomSize_Height)-5, 0), doorTiles[1], closeDoorTiles[1]));
         });
         RoomAction.Add(2, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-4, 0), floorTiles[0]);
@@ -106,8 +107,8 @@ public partial class FloorLoader : MonoBehaviour
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), null);
 
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTiles[1]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), doorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-6, 0), doorTiles[1], closeDoorTiles[1]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+15, -(x*roomSize_Height)-5, 0), doorTiles[1], closeDoorTiles[1]));
         });
         RoomAction.Add(3, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-11, 0), floorTiles[3]);
@@ -116,8 +117,8 @@ public partial class FloorLoader : MonoBehaviour
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), null);
 
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTiles[0]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-11, 0), doorTiles[0], closeDoorTiles[0]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-11, 0), doorTiles[0], closeDoorTiles[0]));
         });
         RoomAction.Add(4, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-1, 0), floorTiles[0]);
@@ -130,8 +131,8 @@ public partial class FloorLoader : MonoBehaviour
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)-1, 0), null);
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)-1, 0), null);
 
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[2]));
-            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[2]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[2], closeDoorTiles[2]));
+            waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[2], closeDoorTiles[2]));
         });
     }
 
@@ -408,6 +409,7 @@ public partial class FloorLoader : MonoBehaviour
             var temp = waittingDoorQueue.Dequeue();
             Door door = temp.Item1.gameObject.AddComponent<Door>();
             door.doorTile = temp.Item3;
+            door.closeDoorTile = temp.Item4;
             door.vector = temp.Item2;
             temp.Item1.gameObject.transform.parent = temp.Item1.gameObject.transform;
         }

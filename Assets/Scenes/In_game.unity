@@ -5698,9 +5698,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 145ffd787f895fd448c547f49a737e22, type: 2}
   - {fileID: 11400000, guid: 8bc24871f67afca48af7d31733434624, type: 2}
   doorTiles:
-  - {fileID: 11400000, guid: adeca3d6218ad974ab04df21229385da, type: 2}
-  - {fileID: 11400000, guid: adeca3d6218ad974ab04df21229385da, type: 2}
-  - {fileID: 11400000, guid: adeca3d6218ad974ab04df21229385da, type: 2}
+  - {fileID: 11400000, guid: 583ca22ff2d72ec4d9d5fe7f5e293f5b, type: 2}
+  - {fileID: 11400000, guid: 285a1f7f8fc91fe45a13d845c6c08367, type: 2}
+  - {fileID: 11400000, guid: efa76c5b02311aa4a873ffa0abac84b5, type: 2}
+  closeDoorTiles:
+  - {fileID: 11400000, guid: 670566a32d0e6924fb27185546f9e89e, type: 2}
+  - {fileID: 11400000, guid: 5ed7c6fe769bbd947866690084e00afb, type: 2}
+  - {fileID: 11400000, guid: bb0519b98d542214ea25d34ba76327ed, type: 2}
 --- !u!1 &1688702596
 GameObject:
   m_ObjectHideFlags: 0
