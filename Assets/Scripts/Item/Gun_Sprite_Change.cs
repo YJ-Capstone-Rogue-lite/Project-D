@@ -21,36 +21,40 @@ public class Gun_Sprite_Change : MonoBehaviour
         {
             if (fire_Test.weapon.weaponType == Weapon.WeaponType.Pistol) // 무기타입이 권총일경우
             {
-                SgSpriteRenderer1.sprite = null; //먼저 다른 총들 스프라이트 없애버리고
-                ArSpriteRenderer1.sprite = null;
-                SRSpriteRenderer1.sprite = null;
+                SgSpriteRenderer1.enabled = false; //먼저 다른 총들 스프라이트 없애버리고
+                ArSpriteRenderer1.enabled = false;
+                SRSpriteRenderer1.enabled = false;
                 // 권총의 스프라이트를 현재 활성화된 슬롯 데이터의 스프라이트로 설정합니다.
+                PistolgunSpriteRenderer1.enabled = true;
                 PistolgunSpriteRenderer1.sprite = fire_Test.weapon.sprite;
 
             }
 
             else if (fire_Test.weapon.weaponType == Weapon.WeaponType.Assaultt_Rifle)
             {
-                SRSpriteRenderer1.sprite = null;
-                PistolgunSpriteRenderer1.sprite = null;
-                SgSpriteRenderer1.sprite = null;
+                SRSpriteRenderer1.enabled = false;
+                PistolgunSpriteRenderer1.enabled = false;
+                SgSpriteRenderer1.enabled = false;
                 // 총의 스프라이트를 현재 활성화된 슬롯 데이터의 스프라이트로 설정합니다.
+                ArSpriteRenderer1.enabled = true;
                 ArSpriteRenderer1.sprite = fire_Test.weapon.sprite;
 
             }
             else if (fire_Test.weapon.weaponType == Weapon.WeaponType.Shoot_Gun)
             {
-                SRSpriteRenderer1.sprite = null;
-                PistolgunSpriteRenderer1.sprite = null;
-                ArSpriteRenderer1.sprite = null;
+                SRSpriteRenderer1.enabled = false; ;
+                PistolgunSpriteRenderer1.enabled = false;
+                ArSpriteRenderer1.enabled = false;
                 // 총의 스프라이트를 현재 활성화된 슬롯 데이터의 스프라이트로 설정합니다.
+                SgSpriteRenderer1.enabled = true;
                 SgSpriteRenderer1.sprite = fire_Test.weapon.sprite;
             }
             else
             {
-                PistolgunSpriteRenderer1.sprite = null;
-                ArSpriteRenderer1.sprite = null;
-                SgSpriteRenderer1 = null;
+                PistolgunSpriteRenderer1.enabled = false; ;
+                ArSpriteRenderer1.enabled = false;
+                SgSpriteRenderer1.enabled = false;
+                SRSpriteRenderer1.enabled = true;
                 SRSpriteRenderer1.sprite = fire_Test.weapon.sprite;
 
             }

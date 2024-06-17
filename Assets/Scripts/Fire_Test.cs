@@ -70,9 +70,10 @@ public class Fire_Test : MonoBehaviour
             var x = -(Mathf.Abs(angleX)/90-1);
             var y = -(Mathf.Abs(angleY)/90-1);
             r.localPosition = new Vector3(Mathf.Clamp(x, -0.5f, 0.5f), y);
-        }
-        All_Shooting_Code();
 
+        }
+
+        All_Shooting_Code();
     }
 
 
@@ -105,6 +106,7 @@ public class Fire_Test : MonoBehaviour
         else
         {
             fireTimer -= Time.deltaTime; // 발사 타이머 감소
+
         }
     }
 
@@ -117,28 +119,28 @@ public class Fire_Test : MonoBehaviour
             var temp = Instantiate(Handgun_bulletPrefebs, PistolfiringPoint.position, PistolfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
             Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
-            shot_animator[3].SetBool("Shot", true);
+            shot_animator[3].SetTrigger("Shot");
         }
         else if (weapon.weaponType == Weapon.WeaponType.Assaultt_Rifle)
         {
             var temp = Instantiate(AR_bulletPrefebs, ARfiringPoint.position, ARfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
             Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
-            shot_animator[1].SetBool("Shot", true);
+            shot_animator[1].SetTrigger("Shot");
         }
         else
         {
             var temp = Instantiate(SR_bulletPrefebs, SRfiringPoint.position, SRfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
             Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
-            shot_animator[0].SetBool("Shot", true);
+            shot_animator[0].SetTrigger("Shot");
         }
     }
 
 
     private void Shoot_Gun_Shoot()
     {
-        shot_animator[2].SetBool("Shot", true);
+        shot_animator[2].SetTrigger("Shot");
         for (int i = 0; i < 5; i++)
         {   
             // 플레이어의 에임 방향을 기준으로 발사 각도 설정
