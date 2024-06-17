@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6246575370279518268}
   - component: {fileID: 1574923799939952889}
   - component: {fileID: 6883667718064668285}
+  - component: {fileID: 2802141133240746751}
   m_Layer: 3
   m_Name: Gun_SG (1)
   m_TagString: Untagged
@@ -441,6 +442,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 2072614061973302991}
   gun_anim: {fileID: 367681746698655017}
+--- !u!114 &2802141133240746751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072614061973302991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: f255919fba987b8419bf5bb6e434a7f6, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &2372127731870458215
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +503,9 @@ GameObject:
   - component: {fileID: 9038497741270039512}
   - component: {fileID: 5144176817245314020}
   - component: {fileID: 7588977539650931924}
+  - component: {fileID: -2070117442442743690}
+  - component: {fileID: -5864471566687087126}
+  - component: {fileID: 7635871741202637935}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -724,6 +742,126 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2070117442442743690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530009614169799429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0e1e71d98117e418c16a80318c6478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstep: {fileID: 8300000, guid: 614620f0202e13a4bba6fbb9aef263d0, type: 3}
+  startTime: 0.3
+  trimmedTime: 0.421078
+  footstepCount: 140
+--- !u!82 &-5864471566687087126
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530009614169799429}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &7635871741202637935
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530009614169799429}
+  m_Enabled: 1
 --- !u!1 &2946681694940175311
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +875,7 @@ GameObject:
   - component: {fileID: 8262015323131776367}
   - component: {fileID: 6003643006608991048}
   - component: {fileID: 3726181235910386913}
+  - component: {fileID: 1894100352800151219}
   m_Layer: 3
   m_Name: Gun_rifle
   m_TagString: Untagged
@@ -860,6 +999,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 2946681694940175311}
   gun_anim: {fileID: 6684508500683319184}
+--- !u!114 &1894100352800151219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946681694940175311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 489c772d1ac211941b56db3da5acdbe4, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &3187174333982480618
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +1026,7 @@ GameObject:
   - component: {fileID: 6996041058531841090}
   - component: {fileID: 8205776142221119520}
   - component: {fileID: 6080399910654415037}
+  - component: {fileID: 8860192575894908841}
   m_Layer: 3
   m_Name: Gun_sniper
   m_TagString: Untagged
@@ -996,6 +1150,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 3187174333982480618}
   gun_anim: {fileID: 3612831998195219226}
+--- !u!114 &8860192575894908841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3187174333982480618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 434a2e5133552fb4cbd8f0d4dfddc441, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &3459675826136575828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1333,7 @@ GameObject:
   - component: {fileID: 7875938006080753734}
   - component: {fileID: 8798805827985761773}
   - component: {fileID: 6513146185271578584}
+  - component: {fileID: 8652845055451336641}
   m_Layer: 3
   m_Name: Gun_rifle (1)
   m_TagString: Untagged
@@ -1288,6 +1457,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 5113809333216064391}
   gun_anim: {fileID: 4991919645233362210}
+--- !u!114 &8652845055451336641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113809333216064391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 489c772d1ac211941b56db3da5acdbe4, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &5168708267808769163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,6 +2019,7 @@ GameObject:
   - component: {fileID: 7111911424226416030}
   - component: {fileID: 8170060729036164044}
   - component: {fileID: 5583150691933539309}
+  - component: {fileID: 2191953047601704045}
   m_Layer: 3
   m_Name: Gun_SG
   m_TagString: Untagged
@@ -1959,6 +2143,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 7662420448433924169}
   gun_anim: {fileID: 4991645515309968862}
+--- !u!114 &2191953047601704045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662420448433924169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: f255919fba987b8419bf5bb6e434a7f6, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &8026177712577112447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2201,7 @@ GameObject:
   - component: {fileID: 6848487501809655813}
   - component: {fileID: 5083101891915188797}
   - component: {fileID: 5332349150291975937}
+  - component: {fileID: 8299288455894017517}
   m_Layer: 3
   m_Name: Gun_sniper (1)
   m_TagString: Untagged
@@ -2126,6 +2325,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 8174896020093302421}
   gun_anim: {fileID: 6974618561529774311}
+--- !u!114 &8299288455894017517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174896020093302421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 434a2e5133552fb4cbd8f0d4dfddc441, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &8342115624331183152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2564,7 @@ GameObject:
   - component: {fileID: 5756451166738661716}
   - component: {fileID: 7774016942707899204}
   - component: {fileID: 6657044106781734241}
+  - component: {fileID: 8769400874938392914}
   m_Layer: 3
   m_Name: Gun_pistol (1)
   m_TagString: Untagged
@@ -2474,6 +2688,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 286204437594533930}
   gun_anim: {fileID: 7774016942707899204}
+--- !u!114 &8769400874938392914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933176861304644676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 5250fa7ffcfcbc0499993551a236a504, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &9023294284379663249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2715,7 @@ GameObject:
   - component: {fileID: 8852524199952484245}
   - component: {fileID: 2637158906241418508}
   - component: {fileID: 9037434567375353411}
+  - component: {fileID: 4407189324866490255}
   m_Layer: 3
   m_Name: Gun_pistol
   m_TagString: Untagged
@@ -2610,6 +2839,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_Effect: {fileID: 9114044342611076760}
   gun_anim: {fileID: 2637158906241418508}
+--- !u!114 &4407189324866490255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023294284379663249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 5250fa7ffcfcbc0499993551a236a504, type: 3}
+  audioSource: {fileID: -5864471566687087126}
 --- !u!1 &9114044342611076760
 GameObject:
   m_ObjectHideFlags: 0

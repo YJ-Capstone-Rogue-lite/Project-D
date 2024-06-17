@@ -6,6 +6,9 @@ public class PlaySFX : MonoBehaviour
 {
     public AudioClip audioClip;
     public AudioSource audioSource;
-    private void Start() => audioSource = GetComponent<AudioSource>();
+    private void Start()
+    {
+        if(audioSource == null) audioSource = GetComponent<AudioSource>();
+    }
     public void Play() => audioSource.PlayOneShot(audioClip);
 }
