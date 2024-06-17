@@ -55,6 +55,9 @@ TagManager:
   - name: map
     uniqueID: 2605215157
     locked: 0
+  - name: Trap
+    uniqueID: 2655481787
+    locked: 0
   - name: object
     uniqueID: 3648026545
     locked: 0

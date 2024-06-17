@@ -18,7 +18,7 @@ public class Boss_Pig : MonoBehaviour
     public float enemy_speed = 3f;
     public float rotateSpeed = 0.25f;
     public float boss_HP = 1500;
-    public float max_enemy_hp = 1500;
+    public float max_boss_hp = 1500;
     public Vector3 endPosition;
     public bool followPlayer;
     [SerializeField] private float find_Playersecond;
@@ -39,6 +39,7 @@ public class Boss_Pig : MonoBehaviour
 
     public GameObject shockWaveObject; // 이펙트 프리팹
 
+    public GameObject boss_hp_bar;
     
 
     private void Start()
@@ -175,6 +176,7 @@ public class Boss_Pig : MonoBehaviour
             if (bullet == null)
                 return;
             boss_HP -= bullet.Damage;
+            BossHpBar_Update();
 
             boss_rb.velocity = Vector2.zero;
             boss_rb.angularVelocity = 0f;
@@ -268,6 +270,15 @@ public class Boss_Pig : MonoBehaviour
     {
         boss_anim.SetBool("Skill", false);
         shockWaveObject.SetActive(false);
+    }
+    public void BossHpBar_Update() // 체력 바 업데이트
+    {
+        Image boss_hp_bar_img = boss_hp_bar.GetComponent<Image>();
+        boss_hp_bar_img.fillAmount = boss_HP / max_boss_hp;
+        if (boss_HP <= 0)
+        {
+            boss_hp_bar.SetActive(false);
+        }
     }
 
 }

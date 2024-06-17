@@ -56,7 +56,6 @@ public class Enemy : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
-        enemy_hp_bar = GameObject.Find("enemy_hp_bar");
         originalSortingOrder = spriteRenderer.sortingOrder;
 
     }
