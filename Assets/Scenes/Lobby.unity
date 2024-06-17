@@ -1491,7 +1491,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1398778881}
         m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
         m_MethodName: WindowScreen_btn
         m_Mode: 1
@@ -2047,7 +2047,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1398778881}
         m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
         m_MethodName: FullScreen_Btn
         m_Mode: 1
@@ -6804,8 +6804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   Weapon_Slot: {fileID: 0}
-  buttonSound: {fileID: 0}
-  bookSound: {fileID: 0}
+  buttonSound: {fileID: 8300000, guid: 6de32e04ccbb2b9479dc69ed656947be, type: 3}
+  bookSound: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
   main_slot_sprite: {fileID: 102803649}
   sub_slot_sprite: {fileID: 1592348494}
   MainWeapon_Swap: {fileID: 870407482}
@@ -7907,9 +7907,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: setMusicVolume
+      - m_Target: {fileID: 1398778881}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8737,10 +8737,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: setMusicVolume
-        m_Mode: 4
+      - m_Target: {fileID: 1398778881}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
