@@ -289,15 +289,17 @@ public class IngameUI : MonoBehaviour
         // UI 텍스트 업데이트
         enemyCountText.text = enemyCount.ToString();
     }
+    
+
+    public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
+    public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
+    
     public void OnPlayerDeath()
     {
         // 추가 카메라 활성화 및 렌더링
         screenshotCamera.enabled = true;
         screenshotCamera.Render();
 
-    public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
-    public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
-}
         // Render Texture에서 Texture2D로 변환
         RenderTexture.active = renderTexture;
         screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
