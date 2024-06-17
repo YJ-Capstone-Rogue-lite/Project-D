@@ -87,7 +87,7 @@ public class Title_Manager : LoginData
         if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우
         {
             popUP.SetActive(true);
-            popup_Text.text = "Saved data is present. Do you want to clear it and proceed?";
+            popup_Text.text = "저장된 데이터가있습니다 데이터를 지우고 계속 하시겠습니까?";
         }
         else
         {
@@ -111,7 +111,7 @@ public class Title_Manager : LoginData
     {
         SoundManager.PlaySFX(buttonSound);
         popUP.SetActive(true);
-        popup_Text.text = "Are you sure you want to exit the game?";
+        popup_Text.text = "게임을 종료하시겠습니까?";
     }
 
     public void Close_OPtion_Btn()
@@ -130,11 +130,11 @@ public class Title_Manager : LoginData
     public void Yes_Btn()
     {
         SoundManager.PlaySFX(buttonSound);
-        if(popup_Text.text == "Are you sure you want to exit the game?")
+        if(popup_Text.text == "게임을 종료하시겠습니까?")
         {
             Application.Quit();
         }
-        else if(popup_Text.text == "Saved data is present. Do you want to clear it and proceed?")
+        else if(popup_Text.text == "저장된 데이터가있습니다 데이터를 지우고 계속 하시겠습니까?")
         {
             play_inGame();
         }
@@ -166,7 +166,7 @@ public class Title_Manager : LoginData
 
     public void play_inGame()
     {
-        SceneManager.LoadScene("In_game");
+        SceneManager.LoadScene("Lobby");
     }
 
     public void pressBtn()
