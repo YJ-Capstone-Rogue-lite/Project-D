@@ -7454,6 +7454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   Weapon_Slot: {fileID: 0}
+  buttonSound: {fileID: 8300000, guid: 6de32e04ccbb2b9479dc69ed656947be, type: 3}
+  bookSound: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
   main_slot_sprite: {fileID: 1785130103}
   sub_slot_sprite: {fileID: 2011943746}
   MainWeapon_Swap: {fileID: 482613118}

@@ -13,6 +13,10 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private Weapon_Slot Weapon_Slot;
 
 
+    [Header("SFX")]
+    public AudioClip buttonSound;
+    public AudioClip bookSound;
+
     [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
     public Image sub_slot_sprite;
@@ -155,16 +159,19 @@ public class IngameUI : MonoBehaviour
     }
     public void Resume_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         ingameOption.SetActive(false);
         openOption = true;
     }
     public void Option_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         option_popup.SetActive(true);
     }
 
     public void Cancle_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         option_popup.SetActive(false);
         quit_popup.SetActive(false);
 
@@ -172,6 +179,7 @@ public class IngameUI : MonoBehaviour
 
     public void FullScreen_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         fullScreen_Box.sprite = checkBox;
         windowScreen_Box.sprite = emptyBox;
 
@@ -180,6 +188,7 @@ public class IngameUI : MonoBehaviour
     }
     public void WindowScreen_btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         fullScreen_Box.sprite = emptyBox;
         windowScreen_Box.sprite = checkBox;
 
@@ -187,6 +196,7 @@ public class IngameUI : MonoBehaviour
     }
     public void Quit_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         quit_popup.SetActive(true);
     }
     public void QuitGame()
@@ -210,6 +220,7 @@ public class IngameUI : MonoBehaviour
     }
     private IEnumerator InvRefreshCoroutine()
     {
+        SoundManager.PlaySFX(bookSound);
         yield return new WaitForSecondsRealtime(0.6f); // 실제 시간 기준으로 대기
         inv_refresh(); // 인벤토리 갱신 메서드 호출
     }

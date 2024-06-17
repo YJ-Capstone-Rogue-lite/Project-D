@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Title_Manager : LoginData
 {
     [SerializeField] private AudioClip titleMusic;
+    [SerializeField] private AudioClip buttonSound;
     [SerializeField] private GameObject newGame;
     [SerializeField] private GameObject loadGame;
     [SerializeField] private GameObject option;
@@ -82,6 +83,7 @@ public class Title_Manager : LoginData
 
     public void Click_newGame()
     {
+        SoundManager.PlaySFX(buttonSound);
         if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우
         {
             popUP.SetActive(true);
@@ -95,22 +97,26 @@ public class Title_Manager : LoginData
 
     public void Click_loadGame()
     {
+        SoundManager.PlaySFX(buttonSound);
         play_inGame();// 인게임 씬으로 변경
     }
 
     public void Click_option()
     {
+        SoundManager.PlaySFX(buttonSound);
         option_Popup.SetActive(true);
     }
 
     public void Click_QuitGame()
     {
+        SoundManager.PlaySFX(buttonSound);
         popUP.SetActive(true);
         popup_Text.text = "Are you sure you want to exit the game?";
     }
 
     public void Close_OPtion_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         if(option_Popup.activeSelf == true)
         {
             option_Popup.SetActive(false);
@@ -123,6 +129,7 @@ public class Title_Manager : LoginData
 
     public void Yes_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         if(popup_Text.text == "Are you sure you want to exit the game?")
         {
             Application.Quit();
@@ -135,11 +142,13 @@ public class Title_Manager : LoginData
 
     public void quit_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         Application.Quit();
     }
 
     public void FullScreen_Btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         fullScreen_Box.sprite = checkBox;
         windowScreen_Box.sprite = emptyBox;
 
@@ -148,6 +157,7 @@ public class Title_Manager : LoginData
     }
     public void WindowScreen_btn()
     {
+        SoundManager.PlaySFX(buttonSound);
         fullScreen_Box.sprite = emptyBox;
         windowScreen_Box.sprite = checkBox;
 
@@ -161,6 +171,7 @@ public class Title_Manager : LoginData
 
     public void pressBtn()
     {
+        SoundManager.PlaySFX(buttonSound);
         pressBtnBG.SetActive(false);
         login_BG.SetActive(true);
     }
@@ -168,11 +179,13 @@ public class Title_Manager : LoginData
     //로그인
     public void SignUp()
     {
+        SoundManager.PlaySFX(buttonSound);
         sign_up_BG.SetActive(true);
         login_BG.SetActive(false);
     }
     public void Login()
     {
+        SoundManager.PlaySFX(buttonSound);
         Web_Waitting.SetActive(true);
         DataManager.Instance.LoginUser(login_ID.text, login_PW.text, (x) => {
         // if (login_ID.text == playerdata.player_ID && login_PW.text == playerdata.player_PW)
@@ -203,6 +216,7 @@ public class Title_Manager : LoginData
 
     public void Close_LoginPopUp()
     {
+        SoundManager.PlaySFX(buttonSound);
         Debug.Log("눌림");
         login_popup.SetActive(false);
     }
@@ -210,6 +224,7 @@ public class Title_Manager : LoginData
 
     public void CreateAccount()
     {
+        SoundManager.PlaySFX(buttonSound);
         playerdata.player_ID = createID.text;
         if (createPW.text == checkPW.text)
         {

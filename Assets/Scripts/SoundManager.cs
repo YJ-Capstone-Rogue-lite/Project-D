@@ -20,7 +20,6 @@ public class SoundManager : MonoBehaviour
                 instance = container.AddComponent(typeof(SoundManager)) as SoundManager;
                 DontDestroyOnLoad(container);
             }
-            Debug.Log(instance.gameObject.name);
             return instance;
         }
         private set => instance = value;

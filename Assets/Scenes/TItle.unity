@@ -2754,6 +2754,7 @@ MonoBehaviour:
   login_ID: {fileID: 1330056511}
   login_PW: {fileID: 1465653714}
   titleMusic: {fileID: 8300000, guid: aac8ac61531233146b91085814fa6e4b, type: 3}
+  buttonSound: {fileID: 8300000, guid: 6de32e04ccbb2b9479dc69ed656947be, type: 3}
   newGame: {fileID: 443149844}
   loadGame: {fileID: 75611029}
   option: {fileID: 1010716527}
