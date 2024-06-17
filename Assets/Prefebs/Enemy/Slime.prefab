@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3740784252326495083}
   - component: {fileID: 3042768072393564539}
   - component: {fileID: 3130439549480012488}
+  - component: {fileID: 219581706284057917}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -284,7 +285,7 @@ AudioSource:
   m_GameObject: {fileID: 1039019153509472436}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8572831652317543832, guid: ef4706b9e55b1f5478bfba24232268a4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -371,6 +372,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &219581706284057917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039019153509472436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89370a8d68d642141a4748af97ee477d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a5ddf8b699d58614e8a73aef34cc30dd, type: 3}
 --- !u!1 &2028621583532895664
 GameObject:
   m_ObjectHideFlags: 0

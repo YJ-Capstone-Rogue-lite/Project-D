@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlaySFX : MonoBehaviour
 {
     public AudioClip audioClip;
-    private AudioSource audioSource;
-    private void Start() => audioSource.PlayOneShot(audioClip);
+    public AudioSource audioSource;
+    private void Start() => audioSource = GetComponent<AudioSource>();
+    public void Play() => audioSource.PlayOneShot(audioClip);
 }
