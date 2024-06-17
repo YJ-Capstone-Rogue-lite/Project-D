@@ -271,6 +271,7 @@ public class IngameUI : MonoBehaviour
         enemyCountText.text = enemyCount.ToString();
     }
 
-
+    public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
+    public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
 }
 
