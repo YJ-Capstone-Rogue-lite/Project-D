@@ -7243,6 +7243,7 @@ MonoBehaviour:
   isPlaying: 1
   mini_camera_transform: {x: 0, y: 0, z: 0}
   playerIcon: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 2674dac3e4e4e0e4492a1d7751cb4c8e, type: 3}
 --- !u!1 &2057936257
 GameObject:
   m_ObjectHideFlags: 0

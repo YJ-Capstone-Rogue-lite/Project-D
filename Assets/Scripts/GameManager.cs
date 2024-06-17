@@ -11,10 +11,16 @@ public class GameManager : MonoBehaviour
     Room room;
     public Vector3 mini_camera_transform;
     public GameObject playerIcon;
+    public AudioClip audioClip;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        SoundManager.SetMusic(audioClip);
     }
 
     // Update is called once per frame

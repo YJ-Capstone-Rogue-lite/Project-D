@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Title_Manager : LoginData
 {
+    [SerializeField] private AudioClip titleMusic;
     [SerializeField] private GameObject newGame;
     [SerializeField] private GameObject loadGame;
     [SerializeField] private GameObject option;
@@ -44,6 +45,8 @@ public class Title_Manager : LoginData
         //DataManager에서 파일 가져와서 playerID와 PW에 저장
         DataManager.Instance.LoadGameData();
 
+        SoundManager.SetMusic(titleMusic);
+
         playerdata = DataManager.Instance.data;
         if (playerdata.player_ID != null && playerdata.player_PW != null)
         {
@@ -70,7 +73,6 @@ public class Title_Manager : LoginData
         popUP.SetActive(false);
         Debug.Log(playerdata.player_ID);
         Debug.Log(playerdata.player_PW);
-
     }
 
     private void OnApplicationQuit()

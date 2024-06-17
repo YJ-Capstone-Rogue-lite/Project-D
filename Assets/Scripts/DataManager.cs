@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
     {
         this.id = id;
         this.pw = pw;
-        StartCoroutine(UnityWebRequestGETTest(TEST.CREATE, (x) => {
+        StartWebRequest(TEST.CREATE, (x) => {
             switch(x)
             {
                 case "false":
@@ -53,14 +53,14 @@ public class DataManager : MonoBehaviour
                     action(true);
                 break;
             }
-        }));
+        });
     }
 
     public void LoginUser(string id, string pw, Action<bool> action)
     {
         this.id = id;
         this.pw = pw;
-        StartCoroutine(UnityWebRequestGETTest(TEST.CHECK, (x) => {
+        StartWebRequest(TEST.CHECK, (x) => {
             switch(x)
             {
                 case "false":
@@ -70,13 +70,13 @@ public class DataManager : MonoBehaviour
                     action(true);
                 break;
             }
-        }));
+        });
     }
 
     // 불러오기
     public void LoadGameData()
     {
-        StartCoroutine(UnityWebRequestGETTest(TEST.LOAD, (x) => {
+        StartWebRequest(TEST.LOAD, (x) => {
             instance.data = JsonUtility.FromJson<PlayerData>(x);
             if(x == "false")
             {
@@ -93,7 +93,7 @@ public class DataManager : MonoBehaviour
                 }
             }
             SaveGameData();
-        }));
+        });
     }
 
     // 저장하기
@@ -109,7 +109,7 @@ public class DataManager : MonoBehaviour
         print("저장 완료");
 
         bool temp = false;
-        StartCoroutine(UnityWebRequestGETTest(TEST.SAVE, (x) => {
+        StartWebRequest(TEST.SAVE, (x) => {
             switch(x)
             {
                 case "false":
@@ -119,10 +119,23 @@ public class DataManager : MonoBehaviour
                     temp = true;
                 break;
             }
-        }));
+        });
         return temp;
     }
+    
+    void StartWebRequest(TEST test, Action<string> action = null)
+    {
+        var coroutineWR = StartCoroutine(UnityWebRequestGETTest(test, action));
+        StartCoroutine(Waitting(coroutineWR, action));
+    }
 
+    IEnumerator Waitting(Coroutine WR, Action<string> action)
+    {
+        yield return new WaitForSecondsRealtime(10f);
+        if(WR == null) yield break;
+        StopCoroutine(WR);
+        action("false");
+    }
     IEnumerator UnityWebRequestGETTest(TEST test, Action<string> action = null)
     {
         WWWForm form = new WWWForm();
