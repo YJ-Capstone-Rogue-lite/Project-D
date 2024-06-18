@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Item_interaction : MonoBehaviour
 { //아이템 상호작용코드
@@ -22,33 +23,79 @@ public class Item_interaction : MonoBehaviour
 
     private void Awake()
     {
+        // Start 메서드에서 actionText를 초기화합니다.
+        StartCoroutine(FindActionText());
+        SceneManager.sceneLoaded += OnSceneLoaded; // 씬 로드 시 이벤트 핸들러 등록
+
         weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
         item_Drop = FindAnyObjectByType<Item_drop>();
 
-        // Start 메서드에서 actionText를 초기화합니다.
-        StartCoroutine(FindActionText());
+       
     }
-    private IEnumerator FindActionText()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        while (actionText == null)
+        StartCoroutine(ActivateActionTextAfterSceneLoad());
+    }
+
+    private IEnumerator ActivateActionTextAfterSceneLoad()
+    {
+        yield return null; // 한 프레임 대기
+
+        if (actionText != null)
         {
-            actionText = GameObject.Find("actionText")?.GetComponent<TMP_Text>();
-            if (actionText != null)
-            {
-                actionText.gameObject.SetActive(false);
-            }
-            else
-            {
-                Debug.LogWarning("actionText를 찾을 수 없습니다. actionText가 씬에 있는지 확인하세요.");
-            }
-            yield return null; // 다음 프레임까지 대기
+            actionText.gameObject.SetActive(true); // 씬이 로드된 후 actionText 활성화
+        }
+        else
+        {
+            Debug.LogWarning("actionText를 찾을 수 없어 씬 전환 후 활성화에 실패했습니다.");
         }
     }
 
+    private IEnumerator FindActionText()
+    {
+        Debug.Log("액션 텍스트 찾는중");
+        while (true)
+        {
+            // actionText가 null이면 찾으려 시도
+            if (actionText == null)
+            {
+                GameObject textObject = GameObject.Find("actionText");
+                if (textObject != null)
+                {
+                    actionText = textObject.GetComponent<TMP_Text>(); // 적절한 컴포넌트 타입을 사용해야 함
+                    if (actionText != null)
+                    {
+                        actionText.gameObject.SetActive(false);
+                        Debug.Log("actionText를 찾았습니다.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("actionText 컴포넌트를 찾을 수 없습니다.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("actionText를 찾을 수 없습니다. GameObject가 씬에 있는지 확인하세요.");
+                }
+            }
+
+            // actionText가 null이 아니면 코루틴 종료
+            if (actionText != null)
+            {
+                yield break;
+            }
+
+            yield return new WaitForSeconds(0.1f); // 일정 시간 대기 후 다시 시도
+        }
+    }
+
+
+
     private void Update()
     {
+        
         if (pickupActivated && item_PickUp != null) // pickupActivated와 item_PickUp이 초기화된 경우에만 CanPickUp 호출
         {
             CanPickUp();
@@ -59,6 +106,12 @@ public class Item_interaction : MonoBehaviour
         }
         active_Potion();
         active_Shield();
+
+         // actionText가 씬 전환 등으로 파괴된 경우 다시 찾기
+        if (actionText == null)
+        {
+            StartCoroutine(FindActionText());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider2D)

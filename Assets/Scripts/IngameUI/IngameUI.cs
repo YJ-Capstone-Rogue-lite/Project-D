@@ -87,9 +87,30 @@ public class IngameUI : MonoBehaviour
 
     private int enemy_count;
 
+    public GameObject action_text;
 
     private void Start()
     {
+        // "Player" 태그를 가진 GameObject를 찾습니다.
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player != null)
+        {
+            // 캐릭터 컴포넌트를 가져옵니다.
+            character = player.GetComponent<Character>();
+
+            if (character == null)
+            {
+                Debug.LogWarning("Character component is missing. Adding it now.");
+
+                // 필요한 경우 캐릭터 컴포넌트를 추가합니다.
+                character = player.AddComponent<Character>();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player object with tag 'Player' not found.");
+        }
         inv_slot_active_bool = false;
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
@@ -99,13 +120,26 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.enabled = false;
         renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         screenshotCamera.targetTexture = renderTexture;
+        action_text.SetActive(true);
     }
     
 
 
     private void Update()
     {
-        Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+        if (Weapon_Slot == null)
+        {
+            Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+            Debug.Log("웨폰슬롯 찾아서 넣음");
+
+        }
+        if (character == null)
+        {
+            character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            Debug.Log("캐릭터 찾아서 넣음");
+
+
+        }
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
         sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
         enemy_count = GameManager.Instance.enemyDestoryCount;

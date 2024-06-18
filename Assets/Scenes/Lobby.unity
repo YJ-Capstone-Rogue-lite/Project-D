@@ -2750,6 +2750,7 @@ MonoBehaviour:
   TitleText: {fileID: 511535619}
   playtimeText: {fileID: 274500771}
   destory_enemy_count: {fileID: 961919676}
+  action_text: {fileID: 596394368}
 --- !u!4 &440592610
 Transform:
   m_ObjectHideFlags: 0
@@ -3408,7 +3409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &596394369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8294,6 +8295,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 379188188232874329, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: actionText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2530009614169799429, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Name
       value: Player
