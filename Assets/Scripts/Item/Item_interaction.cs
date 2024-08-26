@@ -8,7 +8,7 @@ public class Item_interaction : MonoBehaviour
 
     [SerializeField] private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
     public Item_PickUp item_PickUp;
-    [SerializeField] private TMP_Text actionText;  // 행동을 보여 줄 텍스트
+    [SerializeField] private TMP_Text actionText;  // 행동을 보여 줄 텍스트 //인게임 UI코드에서 액션 텍스트 활성화
     //[SerializeField] private Weapon_Slot Weapon_Slot;
     public GameObject player_postion;
     private Weapon_Slot weaponSlotScript; //웨폰 슬롯의 무기슬롯을 받아오기 위함
@@ -67,8 +67,8 @@ public class Item_interaction : MonoBehaviour
                     actionText = textObject.GetComponent<TMP_Text>(); // 적절한 컴포넌트 타입을 사용해야 함
                     if (actionText != null)
                     {
-                        actionText.gameObject.SetActive(false);
-                        Debug.Log("actionText를 찾았습니다.");
+                        actionText.text = "";
+                        Debug.Log("actionText를 찾았고 내용을 비움.");
                     }
                     else
                     {

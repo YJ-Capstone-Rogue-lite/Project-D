@@ -87,7 +87,7 @@ public class IngameUI : MonoBehaviour
 
     private int enemy_count;
 
-    public GameObject action_text;
+    public GameObject action_text; 
 
     private void Start()
     {
@@ -120,7 +120,7 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.enabled = false;
         renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         screenshotCamera.targetTexture = renderTexture;
-        action_text.SetActive(true);
+        action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
     }
     
 
