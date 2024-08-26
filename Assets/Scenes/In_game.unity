@@ -6747,11 +6747,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   floorTiles:
-  - {fileID: 11400000, guid: a182794f41833864a866bf5cb10e34df, type: 2}
-  - {fileID: 11400000, guid: 4530cd14261e71f4790da7a4b09c7f95, type: 2}
-  - {fileID: 11400000, guid: a545dc64ef6c9a342aa1f6617a382360, type: 2}
-  - {fileID: 11400000, guid: 145ffd787f895fd448c547f49a737e22, type: 2}
-  - {fileID: 11400000, guid: 8bc24871f67afca48af7d31733434624, type: 2}
+  - {fileID: 11400000, guid: 3c5be0a9e0952fd45b307161cf82a688, type: 2}
+  - {fileID: 11400000, guid: c4b197c1944a0d54daea77b92cec9388, type: 2}
+  - {fileID: 11400000, guid: 00ad03f783522ab46a6f42085169ae95, type: 2}
+  - {fileID: 11400000, guid: ad1ce337cc5b1b543b9e254bc2bab921, type: 2}
+  - {fileID: 11400000, guid: 7fa39b7b289318e4292806f6eaf335cd, type: 2}
+  - {fileID: 11400000, guid: 1b76d4eb0f9c1b44dbdd23f64e989007, type: 2}
+  - {fileID: 11400000, guid: d968ec3c91a24e14ab41922f02c4d6e3, type: 2}
   doorTiles:
   - {fileID: 11400000, guid: 583ca22ff2d72ec4d9d5fe7f5e293f5b, type: 2}
   - {fileID: 11400000, guid: 285a1f7f8fc91fe45a13d845c6c08367, type: 2}
@@ -8255,6 +8257,7 @@ MonoBehaviour:
   TitleText: {fileID: 441738657}
   playtimeText: {fileID: 788742835}
   destory_enemy_count: {fileID: 32392870}
+  action_text: {fileID: 0}
 --- !u!114 &2031060858
 MonoBehaviour:
   m_ObjectHideFlags: 0
