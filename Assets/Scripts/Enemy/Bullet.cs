@@ -27,7 +27,9 @@ public class Bullet : MonoBehaviour
         this.weapon = weapon;
         speed = weapon.bullet_velocity;
         lifeTime = weapon.bullet_range;
-        Damage = (weapon.Damage + charStateData.player_damage); //본인의 현재 무기 + 캐릭터 스탯의 데미지 추가
+
+        //본인의 현재 무기 + 캐릭터 스탯의 데미지 추가 + 일시적으로 증가된 버프 데미지
+        Damage = (weapon.Damage + Character.charsingle.m_damage + Character.charsingle.m_buff_damage);
         Destroy(gameObject, lifeTime);
     }
 

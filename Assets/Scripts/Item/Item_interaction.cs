@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Item_interaction : MonoBehaviour
-{ //아이템 상호작용코드
+{ 
+    //아이템 상호작용코드
 
     [SerializeField] private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
     public Item_PickUp item_PickUp;
@@ -129,6 +130,11 @@ public class Item_interaction : MonoBehaviour
             {
                 actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             }
+            else if(item_PickUp.buff != null)//아이템 픽업 코드에 버프가 존재한다면
+            {
+                actionText.text = item_PickUp.buff.Buff_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+
+            }
         }
         else if (collider2D.gameObject.CompareTag("Box"))
         {
@@ -147,9 +153,14 @@ public class Item_interaction : MonoBehaviour
                 actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
 
             }
-
+        }
+        //버프 상호작용 할기능
+        else if (collider2D.gameObject.CompareTag("Buff"))
+        {
+            pickupActivated = true;
 
         }
+
     }
 
 

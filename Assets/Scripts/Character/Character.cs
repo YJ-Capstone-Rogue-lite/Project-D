@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     public bool invincible = false;
 
     [Header("플레이어 스탯")]
+    //캐릭터 닉네임
     public string m_name;
 
     // 캐릭터의 체력
@@ -45,20 +46,36 @@ public class Character : MonoBehaviour
     //캐릭터의 최대 방패량
     public float m_maxShield;
 
-    // 캐릭터의 이동 속도
+    // 캐릭터의 현재 이동 속도(기본 5)
     public float m_movementSpeed;
+
+    // 캐릭터의 버프로 증가되는 이동 속도
+    public float m_buff_movementSpeed;
+
+    // 캐릭터의 이동속도 최대치
+    public float m_max_movementSpeed = 7;
+
+    // 캐릭터의 이동속도 최소치
+    public float m_min_movementSpeed = 3;
 
     // 캐릭터의 보호 시간
     public float m_protectionTime;
 
-    // 캐릭터의 자체 데미지(버프나 악세사리 스탯 증감용)
+    // 캐릭터의 자체 데미지(버프나 악세사리, 또는 고정 스탯 증감 등)
     public float m_damage;
+
+    // 캐릭터의 버프로 인해 올라가는 데미지 값
+    public float m_buff_damage;
 
     //캐릭터의 현재 스태미나(대쉬 관련)
     public float m_stamina;
 
-    //스태미나 최대치(임시)
+    //스태미나 최대치(임시, 버프나 악세로 바뀜)
     public float m_maxStamina = 100;
+
+
+
+
 
     public Animator player_anim;
 

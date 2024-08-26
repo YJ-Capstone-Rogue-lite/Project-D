@@ -156,10 +156,6 @@ public class PlayerChar : Character
     }
 
   
-
-
-
-
     public void player_Roll()
     {
         if (Input.GetButtonDown("Roll") && m_stamina > 0)
