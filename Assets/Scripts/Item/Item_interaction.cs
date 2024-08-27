@@ -154,12 +154,7 @@ public class Item_interaction : MonoBehaviour
 
             }
         }
-        //버프 상호작용 할기능
-        else if (collider2D.gameObject.CompareTag("Buff"))
-        {
-            pickupActivated = true;
-
-        }
+     
 
     }
 
@@ -202,6 +197,10 @@ public class Item_interaction : MonoBehaviour
                     Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
                     Destroy(item_PickUp.gameObject);
                 }
+                else if(item_PickUp.buff != null) //버프일 경우
+                {
+
+                }  
             }
             
         }

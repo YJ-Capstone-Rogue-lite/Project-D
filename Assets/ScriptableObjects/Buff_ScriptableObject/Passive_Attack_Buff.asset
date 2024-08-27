@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Passive_Attack_Buff
   m_EditorClassIdentifier: 
   BuffPrefab: {fileID: 0}
-  ratingType: 0
   Buff_number: 0
-  Buff_name: Test_Buff
+  Buff_name: Test_attackUp_Buff
   Buff_Icon_sprite: {fileID: 21300000, guid: ed6174cfc03074afa9523d9500a2c7c0, type: 3}
-  damage_up: 0
+  damage_up: 1
   movement_up: 0
   health_up: 0
-  info: "\uD14C\uC2A4\uD2B8\uC6A9 \uBC84\uD504"
+  duration: 0
+  info: "\uD14C\uC2A4\uD2B8\uC6A9 \uACF5\uACA9\uB825 \uBC84\uD504(1\uC2A4\uD0DD\uB2F9
+    \uACF5\uACA9\uB825 1 \uC99D\uAC00)"
