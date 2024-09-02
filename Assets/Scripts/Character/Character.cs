@@ -61,10 +61,13 @@ public class Character : MonoBehaviour
     // 캐릭터의 보호 시간
     public float m_protectionTime;
 
-    // 캐릭터의 자체 데미지(버프나 악세사리, 또는 고정 스탯 증감 등)
+    // 캐릭터의 데미지(적에게가하는 데미지)
     public float m_damage;
 
-    // 캐릭터의 버프로 인해 올라가는 데미지 값
+    // 캐릭터의 패시브 데미지(스택형 아이템을 먹을시 영구적으로 올라가는 데미지 값)
+    public float m_passive_buff_damage;
+
+    // 캐릭터의 버프로 인해 올라가는 데미지 값(지속시간 있는 버프)
     public float m_buff_damage;
 
     //캐릭터의 현재 스태미나(대쉬 관련)
@@ -73,13 +76,24 @@ public class Character : MonoBehaviour
     //스태미나 최대치(임시, 버프나 악세로 바뀜)
     public float m_maxStamina = 100;
 
+    [Header("플레이어 버프 관련 스택")]
+    // 스택을 저장할 변수
+    public int damageUpStack = 0; //데미지업 스택
 
+    public int movement_SpeedUpStack = 0; // 스피드업 스택
 
 
 
     public Animator player_anim;
 
     public PlayerData playerdata = new PlayerData();
+
+    private void Awake()
+    {
+        charsingle = this;
+
+
+    }
 
     protected virtual void Start()
     {
@@ -118,6 +132,7 @@ public class Character : MonoBehaviour
         player_hpbar_update();
         player_shieldbar_update();
         m_stamina = m_maxStamina;//시작시 플레이어 스태미나 최대치로 조정
+      
     }
 
 

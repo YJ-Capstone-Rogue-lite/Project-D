@@ -16,26 +16,34 @@ public class Bullet : MonoBehaviour
 
     private CharStateData charStateData;
 
+    [SerializeField]private Character character;
+
     public float Damage { get; private set; }
 
 
     //해당 코드를 데미지 관련해서 쓰고있긴한데 바꾸거나 정리해야할듯
-   
+ 
     public void setup(Weapon weapon)
     {
         rb = GetComponent<Rigidbody2D>();
         this.weapon = weapon;
+
         speed = weapon.bullet_velocity;
         lifeTime = weapon.bullet_range;
 
-        //본인의 현재 무기 + 캐릭터 스탯의 데미지 추가 + 일시적으로 증가된 버프 데미지
-        Damage = (weapon.Damage + Character.charsingle.m_damage + Character.charsingle.m_buff_damage);
+
+        Damage = weapon.Damage;
+
+        
+        // Calculate damage with character stats
+        //Damage = weapon.Damage + (character != null ? character.m_damage + character.m_buff_damage : 0);
         Destroy(gameObject, lifeTime);
     }
 
     private void FixedUpdate()
     {
         rb.velocity = transform.up * speed;
+        
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
