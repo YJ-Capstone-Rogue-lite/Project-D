@@ -22,8 +22,10 @@ public class IngameUI : MonoBehaviour
     public Image sub_slot_sprite;
 
     [Header("무기 슬롯 교체 애니메이션")]
-    public Animator MainWeapon_Swap;
-    public Animator SubWeapon_Swap;
+    [SerializeField]
+    private Animator MainWeapon_Swap;
+    [SerializeField]
+    private Animator SubWeapon_Swap;
 
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯 이미지
@@ -68,6 +70,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
     [SerializeField] private GameObject minimap_camera;
+    [SerializeField] private GameObject mainWeapon;
+    [SerializeField] private GameObject subWeapon;
 
     [SerializeField] private Image fullScreen_Box;
     [SerializeField] private Image windowScreen_Box;
@@ -83,24 +87,59 @@ public class IngameUI : MonoBehaviour
 
     private int enemy_count;
 
+    public GameObject action_text; 
 
     private void Start()
     {
+        // "Player" 태그를 가진 GameObject를 찾습니다.
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player != null)
+        {
+            // 캐릭터 컴포넌트를 가져옵니다.
+            character = player.GetComponent<Character>();
+
+            if (character == null)
+            {
+                Debug.LogWarning("Character component is missing. Adding it now.");
+
+                // 필요한 경우 캐릭터 컴포넌트를 추가합니다.
+                character = player.AddComponent<Character>();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player object with tag 'Player' not found.");
+        }
         inv_slot_active_bool = false;
         character = GameObject.FindWithTag("Player").GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
-
+        MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
+        SubWeapon_Swap = subWeapon.GetComponent<Animator>();
         // 추가 카메라 설정
         screenshotCamera.enabled = false;
         renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         screenshotCamera.targetTexture = renderTexture;
+        action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
     }
     
 
 
     private void Update()
     {
-        Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+        if (Weapon_Slot == null)
+        {
+            Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+            Debug.Log("웨폰슬롯 찾아서 넣음");
+
+        }
+        if (character == null)
+        {
+            character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            Debug.Log("캐릭터 찾아서 넣음");
+
+
+        }
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
         sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
         enemy_count = GameManager.Instance.enemyDestoryCount;
@@ -238,7 +277,7 @@ public class IngameUI : MonoBehaviour
     }
     private IEnumerator InvRefreshCoroutine()
     {
-        SoundManager.PlaySFX(bookSound);
+       // SoundManager.PlaySFX(bookSound); //현재 사운드 오류나서 아래쪽 코드까지 못 가서 인벤토리 안불러와짐 잠깐 주석처리
         yield return new WaitForSecondsRealtime(0.6f); // 실제 시간 기준으로 대기
         inv_refresh(); // 인벤토리 갱신 메서드 호출
     }
@@ -258,9 +297,10 @@ public class IngameUI : MonoBehaviour
     }
     public void inv_refresh() //인벤토리 갱신
     {
+        inv_slot_active_bool = true; //불값 true
+
         left_inv.SetActive(true);
         right_inv.SetActive(true);
-        inv_slot_active_bool = true; //불값 true
         inventory_slot.AddWeapon(); //인벤 슬롯에 무기 할당 코드
         inventory_slot.AddConsumableItem();//인벤 소비슬롯에 소비아이템 할당
         Debug.Log("인벤토리 열림");

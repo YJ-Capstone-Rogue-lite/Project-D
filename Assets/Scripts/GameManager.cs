@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
