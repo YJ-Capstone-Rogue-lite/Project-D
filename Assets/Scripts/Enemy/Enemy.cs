@@ -16,10 +16,10 @@ public class Enemy : MonoBehaviour
     public float enemy_speed = 3f;
     public float rotateSpeed = 0.25f;
     // 적의 체력
-    public float enemy_hp = 100;
+    public float enemy_hp;
 
     //적의 최대 체력
-    public float max_enemy_hp = 100;
+    public float max_enemy_hp;
 
 
     // 적의 몸박 데미지
@@ -32,23 +32,24 @@ public class Enemy : MonoBehaviour
     public bool followPlayer;
 
     // 플레이어를 찾는 주기
-    [SerializeField] private float find_Playersecond;
+    public float find_Playersecond;
 
     // 적의 충돌을 감지하는 Circle Collider
-    private CircleCollider2D circleCollider2D;
-    private Animator enemy_animator;
-    private Rigidbody2D enemy_rb;
-    private SpriteRenderer spriteRenderer;
-    private float currentAngle = 0;
-    private bool Attack_the_Player = false;
-    [SerializeField] GameObject hit;
-    private int originalSortingOrder;
+    public CircleCollider2D circleCollider2D;
+    public Animator enemy_animator;
+    public Rigidbody2D enemy_rb;
+    public SpriteRenderer spriteRenderer;
+    public float currentAngle = 0;
+    public bool Attack_the_Player = false;
+    public GameObject hit;
+    public int originalSortingOrder;
 
     //몬스터 hpbar
     public GameObject enemy_hp_bar;
 
     public Item_drop item_Drop;
 
+    public GameObject enemyTag;
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -61,11 +62,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // 적의 현재 위치와 목표 위치 사이에 빨간색 선을 그림
+        Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // Enemy가 움직일 목표지점 표시
 
         Enemy_die(); // 적의 사망 체크
         Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
-        RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
+        RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall")); // 오더레이어 업데이트
         for (int i = 0; i < hit_ray.Length; i++)
         {
             if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
@@ -84,8 +85,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 무작위로 이동하는 코루틴
-    public IEnumerator WanderRoutine()
+    
+    public IEnumerator WanderRoutine() // Enemy가 무작위로 배회를 하는 코루틴
     {
         while (true)
         {
@@ -103,30 +104,30 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 무작위로 목표 위치를 선택하는 메서드
-    public void ChooseNewEndPoint()
+    public void ChooseNewEndPoint() //Enemy가 도착할 목표위치를 정하는 메소드
     {
         float maxDistance = 3f; // 원하는 최대 이동 거리
         currentAngle = Random.Range(0, 360);
         currentAngle = Mathf.Repeat(currentAngle, 360);
         endPosition = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
     }
-    Vector3 Vector3FromAngle(float inputAngle)
+    public Vector3 Vector3FromAngle(float inputAngle)
     {
         float inputAngleRadians = inputAngle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(inputAngleRadians), Mathf.Sin(inputAngleRadians), 0);
     }
-    public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)
+
+    public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)  //플레이어를 찾아서 추적하는 코루틴
     {
         float remainingDistance = (transform.position - endPosition).sqrMagnitude;
         while (remainingDistance > float.Epsilon)
         {
-            if (targetTransform != null)
+            if (targetTransform != null) // 플레이어 추적
             {
                 endPosition = targetTransform.position;
             }
 
-            if (rigbodyToMove != null)
+            if (rigbodyToMove != null) //Enemy 움직임
             {
                 enemy_animator.SetBool("FindPlayer", true);
                 Vector3 currentPosition = new Vector3(rigbodyToMove.position.x, rigbodyToMove.position.y, 0f);
@@ -143,13 +144,27 @@ public class Enemy : MonoBehaviour
                 // 이동 로직
                 Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
                 enemy_rb.MovePosition(newPosition);
-                if (moveX > 0)
+                if (enemyTag.CompareTag("Boss"))
                 {
-                    spriteRenderer.flipX = true;
+                    if (moveX < 0)
+                    {
+                        spriteRenderer.flipX = true;
+                    }
+                    else if (moveX > 0)
+                    {
+                        spriteRenderer.flipX = false;
+                    }
                 }
-                else if (moveX < 0)
+                else
                 {
-                    spriteRenderer.flipX = false;
+                    if (moveX > 0)
+                    {
+                        spriteRenderer.flipX = true;
+                    }
+                    else if (moveX < 0)
+                    {
+                        spriteRenderer.flipX = false;
+                    }
                 }
 
                 remainingDistance = (transform.position - endPosition).sqrMagnitude;
@@ -159,9 +174,9 @@ public class Enemy : MonoBehaviour
         enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 경우 상태를 원래대로 설정
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet")) // 총알에 접촉했을 때
+        if (collision.gameObject.CompareTag("Bullet"))  // Enemy가 데미지를 받는 코드 
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -177,14 +192,13 @@ public class Enemy : MonoBehaviour
             enemy_rb.isKinematic = true;
             StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
-        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때
+        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때 새로운 이동경로 찾는 코드
         {
-            // 벽에 충돌했을 때 새로운 이동 경로를 찾습니다.
             ChooseNewEndPoint();
         }
     }
     
-    private void OnTriggerEnter2D(Collider2D collider)
+    public void OnTriggerEnter2D(Collider2D collider) 
     {
         if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
         {
@@ -196,19 +210,18 @@ public class Enemy : MonoBehaviour
             }
             // 플레이어를 추적하는 코루틴 시작
             moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
-            
         }
     }
 
-    private IEnumerator ResetKinematic()
+    public IEnumerator ResetKinematic()
     {
         yield return new WaitForFixedUpdate(); // 물리 업데이트 후에 다시 false로 설정
         enemy_rb.isKinematic = false;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Player")) // 플레이어와 접촉을 끊었을 때
+        if (collider.gameObject.CompareTag("Player")) // 플레이어와 접촉을 끊었을 때
         {
             enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 상태로 변경
             if (moveCoroutine != null)
@@ -216,6 +229,7 @@ public class Enemy : MonoBehaviour
                 StopCoroutine(moveCoroutine);
             }
             targetTransform = null; // 타겟을 초기화
+            StartCoroutine(WanderRoutine());
         }
     }
 
@@ -228,13 +242,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        //enemy_rb.velocity = transform.up * Enemy_speed;
-    }
-
     // 적의 사망을 체크하고 필요한 처리를 하는 메서드
-    private void Enemy_die()
+    public void Enemy_die()
     {
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
@@ -260,20 +269,21 @@ public class Enemy : MonoBehaviour
             enemy_animator.SetBool("Attack", true);
         }
     }
+
     public void Damage_of_Enemy()
     {
         hit.SetActive(true);
     }
-    void End_Attack() // 공격 애니메이션에 추가
+
+    public void End_Attack() // 공격 애니메이션에 추가
     {
         Attack_the_Player = false;
         hit.SetActive(false);
         enemy_speed = 3;
         enemy_animator.SetBool("Attack", false);
-        StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
     }
 
-    private void Destroy_Enemy()
+    public void Destroy_Enemy()
     {
         Destroy(gameObject); // 적 오브젝트 제거
     }

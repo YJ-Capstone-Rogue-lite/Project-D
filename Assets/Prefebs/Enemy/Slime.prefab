@@ -144,9 +144,17 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 5
+  circleCollider2D: {fileID: 0}
+  enemy_animator: {fileID: 0}
+  enemy_rb: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  currentAngle: 0
+  Attack_the_Player: 0
   hit: {fileID: 2637716999783611454}
+  originalSortingOrder: 0
   enemy_hp_bar: {fileID: 8658236728831378350}
   item_Drop: {fileID: 3740784252326495083}
+  enemyTag: {fileID: 1039019153509472436}
 --- !u!95 &1408360845080943993
 Animator:
   serializedVersion: 5
@@ -385,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: a5ddf8b699d58614e8a73aef34cc30dd, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1 &2028621583532895664
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8576db0cac4de4bb8d3ec09106a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: {fileID: 1039019153509472436}
 --- !u!1 &2637716999783611454
 GameObject:
   m_ObjectHideFlags: 0

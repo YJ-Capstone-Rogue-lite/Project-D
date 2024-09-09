@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8576db0cac4de4bb8d3ec09106a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: {fileID: 6173313241963185773}
 --- !u!58 &8629558272157353019
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -543,20 +544,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
-  boss_Skil_count: 0
-  castingTime: 2
   enemy_speed: 3
   rotateSpeed: 0.25
-  boss_HP: 1500
+  enemy_hp: 1500
   max_enemy_hp: 1500
+  enemy_body_damage: 0
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 3
+  circleCollider2D: {fileID: 2985593465531141340}
+  enemy_animator: {fileID: 1183472342402711848}
+  enemy_rb: {fileID: 7642830349020207972}
+  spriteRenderer: {fileID: 20039698541068980}
+  currentAngle: 0
+  Attack_the_Player: 0
   hit: {fileID: 1198441478640702946}
+  originalSortingOrder: 0
+  enemy_hp_bar: {fileID: 8125213795990888417}
+  item_Drop: {fileID: 0}
+  enemyTag: {fileID: 6173313241963185773}
+  boss_Skil_count: 0
+  castingTime: 2
   casting_Bar: {fileID: 5783211037973561508}
   casting_Bar_BG: {fileID: 462527652666997604}
   shockWaveObject: {fileID: 6924469379424789777}
-  boss_hp_bar: {fileID: 8125213795990888417}
 --- !u!50 &7642830349020207972
 Rigidbody2D:
   serializedVersion: 4
