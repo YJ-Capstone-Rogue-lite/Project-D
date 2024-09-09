@@ -5,7 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public static GameManager Instance { get => instance; }
+    public static GameManager Instance 
+    { 
+        get
+        {
+            if(instance != null) instance = new GameManager();
+            return instance;
+        } 
+    }
     public int enemyDestoryCount;
 
     public Camera mini_camera;

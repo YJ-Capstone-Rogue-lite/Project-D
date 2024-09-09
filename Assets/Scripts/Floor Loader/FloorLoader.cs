@@ -136,10 +136,29 @@ public partial class FloorLoader : MonoBehaviour
         });
     }
 
-    void Start() => FloorLoad();
+    bool loadStarted;
+    float time;
+    Coroutine coroutine;
+    void Start() => coroutine = StartCoroutine(FloorLoad());
 
-    void FloorLoad()
+    void Update()
     {
+        if(loadStarted)
+        {
+            time = Time.deltaTime;
+            if(time > 15)
+            {
+                loadStarted = false;
+                StopCoroutine(coroutine);
+                throw new System.Exception("Floor Loader Time Out");
+            }
+        }
+    }
+
+    IEnumerator FloorLoad()
+    {
+        yield return null;
+        loadStarted = true;
         roomIdx = 0;
         
         CreateDefaultRoom();

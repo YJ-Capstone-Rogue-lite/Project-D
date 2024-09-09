@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawner : MonoBehaviour, IRoomObjectTrigger
+public class ItemSpawner : RoomObjectTrigger
 {
-   // public Item item;
-    public void RoomEnter(Room room)
+    public override void OnRoomEnter(Room room)
     {
-        //Instantiate(item, transform.position, Quaternion.identity);
     }
 
-    public void RoomExit(Room room)
+    public override void OnRoomExit(Room room)
     {
-        
-    }
+    } 
 }

@@ -57,9 +57,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
-
-        GameManager.Instance.enemyDestoryCount = 0;
-
     }
 
     private void Update()

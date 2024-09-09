@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,11 @@ public class Room : MonoBehaviour
         get => _focusedMinimapChar;
     }
 
+    public delegate void RoomHandler(Room room);
+
+    public RoomHandler roomEnter;
+    public RoomHandler roomExit;
+
     public enum State { READY, ING, CLEAR }
     public Tilemap tilemap { get; set; }
     public State state = State.READY;
@@ -29,10 +35,10 @@ public class Room : MonoBehaviour
 
     public void OnEnable() => tilemap = gameObject.GetComponent<Tilemap>();
 
-    public void RoomEnterTrigger() => BroadcastMessage("RoomEnter", this, SendMessageOptions.DontRequireReceiver);
+    public void RoomEnterTrigger() => roomEnter.Invoke(this);
     public void RoomExitTrigger()
     {
-        BroadcastMessage("RoomExit", this, SendMessageOptions.DontRequireReceiver);
+        roomExit.Invoke(this);
         state = State.CLEAR;
     }
 

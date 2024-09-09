@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Door : MonoBehaviour, IRoomObjectTrigger
+public class Door : RoomObjectTrigger
 {
     public Vector3Int vector { get; set; }
     public TileBase doorTile { get; set; }
     public TileBase closeDoorTile { get; set; }
 
-    public void RoomEnter(Room room)
+    public override void OnRoomEnter(Room room)
     {
         room.tilemap.SetTile(vector, doorTile);
     }
 
-    public void RoomExit(Room room)
+    public override void OnRoomExit(Room room)
     {
         StartCoroutine(DoorClossing(room));
     }
