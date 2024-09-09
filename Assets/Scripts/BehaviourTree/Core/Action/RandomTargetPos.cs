@@ -8,7 +8,10 @@ namespace BehaviourTree
     {
         public float range;
         private int count;
-        private Transform transform;
+
+        private Transform tempTransform;
+
+        void OnEnable() => tempTransform = new GameObject("temp").transform;
 
         protected override void OnEnd() { }
 
@@ -17,12 +20,13 @@ namespace BehaviourTree
         protected override NodeState OnUpdate()
         {
             Vector3 thisPos;
-            do{
-                thisPos = blackboard.thisUnit.transform.position;
-                transform.position = ChooseNewEndPoint();
-                if(count++ > 10) return NodeState.Failure;
-            }while(Physics2D.Raycast(thisPos, transform.position, (thisPos-transform.position).magnitude, 1<<LayerMask.NameToLayer("Wall")));
-            blackboard.target = transform;
+            thisPos = ChooseNewEndPoint();
+            // do{
+            //     thisPos = ChooseNewEndPoint();
+            //     if(count++ > 10) return NodeState.Failure;
+            // }while(Physics2D.Raycast(thisPos, blackboard.thisUnit.transform.position, (thisPos-blackboard.thisUnit.transform.position).magnitude, 1<<LayerMask.NameToLayer("Wall")));
+            tempTransform.position = thisPos;
+            blackboard.target = tempTransform;
             return NodeState.Success;
         }
 

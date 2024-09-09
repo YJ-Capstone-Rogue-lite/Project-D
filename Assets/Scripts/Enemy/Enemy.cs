@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public BehaviourTree.BehaviourTree behaviorTree;
+    private BehaviourTree.Blackboard blackboard;
     // 플레이어를 추적하기 위한 타겟
     public Transform targetTransform;
     public Coroutine moveCoroutine;
@@ -36,6 +39,8 @@ public class Enemy : MonoBehaviour
 
     // 적의 충돌을 감지하는 Circle Collider
     public CircleCollider2D circleCollider2D;
+    public float attackRange;
+    public float damage;
     public Animator enemy_animator;
     public Rigidbody2D enemy_rb;
     public SpriteRenderer spriteRenderer;
@@ -50,18 +55,42 @@ public class Enemy : MonoBehaviour
     public Item_drop item_Drop;
 
     public GameObject enemyTag;
+    private Transform originPos;
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
         enemy_animator = GetComponent<Animator>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
+        // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
+        behaviorTree.blackboard.thisUnit = GetComponent<Enemy>();
+        if(originPos == null)
+        {
+            var posObj = new GameObject(){
+                name = transform.name+" Pos",
+                layer = LayerMask.NameToLayer("Ignore Raycast"),
+            };
+            originPos = posObj.transform;
+        }
+        originPos.transform.position = transform.position;
+        behaviorTree = behaviorTree.Clone();
+        blackboard = behaviorTree.blackboard;
+        ChooseNewEndPoint();
     }
 
     private void Update()
     {
+        var hit =  Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
+        if (hit && hit.transform.gameObject.CompareTag("Player"))
+        {
+            blackboard.target = hit.transform;
+            blackboard.state = BehaviourTree.Blackboard.State.Aggro;
+        }
+        behaviorTree.Update();
+        return;
+
+
         Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // Enemy가 움직일 목표지점 표시
 
         Enemy_die(); // 적의 사망 체크
@@ -109,7 +138,8 @@ public class Enemy : MonoBehaviour
         float maxDistance = 3f; // 원하는 최대 이동 거리
         currentAngle = Random.Range(0, 360);
         currentAngle = Mathf.Repeat(currentAngle, 360);
-        endPosition = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
+        originPos.position = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
+        blackboard.target = originPos;
     }
     public Vector3 Vector3FromAngle(float inputAngle)
     {
@@ -200,6 +230,7 @@ public class Enemy : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D collider) 
     {
+        return;
         if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
         {
             Debug.Log("플레이어를 찾음");
@@ -221,6 +252,7 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collider)
     {
+        return;
         if (collider.gameObject.CompareTag("Player")) // 플레이어와 접촉을 끊었을 때
         {
             enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 상태로 변경
@@ -260,7 +292,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Attack_of_Enemy() //EnemyAttack에서 SendMessage로 불러와서 코드가 활성화됨
+    public void Attack_of_Enemy() //EnemyAttack에서 SendMessage로 불러와서 코드가 활성화됨
     {
         if (!Attack_the_Player)
         {

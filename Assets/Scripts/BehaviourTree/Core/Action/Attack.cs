@@ -13,8 +13,9 @@ namespace BehaviourTree
 
         protected override NodeState OnUpdate()
         {
-            
-            return NodeState.Failure;
+            blackboard.thisUnit.enemy_animator.SetTrigger("Attack");
+            blackboard.thisUnit.Attack_of_Enemy();
+            return NodeState.Success;
         }
     }
 }
