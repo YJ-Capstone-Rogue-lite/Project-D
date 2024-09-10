@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     public BehaviourTree.BehaviourTree behaviorTree;
-    private BehaviourTree.Blackboard blackboard;
+    protected BehaviourTree.Blackboard blackboard;
     // 플레이어를 추적하기 위한 타겟
     public Transform targetTransform;
     public Coroutine moveCoroutine;
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
     public Item_drop item_Drop;
 
     public GameObject enemyTag;
-    private Transform originPos;
+    protected Transform originPos;
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -88,50 +88,50 @@ public class Enemy : MonoBehaviour
             blackboard.state = BehaviourTree.Blackboard.State.Aggro;
         }
         behaviorTree.Update();
-        return;
+        // return;
 
 
-        Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // Enemy가 움직일 목표지점 표시
+        // Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // Enemy가 움직일 목표지점 표시
 
-        Enemy_die(); // 적의 사망 체크
-        Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
-        RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall")); // 오더레이어 업데이트
-        for (int i = 0; i < hit_ray.Length; i++)
-        {
-            if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
-            {
-                // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
-                spriteRenderer.sortingOrder = -1;
-                spriteRenderer.sortingLayerName = "Wall";
-            }
-            // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
-            else
-            {
-                // 원래 sortingOrder 값을 복원합니다.
-                spriteRenderer.sortingOrder = originalSortingOrder;
-                spriteRenderer.sortingLayerName = "Enemy";
-            }
-        }
+        // Enemy_die(); // 적의 사망 체크
+        // Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
+        // RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall")); // 오더레이어 업데이트
+        // for (int i = 0; i < hit_ray.Length; i++)
+        // {
+        //     if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
+        //     {
+        //         // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
+        //         spriteRenderer.sortingOrder = -1;
+        //         spriteRenderer.sortingLayerName = "Wall";
+        //     }
+        //     // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
+        //     else
+        //     {
+        //         // 원래 sortingOrder 값을 복원합니다.
+        //         spriteRenderer.sortingOrder = originalSortingOrder;
+        //         spriteRenderer.sortingLayerName = "Enemy";
+        //     }
+        // }
     }
 
     
-    public IEnumerator WanderRoutine() // Enemy가 무작위로 배회를 하는 코루틴
-    {
-        while (true)
-        {
-            ChooseNewEndPoint(); // 새로운 목표 위치 선택
+    // protected IEnumerator WanderRoutine() // Enemy가 무작위로 배회를 하는 코루틴
+    // {
+    //     while (true)
+    //     {
+    //         ChooseNewEndPoint(); // 새로운 목표 위치 선택
 
-            if (moveCoroutine != null)
-            {
-                // 이전 코루틴이 완료될 때까지 대기
-                yield return moveCoroutine;
-            }
-            // 플레이어를 찾는 코루틴 시작
-            moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
+    //         if (moveCoroutine != null)
+    //         {
+    //             // 이전 코루틴이 완료될 때까지 대기
+    //             yield return moveCoroutine;
+    //         }
+    //         // 플레이어를 찾는 코루틴 시작
+    //         moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
 
-            yield return new WaitForSeconds(find_Playersecond); // 주기적으로 플레이어를 찾는 주기에 따라 대기
-        }
-    }
+    //         yield return new WaitForSeconds(find_Playersecond); // 주기적으로 플레이어를 찾는 주기에 따라 대기
+    //     }
+    // }
 
     public void ChooseNewEndPoint() //Enemy가 도착할 목표위치를 정하는 메소드
     {
@@ -141,68 +141,68 @@ public class Enemy : MonoBehaviour
         originPos.position = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
         blackboard.target = originPos;
     }
-    public Vector3 Vector3FromAngle(float inputAngle)
+    private Vector3 Vector3FromAngle(float inputAngle)
     {
         float inputAngleRadians = inputAngle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(inputAngleRadians), Mathf.Sin(inputAngleRadians), 0);
     }
 
-    public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)  //플레이어를 찾아서 추적하는 코루틴
-    {
-        float remainingDistance = (transform.position - endPosition).sqrMagnitude;
-        while (remainingDistance > float.Epsilon)
-        {
-            if (targetTransform != null) // 플레이어 추적
-            {
-                endPosition = targetTransform.position;
-            }
+    // public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)  //플레이어를 찾아서 추적하는 코루틴
+    // {
+    //     float remainingDistance = (transform.position - endPosition).sqrMagnitude;
+    //     while (remainingDistance > float.Epsilon)
+    //     {
+    //         if (targetTransform != null) // 플레이어 추적
+    //         {
+    //             endPosition = targetTransform.position;
+    //         }
 
-            if (rigbodyToMove != null) //Enemy 움직임
-            {
-                enemy_animator.SetBool("FindPlayer", true);
-                Vector3 currentPosition = new Vector3(rigbodyToMove.position.x, rigbodyToMove.position.y, 0f);
-                Vector3 direction = (endPosition - currentPosition).normalized;
+    //         if (rigbodyToMove != null) //Enemy 움직임
+    //         {
+    //             enemy_animator.SetBool("FindPlayer", true);
+    //             Vector3 currentPosition = new Vector3(rigbodyToMove.position.x, rigbodyToMove.position.y, 0f);
+    //             Vector3 direction = (endPosition - currentPosition).normalized;
 
-                // 이동 방향에 따라 MoveX와 MoveY 설정
-                float moveX = direction.x;
-                float moveY = direction.y;
+    //             // 이동 방향에 따라 MoveX와 MoveY 설정
+    //             float moveX = direction.x;
+    //             float moveY = direction.y;
 
-                // 애니메이션 파라미터 설정
-                enemy_animator.SetFloat("MoveX", moveX);
-                enemy_animator.SetFloat("MoveY", moveY);
+    //             // 애니메이션 파라미터 설정
+    //             enemy_animator.SetFloat("MoveX", moveX);
+    //             enemy_animator.SetFloat("MoveY", moveY);
 
-                // 이동 로직
-                Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
-                enemy_rb.MovePosition(newPosition);
-                if (enemyTag.CompareTag("Boss"))
-                {
-                    if (moveX < 0)
-                    {
-                        spriteRenderer.flipX = true;
-                    }
-                    else if (moveX > 0)
-                    {
-                        spriteRenderer.flipX = false;
-                    }
-                }
-                else
-                {
-                    if (moveX > 0)
-                    {
-                        spriteRenderer.flipX = true;
-                    }
-                    else if (moveX < 0)
-                    {
-                        spriteRenderer.flipX = false;
-                    }
-                }
+    //             // 이동 로직
+    //             Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
+    //             enemy_rb.MovePosition(newPosition);
+    //             if (enemyTag.CompareTag("Boss"))
+    //             {
+    //                 if (moveX < 0)
+    //                 {
+    //                     spriteRenderer.flipX = true;
+    //                 }
+    //                 else if (moveX > 0)
+    //                 {
+    //                     spriteRenderer.flipX = false;
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 if (moveX > 0)
+    //                 {
+    //                     spriteRenderer.flipX = true;
+    //                 }
+    //                 else if (moveX < 0)
+    //                 {
+    //                     spriteRenderer.flipX = false;
+    //                 }
+    //             }
 
-                remainingDistance = (transform.position - endPosition).sqrMagnitude;
-            }
-            yield return new WaitForFixedUpdate();
-        }
-        enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 경우 상태를 원래대로 설정
-    }
+    //             remainingDistance = (transform.position - endPosition).sqrMagnitude;
+    //         }
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //     enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 경우 상태를 원래대로 설정
+    // }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -228,21 +228,21 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public void OnTriggerEnter2D(Collider2D collider) 
-    {
-        return;
-        if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
-        {
-            Debug.Log("플레이어를 찾음");
-            targetTransform = collider.gameObject.transform;
-            if (moveCoroutine != null)
-            {
-                StopCoroutine(moveCoroutine);
-            }
-            // 플레이어를 추적하는 코루틴 시작
-            moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
-        }
-    }
+    // public void OnTriggerEnter2D(Collider2D collider) 
+    // {
+    //     return;
+    //     if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
+    //     {
+    //         Debug.Log("플레이어를 찾음");
+    //         targetTransform = collider.gameObject.transform;
+    //         if (moveCoroutine != null)
+    //         {
+    //             StopCoroutine(moveCoroutine);
+    //         }
+    //         // 플레이어를 추적하는 코루틴 시작
+    //         moveCoroutine = StartCoroutine(FindPlayer(enemy_rb, enemy_speed));
+    //     }
+    // }
 
     public IEnumerator ResetKinematic()
     {
@@ -250,20 +250,20 @@ public class Enemy : MonoBehaviour
         enemy_rb.isKinematic = false;
     }
 
-    public void OnTriggerExit2D(Collider2D collider)
-    {
-        return;
-        if (collider.gameObject.CompareTag("Player")) // 플레이어와 접촉을 끊었을 때
-        {
-            enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 상태로 변경
-            if (moveCoroutine != null)
-            {
-                StopCoroutine(moveCoroutine);
-            }
-            targetTransform = null; // 타겟을 초기화
-            StartCoroutine(WanderRoutine());
-        }
-    }
+    // public void OnTriggerExit2D(Collider2D collider)
+    // {
+    //     return;
+    //     if (collider.gameObject.CompareTag("Player")) // 플레이어와 접촉을 끊었을 때
+    //     {
+    //         enemy_animator.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 상태로 변경
+    //         if (moveCoroutine != null)
+    //         {
+    //             StopCoroutine(moveCoroutine);
+    //         }
+    //         targetTransform = null; // 타겟을 초기화
+    //         StartCoroutine(WanderRoutine());
+    //     }
+    // }
 
     // Circle Collider를 그리는 메서드
     void OnDrawGizmos()
@@ -292,13 +292,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Attack_of_Enemy() //EnemyAttack에서 SendMessage로 불러와서 코드가 활성화됨
+    public virtual void Attack_of_Enemy() //EnemyAttack에서 SendMessage로 불러와서 코드가 활성화됨
     {
         if (!Attack_the_Player)
         {
             enemy_speed = 0;
             Attack_the_Player = true;
-            enemy_animator.SetBool("Attack", true);
+            enemy_animator.SetTrigger("Attack");
+            StartCoroutine(End_Attack(1));
         }
     }
 
@@ -307,12 +308,12 @@ public class Enemy : MonoBehaviour
         hit.SetActive(true);
     }
 
-    public void End_Attack() // 공격 애니메이션에 추가
+    protected IEnumerator End_Attack(float time) // 공격 애니메이션에 추가
     {
+        yield return new WaitForSeconds(time);
         Attack_the_Player = false;
         hit.SetActive(false);
         enemy_speed = 3;
-        enemy_animator.SetBool("Attack", false);
     }
 
     public void Destroy_Enemy()

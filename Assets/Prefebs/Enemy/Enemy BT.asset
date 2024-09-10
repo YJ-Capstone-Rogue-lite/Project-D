@@ -26,28 +26,6 @@ MonoBehaviour:
   - {fileID: 8586965450540107804}
   - {fileID: -5159803852677678454}
   - {fileID: -2502788014506961527}
---- !u!114 &-8361424523668678626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab2e3b22f1f1e845ab8355850634655, type: 3}
-  m_Name: EndAttack
-  m_EditorClassIdentifier: 
-  state: 0
-  isStarted: 0
-  guid: cbe37bb8336ef4f4a9593e501759b540
-  positon: {x: 949.8001, y: 541.9999}
-  blackboard:
-    thisUnit: {fileID: 0}
-    target: {fileID: 0}
-    playableDirector: {fileID: 0}
-    state: 0
-  description: 
 --- !u!114 &-5159803852677678454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,17 +146,16 @@ MonoBehaviour:
   - {fileID: 2839086867338333033}
   - {fileID: 6557414723530113259}
   - {fileID: -1062457263043410465}
-  - {fileID: 1928555634501997509}
   - {fileID: 8855765640905001488}
-  - {fileID: -8361424523668678626}
   - {fileID: -8978172970051993158}
+  - {fileID: 6541904839870232852}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
-  viewPos: {x: 222, y: -69}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  viewPos: {x: -347, y: -141}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &1303740912837353020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,29 +203,6 @@ MonoBehaviour:
   description: 
   child: {fileID: -8978172970051993158}
   targetState: 0
---- !u!114 &1928555634501997509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  state: 0
-  isStarted: 0
-  guid: d408db2a4aed24341ae32707a2d0fa7b
-  positon: {x: 750.8, y: 542}
-  blackboard:
-    thisUnit: {fileID: 0}
-    target: {fileID: 0}
-    playableDirector: {fileID: 0}
-    state: 0
-  description: 
-  waitTime: 1
 --- !u!114 &2839086867338333033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +218,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: e51f22b208824cc4eb8a645908f8e900
-  positon: {x: 372.25894, y: 542}
+  positon: {x: 371.41827, y: 542.00006}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -295,6 +249,29 @@ MonoBehaviour:
   description: 
   child: {fileID: -1062457263043410465}
   targetState: 2
+--- !u!114 &6541904839870232852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: c32616e2351d049439ed5ee87f5f43a4
+  positon: {x: 0, y: 0}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 0
+  description: 
+  waitTime: 0
 --- !u!114 &6557414723530113259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +287,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: f48ebcfb7c59cd64382f8ca04c4a2933
-  positon: {x: 557.0338, y: 542}
+  positon: {x: 542.4182, y: 542.00006}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -332,7 +309,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 9d48490d13547ce47999f2e306b75d8c
-  positon: {x: 557, y: 257.00006}
+  positon: {x: 446.41824, y: 257}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -378,7 +355,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 08aa7d5f17aa8d545a32ce8da83d7e3e
-  positon: {x: 557.00006, y: 395.00006}
+  positon: {x: 446.41824, y: 395}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -388,5 +365,3 @@ MonoBehaviour:
   children:
   - {fileID: 2839086867338333033}
   - {fileID: 6557414723530113259}
-  - {fileID: 1928555634501997509}
-  - {fileID: -8361424523668678626}

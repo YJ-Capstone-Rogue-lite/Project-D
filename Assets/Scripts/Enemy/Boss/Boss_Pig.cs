@@ -22,13 +22,37 @@ public class Boss_Pig : Enemy
     private void Start()
     {
         castingBarImage = casting_Bar.GetComponent<Image>();
-        StartCoroutine(WanderRoutine());
+        // StartCoroutine(WanderRoutine());
+        enemy_rb = GetComponent<Rigidbody2D>();
+        enemy_animator = GetComponent<Animator>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
+        behaviorTree.blackboard.thisUnit = GetComponent<Enemy>();
+        if(originPos == null)
+        {
+            var posObj = new GameObject(){
+                name = transform.name+" Pos",
+                layer = LayerMask.NameToLayer("Ignore Raycast"),
+            };
+            originPos = posObj.transform;
+        }
+        originPos.transform.position = transform.position;
+        behaviorTree = behaviorTree.Clone();
+        blackboard = behaviorTree.blackboard;
+        ChooseNewEndPoint();
     }
 
     private void Update()
     {
-        Enemy_die();
+        var hit =  Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
+        if (hit && hit.transform.gameObject.CompareTag("Player"))
+        {
+            blackboard.target = hit.transform;
+            blackboard.state = BehaviourTree.Blackboard.State.Aggro;
+        }
+        behaviorTree.Update();
         if (isCasting)
         {
             castingProgress += Time.deltaTime;
@@ -40,7 +64,7 @@ public class Boss_Pig : Enemy
             }
         }
     }
-    void Attack_of_Boss() 
+    public override void Attack_of_Enemy() 
     {
         Debug.Log("공격");
         if (!Attack_the_Player)
@@ -48,13 +72,14 @@ public class Boss_Pig : Enemy
             enemy_speed = 0;
             enemy_rb.velocity = Vector2.zero;
             Attack_the_Player = true;
-            enemy_animator.SetBool("Attack", true);
+            enemy_animator.SetTrigger("Attack");
             boss_Skil_count += 1;
 
             if (boss_Skil_count >= 5) // 공격횟수가 5번이되고나서 다음공격은 스킬
             {
                 StartCasting();
             }
+            else StartCoroutine(End_Attack(1));
         }
     }
 
@@ -77,10 +102,13 @@ public class Boss_Pig : Enemy
 
         Debug.Log("SpecialAttack 실행");
         shockWaveObject.SetActive(true);
+        StartCoroutine(End_Attack(3));
+        StartCoroutine(EndSkill(3));
     }
 
-    void EndSkill() //애니메이션 이벤트
+    IEnumerator EndSkill(float time) //애니메이션 이벤트
     {
+        yield return new WaitForSeconds(time);
         enemy_animator.SetBool("Skill", false);
         shockWaveObject.SetActive(false);
     }

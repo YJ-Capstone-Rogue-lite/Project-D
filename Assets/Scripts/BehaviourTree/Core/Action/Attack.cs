@@ -13,7 +13,7 @@ namespace BehaviourTree
 
         protected override NodeState OnUpdate()
         {
-            blackboard.thisUnit.enemy_animator.SetTrigger("Attack");
+            if(blackboard.thisUnit.Attack_the_Player) return NodeState.Running;
             blackboard.thisUnit.Attack_of_Enemy();
             return NodeState.Success;
         }

@@ -430,7 +430,6 @@ GameObject:
   - component: {fileID: 7575438858144496077}
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 2985593465531141340}
-  - component: {fileID: 2206782017815243464}
   m_Layer: 0
   m_Name: Boss_Pig
   m_TagString: Boss
@@ -543,6 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0e421ca85d4e408945946370b27b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
   targetTransform: {fileID: 0}
   enemy_speed: 3
   rotateSpeed: 0.25
@@ -553,6 +553,8 @@ MonoBehaviour:
   followPlayer: 1
   find_Playersecond: 3
   circleCollider2D: {fileID: 2985593465531141340}
+  attackRange: 10
+  damage: 10
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
   spriteRenderer: {fileID: 20039698541068980}
@@ -630,41 +632,6 @@ CircleCollider2D:
   m_Offset: {x: 0.09, y: -0.84}
   serializedVersion: 2
   m_Radius: 1.18
---- !u!58 &2206782017815243464
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6173313241963185773}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.09, y: -0.84}
-  serializedVersion: 2
-  m_Radius: 8
 --- !u!1001 &4881963676710659926
 PrefabInstance:
   m_ObjectHideFlags: 0
