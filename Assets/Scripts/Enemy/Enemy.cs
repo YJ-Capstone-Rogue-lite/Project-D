@@ -213,6 +213,7 @@ public class Enemy : MonoBehaviour
                 return;
             enemy_hp -= bullet.Damage; // 적의 체력 감소
             enemy_hpbar_update();//적의 체력바 업데이트
+            Enemy_die();
 
             // 적이 밀려나지 않도록 속도를 0으로 설정
             enemy_rb.velocity = Vector2.zero;
@@ -222,10 +223,13 @@ public class Enemy : MonoBehaviour
             enemy_rb.isKinematic = true;
             StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
-        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때 새로운 이동경로 찾는 코드
-        {
-            ChooseNewEndPoint();
-        }
+        // else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때 새로운 이동경로 찾는 코드
+        // {
+        //     Player temp = null;
+        //     if(blackboard.target != null) blackboard.target.TryGetComponent<Player>(out temp);
+        //     if(temp != null) attackRange *= 10;
+        //     ChooseNewEndPoint();
+        // }
     }
     
     // public void OnTriggerEnter2D(Collider2D collider) 
@@ -279,10 +283,11 @@ public class Enemy : MonoBehaviour
     {
         if (enemy_hp <= 0) // 적의 체력이 0 이하일 때
         {
+            blackboard.state = BehaviourTree.Blackboard.State.Death;
             enemy_animator.SetBool("State", false);
             enemy_speed = 0;
-            if (moveCoroutine != null)
-                StopCoroutine(moveCoroutine);
+            // if (moveCoroutine != null)
+            //     StopCoroutine(moveCoroutine);
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
             transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
