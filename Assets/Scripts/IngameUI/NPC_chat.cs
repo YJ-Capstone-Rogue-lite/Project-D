@@ -1,26 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC_chat : MonoBehaviour
 {
-    public Queue<string> chat;
-    public string currentText;
+    public GameObject chatbox;
 
-    public void NPC_Chat()
+
+    private void Update()
     {
 
     }
 
-    //public void SaveChat(string[] lines)
-    //{
-    //    chat = new Queue<string>();
-    //    chat.Clear();
-
-    //    foreach (string line in lines)
-    //    {
-    //        chat.Enqueue(line);
-    //    }
-    //}
 
 }
