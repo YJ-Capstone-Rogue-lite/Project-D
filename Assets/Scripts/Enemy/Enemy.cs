@@ -41,14 +41,14 @@ public class Enemy : MonoBehaviour
     // 적의 충돌을 감지하는 Circle Collider
     public float attackRange;
     public float damage;
-    private CircleCollider2D circleCollider2D;
-    private Animator enemy_animator;
-    private Rigidbody2D enemy_rb;
-    private SpriteRenderer spriteRenderer;
-    private float currentAngle = 0;
-    private bool Attack_the_Player = false;
+    public CircleCollider2D circleCollider2D;
+    public Animator enemy_animator;
+    public Rigidbody2D enemy_rb;
+    public SpriteRenderer spriteRenderer;
+    public float currentAngle = 0;
+    public bool Attack_the_Player = false;
     [SerializeField] GameObject hit;
-    private int originalSortingOrder;
+    public int originalSortingOrder;
     [SerializeField] Character character;//캐릭터 값 받아오기
 
     //몬스터 hpbar

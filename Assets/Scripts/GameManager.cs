@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     }
     public int enemyDestoryCount;
 
+    public GameObject playerspawn;
     public Camera mini_camera;
     public bool isPlaying = true;
     Room room;

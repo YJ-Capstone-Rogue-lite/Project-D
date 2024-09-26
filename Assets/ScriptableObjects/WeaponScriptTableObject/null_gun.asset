@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: null_gun
   m_EditorClassIdentifier: 
+  weapnPrefab: {fileID: 0}
   ratingType: 0
   weaponType: 0
   number: 0

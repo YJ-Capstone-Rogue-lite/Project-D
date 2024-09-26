@@ -20,12 +20,14 @@ public class IngameUI : MonoBehaviour
     [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
     public Image sub_slot_sprite;
+    public Weapon nullgun_image;
 
     [Header("무기 슬롯 교체 애니메이션")]
     [SerializeField]
     private Animator MainWeapon_Swap;
     [SerializeField]
     private Animator SubWeapon_Swap;
+
 
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯 이미지
@@ -127,6 +129,15 @@ public class IngameUI : MonoBehaviour
 
     private void Update()
     {
+        if (ConsumableItem_Img.sprite == null)
+        {
+            ConsumableItem_Img.sprite = default_consumableItem.sprite;
+        }
+        if(sub_slot_sprite.sprite == null)
+        {
+            sub_slot_sprite.sprite = nullgun_image.sprite;
+        }
+
         if (Weapon_Slot == null)
         {
             Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();

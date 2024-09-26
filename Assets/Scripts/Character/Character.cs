@@ -8,7 +8,15 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    public static Character charsingle;
+    private static Character charsingle;
+    public static Character Charsingle
+    {
+        get
+        {
+            if (charsingle != null) charsingle = new Character();
+            return charsingle;
+        }
+    }
     private bool player_state = true;
     [SerializeField] private GameObject hit_sound;
 
@@ -90,7 +98,16 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        charsingle = this;
+        if (charsingle == null)
+        {
+            charsingle = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
 
     }

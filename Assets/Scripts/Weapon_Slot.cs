@@ -31,6 +31,8 @@ public class Weapon_Slot : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(weapon_slot2_weapon);
+        Debug.Log(activeWeaponSlot_Component);
         // 게임 시작시 기본 무기 슬롯 설정
         EnableWeaponSlot(weaponSlot1);
         reload_object.SetActive(true);

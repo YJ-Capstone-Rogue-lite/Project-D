@@ -8223,6 +8223,7 @@ MonoBehaviour:
   bookSound: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
   main_slot_sprite: {fileID: 1785130103}
   sub_slot_sprite: {fileID: 2011943746}
+  nullgun_image: {fileID: 11400000, guid: 9a6ef2619e1cf2b4b82e1236df39a5b5, type: 2}
   MainWeapon_Swap: {fileID: 482613118}
   SubWeapon_Swap: {fileID: 2057936261}
   ConsumableItem_Img: {fileID: 1970404069}
@@ -8271,6 +8272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDestoryCount: 0
+  playerspawn: {fileID: 0}
   mini_camera: {fileID: 289488199}
   isPlaying: 1
   mini_camera_transform: {x: 0, y: 0, z: 0}

@@ -27,14 +27,14 @@ public class Time_Buff : MonoBehaviour
         damage_Up_Buff_Amount = item_PickUp.buff.damage_up;
         duration_time = item_PickUp.buff.duration;
         // 버프를 적용
-        Character.charsingle.m_buff_damage += damage_Up_Buff_Amount; //캐릭터의 버프 데미지 값에 공증 값 더함
+        Character.Charsingle.m_buff_damage += damage_Up_Buff_Amount; //캐릭터의 버프 데미지 값에 공증 값 더함
         Debug.Log("버프 적용됨: 공격력 + " + damage_Up_Buff_Amount);
 
         // 60초 동안 버프 유지 (해당 초도 상호작용한 아이템의 값을 가져와야함
         yield return new WaitForSeconds(duration_time);
 
         // 버프를 제거
-        Character.charsingle.m_buff_damage -= damage_Up_Buff_Amount;
+        Character.Charsingle.m_buff_damage -= damage_Up_Buff_Amount;
         Debug.Log("버프 제거됨: 공격력 - " + damage_Up_Buff_Amount);
     }
 }
