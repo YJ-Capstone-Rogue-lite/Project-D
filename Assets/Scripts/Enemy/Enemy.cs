@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 
@@ -38,16 +39,17 @@ public class Enemy : MonoBehaviour
     public float find_Playersecond;
 
     // 적의 충돌을 감지하는 Circle Collider
-    public CircleCollider2D circleCollider2D;
     public float attackRange;
     public float damage;
-    public Animator enemy_animator;
-    public Rigidbody2D enemy_rb;
-    public SpriteRenderer spriteRenderer;
-    public float currentAngle = 0;
-    public bool Attack_the_Player = false;
-    public GameObject hit;
-    public int originalSortingOrder;
+    private CircleCollider2D circleCollider2D;
+    private Animator enemy_animator;
+    private Rigidbody2D enemy_rb;
+    private SpriteRenderer spriteRenderer;
+    private float currentAngle = 0;
+    private bool Attack_the_Player = false;
+    [SerializeField] GameObject hit;
+    private int originalSortingOrder;
+    [SerializeField] Character character;//캐릭터 값 받아오기
 
     //몬스터 hpbar
     public GameObject enemy_hp_bar;
@@ -112,6 +114,13 @@ public class Enemy : MonoBehaviour
         //         spriteRenderer.sortingLayerName = "Enemy";
         //     }
         // }
+        if(character == null)
+        {
+            character = FindAnyObjectByType<Character>();
+            Debug.Log("에너미가 캐릭터값을 찾아서 넣음");
+            //캐릭터 찾아서 값 불러옴
+
+        }
     }
 
     
@@ -211,7 +220,8 @@ public class Enemy : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet == null)
                 return;
-            enemy_hp -= bullet.Damage; // 적의 체력 감소
+            character.m_damage = bullet.Damage + character.m_passive_buff_damage + character.m_buff_damage;
+            enemy_hp -= character.m_damage; // 적의 체력 감소
             enemy_hpbar_update();//적의 체력바 업데이트
             Enemy_die();
 
@@ -328,6 +338,7 @@ public class Enemy : MonoBehaviour
 
     public void enemy_hpbar_update() // 체력 바 업데이트
     {
+
         Image enemy_hp_bar_img = enemy_hp_bar.GetComponent<Image>();
         enemy_hp_bar_img.fillAmount = enemy_hp / max_enemy_hp;
         if(enemy_hp <= 0)

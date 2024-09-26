@@ -9,7 +9,7 @@ public struct CharStateData
     public float shield;
     public float max_shield;
     public float stamina;
-    public float movementSpeed;
+    public float movementSpeed; 
     public float protectiontime;
-    public float player_damage;
+    public float player_damage; 
 }

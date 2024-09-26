@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Item_interaction : MonoBehaviour
-{ //아이템 상호작용코드
+{ 
+    //아이템 상호작용코드
 
     [SerializeField] private bool pickupActivated = false;  // 아이템 습득 가능할시 True 
     public Item_PickUp item_PickUp;
@@ -18,7 +19,7 @@ public class Item_interaction : MonoBehaviour
     public ConsumableItem currentConsumable; // 현재 슬롯에 있는 소비 아이템
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
-
+    public Buff buff; //현재 획득할려고 하는 버프
 
 
     private void Awake()
@@ -32,7 +33,8 @@ public class Item_interaction : MonoBehaviour
         character = FindAnyObjectByType<Character>();
         item_Drop = FindAnyObjectByType<Item_drop>();
 
-       
+
+
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -125,9 +127,16 @@ public class Item_interaction : MonoBehaviour
             {
                 actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             }
-            else if (item_PickUp.consumable != null)
+            else if (item_PickUp.consumable != null) //아이템의 픽업 코드에 소비아이템이 존재한다면
             {
                 actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            }
+            else if(item_PickUp.buff != null)//아이템 픽업 코드에 버프가 존재한다면
+            {
+                buff = item_PickUp.buff; // buff 필드를 여기서도 설정
+               
+                actionText.text = item_PickUp.buff.Buff_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+
             }
         }
         else if (collider2D.gameObject.CompareTag("Box"))
@@ -147,9 +156,9 @@ public class Item_interaction : MonoBehaviour
                 actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
 
             }
-
-
         }
+     
+
     }
 
 
@@ -160,6 +169,7 @@ public class Item_interaction : MonoBehaviour
             pickupActivated = false;
             item_PickUp = null;
             currentBox = null; // 상자 객체 초기화
+            buff = null;
             actionText.gameObject.SetActive(false);
         }
 
@@ -191,6 +201,14 @@ public class Item_interaction : MonoBehaviour
                     Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
                     Destroy(item_PickUp.gameObject);
                 }
+                else if(item_PickUp.buff != null) //버프일 경우
+                {
+                    // 버프 아이템 처리 로직
+                    buff = item_PickUp.buff; // buff 필드를 item_PickUp.buff로 설정
+                    ApplyBuff();
+                    Debug.Log(item_PickUp.buff.Buff_name + " 버프 적용됨.");
+                    Destroy(item_PickUp.gameObject);
+                }  
             }
             
         }
@@ -348,6 +366,7 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
+
     private IEnumerator DelayedItemDrop()
     {
         item_Drop = FindAnyObjectByType<Item_drop>();
@@ -355,6 +374,67 @@ public class Item_interaction : MonoBehaviour
         yield return new WaitForSeconds(0.35f); // 0.초 대기
         item_Drop.Box_Open_Item_Drop(); // 아이템 드롭 실행
     }
+    private void ApplyBuff()
+    {
+        if (buff == null)
+        {
+            Debug.LogWarning("버프 객체가 null입니다.");
+            return;
+        }
 
+        if (buff.buff_Time == Buff.Buff_Time.passive)
+        {
+            switch (buff.buffType)
+            {
+                case Buff.BuffType.Attack:
+                    Damage_Up_Passive_Buff(); // 데미지 업 버프 적용
+                    break;
 
+                case Buff.BuffType.MoveSpeed:
+                    Movement_Speed_Up_Passive_Buff(); // 이동 속도 업 버프 적용
+                    break;
+
+                default:
+                    Debug.LogWarning("알 수 없는 버프 타입입니다: " + buff.buffType);
+                    break;
+            }
+        }
+        else if (buff.buff_Time == Buff.Buff_Time.duration)
+        {
+            Debug.Log("시간형 버프는 아직 구현되지 않았습니다.");
+        }
+    }
+    //데미지 업 패시브 버프
+    public void Damage_Up_Passive_Buff()
+    {
+        //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
+        if (character.damageUpStack < 5) // 최대 5스택까지 증가 가능
+        {
+            character.damageUpStack++;
+            //캐릭터의 버프 데미지 값에 아이템 픽업의 버프 데미지 값 받아와서 더해주기
+            character.m_passive_buff_damage += item_PickUp.buff.damage_up;
+
+            UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
+        }
+    }
+
+    //스피드 업 패시브 버프
+    public void Movement_Speed_Up_Passive_Buff()
+    {
+        //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
+        //이동속도 증가 스택이 5보다 작거나 캐릭터의 현재 이동속도가 최대칩다 작거나 같다면
+        if (character.movement_SpeedUpStack < 5 || character.m_movementSpeed <= character.m_max_movementSpeed)
+        {
+            character.movement_SpeedUpStack++;
+            //캐릭터의 이동속도 값 더해주기
+            character.m_movementSpeed += item_PickUp.buff.movement_Speed_up;
+
+            UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
+        }
+    }
+
+    private void UpdateBuffIcon()
+    {
+        // 버프 아이콘 오른쪽 하단에 숫자 표기 변경 로직 추가
+    }
 }
