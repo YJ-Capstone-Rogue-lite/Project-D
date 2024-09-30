@@ -129,14 +129,14 @@ public class IngameUI : MonoBehaviour
 
     private void Update()
     {
-        if (ConsumableItem_Img.sprite == null)
-        {
-            ConsumableItem_Img.sprite = default_consumableItem.sprite;
-        }
-        if(sub_slot_sprite.sprite == null)
-        {
-            sub_slot_sprite.sprite = nullgun_image.sprite;
-        }
+        //if (ConsumableItem_Img.sprite == null)
+        //{
+        //    ConsumableItem_Img.sprite = default_consumableItem.sprite;
+        //}
+        //if(sub_slot_sprite.sprite == null)
+        //{
+        //    sub_slot_sprite.sprite = nullgun_image.sprite;
+        //}
 
         if (Weapon_Slot == null)
         {

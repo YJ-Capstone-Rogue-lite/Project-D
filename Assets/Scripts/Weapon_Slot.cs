@@ -116,30 +116,30 @@ public class Weapon_Slot : MonoBehaviour
     }
 
     // 다음 무기 슬롯으로 변경
-    private void SwitchToNextSlot()
-    {
-        if (activeWeaponSlot == weaponSlot1)
-        {
-            EnableWeaponSlot(weaponSlot2);
-        }
-        else if (activeWeaponSlot == weaponSlot2)
-        {
-            EnableWeaponSlot(weaponSlot1);
-        }
-    }
+    //private void SwitchToNextSlot()
+    //{
+    //    if (activeWeaponSlot == weaponSlot1)
+    //    {
+    //        EnableWeaponSlot(weaponSlot2);
+    //    }
+    //    else if (activeWeaponSlot == weaponSlot2)
+    //    {
+    //        EnableWeaponSlot(weaponSlot1);
+    //    }
+    //}
 
-    // 이전 무기 슬롯으로 변경
-    private void SwitchToPreviousSlot()
-    {
-        if (activeWeaponSlot == weaponSlot1)
-        {
-            EnableWeaponSlot(weaponSlot2);
-        }
-        else if (activeWeaponSlot == weaponSlot2)
-        {
-            EnableWeaponSlot(weaponSlot1);
-        }
-    }
+    //// 이전 무기 슬롯으로 변경
+    //private void SwitchToPreviousSlot()
+    //{
+    //    if (activeWeaponSlot == weaponSlot1)
+    //    {
+    //        EnableWeaponSlot(weaponSlot2);
+    //    }
+    //    else if (activeWeaponSlot == weaponSlot2)
+    //    {
+    //        EnableWeaponSlot(weaponSlot1);
+    //    }
+    //}
 
     // 무기 슬롯을 활성화하는 메서드
     public void EnableWeaponSlot(GameObject weaponSlot)
