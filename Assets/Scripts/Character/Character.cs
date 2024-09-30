@@ -96,21 +96,21 @@ public class Character : MonoBehaviour
 
     public PlayerData playerdata = new PlayerData();
 
-    private void Awake()
-    {
-        if (charsingle == null)
-        {
-            charsingle = this;
-            DontDestroyOnLoad(gameObject);
+    //private void Awake()
+    //{
+    //    if (charsingle == null)
+    //    {
+    //        charsingle = this;
+    //        DontDestroyOnLoad(gameObject);
 
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
 
-    }
+    //}
 
     protected virtual void Start()
     {

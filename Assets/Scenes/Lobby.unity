@@ -1016,7 +1016,6 @@ MonoBehaviour:
   textBox: {fileID: 1240189118}
   currentChat: 
   line:
-  - "\uBC18\uAC11\uB2E4"
   - "\uB098\uB294 \uBA54\uD53C\uC2A4\uD1A0"
   - "\uD3EC\uD0C8\uB85C \uB4E4\uC5B4\uAC00\uB77C"
   currenttext: {fileID: 333746251}
@@ -2449,7 +2448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uBC18\uAC11\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58e397230af86f341866d3dd62252200, type: 2}
   m_sharedMaterial: {fileID: 7309084849199128957, guid: 58e397230af86f341866d3dd62252200, type: 2}
@@ -2883,6 +2882,7 @@ MonoBehaviour:
   bookSound: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
   main_slot_sprite: {fileID: 22485220}
   sub_slot_sprite: {fileID: 575975327}
+  nullgun_image: {fileID: 0}
   MainWeapon_Swap: {fileID: 737045486}
   SubWeapon_Swap: {fileID: 2051429472}
   ConsumableItem_Img: {fileID: 1525394647}

@@ -36,7 +36,7 @@ public class NPC_Char : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.G) && chat.Count <= 0)
             {
                 textBox.SetActive(false);
-                currenttext.text = ""; // text 초기화
+                currenttext.text = "반갑다"; // text 초기화
                 NPC_Chat();
             }
         }
