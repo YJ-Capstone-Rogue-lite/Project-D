@@ -552,9 +552,9 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 3
-  circleCollider2D: {fileID: 2985593465531141340}
   attackRange: 10
   damage: 10
+  circleCollider2D: {fileID: 2985593465531141340}
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
   spriteRenderer: {fileID: 20039698541068980}
@@ -562,6 +562,7 @@ MonoBehaviour:
   Attack_the_Player: 0
   hit: {fileID: 1198441478640702946}
   originalSortingOrder: 0
+  character: {fileID: 0}
   enemy_hp_bar: {fileID: 8125213795990888417}
   item_Drop: {fileID: 0}
   enemyTag: {fileID: 6173313241963185773}
@@ -578,7 +579,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6173313241963185773}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

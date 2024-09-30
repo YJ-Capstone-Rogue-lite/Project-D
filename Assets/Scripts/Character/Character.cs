@@ -155,7 +155,7 @@ public class Character : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+        if (collider.CompareTag("Hit_radius"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());
@@ -166,7 +166,7 @@ public class Character : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         var collider = collision.collider;
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+        if (collider.CompareTag("Hit_radius"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());

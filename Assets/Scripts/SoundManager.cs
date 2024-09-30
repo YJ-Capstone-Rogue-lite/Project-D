@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    static GameObject container;
+    // static GameObject container;
 
     // ---싱글톤으로 선언--- //
     static SoundManager instance;
@@ -15,10 +15,11 @@ public class SoundManager : MonoBehaviour
         {
             if (!instance)
             {
-                container = new GameObject();
-                container.name = "SoundManager";
-                instance = container.AddComponent(typeof(SoundManager)) as SoundManager;
-                DontDestroyOnLoad(container);
+                // container = new GameObject();
+                // container.name = "SoundManager";
+                // instance = container.AddComponent(typeof(SoundManager)) as SoundManager;
+                Instantiate(Resources.Load<GameObject>("SoundManager"));
+                DontDestroyOnLoad(instance);
             }
             return instance;
         }
@@ -30,6 +31,11 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
         DontDestroyOnLoad(instance);
     }
