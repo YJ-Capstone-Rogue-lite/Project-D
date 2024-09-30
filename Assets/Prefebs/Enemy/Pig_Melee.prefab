@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 2985593465531141340}
   m_Layer: 0
-  m_Name: Boss_Pig
+  m_Name: Pig_Melee
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
