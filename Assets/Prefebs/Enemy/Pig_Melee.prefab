@@ -85,8 +85,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8167121934664599737}
-  - component: {fileID: 4972443833741963285}
   - component: {fileID: 2146474019925828735}
+  - component: {fileID: 200672007774036386}
   m_Layer: 0
   m_Name: Hit_radius
   m_TagString: Hit_radius
@@ -109,8 +109,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9196623982164704659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4972443833741963285
-CircleCollider2D:
+--- !u!114 &2146474019925828735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198441478640702946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7bb0641ad12fa43ab93759c833104c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerTransform: {fileID: 9196623982164704659}
+  damage: 30
+--- !u!70 &200672007774036386
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,23 +155,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15, y: -0.75}
-  serializedVersion: 2
-  m_Radius: 2.5
---- !u!114 &2146474019925828735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198441478640702946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7bb0641ad12fa43ab93759c833104c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerTransform: {fileID: 9196623982164704659}
-  damage: 30
+  m_Offset: {x: 0.077429056, y: -0.19357276}
+  m_Size: {x: 2.0485806, y: 4.2553086}
+  m_Direction: 0
 --- !u!1 &1921137688547839319
 GameObject:
   m_ObjectHideFlags: 0
