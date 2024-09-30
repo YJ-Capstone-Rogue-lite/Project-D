@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.TextCore.Text;
 
 
 public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
@@ -13,7 +14,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
     [SerializeField]  private Weapon_Slot weapon_Slot;
     private IngameUI ingameUI;
     private Item_interaction item_Interaction;
-
+    public Character character;
 
     public Image inv_weapon1_image; // 인벤토리 슬롯의 무기 이미지
     public Image inv_weapon2_image; // 인벤토리 슬롯의 무기 이미지
@@ -24,6 +25,27 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
     public Image inv_consumableItem_image; //인벤 슬롯의 소비아이템 이미지
 
     public TMP_Text item_info_text; //아이템 설명 텍스트
+
+    [Header("패시브 버프 관련")]
+    public Image Stack_Buff_Attack; //스택형 공버프 전체
+    public Image Stack_Buff_Attack_Icon; //스택형 공버프 아이콘
+    public TMP_Text Stack_Buff_Attack_Count; //스택형 공버프 카운트
+    public Image Stack_Buff_Attack_text_background;//설명 문구 뜨는 배경
+    public TMP_Text Stack_Buff_Attack_text;// 설명 문구 뜨는 텍스트
+
+
+    public Image Stack_Buff_Speed; //스택형 (설명 문구 뜨게 하는 용)
+    public Image Stack_Buff_Speed_Icon; //스택형 이속버프 아이콘
+    public TMP_Text Stack_Buff_Speed_Count; //스택형 이속버프 카운트
+    public Image Stack_Buff_Speed_text_background;//설명 문구 뜨는 배경
+    public TMP_Text Stack_Buff_Speed_text;// 설명 문구 뜨는 텍스트
+
+    public Image Stack_Buff_Health; //스택형 공버프 전체(설명 문구 뜨게 하는 용)
+    public Image Stack_Buff_Health_Icon; //스택형 체력버프 아이콘
+    public TMP_Text Stack_Buff_Health_Count; //스택형 체력버프 카운트
+    public Image Stack_Buff_Health_text_background;//설명 문구 뜨는 배경
+    public TMP_Text Stack_Buff_Health_text;// 설명 문구 뜨는 텍스트
+    
 
 
     //public Item item; // 인벤토리 슬롯에 있는 아이템(아직 스크립블 오브젝트가 없음
@@ -37,7 +59,7 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
         weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         ingameUI = FindObjectOfType<IngameUI>();
         item_Interaction = FindObjectOfType<Item_interaction>();
-
+        character = FindAnyObjectByType<Character>();
 
         // 1. 해당 이미지 객체에 EventTrigger 컴포넌트 추가
         EventTrigger trigger1 = inv_weapon1_image.gameObject.AddComponent<EventTrigger>();
@@ -101,7 +123,20 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler
         }
     }
 
-
+    public void AddBuff_Effect() //인벤토리에 버프 아이콘 표시
+    {
+        if (character == null)
+        {
+            Debug.LogError("character 객체가 null입니다. 초기화가 필요합니다.");
+            return; // 함수 종료
+        }
+       
+            Stack_Buff_Attack_Count.text = character.damageUpStack.ToString();
+            Stack_Buff_Health_Count.text = character.max_hp_UPStack.ToString();
+            Stack_Buff_Speed_Count.text = character.movement_SpeedUpStack.ToString();
+            Debug.Log("버프 효과 적용됨" + Stack_Buff_Attack_Count);
+       
+    }
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스 들어올때 인벤토리 옆에 설명 문구 뜨게 하기
     {

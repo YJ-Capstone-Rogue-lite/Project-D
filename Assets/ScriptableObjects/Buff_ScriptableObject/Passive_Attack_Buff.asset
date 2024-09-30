@@ -17,7 +17,7 @@ MonoBehaviour:
   buff_Time: 1
   buffType: 0
   Buff_name: Test_attackUp_Buff
-  Buff_Icon_sprite: {fileID: 21300000, guid: ed6174cfc03074afa9523d9500a2c7c0, type: 3}
+  Buff_Icon_sprite: {fileID: 21300000, guid: f0cab40d6d56f6a4e82d0549bd949fb1, type: 3}
   damage_up: 1
   movement_Speed_up: 0
   health_up: 0

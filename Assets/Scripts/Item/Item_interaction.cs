@@ -16,10 +16,12 @@ public class Item_interaction : MonoBehaviour
     [SerializeField] private IngameUI ingameUI;
     [SerializeField] private Character character;
     [SerializeField] private GameObject pickedUpConsumablePrefab; // 픽업한 소비 아이템의 프리팹을 저장할 변수
+    [SerializeField] private Inventory_Slot Inventory_Slot;
     public ConsumableItem currentConsumable; // 현재 슬롯에 있는 소비 아이템
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
     public Buff buff; //현재 획득할려고 하는 버프
+
 
 
     private void Awake()
@@ -32,7 +34,7 @@ public class Item_interaction : MonoBehaviour
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
         item_Drop = FindAnyObjectByType<Item_drop>();
-
+        Inventory_Slot = FindAnyObjectByType<Inventory_Slot>();
 
 
     }
@@ -204,7 +206,7 @@ public class Item_interaction : MonoBehaviour
                 else if(item_PickUp.buff != null) //버프일 경우
                 {
                     // 버프 아이템 처리 로직
-                    buff = item_PickUp.buff; // buff 필드를 item_PickUp.buff로 설정
+                    //buff = item_PickUp.buff; // buff 필드를 item_PickUp.buff로 설정
                     ApplyBuff();
                     Debug.Log(item_PickUp.buff.Buff_name + " 버프 적용됨.");
                     Destroy(item_PickUp.gameObject);
@@ -398,7 +400,9 @@ public class Item_interaction : MonoBehaviour
                     Debug.LogWarning("알 수 없는 버프 타입입니다: " + buff.buffType);
                     break;
             }
+
         }
+
         else if (buff.buff_Time == Buff.Buff_Time.duration)
         {
             Debug.Log("시간형 버프는 아직 구현되지 않았습니다.");
@@ -414,6 +418,7 @@ public class Item_interaction : MonoBehaviour
             //캐릭터의 버프 데미지 값에 아이템 픽업의 버프 데미지 값 받아와서 더해주기
             character.m_passive_buff_damage += item_PickUp.buff.damage_up;
 
+            Debug.Log("데미지업 패시브 버프 적용");
             UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
         }
     }

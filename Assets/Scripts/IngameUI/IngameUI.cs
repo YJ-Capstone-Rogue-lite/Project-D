@@ -31,6 +31,8 @@ public class IngameUI : MonoBehaviour
     public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
 
+    
+
 
     [Header("기타 불 값들")]
     public bool MainWeapon = false; // true면 MainWeapon false면 SubWeapon
@@ -50,6 +52,8 @@ public class IngameUI : MonoBehaviour
     public GameObject right_inv;
     [SerializeField] private bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
+    public GameObject Buff_list;
+
 
     //[Header("체력바 관련")]
     //public Image HPbar; //hp바 관련 이미지
@@ -273,6 +277,7 @@ public class IngameUI : MonoBehaviour
             inv_slot_active_bool = false; //인벤슬롯 끄고 다시 false로 바꿔주기
             left_inv.SetActive(false);
             right_inv.SetActive(false);
+            Buff_list.SetActive(false);
         }
     }
     private IEnumerator InvRefreshCoroutine()
@@ -301,8 +306,10 @@ public class IngameUI : MonoBehaviour
 
         left_inv.SetActive(true);
         right_inv.SetActive(true);
+        Buff_list.SetActive(true);
         inventory_slot.AddWeapon(); //인벤 슬롯에 무기 할당 코드
         inventory_slot.AddConsumableItem();//인벤 소비슬롯에 소비아이템 할당
+        inventory_slot.AddBuff_Effect();//인벤토리 버프 아이콘 할당
         Debug.Log("인벤토리 열림");
     }
 
