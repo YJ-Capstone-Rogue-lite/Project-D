@@ -120,7 +120,7 @@ public class IngameUI : MonoBehaviour
             Debug.LogWarning("Player object with tag 'Player' not found.");
         }
         inv_slot_active_bool = false;
-        // character = player.GetComponent<Character>();
+        character = player.GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
         sub_slot_sprite.sprite = default_consumableItem.sprite;
         // 추가 카메라 설정
@@ -129,8 +129,6 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.targetTexture = renderTexture;
         action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-        mainWeapon = Weapon_Slot.weaponSlot1;
-        subWeapon = Weapon_Slot.weaponSlot2;
         MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
         SubWeapon_Swap = subWeapon.GetComponent<Animator>();
         StopCoroutine(startCoroutine);

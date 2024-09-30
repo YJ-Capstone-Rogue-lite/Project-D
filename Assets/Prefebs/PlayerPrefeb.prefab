@@ -531,6 +531,7 @@ RectTransform:
   - {fileID: 316723827059657103}
   - {fileID: 4545488504576599970}
   - {fileID: 7537390406503114754}
+  - {fileID: 1914104192111031277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -626,10 +627,17 @@ MonoBehaviour:
   m_shield: 0
   m_maxShield: 0
   m_movementSpeed: 0
+  m_buff_movementSpeed: 0
+  m_max_movementSpeed: 7
+  m_min_movementSpeed: 3
   m_protectionTime: 0
   m_damage: 0
+  m_passive_buff_damage: 0
+  m_buff_damage: 0
   m_stamina: 0
   m_maxStamina: 100
+  damageUpStack: 0
+  movement_SpeedUpStack: 0
   player_anim: {fileID: 0}
   fire: {fileID: 2795944204507669091}
   bodyRender: {fileID: 0}
@@ -1197,6 +1205,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7760639659512379478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &3653468604697531771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914104192111031277}
+  m_Layer: 0
+  m_Name: Temp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1914104192111031277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653468604697531771}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7956526315547988402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4119670824032575788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,8 +1293,9 @@ MonoBehaviour:
   character: {fileID: 0}
   pickedUpConsumablePrefab: {fileID: 0}
   currentConsumable: {fileID: 0}
-  currentBox: {fileID: 0}
+  currentBox: {fileID: 3653468604697531771}
   item_Drop: {fileID: 0}
+  buff: {fileID: 0}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0

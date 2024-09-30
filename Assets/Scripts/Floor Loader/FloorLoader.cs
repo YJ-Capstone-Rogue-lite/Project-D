@@ -341,15 +341,19 @@ public partial class FloorLoader : MonoBehaviour
         int x = 0, y = 0;
         for(int i=2; i<roomContainer.specialRoomData.Length; i++)
         {
-            var roomData = roomContainer.specialRoomData[i];
-            do
-            {                
-                x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
-                y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
-            } while(!(SelectedRoomCheck(x, y) && !SelectedRoomCheck(roomData, x, y+1)));
-            m_selectedRoomTablel[x, ++y] = true;
-            m_roomNumberTablel[x, y] = roomIdx++;
-            OverSizeInject(roomData, x, y);
+            int j = 0;
+            while(i == 2 && j < 3){
+                var roomData = roomContainer.specialRoomData[i];
+                do
+                {                
+                    x = Random.Range(0, floorSize - roomData.roomSize.GetLength(0));
+                    y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1)-1);
+                } while(!(SelectedRoomCheck(x, y) && !SelectedRoomCheck(roomData, x, y+1)));
+                m_selectedRoomTablel[x, ++y] = true;
+                m_roomNumberTablel[x, y] = roomIdx++;
+                OverSizeInject(roomData, x, y);
+                j++;
+            }
         }
     }
     private void CreateRooms()
