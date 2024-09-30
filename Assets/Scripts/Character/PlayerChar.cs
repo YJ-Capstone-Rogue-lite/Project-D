@@ -49,6 +49,7 @@ public class PlayerChar : Character
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
         stamina_bar.gameObject.SetActive(false);
+        Input.imeCompositionMode = IMECompositionMode.Auto;
 
     }
     private void OnEnable()

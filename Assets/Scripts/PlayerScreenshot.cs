@@ -14,7 +14,8 @@ public class PlayerScreenshot : MonoBehaviour
     }
     private void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        screenshot_camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -3);
+        
+        if(player == null) player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null) screenshot_camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -3);
     }
 }

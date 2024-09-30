@@ -8258,7 +8258,7 @@ MonoBehaviour:
   TitleText: {fileID: 441738657}
   playtimeText: {fileID: 788742835}
   destory_enemy_count: {fileID: 32392870}
-  action_text: {fileID: 0}
+  action_text: {fileID: 1636737318}
 --- !u!114 &2031060858
 MonoBehaviour:
   m_ObjectHideFlags: 0
