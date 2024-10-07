@@ -50,7 +50,7 @@ public class IngameUI : MonoBehaviour
     public GameObject inv_slot;
     public GameObject left_inv;
     public GameObject right_inv;
-    [SerializeField] private bool inv_slot_active_bool;
+    public bool inv_slot_active_bool;
     public Inventory_Slot inventory_slot;
     public GameObject Buff_list;
 
@@ -126,8 +126,16 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.targetTexture = renderTexture;
         action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
     }
-    
 
+    private void Awake()
+    {
+        // Singleton 패턴 설정
+        if (single == null)
+        {
+            single = this;
+        }
+       
+    }
 
     private void Update()
     {

@@ -396,6 +396,11 @@ public class Item_interaction : MonoBehaviour
                     Movement_Speed_Up_Passive_Buff(); // 이동 속도 업 버프 적용
                     break;
 
+
+                case Buff.BuffType.Health_Up:
+                    MaxHP_Up_Passive_Buff(); // 최대체력 업 버프 적용
+                    break;
+
                 default:
                     Debug.LogWarning("알 수 없는 버프 타입입니다: " + buff.buffType);
                     break;
@@ -437,7 +442,20 @@ public class Item_interaction : MonoBehaviour
             UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
         }
     }
-
+    //최대체력 업 패시브 버프
+    public void MaxHP_Up_Passive_Buff()
+    {
+        //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
+        //
+        if (character.max_hp_UPStack < 5)
+        {
+            character.max_hp_UPStack++;
+            //최대체력 값 더해주기
+            character.m_maxHealth += item_PickUp.buff.health_up;
+            character.player_hpbar_update(); //hp바 업데이트
+            UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
+        }
+    }
     private void UpdateBuffIcon()
     {
         // 버프 아이콘 오른쪽 하단에 숫자 표기 변경 로직 추가

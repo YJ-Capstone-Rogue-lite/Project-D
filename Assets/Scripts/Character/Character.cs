@@ -293,7 +293,7 @@ public class Character : MonoBehaviour
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
 
         TMP_Text hp_count_text = hp_count.GetComponent<TMP_Text>();
-        hp_count_text.text = m_health.ToString();
+        hp_count_text.text = m_health.ToString() +"/" + m_maxHealth;
 
     }
 }

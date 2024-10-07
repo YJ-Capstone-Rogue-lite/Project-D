@@ -19,8 +19,8 @@ MonoBehaviour:
   Buff_name: Test_movementUp_Buff
   Buff_Icon_sprite: {fileID: 21300000, guid: 18bede0293f9d454889f2be699ac4b27, type: 3}
   damage_up: 0
-  movement_Speed_up: 0.5
+  movement_Speed_up: 0.2
   health_up: 0
   duration: 0
   info: "\uD14C\uC2A4\uD2B8\uC6A9 \uC774\uB3D9\uC18D\uB3C4 \uBC84\uD504(1\uC2A4\uD0DD\uB2F9
-    \uC774\uC18D 1 \uC99D\uAC00)"
+    \uC774\uC18D 0.2\uC99D\uAC00)"
