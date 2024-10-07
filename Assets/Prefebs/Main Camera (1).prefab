@@ -61,9 +61,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed9cc1d128d18d4087b5b108d7c3328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursuricon: {fileID: 2800000, guid: 400fd22928340b3459a16e582799e627, type: 3}
-  inventory_and_ESC_CursorIcon: {fileID: 2800000, guid: b490a55d2b21c964cb0844e58f7ed86c, type: 3}
   hotSpot: {x: 0, y: 0}
+  cursorSprites:
+  - {fileID: 2019166016, guid: 400fd22928340b3459a16e582799e627, type: 3}
+  - {fileID: -18733120, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
+  - {fileID: 260488000, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
+  - {fileID: -1618273956, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
 --- !u!20 &7871142220950133337
 Camera:
   m_ObjectHideFlags: 0
