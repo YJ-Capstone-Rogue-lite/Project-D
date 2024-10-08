@@ -114,13 +114,13 @@ public class Enemy : MonoBehaviour
         //         spriteRenderer.sortingLayerName = "Enemy";
         //     }
         // }
-        if(character == null)
-        {
-            character = FindAnyObjectByType<Character>();
-            Debug.Log("에너미가 캐릭터값을 찾아서 넣음");
-            //캐릭터 찾아서 값 불러옴
+        // if(character == null)
+        // {
+        //     character = FindAnyObjectByType<Character>();
+        //     Debug.Log("에너미가 캐릭터값을 찾아서 넣음");
+        //     //캐릭터 찾아서 값 불러옴
 
-        }
+        // }
     }
 
     
@@ -215,11 +215,12 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))  // Enemy가 데미지를 받는 코드 
+        if (collision.gameObject.CompareTag("Bullet") && blackboard.state != BehaviourTree.Blackboard.State.Death)  // Enemy가 데미지를 받는 코드 
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet == null)
                 return;
+            character = Character.Charsingle;
             character.m_damage = bullet.Damage + character.m_passive_buff_damage + character.m_buff_damage;
             enemy_hp -= character.m_damage; // 적의 체력 감소
             enemy_hpbar_update();//적의 체력바 업데이트

@@ -13,7 +13,8 @@ public class Character : MonoBehaviour
     {
         get
         {
-            if (charsingle != null) charsingle = new Character();
+            if (charsingle == null) charsingle = FindObjectOfType<Character>();
+            // if (charsingle != null) charsingle = new Character();
             return charsingle;
         }
     }
@@ -114,6 +115,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
+        charsingle = this;
         // DataManager를 통해 데이터 불러오기
         DataManager.Instance.LoadGameData();
 

@@ -240,7 +240,7 @@ public class IngameUI : MonoBehaviour
     {
         SoundManager.PlaySFX(buttonSound);
         ingameOption.SetActive(false);
-        openOption = true;
+        option_open();
     }
     public void Option_Btn()
     {
