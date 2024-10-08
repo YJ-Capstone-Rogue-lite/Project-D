@@ -31,7 +31,7 @@ public class Item_interaction : MonoBehaviour
         weaponSlotScript = FindObjectOfType<Weapon_Slot>(); //웨폰슬롯스크립트는 웨폰슬롯 코드의 값을 가져옴
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
-        item_Drop = FindAnyObjectByType<Item_drop>();
+        // item_Drop = FindAnyObjectByType<Item_drop>();
 
 
 
@@ -143,6 +143,7 @@ public class Item_interaction : MonoBehaviour
         {
             pickupActivated = true;
             currentBox = collider2D.gameObject; // 현재 상자 객체 저장
+            item_Drop = currentBox.GetComponent<Item_drop>();
             actionText.gameObject.SetActive(true);
             Animator boxAnimator = currentBox.GetComponent<Animator>(); // 현재 상자 객체의 애니메이터 가져오기
             if (!boxAnimator.GetBool("State"))
@@ -369,7 +370,7 @@ public class Item_interaction : MonoBehaviour
 
     private IEnumerator DelayedItemDrop()
     {
-        item_Drop = FindAnyObjectByType<Item_drop>();
+        // item_Drop = FindAnyObjectByType<Item_drop>();
 
         yield return new WaitForSeconds(0.35f); // 0.초 대기
         item_Drop.Box_Open_Item_Drop(); // 아이템 드롭 실행

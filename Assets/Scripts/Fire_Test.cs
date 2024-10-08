@@ -36,7 +36,7 @@ public class Fire_Test : MonoBehaviour
     //public float player_hp = 100; // 플레이어 체력
     public Animator[] shot_animator;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         weapon = default_weapon;
