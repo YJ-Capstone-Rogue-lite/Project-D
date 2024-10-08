@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6828317904897812221}
   - component: {fileID: 3828828358280195348}
-  - component: {fileID: 5665601295688961785}
+  - component: {fileID: -8203706155746154622}
   - component: {fileID: 7871142220950133337}
   m_Layer: 0
   m_Name: Main Camera (1)
@@ -49,7 +49,7 @@ MonoBehaviour:
   cameraSpeed: 5
   maxDistanceFromPlayer: 2
   player: {fileID: 0}
---- !u!114 &5665601295688961785
+--- !u!114 &-8203706155746154622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotSpot: {x: 0, y: 0}
+  ChagnehotSpot: {x: 0, y: 0}
   cursorSprites:
   - {fileID: 2019166016, guid: 400fd22928340b3459a16e582799e627, type: 3}
   - {fileID: -18733120, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}

@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -70,7 +70,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -113,15 +113,23 @@ TextureImporter:
       name: MouseCursor_0
       rect:
         serializedVersion: 2
-        x: 86
-        y: 35
-        width: 244
-        height: 331
+        x: 0
+        y: 0
+        width: 400
+        height: 400
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
+      physicsShape:
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: ba41b146cbcb4454898bf8b73e38a2ac
@@ -134,23 +142,23 @@ TextureImporter:
       name: MouseCursor_1
       rect:
         serializedVersion: 2
-        x: 486
-        y: 35
-        width: 244
-        height: 331
+        x: 400
+        y: 0
+        width: 400
+        height: 400
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
       physicsShape:
-      - - {x: -122, y: 165.5}
-        - {x: -122, y: 126.5}
-        - {x: -84, y: -115.5}
-        - {x: 84, y: -165.5}
-        - {x: 110, y: -165.5}
-        - {x: 122, y: -28.5}
-        - {x: 122, y: 27.5}
-        - {x: -114, y: 165.5}
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 8fbb52cd727e9c74fb15fa1fc5de347c
@@ -163,15 +171,23 @@ TextureImporter:
       name: MouseCursor_2
       rect:
         serializedVersion: 2
-        x: 886
-        y: 35
-        width: 244
-        height: 331
+        x: 800
+        y: 0
+        width: 400
+        height: 400
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
+      physicsShape:
+      - - {x: 0, y: -200}
+        - {x: 200, y: 0}
+        - {x: 0, y: 200}
+        - {x: -200, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: beee00fc3e51dc14eadc325b650da5d6

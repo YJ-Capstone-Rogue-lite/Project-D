@@ -30,6 +30,7 @@ public class CURSOR : MonoBehaviour
         // 특정 조건에 따라 슬라이스된 커서를 적용
         if (IngameUI.single.inv_slot_active_bool == true || IngameUI.single.openOption == false)
         {
+            Debug.Log("123");
             Cursor.SetCursor(cursorTextures[2], ChagnehotSpot, CursorMode.Auto); // 예: inventory 상태일 때 cursorTextures[1] 사용
         }
         else
@@ -48,10 +49,12 @@ public class CURSOR : MonoBehaviour
         }
     }
 
-    // Sprite를 Texture2D로 변환하는 메서드
     private Texture2D SpriteToTexture2D(Sprite sprite)
     {
-        Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+        Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height, TextureFormat.RGBA32, false);
+        texture.alphaIsTransparency = true;  // 투명도 설정
+        texture.Apply(); // 설정 적용
+
         Color[] pixels = sprite.texture.GetPixels(
             (int)sprite.textureRect.x,
             (int)sprite.textureRect.y,
@@ -59,6 +62,8 @@ public class CURSOR : MonoBehaviour
             (int)sprite.textureRect.height);
         texture.SetPixels(pixels);
         texture.Apply();
+
         return texture;
     }
+
 }
