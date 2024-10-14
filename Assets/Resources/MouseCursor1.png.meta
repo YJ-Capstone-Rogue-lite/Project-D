@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47b89e2ee88d2e144822d59a2892503b
+guid: 60c78b946f8ff7f47b1536b814f2f080
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -110,88 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MouseCursor_0
+      name: MouseCursor1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 400
-        height: 400
+        x: 2
+        y: 2
+        width: 244
+        height: 331
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
-      physicsShape:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba41b146cbcb4454898bf8b73e38a2ac
-      internalID: -18733120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MouseCursor_1
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 400
-        height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
-      physicsShape:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8fbb52cd727e9c74fb15fa1fc5de347c
-      internalID: 260488000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MouseCursor_2
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 400
-        height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
-      physicsShape:
-      - - {x: 0, y: -200}
-        - {x: 200, y: 0}
-        - {x: 0, y: 200}
-        - {x: -200, y: 0}
-      tessellationDetail: 0
-      bones: []
-      spriteID: beee00fc3e51dc14eadc325b650da5d6
-      internalID: -1618273956
+      spriteID: b8756ee64080b904dbdec3bf6cd084e8
+      internalID: -1191265204
       vertices: []
       indices: 
       edges: []
@@ -207,9 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MouseCursor_0: -18733120
-      MouseCursor_1: 260488000
-      MouseCursor_2: -1618273956
+      MouseCursor1_0: -1191265204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

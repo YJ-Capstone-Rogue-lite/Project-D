@@ -65,9 +65,9 @@ MonoBehaviour:
   ChagnehotSpot: {x: 0, y: 0}
   cursorSprites:
   - {fileID: 2019166016, guid: 400fd22928340b3459a16e582799e627, type: 3}
-  - {fileID: -18733120, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
-  - {fileID: 260488000, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
-  - {fileID: -1618273956, guid: 47b89e2ee88d2e144822d59a2892503b, type: 3}
+  - {fileID: 233198024, guid: fef6e9a034e032b4e81a296221cd724d, type: 3}
+  - {fileID: -1191265204, guid: 60c78b946f8ff7f47b1536b814f2f080, type: 3}
+  - {fileID: -6291423, guid: 4cff09359d94bcf468800dc8c82ef191, type: 3}
 --- !u!20 &7871142220950133337
 Camera:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class CURSOR : MonoBehaviour
     [SerializeField] private Sprite[] cursorSprites; // Multiple 모드로 잘라진 스프라이트 배열
     private Texture2D[] cursorTextures;
 
+    private bool isClicked = false; // 좌클릭 상태 변수
+
     void Start()
     {
         LoadCursorTextures();
@@ -23,6 +25,18 @@ public class CURSOR : MonoBehaviour
     private void Update()
     {
         cursor_Change();
+
+        // 인벤토리나 옵션이 열린 상태에서만 좌클릭 감지
+        if ((IngameUI.single.inv_slot_active_bool == true || IngameUI.single.openOption == false) && Input.GetMouseButtonDown(0))
+        {
+            isClicked = true;
+            Cursor.SetCursor(cursorTextures[3], ChagnehotSpot, CursorMode.Auto); // 좌클릭 시 커서 변경
+            Debug.Log("좌클릭 감지");
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            isClicked = false;
+        }
     }
 
     public void cursor_Change()
@@ -30,12 +44,18 @@ public class CURSOR : MonoBehaviour
         // 특정 조건에 따라 슬라이스된 커서를 적용
         if (IngameUI.single.inv_slot_active_bool == true || IngameUI.single.openOption == false)
         {
-            Debug.Log("123");
-            Cursor.SetCursor(cursorTextures[2], ChagnehotSpot, CursorMode.Auto); // 예: inventory 상태일 때 cursorTextures[1] 사용
+
+            if (!isClicked)
+            {
+                Cursor.SetCursor(cursorTextures[2], ChagnehotSpot, CursorMode.Auto); // 조건에 맞는 기본 커서
+            }
         }
         else
         {
-            Cursor.SetCursor(cursorTextures[0], hotSpot, CursorMode.Auto); // 기본 커서
+            if (!isClicked)
+            {
+                Cursor.SetCursor(cursorTextures[0], hotSpot, CursorMode.Auto); // 기본 커서
+            }
         }
     }
 
@@ -65,5 +85,4 @@ public class CURSOR : MonoBehaviour
 
         return texture;
     }
-
 }
