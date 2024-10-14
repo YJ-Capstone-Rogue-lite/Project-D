@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemyTag;
     protected Transform originPos;
+    private CircleCollider2D circleCollider2D;
 
     private void Start()
     {
