@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 548271649355585637}
   - component: {fileID: 5069459133250866807}
   m_Layer: 10
-  m_Name: Fill Area
+  m_Name: TPCastingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 6277502425597516399}
   - component: {fileID: 745372781923591191}
   - component: {fileID: 3445710710384248032}
+  - component: {fileID: 6487560436219741982}
   m_Layer: 10
   m_Name: BossCasting_Bar
   m_TagString: Untagged
@@ -253,6 +254,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6487560436219741982
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783211037973561508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7141308dc6543644db6a7c8441656148, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6173313241963185773
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,9 +286,9 @@ GameObject:
   - component: {fileID: 9196623982164704659}
   - component: {fileID: 20039698541068980}
   - component: {fileID: 1183472342402711848}
-  - component: {fileID: 7575438858144496077}
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 3190513805663615319}
+  - component: {fileID: 1464800805216949786}
   m_Layer: 10
   m_Name: Magician_Boss
   m_TagString: Boss
@@ -364,50 +386,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7575438858144496077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6173313241963185773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe0e421ca85d4e408945946370b27b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behaviorTree: {fileID: 11400000, guid: 250f739d14c250a41b3eeb1d978c8962, type: 2}
-  direction: {x: 0, y: 0}
-  targetTransform: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  melee: 1
-  enemy_speed: 3
-  rotateSpeed: 0.25
-  enemy_hp: 1500
-  max_enemy_hp: 1500
-  enemy_body_damage: 0
-  endPosition: {x: 0, y: 0, z: 0}
-  followPlayer: 1
-  find_Playersecond: 3
-  attackRange: 4
-  damage: 10
-  enemy_animator: {fileID: 1183472342402711848}
-  enemy_rb: {fileID: 7642830349020207972}
-  spriteRenderer: {fileID: 20039698541068980}
-  currentAngle: 0
-  Attack_the_Player: 0
-  hit: {fileID: 0}
-  originalSortingOrder: 0
-  character: {fileID: 0}
-  enemy_hp_bar: {fileID: 8125213795990888417}
-  item_Drop: {fileID: 0}
-  enemyTag: {fileID: 6173313241963185773}
-  boss_Skil_count: 0
-  castingTime: 2
-  casting_Bar: {fileID: 5783211037973561508}
-  casting_Bar_BG: {fileID: 462527652666997604}
-  shockWaveObject: {fileID: 0}
 --- !u!50 &7642830349020207972
 Rigidbody2D:
   serializedVersion: 4
@@ -470,6 +448,54 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.77}
   m_Size: {x: 2.62, y: 4.36}
   m_Direction: 0
+--- !u!114 &1464800805216949786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581fc94dc6072684f9d74cf591991b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorTree: {fileID: 11400000, guid: 250f739d14c250a41b3eeb1d978c8962, type: 2}
+  direction: {x: 0, y: 0}
+  targetTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  melee: 0
+  enemy_speed: 3
+  rotateSpeed: 0.25
+  enemy_hp: 1000
+  max_enemy_hp: 1000
+  enemy_body_damage: 20
+  endPosition: {x: 0, y: 0, z: 0}
+  followPlayer: 0
+  find_Playersecond: 4
+  attackRange: 10
+  damage: 20
+  enemy_animator: {fileID: 1183472342402711848}
+  enemy_rb: {fileID: 7642830349020207972}
+  spriteRenderer: {fileID: 20039698541068980}
+  currentAngle: 0
+  Attack_the_Player: 0
+  hit: {fileID: 0}
+  originalSortingOrder: 0
+  character: {fileID: 0}
+  enemy_hp_bar: {fileID: 0}
+  item_Drop: {fileID: 0}
+  enemyTag: {fileID: 0}
+  setTP: 0
+  attackCount: 1
+  meteorCasting: 0
+  fireballCasting: 0
+  posChange: 0
+  fireballPrefeb: {fileID: 0}
+  meteorPrefeb: {fileID: 0}
+  teleport: []
+  casting_Bar: {fileID: 462527652666997604}
 --- !u!1001 &7359668736518700242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -582,10 +608,5 @@ PrefabInstance:
 --- !u!224 &1411544062639593588 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8481408815702434982, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
-  m_PrefabInstance: {fileID: 7359668736518700242}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8125213795990888417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1648393729127310131, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
   m_PrefabInstance: {fileID: 7359668736518700242}
   m_PrefabAsset: {fileID: 0}
