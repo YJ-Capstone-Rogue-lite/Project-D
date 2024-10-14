@@ -47,7 +47,7 @@ public class RoomContainer_F2 : InitRoomContainer
                     roomSize = new bool[,] { { true, true, true }, 
                                                 { true, true, true },
                                                 { true, true, true } },
-                    path = "TileMap/Default/Rooms/Special Room 2"
+                    path = "TileMap/Default/Rooms/Special Room 4"
                 },
                 new RoomData{
                     roomSize = new bool[,] { { true } },
