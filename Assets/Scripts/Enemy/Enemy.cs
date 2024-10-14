@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 
@@ -63,6 +60,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemyTag;
     protected Transform originPos;
+    private CircleCollider2D circleCollider2D;
 
     private void Start()
     {
@@ -239,7 +237,7 @@ public class Enemy : MonoBehaviour
             enemy_rb.angularVelocity = 0f;
 
             // 적의 위치를 고정하여 밀리지 않도록 설정
-            enemy_rb.isKinematic = true;
+            circleCollider2D.isTrigger = true;
             StartCoroutine(ResetKinematic()); // 일정 시간 후에 다시 isKinematic을 false로 설정
         }
         // else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object")) // 벽에 접촉했을 때 새로운 이동경로 찾는 코드
@@ -269,8 +267,8 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ResetKinematic()
     {
-        yield return new WaitForFixedUpdate(); // 물리 업데이트 후에 다시 false로 설정
-        enemy_rb.isKinematic = false;
+        yield return new WaitForSeconds(0.1f); // 물리 업데이트 후에 다시 false로 설정
+        circleCollider2D.isTrigger = false;
     }
 
     // public void OnTriggerExit2D(Collider2D collider)
