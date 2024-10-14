@@ -217,7 +217,7 @@ public partial class FloorLoader : MonoBehaviour
         int x = 0, y = 0;
         var roomData = roomContainer.specialRoomData[1];
         do
-        {                
+        {
             x = floorSize - 1;
             y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1));
         } while(SelectedRoomCheck(x, y));
