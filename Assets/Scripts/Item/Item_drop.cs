@@ -48,7 +48,6 @@ public class Item_drop : MonoBehaviour
         {
             // 배열에서 랜덤한 아이템 선택
             int randomIndex = Random.Range(0, Weapon_drop_prefeb.Length);
-            Debug.Log("AAA : " + Weapon_drop_prefeb.Length + ", " + randomIndex);
 
             // 선택된 아이템 프리팹을 현재 위치에 생성
             GameObject newWeapon = Instantiate(Weapon_drop_prefeb[randomIndex], item_interaction.currentBox.transform.position, Quaternion.identity);
