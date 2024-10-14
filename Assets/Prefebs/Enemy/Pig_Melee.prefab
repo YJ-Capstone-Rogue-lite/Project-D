@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5503899032511892471}
   - component: {fileID: 548271649355585637}
   - component: {fileID: 5069459133250866807}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8167121934664599737}
   - component: {fileID: 2146474019925828735}
   - component: {fileID: 200672007774036386}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hit_radius
   m_TagString: Hit_radius
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 5425569154212356449}
   - component: {fileID: 2132908446294235605}
   - component: {fileID: 8629558272157353019}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack_radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 3901029910022228333}
   - component: {fileID: 6864339823405611616}
   - component: {fileID: 8706616841502106741}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: CastingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 6277502425597516399}
   - component: {fileID: 745372781923591191}
   - component: {fileID: 3445710710384248032}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: BossCasting_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7575438858144496077}
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 2985593465531141340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pig_Melee
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -543,7 +543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
+  direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  melee: 1
   enemy_speed: 3
   rotateSpeed: 0.25
   enemy_hp: 1500
@@ -552,7 +556,7 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 3
-  attackRange: 10
+  attackRange: 4
   damage: 10
   circleCollider2D: {fileID: 2985593465531141340}
   enemy_animator: {fileID: 1183472342402711848}
@@ -642,6 +646,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 9196623982164704659}
     m_Modifications:
     - target: {fileID: 1835290701603643966, guid: c1c22f7d444992040a42b3bd226b180a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835290701603643966, guid: c1c22f7d444992040a42b3bd226b180a, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -652,6 +660,10 @@ PrefabInstance:
     - target: {fileID: 2582972920890245703, guid: c1c22f7d444992040a42b3bd226b180a, type: 3}
       propertyPath: m_Name
       value: Shock wave effect_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582972920890245703, guid: c1c22f7d444992040a42b3bd226b180a, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2582972920890245703, guid: c1c22f7d444992040a42b3bd226b180a, type: 3}
       propertyPath: m_IsActive
@@ -758,9 +770,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9196623982164704659}
     m_Modifications:
+    - target: {fileID: 1648393729127310131, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228589909507619754, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8252001039647078978, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Name
       value: BossHpBar_canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252001039647078978, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8481408815702434982, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Pivot.x

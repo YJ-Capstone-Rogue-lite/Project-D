@@ -16,6 +16,7 @@ namespace BehaviourTree
         [HideInInspector] public Vector2 viewPos = Vector2.zero;
         [HideInInspector] public Vector3 viewScale = Vector3.one;
 
+
         public BehaviourNode.NodeState Update() => rootNode.Update();
 
 #if UNITY_EDITOR

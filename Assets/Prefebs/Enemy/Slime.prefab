@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3042768072393564539}
   - component: {fileID: 3130439549480012488}
   - component: {fileID: 219581706284057917}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,7 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
+  direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  melee: 1
   enemy_speed: 3
   rotateSpeed: 0.25
   enemy_hp: 100
@@ -373,7 +377,7 @@ GameObject:
   - component: {fileID: 3829852723291050678}
   - component: {fileID: 7365747469557001472}
   - component: {fileID: 9118391327408703717}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack_radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +458,7 @@ GameObject:
   - component: {fileID: 1180896362835980322}
   - component: {fileID: 4868865605605047451}
   - component: {fileID: 8948497751932598232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hit_radius
   m_TagString: Hit_radius
   m_Icon: {fileID: 0}
@@ -537,7 +541,7 @@ GameObject:
   - component: {fileID: 3324831591142359300}
   - component: {fileID: 5928848777736145592}
   - component: {fileID: 303463992181108423}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: enemy_hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +642,7 @@ GameObject:
   - component: {fileID: 3975359488834385360}
   - component: {fileID: 3818637071596664802}
   - component: {fileID: 3453671179618294459}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +718,7 @@ GameObject:
   - component: {fileID: 4263822071066133641}
   - component: {fileID: 192674846807086664}
   - component: {fileID: 4898929533640327374}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: enemy_hp_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

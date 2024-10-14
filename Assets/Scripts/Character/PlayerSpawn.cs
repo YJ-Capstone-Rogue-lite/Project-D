@@ -9,6 +9,7 @@ public class PlayerSpawn : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        player.transform.parent = null;
         player.transform.position = spawnPoint.transform.position;        
     }
 

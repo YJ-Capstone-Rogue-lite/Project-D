@@ -11,7 +11,7 @@ namespace BehaviourTree
 
         private Transform tempTransform;
 
-        void OnEnable() => tempTransform = new GameObject("temp").transform;
+        //void OnEnable() => tempTransform = new GameObject("temp").transform;
 
         protected override void OnEnd() { }
 

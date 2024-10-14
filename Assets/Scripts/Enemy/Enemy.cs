@@ -12,8 +12,14 @@ public class Enemy : MonoBehaviour
     public BehaviourTree.BehaviourTree behaviorTree;
     protected BehaviourTree.Blackboard blackboard;
     // 플레이어를 추적하기 위한 타겟
+    public Vector2 direction;
     public Transform targetTransform;
     public Coroutine moveCoroutine;
+    [Header("총알")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    [Header("적의 종류")]
+    public bool melee = true; //true면 근거리 false면 원거리 
 
     [Header("적의 스탯")]
     // 적의 이동 속도와 회전 속도
@@ -58,6 +64,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemyTag;
     protected Transform originPos;
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -87,6 +94,9 @@ public class Enemy : MonoBehaviour
         if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
             blackboard.target = hit.transform;
+            //direction = (blackboard.target.transform.position - firePoint.position).normalized;
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // firePoint를 회전시켜서 플레이어를 바라보게함.
+            //firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             blackboard.state = BehaviourTree.Blackboard.State.Aggro;
         }
         behaviorTree.Update();
@@ -311,7 +321,6 @@ public class Enemy : MonoBehaviour
     {
         if (!Attack_the_Player)
         {
-            enemy_speed = 0;
             Attack_the_Player = true;
             enemy_animator.SetTrigger("Attack");
             StartCoroutine(End_Attack(1));
@@ -328,7 +337,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(time);
         Attack_the_Player = false;
         hit.SetActive(false);
-        enemy_speed = 3;
     }
 
     public void Destroy_Enemy()
@@ -346,6 +354,8 @@ public class Enemy : MonoBehaviour
             enemy_hp_bar.SetActive(false);
         }
     }
-
-
+    public void Create_Bullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+    }
 }
