@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     { 
         get
         {
-            if(instance != null) instance = new GameManager();
+            if(instance == null) instance = new GameManager();
             return instance;
         } 
     }
