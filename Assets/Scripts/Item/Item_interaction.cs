@@ -118,9 +118,31 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider2D)
+    private void LateUpdate() => pickupActivated = false;
+
+    private void OnTriggerStay2D(Collider2D collider2D)
     {
-        if (collider2D.gameObject.CompareTag("Item"))
+        if (!pickupActivated && collider2D.gameObject.CompareTag("Box") && !collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
+        {
+            pickupActivated = true;
+            actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            actionText.gameObject.SetActive(true);
+            currentBox = collider2D.gameObject; // 현재 상자 객체 저장
+            item_Drop = currentBox.GetComponent<Item_drop>();
+            // Animator boxAnimator = currentBox.GetComponent<Animator>(); // 현재 상자 객체의 애니메이터 가져오기
+            // if (!boxAnimator.GetBool("State"))
+            // {
+            //     actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+
+            // }
+            // else             // 상자가 닫혀 있는 경우에만 실행
+
+            // {
+            //     actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
+
+            // }
+        }
+        else if (!pickupActivated && collider2D.gameObject.CompareTag("Item"))
         {
             pickupActivated = true;
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
@@ -141,24 +163,12 @@ public class Item_interaction : MonoBehaviour
 
             }
         }
-        else if (collider2D.gameObject.CompareTag("Box"))
+        else if(!pickupActivated && collider2D.gameObject.CompareTag("Box") && collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
         {
-            pickupActivated = true;
-            currentBox = collider2D.gameObject; // 현재 상자 객체 저장
-            item_Drop = currentBox.GetComponent<Item_drop>();
+            // pickupActivated = true;
+            // actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             actionText.gameObject.SetActive(true);
-            Animator boxAnimator = currentBox.GetComponent<Animator>(); // 현재 상자 객체의 애니메이터 가져오기
-            if (!boxAnimator.GetBool("State"))
-            {
-                actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
-
-            }
-            else             // 상자가 닫혀 있는 경우에만 실행
-
-            {
-                actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
-
-            }
+            actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
         }
      
 
@@ -167,7 +177,7 @@ public class Item_interaction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider2D)
     {
-        if (collider2D.gameObject.CompareTag("Item") || (collider2D.gameObject.CompareTag("Box")))
+        if (collider2D.gameObject.CompareTag("Item") || collider2D.gameObject.CompareTag("Box"))
         {
             pickupActivated = false;
             item_PickUp = null;

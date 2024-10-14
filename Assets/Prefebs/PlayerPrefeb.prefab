@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 2072614061973302991}
+  gun_Effect: {fileID: 5856192214819016825}
   gun_anim: {fileID: 367681746698655017}
 --- !u!114 &2802141133240746751
 MonoBehaviour:
@@ -777,7 +777,7 @@ AudioSource:
   m_GameObject: {fileID: 2530009614169799429}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8572831652317543832, guid: ef4706b9e55b1f5478bfba24232268a4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 2946681694940175311}
+  gun_Effect: {fileID: 1971454241230974390}
   gun_anim: {fileID: 6684508500683319184}
 --- !u!114 &1894100352800151219
 MonoBehaviour:
@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 3187174333982480618}
+  gun_Effect: {fileID: 8427450609642494585}
   gun_anim: {fileID: 3612831998195219226}
 --- !u!114 &8860192575894908841
 MonoBehaviour:
@@ -1330,7 +1330,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 2
 --- !u!1 &5090413829781632219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 5113809333216064391}
+  gun_Effect: {fileID: 8342115624331183152}
   gun_anim: {fileID: 4991919645233362210}
 --- !u!114 &8652845055451336641
 MonoBehaviour:
@@ -2315,7 +2315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 7662420448433924169}
+  gun_Effect: {fileID: 6500743405634144350}
   gun_anim: {fileID: 4991645515309968862}
 --- !u!114 &2191953047601704045
 MonoBehaviour:
@@ -2497,7 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da5ec1cae0d384ca71ada6170adb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_Effect: {fileID: 8174896020093302421}
+  gun_Effect: {fileID: 5414041815409067567}
   gun_anim: {fileID: 6974618561529774311}
 --- !u!114 &8299288455894017517
 MonoBehaviour:
