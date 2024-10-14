@@ -315,10 +315,15 @@ public partial class FloorLoader : MonoBehaviour
     }
     private void ConnenctRooms()
     {
+        HashSet<(Point, Point)> visited = new ();
+
         foreach(Point hashPoint1 in nodes.Keys)
         {
             foreach(Point hashPoint2 in nodes[hashPoint1])
             {
+                if(visited.Contains((hashPoint1, hashPoint2))) continue;
+                visited.Add((hashPoint1, hashPoint2));
+                visited.Add((hashPoint2, hashPoint1));
                 for (int x = System.Math.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= System.Math.Max((int)hashPoint1.X, (int)hashPoint2.X); x++)
                 {
                     m_selectedRoomTablel[x, (int)hashPoint1.Y] = true;

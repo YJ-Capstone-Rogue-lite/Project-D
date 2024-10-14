@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3775cbc1dfbbf0045834e2c321d23a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   PlayerMinimap: {fileID: 8259400945293659455}
 --- !u!19719996 &4184274902340006688
 TilemapCollider2D:
