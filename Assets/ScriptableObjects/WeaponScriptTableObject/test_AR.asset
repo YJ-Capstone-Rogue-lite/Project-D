@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: test_AR
   m_EditorClassIdentifier: 
-  weapnPrefab: {fileID: 2379812772196415641, guid: bb0c297d62d44874794e48700dbd4ed8, type: 3}
+  weapnPrefab: {fileID: 2379812772196415641, guid: 62054b25b2679e6469e690b73fcd328e, type: 3}
   ratingType: 1
   weaponType: 2
   number: 1
@@ -24,5 +24,5 @@ MonoBehaviour:
   reload_time: 2
   magazine_capacity: 30
   backup_magazine_capacity: 30
-  Damage: 8
+  Damage: 5
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8\uB3CC\uACA9\uCD1D\uC774\uB2E4."

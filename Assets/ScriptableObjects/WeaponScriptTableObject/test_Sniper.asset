@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: test_Sniper
   m_EditorClassIdentifier: 
-  weapnPrefab: {fileID: 2535805243376421247, guid: ccc79de140738134bab14fa31155856c, type: 3}
+  weapnPrefab: {fileID: 2535805243376421247, guid: 2ffa9eee37d4e844eb267600a1c32e75, type: 3}
   ratingType: 1
   weaponType: 3
   number: 3
@@ -24,5 +24,5 @@ MonoBehaviour:
   reload_time: 2
   magazine_capacity: 5
   backup_magazine_capacity: 5
-  Damage: 50
+  Damage: 30
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uC800\uACA9\uCD1D\uC774\uB2E4.\n\uAD00\uD1B5\uD6A8\uACFC."

@@ -93,7 +93,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.33}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.3
 --- !u!50 &4093018583842118803
 Rigidbody2D:
   serializedVersion: 4
@@ -137,6 +137,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   consumable: {fileID: 0}
   buff: {fileID: 11400000, guid: 08f85e066fce5444e919a0a1e85cebef, type: 2}
+  coin: {fileID: 0}
 --- !u!212 &6459981484817778921
 SpriteRenderer:
   m_ObjectHideFlags: 0

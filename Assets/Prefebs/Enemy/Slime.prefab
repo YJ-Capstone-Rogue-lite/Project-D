@@ -233,6 +233,14 @@ MonoBehaviour:
   ConsumableItem_drop_prefeb:
   - {fileID: 5072211534383127828, guid: bfe80f0ea2b933a41b8774b218bd2d17, type: 3}
   - {fileID: 7693746447718644223, guid: cbd8674c263d12d42934440ecfc85c6f, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
+  - {fileID: 4919313781167370219, guid: 341f96db1074c8f43988f12cfb505275, type: 3}
   Weapon_drop_prefeb: []
   dropChance: 1
   item_interaction: {fileID: 0}

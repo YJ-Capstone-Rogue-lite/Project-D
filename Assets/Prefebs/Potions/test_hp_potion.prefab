@@ -51,6 +51,8 @@ MonoBehaviour:
   accessory: {fileID: 0}
   weapon: {fileID: 0}
   consumable: {fileID: 11400000, guid: 928bbccb6bb430841ac3ccd0b3952072, type: 2}
+  buff: {fileID: 0}
+  coin: {fileID: 0}
 --- !u!61 &728435107056575707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.5
 --- !u!212 &3853878180141512037
 SpriteRenderer:
   m_ObjectHideFlags: 0

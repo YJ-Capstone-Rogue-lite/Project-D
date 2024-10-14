@@ -33,7 +33,8 @@ public class IngameUI : MonoBehaviour
     public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
 
-    
+    [Header("코인 카운트")]
+    public TMP_Text Coin_Count_Text;
 
 
     [Header("기타 불 값들")]
@@ -135,6 +136,7 @@ public class IngameUI : MonoBehaviour
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
         SubWeapon_Swap = subWeapon.GetComponent<Animator>();
+        Coin_Count_Text_Update();
         StopCoroutine(startCoroutine);
         startCoroutine = null;
     }
@@ -395,5 +397,10 @@ public class IngameUI : MonoBehaviour
     {
         SceneManager.LoadScene("Title");
         DataManager.Instance.SaveGameData();
+    }
+
+    public void Coin_Count_Text_Update()
+    {
+        Coin_Count_Text.text = "X " +character.Coin_Count.ToString();
     }
 }

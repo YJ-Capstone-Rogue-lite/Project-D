@@ -9,8 +9,8 @@ public class Weapon_Slot : MonoBehaviour
     public GameObject weaponSlot2; // 무기 슬롯 2 게임 오브젝트
 
 
-    private Fire_Test weapon_slot2_weapon;
-    private Fire_Test activeWeaponSlot_Component;
+    public Fire_Test weapon_slot2_weapon;
+    public Fire_Test activeWeaponSlot_Component;
 
 
     public GameObject activeWeaponSlot; // 활성화된 무기 슬롯 게임 오브젝트
@@ -53,6 +53,8 @@ public class Weapon_Slot : MonoBehaviour
         Reload_Weapon();
     }
 
+ 
+
     public void Reload_Weapon()
     {
         if (Input.GetButtonDown("Reloading"))
@@ -88,8 +90,7 @@ public class Weapon_Slot : MonoBehaviour
         }
     }
 
-
-
+ 
     //슬롯 변경 기능
     void slotchange()
     {
