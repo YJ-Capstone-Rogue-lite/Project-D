@@ -87,11 +87,11 @@ public class Character : MonoBehaviour
 
     [Header("플레이어 버프 관련 스택")]
     // 스택을 저장할 변수
-    public int damageUpStack = 0; //데미지업 스택
+    public float damageUpStack = 0; //데미지업 스택
 
-    public int movement_SpeedUpStack = 0; // 스피드업 스택
+    public float movement_SpeedUpStack = 0; // 스피드업 스택
 
-
+    public float max_hp_UPStack; // 최대 체력 스택
 
     public Animator player_anim;
 
@@ -312,7 +312,7 @@ public class Character : MonoBehaviour
         HPbarImage.fillAmount = m_health / m_maxHealth; // 체력 비율로 fillAmount 설정
 
         TMP_Text hp_count_text = hp_count.GetComponent<TMP_Text>();
-        hp_count_text.text = m_health.ToString();
+        hp_count_text.text = m_health.ToString() +"/" + m_maxHealth;
 
     }
 }

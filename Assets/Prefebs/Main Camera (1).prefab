@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6828317904897812221}
   - component: {fileID: 3828828358280195348}
-  - component: {fileID: 5665601295688961785}
+  - component: {fileID: -8203706155746154622}
   - component: {fileID: 7871142220950133337}
   m_Layer: 0
   m_Name: Main Camera (1)
@@ -49,7 +49,7 @@ MonoBehaviour:
   cameraSpeed: 5
   maxDistanceFromPlayer: 2
   player: {fileID: 0}
---- !u!114 &5665601295688961785
+--- !u!114 &-8203706155746154622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,8 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed9cc1d128d18d4087b5b108d7c3328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursuricon: {fileID: 2800000, guid: 400fd22928340b3459a16e582799e627, type: 3}
   hotSpot: {x: 0, y: 0}
+  ChagnehotSpot: {x: 0, y: 0}
+  cursorSprites:
+  - {fileID: 2019166016, guid: 400fd22928340b3459a16e582799e627, type: 3}
+  - {fileID: 233198024, guid: fef6e9a034e032b4e81a296221cd724d, type: 3}
+  - {fileID: -1191265204, guid: 60c78b946f8ff7f47b1536b814f2f080, type: 3}
+  - {fileID: -6291423, guid: 4cff09359d94bcf468800dc8c82ef191, type: 3}
 --- !u!20 &7871142220950133337
 Camera:
   m_ObjectHideFlags: 0

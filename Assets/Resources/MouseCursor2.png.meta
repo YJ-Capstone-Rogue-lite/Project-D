@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 400fd22928340b3459a16e582799e627
+guid: 4cff09359d94bcf468800dc8c82ef191
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngimg.com - target_PNG17_0
+      name: MouseCursor2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 25
-        width: 351
-        height: 351
+        x: 2
+        y: 1
+        width: 244
+        height: 331
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec09c6980f47bff41967b5ce31ca6945
-      internalID: 2019166016
+      spriteID: 2ddc4266bbf6957479b49e5a365feaf7
+      internalID: -6291423
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pngimg.com - target_PNG17_0: 2019166016
+      MouseCursor2_0: -6291423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
