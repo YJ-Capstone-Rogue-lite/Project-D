@@ -36,7 +36,7 @@ public class Fire_Test : MonoBehaviour
     //public float player_hp = 100; // 플레이어 체력
     public Animator[] shot_animator;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         weapon = default_weapon;
@@ -45,6 +45,16 @@ public class Fire_Test : MonoBehaviour
         // Reload_anim 스크립트 가져오기
         shot_animator = GetComponentsInChildren<Animator>();
 
+    }
+
+    public void Init()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
+        weapon = default_weapon;
+        Debug.Log(default_weapon.name + " 로 기본 무기 변경");
+        weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
+        // Reload_anim 스크립트 가져오기
+        shot_animator = GetComponentsInChildren<Animator>();
     }
 
     private void FixedUpdate()

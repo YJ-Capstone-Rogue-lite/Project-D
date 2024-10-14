@@ -4,73 +4,55 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boss_Pig : MonoBehaviour
+public class Boss_Pig : Enemy
 {
-    public Transform targetTransform;
-    public Coroutine moveCoroutine;
     public int boss_Skil_count;
 
     public float castingTime = 2.0f;
     private float castingProgress = 0.0f;
     private bool isCasting = false;
 
-    [Header("적의 스탯")]
-    public float enemy_speed = 3f;
-    public float rotateSpeed = 0.25f;
-    public float boss_HP = 1500;
-    public float max_boss_hp = 1500;
-    public Vector3 endPosition;
-    public bool followPlayer;
-    [SerializeField] private float find_Playersecond;
-    [SerializeField] GameObject hit;
-
-
-    private CircleCollider2D circleCollider2D;
-    private Animator boss_anim;
-    private Rigidbody2D boss_rb;
-    private SpriteRenderer spriteRenderer;
-    private float currentAngle = 0;
-    private bool Attack_the_Player = false;
-    private int originalSortingOrder;
-
     [SerializeField] private GameObject casting_Bar;
     private Image castingBarImage;
     [SerializeField] private GameObject casting_Bar_BG;
 
     public GameObject shockWaveObject; // 이펙트 프리팹
-
-    public GameObject boss_hp_bar;
     
 
     private void Start()
     {
-        boss_rb = GetComponent<Rigidbody2D>();
-        boss_anim = GetComponent<Animator>();
+        castingBarImage = casting_Bar.GetComponent<Image>();
+        // StartCoroutine(WanderRoutine());
+        enemy_rb = GetComponent<Rigidbody2D>();
+        enemy_animator = GetComponent<Animator>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        castingBarImage = casting_Bar.GetComponent<Image>();
-        StartCoroutine(WanderRoutine());
+        // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
+        behaviorTree.blackboard.thisUnit = GetComponent<Enemy>();
+        if(originPos == null)
+        {
+            var posObj = new GameObject(){
+                name = transform.name+" Pos",
+                layer = LayerMask.NameToLayer("Ignore Raycast"),
+            };
+            originPos = posObj.transform;
+        }
+        originPos.transform.position = transform.position;
+        behaviorTree = behaviorTree.Clone();
+        blackboard = behaviorTree.blackboard;
+        ChooseNewEndPoint();
     }
 
     private void Update()
     {
-        Boss_Die();
-        RaycastHit2D[] hit = Physics2D.RaycastAll(boss_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall"));
-        for (int i = 0; i < hit.Length; i++)
+        var hit =  Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
+        if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
-            if (hit[i].collider != null && !hit[i].collider.isTrigger)
-            {
-                Debug.Log("닿음");
-                spriteRenderer.sortingOrder = -1;
-                spriteRenderer.sortingLayerName = "Wall";
-            }
-            else
-            {
-                spriteRenderer.sortingOrder = originalSortingOrder;
-                spriteRenderer.sortingLayerName = "Enemy";
-            }
+            blackboard.target = hit.transform;
+            blackboard.state = BehaviourTree.Blackboard.State.Aggro;
         }
+        behaviorTree.Update();
         if (isCasting)
         {
             castingProgress += Time.deltaTime;
@@ -82,176 +64,32 @@ public class Boss_Pig : MonoBehaviour
             }
         }
     }
-
-    public IEnumerator WanderRoutine()
-    {
-        while (true)
-        {
-            ChooseNewEndPoint(); // 새로운 목표 위치 선택
-
-            if (moveCoroutine != null)
-            {
-                // 이전 코루틴이 완료될 때까지 대기
-                yield return moveCoroutine;
-            }
-            // 플레이어를 찾는 코루틴 시작
-            moveCoroutine = StartCoroutine(FindPlayer(boss_rb, enemy_speed));
-
-            yield return new WaitForSeconds(find_Playersecond); // 주기적으로 플레이어를 찾는 주기에 따라 대기
-        }
-    }
-    public IEnumerator FindPlayer(Rigidbody2D rigbodyToMove, float speed)
-    {
-        float remainingDistance = (transform.position - endPosition).sqrMagnitude;
-        while (remainingDistance > float.Epsilon)
-        {
-            if (targetTransform != null)
-            {
-                endPosition = targetTransform.position;
-            }
-
-            if (rigbodyToMove != null)
-            {
-                boss_anim.SetBool("FindPlayer", true);
-                Vector3 currentPosition = new Vector3(rigbodyToMove.position.x, rigbodyToMove.position.y, 0f);
-                Vector3 direction = (endPosition - currentPosition).normalized;
-
-                float moveX = direction.x;
-                float moveY = direction.y;
-
-                boss_anim.SetFloat("MoveX", moveX);
-                boss_anim.SetFloat("MoveY", moveY);
-
-                Vector3 newPosition = Vector3.MoveTowards(currentPosition, endPosition, speed * Time.deltaTime);
-                boss_rb.MovePosition(newPosition);
-                if (moveX > 0)
-                {
-                    spriteRenderer.flipX = false;
-                }
-                else if (moveX < 0)
-                {
-                    spriteRenderer.flipX = true;
-                }
-
-                remainingDistance = (transform.position - endPosition).sqrMagnitude;
-            }
-            yield return new WaitForFixedUpdate();
-        }
-        boss_anim.SetBool("FindPlayer", false); // 플레이어를 찾지 못한 경우 상태를 원래대로 설정
-    }
-
-    public void ChooseNewEndPoint()
-    {
-        float maxDistance = 5f;
-        currentAngle = Random.Range(0, 360);
-        currentAngle = Mathf.Repeat(currentAngle, 360);
-        endPosition = transform.position + Vector3FromAngle(currentAngle) * maxDistance;
-    }
-
-    Vector3 Vector3FromAngle(float inputAngle)
-    {
-        float inputAngleRadians = inputAngle * Mathf.Deg2Rad;
-        return new Vector3(Mathf.Cos(inputAngleRadians), Mathf.Sin(inputAngleRadians), 0);
-    }
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Player") && followPlayer) // 플레이어에 접촉했을 때
-        {
-            Debug.Log("플레이어를 찾음");
-            targetTransform = collider.gameObject.transform;
-            if (moveCoroutine != null)
-            {
-                StopCoroutine(moveCoroutine);
-            }
-            // 플레이어를 추적하는 코루틴 시작
-            moveCoroutine = StartCoroutine(FindPlayer(boss_rb, enemy_speed));
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            if (bullet == null)
-                return;
-            boss_HP -= bullet.Damage;
-            BossHpBar_Update();
-
-            boss_rb.velocity = Vector2.zero;
-            boss_rb.angularVelocity = 0f;
-
-            boss_rb.isKinematic = true;
-            StartCoroutine(ResetKinematic());
-        }
-        else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Object"))
-        {
-            ChooseNewEndPoint();
-        }
-    }
-
-    private IEnumerator ResetKinematic()
-    {
-        yield return new WaitForFixedUpdate();
-        boss_rb.isKinematic = false;
-    }
-
-    private void Boss_Die()
-    {
-        if (boss_HP <= 0)
-        {
-            boss_anim.SetBool("State", false);
-            if (moveCoroutine != null)
-                StopCoroutine(moveCoroutine);
-            boss_rb.velocity = Vector2.zero;
-            this.enabled = false;
-            transform.parent.parent.GetComponent<Room>().EnemyTemp(-1);
-        }
-    }
-    public void Attack_of_Enemy()
+    public override void Attack_of_Enemy() 
     {
         Debug.Log("공격");
         if (!Attack_the_Player)
         {
-            boss_Skil_count += 1;
             enemy_speed = 0;
-            boss_rb.velocity = Vector2.zero;
+            enemy_rb.velocity = Vector2.zero;
             Attack_the_Player = true;
-            boss_anim.SetBool("Attack", true);
+            enemy_animator.SetTrigger("Attack");
+            boss_Skil_count += 1;
 
             if (boss_Skil_count >= 5) // 공격횟수가 5번이되고나서 다음공격은 스킬
             {
                 StartCasting();
             }
+            else StartCoroutine(End_Attack(1));
         }
     }
 
-    void End_Attack()
-    {
-        Attack_the_Player = false;
-        hit.SetActive(false);
-        enemy_speed = 3;
-        StartCoroutine(FindPlayer(boss_rb, enemy_speed));
-        boss_anim.SetBool("Attack", false);
-    }
-
-    public void Damage_of_Boss()
-    {
-        hit.SetActive(true);
-    }
-
-
-    private void Destroy_Enemy()
-    {
-        Destroy(gameObject);
-    }
     private void StartCasting()
     {
         isCasting = true;
         castingProgress = 0.0f;
         casting_Bar_BG.SetActive(true);
         castingBarImage.gameObject.SetActive(true);
-        boss_anim.SetBool("Skill", true);
+        enemy_animator.SetBool("Skill", true);
 
     }
 
@@ -264,21 +102,15 @@ public class Boss_Pig : MonoBehaviour
 
         Debug.Log("SpecialAttack 실행");
         shockWaveObject.SetActive(true);
+        StartCoroutine(End_Attack(3));
+        StartCoroutine(EndSkill(3));
     }
 
-    void EndSkill() //애니메이션 이벤트
+    IEnumerator EndSkill(float time) //애니메이션 이벤트
     {
-        boss_anim.SetBool("Skill", false);
+        yield return new WaitForSeconds(time);
+        enemy_animator.SetBool("Skill", false);
         shockWaveObject.SetActive(false);
-    }
-    public void BossHpBar_Update() // 체력 바 업데이트
-    {
-        Image boss_hp_bar_img = boss_hp_bar.GetComponent<Image>();
-        boss_hp_bar_img.fillAmount = boss_HP / max_boss_hp;
-        if (boss_HP <= 0)
-        {
-            boss_hp_bar.SetActive(false);
-        }
     }
 
 }

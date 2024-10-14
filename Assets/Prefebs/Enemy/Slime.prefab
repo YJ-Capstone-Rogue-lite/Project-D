@@ -13,13 +13,12 @@ GameObject:
   - component: {fileID: 847375035382296079}
   - component: {fileID: 3402610893816206822}
   - component: {fileID: 1408360845080943993}
-  - component: {fileID: 2620150170107279935}
   - component: {fileID: 5104547443972504249}
   - component: {fileID: 3740784252326495083}
   - component: {fileID: 3042768072393564539}
   - component: {fileID: 3130439549480012488}
   - component: {fileID: 219581706284057917}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,7 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a06a5e856ae0cb4b82b8a2af9134903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
+  direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  melee: 1
   enemy_speed: 3
   rotateSpeed: 0.25
   enemy_hp: 100
@@ -144,9 +148,20 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 5
+  attackRange: 4
+  damage: 10
+  circleCollider2D: {fileID: 0}
+  enemy_animator: {fileID: 0}
+  enemy_rb: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  currentAngle: 0
+  Attack_the_Player: 0
   hit: {fileID: 2637716999783611454}
+  originalSortingOrder: 0
+  character: {fileID: 0}
   enemy_hp_bar: {fileID: 8658236728831378350}
   item_Drop: {fileID: 3740784252326495083}
+  enemyTag: {fileID: 1039019153509472436}
 --- !u!95 &1408360845080943993
 Animator:
   serializedVersion: 5
@@ -168,41 +183,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &2620150170107279935
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039019153509472436}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 4
 --- !u!58 &5104547443972504249
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -385,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: a5ddf8b699d58614e8a73aef34cc30dd, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1 &2028621583532895664
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +377,7 @@ GameObject:
   - component: {fileID: 3829852723291050678}
   - component: {fileID: 7365747469557001472}
   - component: {fileID: 9118391327408703717}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack_radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,6 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8576db0cac4de4bb8d3ec09106a5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: {fileID: 1039019153509472436}
 --- !u!1 &2637716999783611454
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +458,7 @@ GameObject:
   - component: {fileID: 1180896362835980322}
   - component: {fileID: 4868865605605047451}
   - component: {fileID: 8948497751932598232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hit_radius
   m_TagString: Hit_radius
   m_Icon: {fileID: 0}
@@ -559,7 +541,7 @@ GameObject:
   - component: {fileID: 3324831591142359300}
   - component: {fileID: 5928848777736145592}
   - component: {fileID: 303463992181108423}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: enemy_hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +642,7 @@ GameObject:
   - component: {fileID: 3975359488834385360}
   - component: {fileID: 3818637071596664802}
   - component: {fileID: 3453671179618294459}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +718,7 @@ GameObject:
   - component: {fileID: 4263822071066133641}
   - component: {fileID: 192674846807086664}
   - component: {fileID: 4898929533640327374}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: enemy_hp_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

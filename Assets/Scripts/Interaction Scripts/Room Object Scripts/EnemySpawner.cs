@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour, IRoomObjectTrigger
+public class EnemySpawner : RoomObjectTrigger
 {
     [SerializeField] private GameObject enemy;
-    public void RoomEnter(Room room)
+    private GameObject enemyInstance;
+
+    protected override void OnEnable()
     {
-        var go = Instantiate(enemy, transform.position, Quaternion.identity);
-        go.transform.SetParent(transform, true);
-        transform.parent.GetComponent<Room>().EnemyTemp(1);
+        base.OnEnable();
+
+        enemyInstance = Instantiate(enemy, transform.position, Quaternion.identity);
+        enemyInstance.transform.SetParent(transform, true);
+        enemyInstance.SetActive(false);
     }
 
-    public void RoomExit(Room room)
+    public override void OnRoomEnter(Room room)
+    {
+        enemyInstance.SetActive(true);
+        room.EnemyTemp(1);
+    }
+
+    public override void OnRoomExit(Room room)
     {
         
     }

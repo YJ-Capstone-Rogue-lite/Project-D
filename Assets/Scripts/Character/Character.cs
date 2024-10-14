@@ -8,7 +8,16 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    public static Character charsingle;
+    private static Character charsingle;
+    public static Character Charsingle
+    {
+        get
+        {
+            if (charsingle == null) charsingle = FindObjectOfType<Character>();
+            // if (charsingle != null) charsingle = new Character();
+            return charsingle;
+        }
+    }
     private bool player_state = true;
     [SerializeField] private GameObject hit_sound;
 
@@ -88,15 +97,25 @@ public class Character : MonoBehaviour
 
     public PlayerData playerdata = new PlayerData();
 
-    private void Awake()
-    {
-        charsingle = this;
+    //private void Awake()
+    //{
+    //    if (charsingle == null)
+    //    {
+    //        charsingle = this;
+    //        DontDestroyOnLoad(gameObject);
+
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
 
-    }
+    //}
 
     protected virtual void Start()
     {
+        charsingle = this;
         // DataManager를 통해 데이터 불러오기
         DataManager.Instance.LoadGameData();
 
@@ -138,7 +157,7 @@ public class Character : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+        if (collider.CompareTag("Hit_radius"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());
@@ -149,7 +168,7 @@ public class Character : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         var collider = collision.collider;
-        if (collider.CompareTag("DamageObject") || collider.CompareTag("Hit_radius"))
+        if (collider.CompareTag("Hit_radius"))
         {
             // 충돌한 오브젝트가 데미지 오브젝트인 경우 피해를 입음
             Damaged(collider.GetComponent<DamageData>());

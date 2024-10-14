@@ -5,9 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public static GameManager Instance { get => instance; }
+    public GameObject player;
+    public static GameManager Instance 
+    { 
+        get
+        {
+            if(instance == null) instance = new GameManager();
+            return instance;
+        } 
+    }
     public int enemyDestoryCount;
 
+    public GameObject playerspawn;
     public Camera mini_camera;
     public bool isPlaying = true;
     Room room;
@@ -27,6 +36,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()

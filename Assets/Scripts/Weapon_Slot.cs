@@ -31,6 +31,8 @@ public class Weapon_Slot : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(weapon_slot2_weapon);
+        Debug.Log(activeWeaponSlot_Component);
         // 게임 시작시 기본 무기 슬롯 설정
         EnableWeaponSlot(weaponSlot1);
         reload_object.SetActive(true);
@@ -38,6 +40,8 @@ public class Weapon_Slot : MonoBehaviour
         // weaponSlot2에서 Fire_Test 컴포넌트를 가져와 fire_test 변수에 할당합니다.
         weapon_slot2_weapon = weaponSlot2.GetComponent<Fire_Test>();
         activeWeaponSlot_Component = activeWeaponSlot.GetComponent<Fire_Test>();
+        activeWeaponSlot_Component.Init();
+        weapon_slot2_weapon.Init();
 
         //게임 시작시 장탄수 한번 초기화
         UpdateMagazineCapacity();
@@ -114,30 +118,30 @@ public class Weapon_Slot : MonoBehaviour
     }
 
     // 다음 무기 슬롯으로 변경
-    private void SwitchToNextSlot()
-    {
-        if (activeWeaponSlot == weaponSlot1)
-        {
-            EnableWeaponSlot(weaponSlot2);
-        }
-        else if (activeWeaponSlot == weaponSlot2)
-        {
-            EnableWeaponSlot(weaponSlot1);
-        }
-    }
+    //private void SwitchToNextSlot()
+    //{
+    //    if (activeWeaponSlot == weaponSlot1)
+    //    {
+    //        EnableWeaponSlot(weaponSlot2);
+    //    }
+    //    else if (activeWeaponSlot == weaponSlot2)
+    //    {
+    //        EnableWeaponSlot(weaponSlot1);
+    //    }
+    //}
 
-    // 이전 무기 슬롯으로 변경
-    private void SwitchToPreviousSlot()
-    {
-        if (activeWeaponSlot == weaponSlot1)
-        {
-            EnableWeaponSlot(weaponSlot2);
-        }
-        else if (activeWeaponSlot == weaponSlot2)
-        {
-            EnableWeaponSlot(weaponSlot1);
-        }
-    }
+    //// 이전 무기 슬롯으로 변경
+    //private void SwitchToPreviousSlot()
+    //{
+    //    if (activeWeaponSlot == weaponSlot1)
+    //    {
+    //        EnableWeaponSlot(weaponSlot2);
+    //    }
+    //    else if (activeWeaponSlot == weaponSlot2)
+    //    {
+    //        EnableWeaponSlot(weaponSlot1);
+    //    }
+    //}
 
     // 무기 슬롯을 활성화하는 메서드
     public void EnableWeaponSlot(GameObject weaponSlot)
