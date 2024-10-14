@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+    public GameObject player;
     public static GameManager Instance 
     { 
         get
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()

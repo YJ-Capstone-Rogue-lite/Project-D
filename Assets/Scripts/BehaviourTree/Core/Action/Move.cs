@@ -22,7 +22,7 @@ namespace BehaviourTree
         protected override NodeState OnUpdate()
         {
             var tempPos = blackboard.thisUnit.transform.position - blackboard.target.position;
-            if(tempPos.magnitude < blackboard.thisUnit.GetComponent<Collider2D>().bounds.size.x) return NodeState.Success;
+            if(tempPos.magnitude < blackboard.thisUnit.attackRange) return NodeState.Success;
             var norm = tempPos.normalized;
             blackboard.thisUnit.enemy_animator.SetFloat("MoveX", -norm.x);
             blackboard.thisUnit.enemy_animator.SetFloat("MoveY", -norm.y);

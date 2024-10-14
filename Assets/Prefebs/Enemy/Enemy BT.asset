@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 95f45f9c1c06a004fa24bf90c0282ed9
-  positon: {x: -0.000015258789, y: 395.00006}
+  positon: {x: -2.7786438, y: 368.4596}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 4ecc60f1f3ba7f440885646a8a95c6e2
-  positon: {x: -0.000014305115, y: 542.1925}
+  positon: {x: -2.7786438, y: 515.45966}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
   state: 0
   isStarted: 1
   guid: c4a1e1914a4cb63489ea24b80a62dc45
-  positon: {x: 168.99997, y: 542.1925}
+  positon: {x: 151.22124, y: 519.4595}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: eed52a33d3b29d04bb6323d20d8dcbb1
-  positon: {x: -359, y: 395}
+  positon: {x: -353.77872, y: 369.45963}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   state: 0
   isStarted: 1
   guid: caf59737bb24d0646a29b75fa9a2c617
-  positon: {x: 0, y: 120}
+  positon: {x: -2.7786438, y: 93.45957}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -149,13 +149,14 @@ MonoBehaviour:
   - {fileID: 8855765640905001488}
   - {fileID: -8978172970051993158}
   - {fileID: 6541904839870232852}
+  - {fileID: 8241227615380943065}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
-  viewPos: {x: 286, y: -112}
-  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
+  viewPos: {x: 180, y: 173}
+  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
 --- !u!114 &1303740912837353020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   state: 0
   isStarted: 1
   guid: 90e1f3295a94cee458f7093f29ba6e71
-  positon: {x: 0, y: 0}
+  positon: {x: -2.7786438, y: -36.540432}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -194,7 +195,7 @@ MonoBehaviour:
   state: 0
   isStarted: 1
   guid: 8b89dceba35d0f64aa6263988f70fe84
-  positon: {x: -0.000021457672, y: 257}
+  positon: {x: -2.7786438, y: 225.45958}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -218,7 +219,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: e51f22b208824cc4eb8a645908f8e900
-  positon: {x: 371.41827, y: 542.00006}
+  positon: {x: 344.22125, y: 513.4596}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -240,7 +241,7 @@ MonoBehaviour:
   state: 1
   isStarted: 0
   guid: e17f8cb8893fbc144b9172c3001e97f3
-  positon: {x: -359, y: 257}
+  positon: {x: -361.77866, y: 230.45961}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -264,14 +265,14 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: c32616e2351d049439ed5ee87f5f43a4
-  positon: {x: 536.87, y: 542}
+  positon: {x: 512.2214, y: 514.4596}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
   description: 
-  waitTime: 1
+  waitTime: 0.2
 --- !u!114 &6557414723530113259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,13 +288,36 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: f48ebcfb7c59cd64382f8ca04c4a2933
-  positon: {x: 702.4986, y: 542}
+  positon: {x: 670.2213, y: 514.4596}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
   description: 
+--- !u!114 &8241227615380943065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 8db55138426a70b488cb373b5030ae68
+  positon: {x: 829.2213, y: 515.45966}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 0
+  description: 
+  waitTime: 3
 --- !u!114 &8415800209628027842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +333,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 9d48490d13547ce47999f2e306b75d8c
-  positon: {x: 537, y: 257.0001}
+  positon: {x: 529.2214, y: 233.45961}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -333,7 +357,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 72342057c7c9780489693888e67dbd10
-  positon: {x: -174.00002, y: 542.1925}
+  positon: {x: -176.77869, y: 515.45966}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -355,7 +379,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: 08aa7d5f17aa8d545a32ce8da83d7e3e
-  positon: {x: 537, y: 395.00012}
+  positon: {x: 534.22125, y: 368.4596}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -366,3 +390,4 @@ MonoBehaviour:
   - {fileID: 2839086867338333033}
   - {fileID: 6541904839870232852}
   - {fileID: 6557414723530113259}
+  - {fileID: 8241227615380943065}

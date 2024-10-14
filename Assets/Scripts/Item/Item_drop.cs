@@ -8,7 +8,7 @@ public class Item_drop : MonoBehaviour
     public GameObject[] ConsumableItem_drop_prefeb; //드랍될 소비아이템을 저장해둔 배열
     public GameObject[] Weapon_drop_prefeb; //드랍될 무기를 저장해둔 배열
 
-    public float dropChance = 0.5f; // 아이템 드랍 확률 (0.5는 50%)
+    public float dropChance = 1f; // 아이템 드랍 확률 (0.5는 50%)
     public Item_interaction item_interaction;
 
     public float floatSpeed = 4f; // 위아래로 움직이는 속도

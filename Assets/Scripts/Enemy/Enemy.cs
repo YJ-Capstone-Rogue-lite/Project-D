@@ -12,8 +12,14 @@ public class Enemy : MonoBehaviour
     public BehaviourTree.BehaviourTree behaviorTree;
     protected BehaviourTree.Blackboard blackboard;
     // 플레이어를 추적하기 위한 타겟
+    public Vector2 direction;
     public Transform targetTransform;
     public Coroutine moveCoroutine;
+    [Header("총알")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    [Header("적의 종류")]
+    public bool melee = true; //true면 근거리 false면 원거리 
 
     [Header("적의 스탯")]
     // 적의 이동 속도와 회전 속도
@@ -41,7 +47,6 @@ public class Enemy : MonoBehaviour
     // 적의 충돌을 감지하는 Circle Collider
     public float attackRange;
     public float damage;
-    public CircleCollider2D circleCollider2D;
     public Animator enemy_animator;
     public Rigidbody2D enemy_rb;
     public SpriteRenderer spriteRenderer;
@@ -58,11 +63,12 @@ public class Enemy : MonoBehaviour
 
     public GameObject enemyTag;
     protected Transform originPos;
+    private CircleCollider2D circleCollider2D;
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
         enemy_animator = GetComponent<Animator>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
@@ -87,6 +93,9 @@ public class Enemy : MonoBehaviour
         if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
             blackboard.target = hit.transform;
+            //direction = (blackboard.target.transform.position - firePoint.position).normalized;
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // firePoint를 회전시켜서 플레이어를 바라보게함.
+            //firePoint.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             blackboard.state = BehaviourTree.Blackboard.State.Aggro;
         }
         behaviorTree.Update();
@@ -281,13 +290,6 @@ public class Enemy : MonoBehaviour
     // }
 
     // Circle Collider를 그리는 메서드
-    void OnDrawGizmos()
-    {
-        if (circleCollider2D != null)
-        {
-            Gizmos.DrawWireSphere(transform.position, circleCollider2D.radius);
-        }
-    }
 
     // 적의 사망을 체크하고 필요한 처리를 하는 메서드
     public void Enemy_die()
@@ -312,7 +314,6 @@ public class Enemy : MonoBehaviour
     {
         if (!Attack_the_Player)
         {
-            enemy_speed = 0;
             Attack_the_Player = true;
             enemy_animator.SetTrigger("Attack");
             StartCoroutine(End_Attack(1));
@@ -329,7 +330,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(time);
         Attack_the_Player = false;
         hit.SetActive(false);
-        enemy_speed = 3;
     }
 
     public void Destroy_Enemy()
@@ -347,6 +347,8 @@ public class Enemy : MonoBehaviour
             enemy_hp_bar.SetActive(false);
         }
     }
-
-
+    public void Create_Bullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+    }
 }
