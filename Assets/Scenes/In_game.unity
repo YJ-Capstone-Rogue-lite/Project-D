@@ -6699,6 +6699,7 @@ GameObject:
   - component: {fileID: 1686493796}
   - component: {fileID: 1686493795}
   - component: {fileID: 1686493797}
+  - component: {fileID: 1686493798}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -6745,6 +6746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1c82d143db31f478c79d68846c8024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitRoomContainer: {fileID: 1686493798}
   player: {fileID: 0}
   floorTiles:
   - {fileID: 11400000, guid: 3c5be0a9e0952fd45b307161cf82a688, type: 2}
@@ -6762,6 +6764,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 670566a32d0e6924fb27185546f9e89e, type: 2}
   - {fileID: 11400000, guid: 5ed7c6fe769bbd947866690084e00afb, type: 2}
   - {fileID: 11400000, guid: bb0519b98d542214ea25d34ba76327ed, type: 2}
+--- !u!114 &1686493798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686493794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a221597f80eafd24eab721753b53f4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1688702596
 GameObject:
   m_ObjectHideFlags: 0

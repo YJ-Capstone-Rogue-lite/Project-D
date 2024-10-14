@@ -20,7 +20,8 @@ public partial class FloorLoader : MonoBehaviour
     public const int                                    roomSize_Height         = 12;
     public const int                                    selectRoomInt           = 3;
 
-    public static readonly RoomContainer                roomContainer           = InitRoomContainer.roomContainer;
+    public InitRoomContainer                            InitRoomContainer;
+    private RoomContainer                               roomContainer;
 
     private bool[,]                                     m_selectedRoomTablel    = new bool[floorSize, floorSize];
     private int[,]                                      m_roomNumberTablel      = new int[floorSize, floorSize];
@@ -65,16 +66,12 @@ public partial class FloorLoader : MonoBehaviour
             return System.Math.Abs(l1.X - l2.X) + System.Math.Abs(l1.Y - l2.Y);
         }
     }
-
-    void Awake()
+    bool loadStarted;
+    float time;
+    Coroutine coroutine;
+    void Start()
     {
-        // if(instance != this) 
-        // {
-        //     Destroy(gameObject);
-        //     return;
-        // }
-
-        // instance = this;
+        roomContainer = InitRoomContainer.roomContainer;
 
         RoomAction.Add(0, (tilemap, x, y)=>{
             tilemap.SetTile(new Vector3Int(y*roomSize_Width+6, -(x*roomSize_Height)-1, 0), floorTiles[0]);
@@ -136,12 +133,9 @@ public partial class FloorLoader : MonoBehaviour
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+7, -(x*roomSize_Height)+0, 0), doorTiles[2], closeDoorTiles[2]));
             waittingDoorQueue.Enqueue((tilemap, new Vector3Int(y*roomSize_Width+8, -(x*roomSize_Height)+0, 0), doorTiles[2], closeDoorTiles[2]));
         });
-    }
 
-    bool loadStarted;
-    float time;
-    Coroutine coroutine;
-    void Start() => coroutine = StartCoroutine(FloorLoad());
+        coroutine = StartCoroutine(FloorLoad());
+    }
 
     void Update()
     {
