@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a6caa7d528a8844f91a483ff92a6fa6
+guid: 78ba81f1eabd5c94593f8f3453bcc8f2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Close-up Monster attack_0
+      name: Boss_Die_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ec46bb3b6e913746b10573b7a2d95fc
-      internalID: 1645025271
+      spriteID: c16d21cfe75606e40b851a1ef5c45635
+      internalID: -1930378547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_1
+      name: Boss_Die_1
       rect:
         serializedVersion: 2
-        x: 56
+        x: 64
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2f477c71b931c440a16d2b4488eb952
-      internalID: 983946204
+      spriteID: 0103b47e982e135429f43030f149d1ef
+      internalID: 603792692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_2
+      name: Boss_Die_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebeb0904de7d0af44847830eafda9ba9
-      internalID: -968943563
+      spriteID: fc0d5440b88db674092f6b85e7a6300a
+      internalID: -1385266842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_3
+      name: Boss_Die_3
       rect:
         serializedVersion: 2
-        x: 168
+        x: 192
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 209c35ad4212ff748b7588e4b3bfd4b1
-      internalID: 270517309
+      spriteID: 94929a64e52573246854f9d0e11b5763
+      internalID: 375910347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_4
+      name: Boss_Die_4
       rect:
         serializedVersion: 2
-        x: 224
+        x: 256
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dad01a2cd73b6d4dba9f8c8fe86eadc
-      internalID: -1598378878
+      spriteID: 148d03b51e173304982a0ec6e3f8f7fc
+      internalID: 987100303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_5
+      name: Boss_Die_5
       rect:
         serializedVersion: 2
-        x: 280
+        x: 320
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2305cabbb629474a8b90eed9a757d7f
-      internalID: -216363350
+      spriteID: 352c6bec3e6f72c4fb4f1ee35122054c
+      internalID: -1546066646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_6
+      name: Boss_Die_6
       rect:
         serializedVersion: 2
-        x: 336
+        x: 384
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,41 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1df596af7aa2bbd4d86eb8151e3de855
-      internalID: 620006802
+      spriteID: c7ed3f9cfd250af4095acf6994fb9c17
+      internalID: -1352366350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster attack_7
-      rect:
-        serializedVersion: 2
-        x: 392
-        y: 0
-        width: 56
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5177f5d5bf553e042839932df25376f9
-      internalID: -110095025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Close-up Monster attack_8
+      name: Boss_Die_7
       rect:
         serializedVersion: 2
         x: 448
         y: 0
-        width: 56
-        height: 57
+        width: 64
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +258,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 543b23b3b8ea1f74f82bcd8ce394e414
-      internalID: 492319639
+      spriteID: a841ca79247091a41aa212b505d42866
+      internalID: 765941693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db8c6ff4808c294e952e9b1636d7788
+      internalID: -231417314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77345f6edb9d4a4186df7ba7a46a4ce
+      internalID: 928638479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382b4a009e6b9b949ba4d04562e6d55c
+      internalID: 974205733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a0b1f6855bd1c04eaa71c3a16af92a8
+      internalID: -1518319495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f42950bbeea914ab236197d1841fd7
+      internalID: 1661861286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Die_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b4d2a6fed4c92345bfab53943bc2c38
+      internalID: -981293841
       vertices: []
       indices: 
       edges: []
@@ -296,15 +401,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Close-up Monster attack_0: 1645025271
-      Close-up Monster attack_1: 983946204
-      Close-up Monster attack_2: -968943563
-      Close-up Monster attack_3: 270517309
-      Close-up Monster attack_4: -1598378878
-      Close-up Monster attack_5: -216363350
-      Close-up Monster attack_6: 620006802
-      Close-up Monster attack_7: -110095025
-      Close-up Monster attack_8: 492319639
+      Boss_Die_0: -1930378547
+      Boss_Die_1: 603792692
+      Boss_Die_10: 974205733
+      Boss_Die_11: -1518319495
+      Boss_Die_12: 1661861286
+      Boss_Die_13: -981293841
+      Boss_Die_2: -1385266842
+      Boss_Die_3: 375910347
+      Boss_Die_4: 987100303
+      Boss_Die_5: -1546066646
+      Boss_Die_6: -1352366350
+      Boss_Die_7: 765941693
+      Boss_Die_8: -231417314
+      Boss_Die_9: 928638479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

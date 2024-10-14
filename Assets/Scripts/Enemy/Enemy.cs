@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
     // 적의 충돌을 감지하는 Circle Collider
     public float attackRange;
     public float damage;
-    public CircleCollider2D circleCollider2D;
     public Animator enemy_animator;
     public Rigidbody2D enemy_rb;
     public SpriteRenderer spriteRenderer;
@@ -69,7 +68,6 @@ public class Enemy : MonoBehaviour
     {
         enemy_rb = GetComponent<Rigidbody2D>();
         enemy_animator = GetComponent<Animator>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
@@ -291,13 +289,6 @@ public class Enemy : MonoBehaviour
     // }
 
     // Circle Collider를 그리는 메서드
-    void OnDrawGizmos()
-    {
-        if (circleCollider2D != null)
-        {
-            Gizmos.DrawWireSphere(transform.position, circleCollider2D.radius);
-        }
-    }
 
     // 적의 사망을 체크하고 필요한 처리를 하는 메서드
     public void Enemy_die()

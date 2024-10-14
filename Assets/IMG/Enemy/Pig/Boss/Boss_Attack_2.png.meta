@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a598880bff638f349b350aa09d311267
+guid: 6d84e4f46a01ed54ab4f6afc008e6852
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_0
+      name: Boss_Attack_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 48
+        width: 57
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c25ea55318d193478f9948531caf882
-      internalID: 864882827
+      spriteID: 2ec324db90c6f32408576e1f5d986ad9
+      internalID: -1216661570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_1
+      name: Boss_Attack_2_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 57
         y: 0
-        width: 38
-        height: 48
+        width: 57
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,41 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99f014247126e0448881fcc4c833ff3
-      internalID: -95011896
+      spriteID: 9e805042badae4b4297f101821499412
+      internalID: 540867062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_2
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 0
-        width: 38
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d09f85c377dc2a4449bfca9405b718ca
-      internalID: -1738715526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Close-up Monster Idle (2)_3
+      name: Boss_Attack_2_2
       rect:
         serializedVersion: 2
         x: 114
         y: 0
-        width: 38
-        height: 48
+        width: 57
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +153,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d1844a693c907341a8eb959fa13ca88
-      internalID: -1866376821
+      spriteID: 7feabb3401c035c4da32765867df6f29
+      internalID: -811719492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Attack_2_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 57
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924a6036676b9334fb46dfc5a65e5d1c
+      internalID: -326427854
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Close-up Monster Idle (2)_0: 864882827
-      Close-up Monster Idle (2)_1: -95011896
-      Close-up Monster Idle (2)_2: -1738715526
-      Close-up Monster Idle (2)_3: -1866376821
+      Boss_Attack_2_0: -1216661570
+      Boss_Attack_2_1: 540867062
+      Boss_Attack_2_2: -811719492
+      Boss_Attack_2_3: -326427854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

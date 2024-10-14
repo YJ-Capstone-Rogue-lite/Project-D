@@ -265,9 +265,9 @@ GameObject:
   - component: {fileID: 20039698541068980}
   - component: {fileID: 1183472342402711848}
   - component: {fileID: 7642830349020207972}
-  - component: {fileID: 2985593465531141340}
   - component: {fileID: 2795748224753079564}
   - component: {fileID: 6272232210367172891}
+  - component: {fileID: 4104325169015623754}
   m_Layer: 10
   m_Name: Pig_Range
   m_TagString: Boss
@@ -392,41 +392,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &2985593465531141340
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6173313241963185773}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.09, y: -0.84}
-  serializedVersion: 2
-  m_Radius: 1.18
 --- !u!114 &2795748224753079564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +420,7 @@ MonoBehaviour:
   find_Playersecond: 5
   attackRange: 6
   damage: 10
-  circleCollider2D: {fileID: 2985593465531141340}
+  circleCollider2D: {fileID: 0}
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
   spriteRenderer: {fileID: 20039698541068980}
@@ -489,6 +454,41 @@ MonoBehaviour:
   floatAmplitude: 0.03
   floatingDuration: 1
   delayBeforeFloating: 0.7
+--- !u!70 &4104325169015623754
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 1.1, y: 2}
+  m_Direction: 0
 --- !u!1 &8474169143193447083
 GameObject:
   m_ObjectHideFlags: 0

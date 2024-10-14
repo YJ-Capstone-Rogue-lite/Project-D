@@ -22,12 +22,9 @@ public class Boss_Pig : Enemy
     private void Start()
     {
         castingBarImage = casting_Bar.GetComponent<Image>();
-        // StartCoroutine(WanderRoutine());
         enemy_rb = GetComponent<Rigidbody2D>();
         enemy_animator = GetComponent<Animator>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
         behaviorTree.blackboard.thisUnit = GetComponent<Enemy>();
         if(originPos == null)

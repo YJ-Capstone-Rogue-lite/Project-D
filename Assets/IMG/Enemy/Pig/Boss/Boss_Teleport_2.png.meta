@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a598880bff638f349b350aa09d311267
+guid: c793daf163bd7cc42b3ddef71b02a646
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_0
+      name: Boss_Teleport_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 48
+        width: 63
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c25ea55318d193478f9948531caf882
-      internalID: 864882827
+      spriteID: 40e55aafcf2baf34697fe2cd84df5a4a
+      internalID: 48556270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_1
+      name: Boss_Teleport_2_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 63
         y: 0
-        width: 38
-        height: 48
+        width: 63
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99f014247126e0448881fcc4c833ff3
-      internalID: -95011896
+      spriteID: b6d09ec6f70b8294084206ce73070bf9
+      internalID: -1058742361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_2
+      name: Boss_Teleport_2_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 126
         y: 0
-        width: 38
-        height: 48
+        width: 63
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d09f85c377dc2a4449bfca9405b718ca
-      internalID: -1738715526
+      spriteID: 1ff0a2ce5ca6d4d4ba80df92b1900ec2
+      internalID: -1476093812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_3
+      name: Boss_Teleport_2_3
       rect:
         serializedVersion: 2
-        x: 114
+        x: 189
         y: 0
-        width: 38
-        height: 48
+        width: 63
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d1844a693c907341a8eb959fa13ca88
-      internalID: -1866376821
+      spriteID: 5acf92f87cdbe4d4887f7d4b72580280
+      internalID: 1558127625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Teleport_2_4
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9932257a050f5f042bd39b441cb8de59
+      internalID: -1786429306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Teleport_2_5
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 0
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f17104dc1f3be4943a67221cec46e30c
+      internalID: 1078363211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Teleport_2_6
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8cf2804c03b1844c97c401e69dc9f47
+      internalID: 1232167247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Teleport_2_7
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 0
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086e06bdaac5b9f46bb2e7371f9ad040
+      internalID: -1387825547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Teleport_2_8
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1304a2e14538aa47ba9d5ac42c64671
+      internalID: -1241606428
       vertices: []
       indices: 
       edges: []
@@ -191,10 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Close-up Monster Idle (2)_0: 864882827
-      Close-up Monster Idle (2)_1: -95011896
-      Close-up Monster Idle (2)_2: -1738715526
-      Close-up Monster Idle (2)_3: -1866376821
+      Boss_Teleport_2_0: 48556270
+      Boss_Teleport_2_1: -1058742361
+      Boss_Teleport_2_2: -1476093812
+      Boss_Teleport_2_3: 1558127625
+      Boss_Teleport_2_4: -1786429306
+      Boss_Teleport_2_5: 1078363211
+      Boss_Teleport_2_6: 1232167247
+      Boss_Teleport_2_7: -1387825547
+      Boss_Teleport_2_8: -1241606428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a598880bff638f349b350aa09d311267
+guid: 4cbf50aafc6b28144b9119be766fc26b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_0
+      name: Boss_Idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 48
+        width: 59
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c25ea55318d193478f9948531caf882
-      internalID: 864882827
+      spriteID: 446fd566a659f8f45befe21916fac6d9
+      internalID: 249836150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_1
+      name: Boss_Idle_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 59
         y: 0
-        width: 38
-        height: 48
+        width: 59
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99f014247126e0448881fcc4c833ff3
-      internalID: -95011896
+      spriteID: 9fb19b693f647b24dbe87ec6b9e2ffc5
+      internalID: -256086244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_2
+      name: Boss_Idle_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 118
         y: 0
-        width: 38
-        height: 48
+        width: 59
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d09f85c377dc2a4449bfca9405b718ca
-      internalID: -1738715526
+      spriteID: 5c3811244cf19d84ba6a16814f067a0a
+      internalID: -1140668586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Close-up Monster Idle (2)_3
+      name: Boss_Idle_3
       rect:
         serializedVersion: 2
-        x: 114
+        x: 177
         y: 0
-        width: 38
-        height: 48
+        width: 59
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d1844a693c907341a8eb959fa13ca88
-      internalID: -1866376821
+      spriteID: 1ca8eca6f6b26db4a8765ada1d5e6af0
+      internalID: 149589665
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Close-up Monster Idle (2)_0: 864882827
-      Close-up Monster Idle (2)_1: -95011896
-      Close-up Monster Idle (2)_2: -1738715526
-      Close-up Monster Idle (2)_3: -1866376821
+      Boss_Idle_0: 249836150
+      Boss_Idle_1: -256086244
+      Boss_Idle_2: -1140668586
+      Boss_Idle_3: 149589665
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
