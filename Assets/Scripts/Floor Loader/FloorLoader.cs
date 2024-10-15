@@ -18,7 +18,7 @@ public partial class FloorLoader : MonoBehaviour
     public const int                                    floorSize               = 8;
     public const int                                    roomSize_Width          = 16;
     public const int                                    roomSize_Height         = 12;
-    public const int                                    selectRoomInt           = 3;
+    public const int                                    selectRoomInt           = 1;
 
     public InitRoomContainer                            InitRoomContainer;
     private RoomContainer                               roomContainer;
@@ -217,7 +217,7 @@ public partial class FloorLoader : MonoBehaviour
         int x = 0, y = 0;
         var roomData = roomContainer.specialRoomData[1];
         do
-        {                
+        {
             x = floorSize - 1;
             y = Random.Range(0, floorSize - roomData.roomSize.GetLength(1));
         } while(SelectedRoomCheck(x, y));
@@ -324,13 +324,14 @@ public partial class FloorLoader : MonoBehaviour
                 if(visited.Contains((hashPoint1, hashPoint2))) continue;
                 visited.Add((hashPoint1, hashPoint2));
                 visited.Add((hashPoint2, hashPoint1));
-                for (int x = System.Math.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= System.Math.Max((int)hashPoint1.X, (int)hashPoint2.X); x++)
+                for (int x = Mathf.Min((int)hashPoint1.X, (int)hashPoint2.X); x <= Mathf.Max((int)hashPoint1.X, (int)hashPoint2.X); x++)
                 {
                     m_selectedRoomTablel[x, (int)hashPoint1.Y] = true;
                 }
-                for (int y = System.Math.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= System.Math.Max((int)hashPoint1.Y, (int)hashPoint2.Y); y++)
+                int intx = hashPoint1.X > hashPoint2.X ? (int)hashPoint1.X : (int)hashPoint2.X;
+                for (int y = Mathf.Min((int)hashPoint1.Y, (int)hashPoint2.Y); y <= Mathf.Max((int)hashPoint1.Y, (int)hashPoint2.Y); y++)
                 {
-                    m_selectedRoomTablel[(int)hashPoint1.X, y] = true;
+                    m_selectedRoomTablel[intx, y] = true;
                 }
             }
         }
