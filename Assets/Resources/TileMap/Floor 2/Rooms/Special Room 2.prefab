@@ -18016,7 +18016,7 @@ GameObject:
   - component: {fileID: 3276979514834373122}
   - component: {fileID: 6694545579659886231}
   m_Layer: 7
-  m_Name: Special Room 4
+  m_Name: Special Room 2
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
