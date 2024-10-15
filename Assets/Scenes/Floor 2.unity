@@ -4034,12 +4034,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon_Slot: {fileID: 0}
+  character: {fileID: 0}
   inv_weapon1_image: {fileID: 1983338767}
   inv_weapon2_image: {fileID: 725077915}
   item_info_image: {fileID: 1259844316}
   inv_accessory_image: {fileID: 0}
   inv_consumableItem_image: {fileID: 1707197180}
   item_info_text: {fileID: 1307468160}
+  Stack_Buff_List: {fileID: 0}
+  Stack_Buff_Attack: {fileID: 0}
+  Stack_Buff_Attack_Icon: {fileID: 0}
+  Stack_Buff_Attack_Count: {fileID: 0}
+  Stack_Buff_Attack_text_background: {fileID: 0}
+  Stack_Buff_Attack_text: {fileID: 0}
+  Stack_Buff_Speed: {fileID: 0}
+  Stack_Buff_Speed_Icon: {fileID: 0}
+  Stack_Buff_Speed_Count: {fileID: 0}
+  Stack_Buff_Speed_text_background: {fileID: 0}
+  Stack_Buff_Speed_text: {fileID: 0}
+  Stack_Buff_Health: {fileID: 0}
+  Stack_Buff_Health_Icon: {fileID: 0}
+  Stack_Buff_Health_Count: {fileID: 0}
+  Stack_Buff_Health_text_background: {fileID: 0}
+  Stack_Buff_Health_text: {fileID: 0}
   weapon: {fileID: 0}
   accessory: {fileID: 0}
   consumableItem: {fileID: 0}
@@ -6749,13 +6766,13 @@ MonoBehaviour:
   InitRoomContainer: {fileID: 1686493798}
   player: {fileID: 0}
   floorTiles:
-  - {fileID: 11400000, guid: 3378750d239f1ee418cee4e9d31f6cf9, type: 2}
-  - {fileID: 11400000, guid: d30fa06de5606064e9b408f6715ef4a6, type: 2}
-  - {fileID: 11400000, guid: dc622930c3a602144a923f48a72d641e, type: 2}
-  - {fileID: 11400000, guid: d32e26487f594cf4aa8312a994ded352, type: 2}
-  - {fileID: 11400000, guid: 023d4cfb350fba34ca8eefb9b68740c7, type: 2}
-  - {fileID: 11400000, guid: 8391529188704184d989f320b60de7f0, type: 2}
-  - {fileID: 11400000, guid: 0af33a877f5940f469bb24dd55a7307e, type: 2}
+  - {fileID: 11400000, guid: 27fac0d195446554399d81870ebe50ca, type: 2}
+  - {fileID: 11400000, guid: 5b2f4dcac4eb7074fa11aeead370a5b8, type: 2}
+  - {fileID: 11400000, guid: c329e4e93ae541944b28e57e0c56e1f2, type: 2}
+  - {fileID: 11400000, guid: 79788c8d2f0c5d54c9fa56ca492616ff, type: 2}
+  - {fileID: 11400000, guid: 9c1ce3b820be74a4f94f427b3c4bc7c3, type: 2}
+  - {fileID: 11400000, guid: 8575bf5be651f1641bdfc8ea2f92b2d3, type: 2}
+  - {fileID: 11400000, guid: 4913f3ecdb29b4648821994582a7bd32, type: 2}
   doorTiles:
   - {fileID: 11400000, guid: b5f200f4851956742a055f6b1bc66610, type: 2}
   - {fileID: 11400000, guid: 8f92d00592353134e9cd3969eb6919f4, type: 2}
@@ -8253,6 +8270,7 @@ MonoBehaviour:
   right_inv: {fileID: 12182973}
   inv_slot_active_bool: 0
   inventory_slot: {fileID: 900186359}
+  Buff_list: {fileID: 0}
   screenshotCamera: {fileID: 1166463143}
   deathScreenImage: {fileID: 642283388}
   deathScreenUI: {fileID: 344454885}
@@ -8285,6 +8303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c8dc4f35ca2a64db63ee3a469c830d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   enemyDestoryCount: 0
   playerspawn: {fileID: 0}
   mini_camera: {fileID: 289488199}
