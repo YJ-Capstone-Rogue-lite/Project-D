@@ -18,6 +18,7 @@ MonoBehaviour:
   number: 1
   name: "\uAE30\uBCF8\uB3CC\uACA9\uC18C\uCD1D"
   sprite: {fileID: 991190962, guid: be630e7b09b3c1d459d99aa147d56f6e, type: 3}
+  Icon: {fileID: 1433437187, guid: a99a56a53bd274549becf466cb3e8d44, type: 3}
   bullet_range: 3
   bullet_velocity: 30
   Fire_rate: 0.05
