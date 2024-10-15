@@ -291,7 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comment: {fileID: 3531818859125544065}
+  text: {fileID: 5607583094097239143}
   nextFloor: Floor 1
+  info: "\uB2E4\uC74C\uCE35\uC73C\uB85C \uC774\uB3D9"
 --- !u!1 &3531818859125544065
 GameObject:
   m_ObjectHideFlags: 0

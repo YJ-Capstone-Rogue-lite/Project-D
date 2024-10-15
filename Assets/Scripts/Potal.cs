@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Potal : RoomObjectTrigger
 {
     [SerializeField] private GameObject comment;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private string nextFloor;
+    [SerializeField] private string info;
     private bool isPlayerColliding = false;
+
+    private void Start()
+    {
+        text.text = info;
+    }
 
     public override void OnRoomEnter(Room room)
     {
