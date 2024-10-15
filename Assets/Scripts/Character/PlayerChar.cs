@@ -31,9 +31,9 @@ public class PlayerChar : Character
 
     private void Awake()
     {
+        if(single) Destroy(gameObject);
         single = this;
-
-
+        DontDestroyOnLoad(gameObject);
     }
 
     protected override void Start()
