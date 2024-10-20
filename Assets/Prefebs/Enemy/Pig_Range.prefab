@@ -416,11 +416,10 @@ MonoBehaviour:
   max_enemy_hp: 100
   enemy_body_damage: 0
   endPosition: {x: 0, y: 0, z: 0}
-  followPlayer: 0
+  followPlayer: 1
   find_Playersecond: 5
   attackRange: 6
   damage: 10
-  circleCollider2D: {fileID: 0}
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
   spriteRenderer: {fileID: 20039698541068980}

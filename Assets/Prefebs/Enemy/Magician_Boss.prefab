@@ -76,6 +76,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1312468037984321345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9081045555415472949}
+  m_Layer: 10
+  m_Name: firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9081045555415472949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312468037984321345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9196623982164704659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5313889347633595716
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +342,7 @@ Transform:
   m_Children:
   - {fileID: 2482634757476733537}
   - {fileID: 1411544062639593588}
+  - {fileID: 9081045555415472949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &20039698541068980
@@ -464,7 +496,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 9081045555415472949}
   melee: 0
   enemy_speed: 3
   rotateSpeed: 0.25
@@ -484,18 +516,25 @@ MonoBehaviour:
   hit: {fileID: 0}
   originalSortingOrder: 0
   character: {fileID: 0}
-  enemy_hp_bar: {fileID: 0}
+  enemy_hp_bar: {fileID: 8125213795990888417}
   item_Drop: {fileID: 0}
   enemyTag: {fileID: 0}
   setTP: 0
-  attackCount: 1
-  meteorCasting: 0
-  fireballCasting: 0
+  attackCount: 0
+  castingTime: 3
+  magictype: 0100000002000000
   posChange: 0
-  fireballPrefeb: {fileID: 0}
-  meteorPrefeb: {fileID: 0}
+  isCasting: 0
+  dangerCount: 0.5
+  fireballPrefeb: {fileID: 2543381142545148147, guid: 6b2a8d927f21d294e82b4addb528d74e, type: 3}
+  dangerPrefeb: {fileID: 4916864207237336216, guid: 16f263c17798c3b43a8afb3bb6d5d643, type: 3}
   teleport: []
+  nextPostion: {x: 0, y: 0, z: 0}
   casting_Bar: {fileID: 462527652666997604}
+  fireballCount: 15
+  radius: 4
+  fireballSpeed: 9
+  spawnDelay: 0.2
 --- !u!1001 &7359668736518700242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -608,5 +647,10 @@ PrefabInstance:
 --- !u!224 &1411544062639593588 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8481408815702434982, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
+  m_PrefabInstance: {fileID: 7359668736518700242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8125213795990888417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1648393729127310131, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
   m_PrefabInstance: {fileID: 7359668736518700242}
   m_PrefabAsset: {fileID: 0}

@@ -498,7 +498,7 @@ SpriteRenderer:
   m_SortingLayerID: -632554699
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 361543370, guid: 3261870a8b21d88448a89128ed21ec9b, type: 3}
+  m_Sprite: {fileID: 453745229, guid: 37041fe45a2d3bd4f91d1851bec7105d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -519,7 +519,7 @@ Animator:
   m_GameObject: {fileID: 6173313241963185773}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42c90575f17d4be4695da90294de8a55, type: 2}
+  m_Controller: {fileID: 9100000, guid: b88f6bb65f0dde647a2ac03c56df3247, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -558,7 +558,6 @@ MonoBehaviour:
   find_Playersecond: 3
   attackRange: 4
   damage: 10
-  circleCollider2D: {fileID: 0}
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
   spriteRenderer: {fileID: 20039698541068980}
@@ -634,8 +633,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 1.1, y: 2}
+  m_Offset: {x: 0, y: -0.65}
+  m_Size: {x: 2.17, y: 4.14}
   m_Direction: 0
 --- !u!1001 &4881963676710659926
 PrefabInstance:

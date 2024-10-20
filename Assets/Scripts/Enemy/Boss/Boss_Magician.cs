@@ -5,26 +5,30 @@ using UnityEngine.UI;
 
 public class Boss_Magician : Enemy
 {
-    public bool setTP = false; //true면 텔레포트 불가능 false면 가능
+    public bool setTP = false;
     public int attackCount = 1;
-    
 
-    public float meteorCasting;
-    public float fireballCasting;
+    public float castingTime = 3f;
     private float tpCastingTime = 2.0f;
     private float castingProgress = 0.0f;
-    private bool isCasting;
+    [SerializeField] private int [] magictype = {2}; //0 = Idle, 1 = fireBall, 2 = Meteor
     public bool posChange = false;
-    
+    public bool isCasting = false;
+    public float dangerCount = 0.5f;
 
     [Header("마법종류")]
     public GameObject fireballPrefeb;
-    public GameObject meteorPrefeb;
+    public GameObject dangerPrefeb;
     [Header("텔레포트위치")]
-    public Vector2 [] teleport;
+    public Vector2[] teleport;
     public Vector3 nextPostion;
 
     [SerializeField] private GameObject casting_Bar;
+
+    public int fireballCount = 8; // 생성할 파이어볼의 개수
+    public float radius = 5f;      // 원형으로 배치할 반지름
+    public float fireballSpeed = 5f; // 파이어볼의 속도
+    public float spawnDelay = 0.1f;  // 파이어볼 생성 간격
 
     private void Start()
     {
@@ -53,6 +57,7 @@ public class Boss_Magician : Enemy
         teleport[3] = new Vector2(originPos.position.x - 15, originPos.position.y - 10);
         teleport[4] = new Vector2(originPos.position.x - 15, originPos.position.y + 8);
         teleport[5] = new Vector2(originPos.position.x + 15, originPos.position.y + 8);
+
     }
 
     private void Update()
@@ -63,52 +68,137 @@ public class Boss_Magician : Enemy
         {
             blackboard.target = hit.transform;
             blackboard.state = BehaviourTree.Blackboard.State.Aggro;
+            int randomMagicType = magictype[Random.Range(0, magictype.Length)];
+            if (!isCasting && attackCount != 1)
+            {
+                casting_Bar.SetActive(true);
+                if (randomMagicType == 1)
+                {
+                    enemy_animator.SetTrigger("Fireball");
+                    isCasting = true;
+                    StartCoroutine(FireBallCreate());
+                }
+                else if (randomMagicType == 2)
+                {
+                    enemy_animator.SetTrigger("Meteor");
+                    isCasting = true;
+                    StartCoroutine(CreateDanger());
+                }
+            }
         }
         behaviorTree.Update();
     }
 
-    //public void Creat_fireBall()
-    //{
-    //    //GameObject fireball = Instantiate(fireballPrefeb, firePoint.position, transform.rotation); // 보스주위로 원형생성후 공격
-    //}
+    public void Creat_fireBall()
+    {
 
-    //public void Creat_Meteor()
-    //{
-    //    GameObject meteor = Instantiate(meteorPrefeb, firePoint.position, transform.rotation);
-    //}
+        StartCoroutine(SpawnFireballs());
+    }
+
+    private IEnumerator SpawnFireballs()
+    {
+        float angleStep = 360f / fireballCount;
+        float angle = 0f;
+
+        List<GameObject> fireballs = new List<GameObject>(); // 생성된 파이어볼을 저장할 리스트
+
+        for (int i = 0; i < fireballCount; i++)
+        {
+            float fireballDirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+            float fireballDirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+            Vector3 fireballPosition = new Vector3(fireballDirX, fireballDirY, 0) * radius + firePoint.position;
+
+            GameObject fireball = Instantiate(fireballPrefeb, fireballPosition, Quaternion.identity);
+            fireballs.Add(fireball);
+
+            angle += angleStep;
+
+            yield return new WaitForSeconds(spawnDelay);
+        }
+
+        FireAllBalls(fireballs);
+        setTP = true;
+        attackCount = 1;
+        isCasting = false;
+        casting_Bar.SetActive(false);
+        enemy_animator.SetTrigger("Attack");
+        foreach (GameObject fireball in fireballs)
+        {
+            if (fireball != null)
+            {
+                Destroy(fireball, 3f);
+            }
+        }
+    }
+
+    private void FireAllBalls(List<GameObject> fireballs)
+    {
+        foreach (GameObject fireball in fireballs)
+        {
+            if (fireball != null)
+            {
+                Vector3 fireballDirection = (fireball.transform.position - firePoint.position).normalized;
+
+                Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = fireballDirection * fireballSpeed;
+                }
+            }
+        }
+    }
 
     public void TeleportEnd()
     {
-        Debug.Log("안들어감");
         if (!setTP && attackCount == 1)
         {
             enemy_animator.SetTrigger("TPTrigger");
             setTP = true;
             attackCount = 0;
         }
-
     }
-    
+
     public void Teleport()
     {
-        casting_Bar.SetActive(false);
         nextPostion = teleport[Random.Range(0, teleport.Length)];
         while (nextPostion.x < transform.position.x + 1 && nextPostion.x > transform.position.x - 1 && nextPostion.y < transform.position.y + 1 && nextPostion.y > transform.position.y - 1)
         {
             nextPostion = teleport[Random.Range(0, teleport.Length)];
         }
         transform.position = nextPostion;
-        TeleportEnd();
+        enemy_animator.SetTrigger("TPTrigger");
     }
 
     public void TeleportCasting()
     {
         if (setTP && attackCount == 1)
         {
-            casting_Bar.SetActive(true);
             enemy_animator.SetTrigger("TPTrigger");
             setTP = false;
         }
     }
 
+    private IEnumerator FireBallCreate()
+    {
+        Creat_fireBall();
+        yield return new WaitForSeconds(castingTime);
+    }
+
+    private IEnumerator CreateDanger()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            GameObject danger = Instantiate(dangerPrefeb, GameManager.Instance.player.transform.position, transform.rotation);
+            yield return new WaitForSeconds(0.5f); // 각 Danger 생성 후 0.5초 대기
+        }
+
+        // 대기 시간 후의 추가 작업
+        yield return new WaitForSeconds(dangerCount);
+        setTP = true;
+        attackCount = 1;
+        isCasting = false;
+        casting_Bar.SetActive(false);
+        enemy_animator.SetTrigger("Attack");
+    }
 }

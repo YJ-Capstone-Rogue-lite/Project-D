@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a06a5e856ae0cb4b82b8a2af9134903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorTree: {fileID: 0}
+  behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
   direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
   bulletPrefab: {fileID: 0}
@@ -580,11 +580,10 @@ MonoBehaviour:
   max_enemy_hp: 100
   enemy_body_damage: 0
   endPosition: {x: 0, y: 0, z: 0}
-  followPlayer: 0
+  followPlayer: 1
   find_Playersecond: 5
   attackRange: 4
   damage: 10
-  circleCollider2D: {fileID: 0}
   enemy_animator: {fileID: 0}
   enemy_rb: {fileID: 0}
   spriteRenderer: {fileID: 0}
