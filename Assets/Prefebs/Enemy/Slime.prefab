@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: -632554699
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 761947423, guid: ad55be1e8ef05044f8209b9f37ada4c4, type: 3}
+  m_Sprite: {fileID: 17480013, guid: db09261748df9cf49a7315873d63814d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,6 @@ MonoBehaviour:
   find_Playersecond: 5
   attackRange: 4
   damage: 10
-  circleCollider2D: {fileID: 0}
   enemy_animator: {fileID: 0}
   enemy_rb: {fileID: 0}
   spriteRenderer: {fileID: 0}

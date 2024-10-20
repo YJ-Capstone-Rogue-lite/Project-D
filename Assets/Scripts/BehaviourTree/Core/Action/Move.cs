@@ -26,8 +26,8 @@ namespace BehaviourTree
             var norm = tempPos.normalized;
             blackboard.thisUnit.enemy_animator.SetFloat("MoveX", -norm.x);
             blackboard.thisUnit.enemy_animator.SetFloat("MoveY", -norm.y);
-            if(Mathf.Sign(norm.x) < 0) blackboard.thisUnit.spriteRenderer.flipX = true;
-            else blackboard.thisUnit.spriteRenderer.flipX = false;
+            if(Mathf.Sign(norm.x) < 0) blackboard.thisUnit.spriteRenderer.flipX = false;
+            else blackboard.thisUnit.spriteRenderer.flipX = true;
             // blackboard.thisUnit.GetComponent<Rigidbody2D>().velocity = -norm * blackboard.thisUnit.enemy_speed * Time.deltaTime;
             blackboard.thisUnit.transform.position = Vector3.MoveTowards(blackboard.thisUnit.transform.position, blackboard.target.position, blackboard.thisUnit.enemy_speed * Time.deltaTime);
             return NodeState.Running;
