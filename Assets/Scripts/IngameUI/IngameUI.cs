@@ -175,7 +175,8 @@ public class IngameUI : MonoBehaviour
         // {
         //     sub_slot_sprite.sprite = nullgun_image.sprite;
         // }
-
+        
+        //작동안해서 급하게 업데이트에 때려넣은 임시 코드
         if (Weapon_Slot == null)
         {
             Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
