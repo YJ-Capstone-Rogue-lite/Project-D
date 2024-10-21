@@ -1156,7 +1156,6 @@ GameObject:
   - component: {fileID: 146811506}
   - component: {fileID: 146811505}
   - component: {fileID: 146811507}
-  - component: {fileID: 146811508}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -1349,25 +1348,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &146811508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146811501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6451e9569af59c241bd3ef37c70062be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textBox: {fileID: 0}
-  currentChat: 
-  line:
-  - "\uB098\uB294 \uBA54\uD53C\uC2A4\uD1A0"
-  - "\uD3EC\uD0C8\uB85C \uB4E4\uC5B4\uAC00\uB77C"
-  currenttext: {fileID: 0}
-  npcFace: {fileID: 0}
 --- !u!1 &178913430
 GameObject:
   m_ObjectHideFlags: 0
@@ -15812,6 +15792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comment: {fileID: 1537139593}
+  text: {fileID: 0}
+  nextFloor: 
+  info: 
 --- !u!1 &2110077644
 GameObject:
   m_ObjectHideFlags: 0
