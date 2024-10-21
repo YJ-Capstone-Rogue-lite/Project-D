@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: test_Shotgun
   m_EditorClassIdentifier: 
-  weapnPrefab: {fileID: 3285234415937654582, guid: d15f828afe8864f4f8ba215e906162f4, type: 3}
+  weapnPrefab: {fileID: 3285234415937654582, guid: 1c488a53772fd8f4db8778e51dc4fb0d, type: 3}
   ratingType: 1
   weaponType: 4
   number: 2
   name: "\uAE30\uBCF8\uC0F7\uAC74"
   sprite: {fileID: 45444755, guid: 0cf31600b5f898c43b6bacb707a08c9a, type: 3}
+  Icon: {fileID: -2113062751, guid: 4d8e755152447884c98e792d9e3dfc62, type: 3}
   bullet_range: 0.3
   bullet_velocity: 20
   Fire_rate: 1
   reload_time: 2
   magazine_capacity: 8
   backup_magazine_capacity: 8
-  Damage: 10
+  Damage: 5
   info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uC0F7\uAC74\uC774\uB2E4.\n5\uBC1C\uC774
     \uB098\uAC04\uB2E4."

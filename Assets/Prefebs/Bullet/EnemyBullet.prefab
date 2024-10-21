@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 597384542159112572}
   - component: {fileID: 8236236890338064090}
   - component: {fileID: 5042131506176319104}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBullet
-  m_TagString: Bullet
+  m_TagString: Hit_radius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

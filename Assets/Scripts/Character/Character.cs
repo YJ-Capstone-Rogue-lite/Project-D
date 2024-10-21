@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class Character : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class Character : MonoBehaviour
     private EffectController effectController;
     [SerializeField] protected bool is_rolling = false;
 
+    [SerializeField] private Weapon_Slot weapon_slot;
+
     // 캐릭터 상태 데이터
     [SerializeField]
     protected CharStateData charStateData;
+
     public GameObject HPbar;
     public GameObject Shield_bar;
 
@@ -62,15 +66,15 @@ public class Character : MonoBehaviour
     public float m_buff_movementSpeed;
 
     // 캐릭터의 이동속도 최대치
-    public float m_max_movementSpeed = 7;
+    public float m_max_movementSpeed;
 
     // 캐릭터의 이동속도 최소치
-    public float m_min_movementSpeed = 3;
+    public float m_min_movementSpeed;
 
     // 캐릭터의 보호 시간
     public float m_protectionTime;
 
-    // 캐릭터의 데미지(적에게가하는 데미지)
+    // 캐릭터의 데미지(적에게가하는 데미지) 해당 데미지 공식은 enemy 코드에 있음.
     public float m_damage;
 
     // 캐릭터의 패시브 데미지(스택형 아이템을 먹을시 영구적으로 올라가는 데미지 값)
@@ -85,6 +89,9 @@ public class Character : MonoBehaviour
     //스태미나 최대치(임시, 버프나 악세로 바뀜)
     public float m_maxStamina = 100;
 
+    //플레이어가 획득한 코인
+    public int Coin_Count;
+
     [Header("플레이어 버프 관련 스택")]
     // 스택을 저장할 변수
     public float damageUpStack = 0; //데미지업 스택
@@ -93,9 +100,13 @@ public class Character : MonoBehaviour
 
     public float max_hp_UPStack; // 최대 체력 스택
 
+
+
     public Animator player_anim;
 
     public PlayerData playerdata = new PlayerData();
+
+    public Player_Default_State Player_Default_State = new Player_Default_State();
 
     //private void Awake()
     //{
@@ -131,18 +142,45 @@ public class Character : MonoBehaviour
         Debug.Log("Player Shield: " + playerdata.player_shield);
         Debug.Log("Player Move Speed: " + playerdata.player_movespeed);
         Debug.Log("Player Protection Time: " + playerdata.player_protectionTime);
+        Debug.Log(Player_Default_State);
+        if (playerdata.player_ID != null)
+        {
+            // playerdata의 값을 해당 캐릭터로 연동하는 부분
+            m_name = playerdata.player_name;
+            m_health = playerdata.player_hp;
+            m_maxHealth = playerdata.player_maxhp;
+            m_shield = playerdata.player_shield;
+            m_maxShield = playerdata.player_maxshield;
+            m_movementSpeed = playerdata.player_movespeed;
+            m_max_movementSpeed = playerdata.player_max_movementSpeed;
+            m_protectionTime = playerdata.player_protectionTime;
+            m_stamina = playerdata.player_stamina;
+            m_maxStamina = playerdata.player_maxstamina;
+            max_hp_UPStack = playerdata.player_max_hp_UPStack;
+            movement_SpeedUpStack = playerdata.player_movement_SpeedUpStack;
+            damageUpStack = playerdata.player_damageUpStack;
+            Coin_Count = playerdata.player_Coin_Count;
 
-        // 캐릭터의 상태 데이터로 초기화
-        m_name = playerdata.player_name;
-        m_health = playerdata.player_hp;
-        m_maxHealth = playerdata.player_maxhp;
-        m_shield = playerdata.player_shield;
-        m_maxShield = playerdata.player_maxshield;
-        m_movementSpeed = playerdata.player_movespeed;
-        m_protectionTime = playerdata.player_protectionTime;
-        m_stamina = playerdata.player_stamina;
-        m_maxStamina = playerdata.player_maxstamina;
-        m_damage = charStateData.player_damage;
+        }
+        else
+        //아닐경우 플레이어 기본 스탯을 처음으로 로드
+        {
+            m_health = Player_Default_State.Default_player_hp;
+            m_maxHealth = Player_Default_State.Default_player_maxhp;
+            m_shield = Player_Default_State.Default_player_shield;
+            m_maxShield = Player_Default_State.Default_player_maxshield;
+            m_movementSpeed = Player_Default_State.Default_player_movespeed;
+            m_max_movementSpeed = Player_Default_State.Default_player_max_movementSpeed;
+            m_protectionTime = Player_Default_State.Default_player_protectionTime;
+            m_stamina = Player_Default_State.Default_player_stamina;
+            m_maxStamina = Player_Default_State.Default_player_maxstamina;
+            max_hp_UPStack = Player_Default_State.Default_player_max_hp_UPStack;
+            movement_SpeedUpStack = Player_Default_State.Default_player_movement_SpeedUpStack;
+            damageUpStack = Player_Default_State.Default_player_damageUpStack;
+            Coin_Count = Player_Default_State.Default_player_Coin_Count;
+        }
+
+
         Shield_bar = GameObject.Find("Shield_Bar_Img");
         HPbar = GameObject.Find("HP_Bar_Img");
         hp_count = GameObject.Find("hp_count");
@@ -154,6 +192,7 @@ public class Character : MonoBehaviour
       
     }
 
+  
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
@@ -175,6 +214,7 @@ public class Character : MonoBehaviour
             return;
         }
     }
+
 
     public virtual void Heal(DamageData damageData)
     {

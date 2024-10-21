@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc07420ddd4636428cb3940698659fe, type: 3}
   m_Name: pistol
   m_EditorClassIdentifier: 
-  weapnPrefab: {fileID: 5879571492669396754, guid: 16a0462fdfc82884ab08d9cfaa901a0c, type: 3}
+  weapnPrefab: {fileID: 5879571492669396754, guid: 81a6b88ac46396f428d7fd05d8074b54, type: 3}
   ratingType: 1
   weaponType: 1
   number: 1
   name: "\uAE30\uBCF8\uAD8C\uCD1D"
   sprite: {fileID: 1706657260, guid: d44939ca98b3eb74a8caeb91716ea53d, type: 3}
+  Icon: {fileID: -793744162, guid: c3dcd55c6a41db74799a09ff03126ba1, type: 3}
   bullet_range: 3
   bullet_velocity: 20
   Fire_rate: 0.5

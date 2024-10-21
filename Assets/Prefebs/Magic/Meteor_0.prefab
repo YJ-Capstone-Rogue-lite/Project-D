@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5148553621321509612}
   - component: {fileID: 7373199497852592051}
   - component: {fileID: 8162366589203955920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Meteor_0
-  m_TagString: Untagged
+  m_TagString: Hit_radius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,9 +132,9 @@ GameObject:
   - component: {fileID: 284463533275964418}
   - component: {fileID: 7512528262546619266}
   - component: {fileID: 690627467726777944}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hitBox
-  m_TagString: Untagged
+  m_TagString: Hit_radius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

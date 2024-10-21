@@ -21,6 +21,7 @@ public class Item_interaction : MonoBehaviour
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
     public Buff buff; //현재 획득할려고 하는 버프
+    public Coin coin;
 
 
 
@@ -162,6 +163,10 @@ public class Item_interaction : MonoBehaviour
                 actionText.text = item_PickUp.buff.Buff_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
 
             }
+            else if(item_PickUp.coin != null)
+            {
+                actionText.text = item_PickUp.coin.Coin_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            }
         }
         else if(!pickupActivated && collider2D.gameObject.CompareTag("Box") && collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
         {
@@ -183,6 +188,7 @@ public class Item_interaction : MonoBehaviour
             item_PickUp = null;
             currentBox = null; // 상자 객체 초기화
             buff = null;
+            coin = null;
             actionText.gameObject.SetActive(false);
         }
 
@@ -221,7 +227,15 @@ public class Item_interaction : MonoBehaviour
                     ApplyBuff();
                     Debug.Log(item_PickUp.buff.Buff_name + " 버프 적용됨.");
                     Destroy(item_PickUp.gameObject);
-                }  
+                }
+                else if(item_PickUp.coin != null)
+                {
+                    Coin_Count();
+                    Debug.Log(item_PickUp.coin.Coin_name + " 코인 획득함.");
+                    ingameUI.Coin_Count_Text_Update();
+                    Destroy(item_PickUp.gameObject);
+                }
+
             }
             
         }
@@ -467,6 +481,17 @@ public class Item_interaction : MonoBehaviour
             UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
         }
     }
+
+    public void Coin_Count()
+    {
+        //캐릭터 코인 변수 증가시켜주고
+        character.Coin_Count++;
+        Debug.Log("플레이어 코인 추가" + "현재 코인 갯수 : " + character.Coin_Count);
+    }
+
+    
+
+
     private void UpdateBuffIcon()
     {
         // 버프 아이콘 오른쪽 하단에 숫자 표기 변경 로직 추가
