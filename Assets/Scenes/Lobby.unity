@@ -2888,11 +2888,13 @@ MonoBehaviour:
   SubWeapon_Swap: {fileID: 2051429472}
   ConsumableItem_Img: {fileID: 1525394647}
   default_consumableItem: {fileID: 11400000, guid: 0da19600a34944e40a9b10aff0ae6931, type: 2}
+  Coin_Count_Text: {fileID: 0}
   MainWeapon: 0
   SubWeapon: 1
   openOption: 1
   openInventory: 1
   minimap_state: 0
+  test_clear_boolCheck: 0
   reload_img: {fileID: 4144628358222961968, guid: 20271c1d5b54c6142bf4403fd31fa896, type: 3}
   inv_slot: {fileID: 1818467776}
   left_inv: {fileID: 765020910}
@@ -2903,6 +2905,14 @@ MonoBehaviour:
   screenshotCamera: {fileID: 1518100394}
   deathScreenImage: {fileID: 1714389016}
   deathScreenUI: {fileID: 1697634648}
+  Clear_Screen_UI: {fileID: 0}
+  Clear_Screen_Img: {fileID: 0}
+  weapon_slot1_icon: {fileID: 0}
+  weapon_slot2_icon: {fileID: 0}
+  Clear_enemyCountText: {fileID: 0}
+  Clear_TitleText: {fileID: 0}
+  Clear_playtimeText: {fileID: 0}
+  Clear_destory_enemy_count: {fileID: 0}
   WeaponSlot1: {fileID: 2051429470}
   WeaponSlot2: {fileID: 737045484}
   ingameOption: {fileID: 2135422222}
@@ -9422,6 +9432,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456741010}
   m_CullTransparentMesh: 1
+--- !u!1001 &1472323702
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6173313241963185773, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_Name
+      value: Pig_Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575438858144496077, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.0863223
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.22893214
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196623982164704659, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e24c19d254b1744097bedc7533e6c8f, type: 3}
 --- !u!1 &1479240259
 GameObject:
   m_ObjectHideFlags: 0
@@ -12095,3 +12166,4 @@ SceneRoots:
   - {fileID: 1026854430}
   - {fileID: 440592610}
   - {fileID: 435580070}
+  - {fileID: 1472323702}

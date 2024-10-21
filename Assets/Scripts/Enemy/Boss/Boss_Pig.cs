@@ -66,8 +66,6 @@ public class Boss_Pig : Enemy
         Debug.Log("공격");
         if (!Attack_the_Player)
         {
-            enemy_speed = 0;
-            enemy_rb.velocity = Vector2.zero;
             Attack_the_Player = true;
             enemy_animator.SetTrigger("Attack");
             boss_Skil_count += 1;

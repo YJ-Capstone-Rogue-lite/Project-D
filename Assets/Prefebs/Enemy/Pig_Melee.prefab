@@ -582,7 +582,7 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 5
-  attackRange: 4
+  attackRange: 1
   damage: 10
   enemy_animator: {fileID: 0}
   enemy_rb: {fileID: 0}
