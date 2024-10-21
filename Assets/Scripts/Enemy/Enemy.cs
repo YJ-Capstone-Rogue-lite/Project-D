@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
         enemy_rb = GetComponent<Rigidbody2D>();
         enemy_animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
         // StartCoroutine(WanderRoutine()); // 적의 무작위 이동 시작
         originalSortingOrder = spriteRenderer.sortingOrder;
         behaviorTree.blackboard.thisUnit = GetComponent<Enemy>();

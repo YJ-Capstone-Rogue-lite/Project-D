@@ -22,6 +22,7 @@ public class Item_interaction : MonoBehaviour
     public Item_drop item_Drop;
     public Buff buff; //현재 획득할려고 하는 버프
     public Coin coin;
+    private Rigidbody2D rg;
 
 
 
@@ -35,7 +36,7 @@ public class Item_interaction : MonoBehaviour
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
         // item_Drop = FindAnyObjectByType<Item_drop>();
-
+        rg = transform.parent.GetComponent<Rigidbody2D>();
 
 
     }
@@ -132,42 +133,15 @@ public class Item_interaction : MonoBehaviour
             actionText.gameObject.SetActive(true);
             currentBox = collider2D.gameObject; // 현재 상자 객체 저장
             item_Drop = currentBox.GetComponent<Item_drop>();
-            // Animator boxAnimator = currentBox.GetComponent<Animator>(); // 현재 상자 객체의 애니메이터 가져오기
-            // if (!boxAnimator.GetBool("State"))
-            // {
-            //     actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
-
-            // }
-            // else             // 상자가 닫혀 있는 경우에만 실행
-
-            // {
-            //     actionText.text = "<b>" + " 이미 열린 상자입니다 " + "<color=yellow>" + "</b>" + "</color>";
-
-            // }
         }
         else if (!pickupActivated && collider2D.gameObject.CompareTag("Item"))
         {
             pickupActivated = true;
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
             actionText.gameObject.SetActive(true);
-            if (item_PickUp.weapon != null) // 아이템 픽업 코드에 무기가 존재한다면
+            if (item_PickUp.weapon != null || item_PickUp.consumable != null || item_PickUp.buff != null || item_PickUp.coin != null) // 아이템 픽업 코드에 무기가 존재한다면
             {
                 actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
-            }
-            else if (item_PickUp.consumable != null) //아이템의 픽업 코드에 소비아이템이 존재한다면
-            {
-                actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
-            }
-            else if(item_PickUp.buff != null)//아이템 픽업 코드에 버프가 존재한다면
-            {
-                buff = item_PickUp.buff; // buff 필드를 여기서도 설정
-               
-                actionText.text = item_PickUp.buff.Buff_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
-
-            }
-            else if(item_PickUp.coin != null)
-            {
-                actionText.text = item_PickUp.coin.Coin_name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             }
         }
         else if(!pickupActivated && collider2D.gameObject.CompareTag("Box") && collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
@@ -195,11 +169,13 @@ public class Item_interaction : MonoBehaviour
         }
 
     }
-
+    
     private void CanPickUp()
     {
-        if (Input.GetKeyDown(KeyCode.E) && pickupActivated) // E를 누르고 픽업이 활성화될 때
+        if (Input.GetKeyDown(KeyCode.E)) // E를 누르고 픽업이 활성화될 때
         {
+            pickupActivated = false;
+            rg.WakeUp();
             if (item_PickUp != null) // 아이템 픽업이 존재할 경우
             {
                 if (item_PickUp.weapon != null) // 무기 아이템일 경우
