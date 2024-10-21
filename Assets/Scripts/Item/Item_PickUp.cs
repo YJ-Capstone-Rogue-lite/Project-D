@@ -10,5 +10,6 @@ public class Item_PickUp : MonoBehaviour
     public Weapon weapon;
     public ConsumableItem consumable;
     public Buff buff;
+    public Coin coin;
 
 }

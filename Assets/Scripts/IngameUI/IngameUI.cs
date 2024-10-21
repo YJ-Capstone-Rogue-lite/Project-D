@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,7 +34,8 @@ public class IngameUI : MonoBehaviour
     public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
 
-    
+    [Header("코인 카운트")]
+    public TMP_Text Coin_Count_Text;
 
 
     [Header("기타 불 값들")]
@@ -42,6 +44,7 @@ public class IngameUI : MonoBehaviour
     public bool openOption = true;
     public bool openInventory = true;
     public bool minimap_state = false; //false면 미니맵 off true면 미니맵 on
+    public bool test_clear_boolCheck = false; //클리어 체크용 임시 불값
 
 
     [Header("재장전 이미지 오브젝트")]
@@ -61,10 +64,22 @@ public class IngameUI : MonoBehaviour
     //public Image HPbar; //hp바 관련 이미지
     [Header("플레이어 스크린샷")]
     public Camera screenshotCamera; // 추가 카메라
-    public RawImage deathScreenImage; // UI에서 RawImage를 통해 이미지를 표시할 경우
-    public GameObject deathScreenUI; // 플레이어 사망 시 표시할 UI
     private RenderTexture renderTexture;
     private Texture2D screenShot;
+
+    [Header("플레이어 사망UI")]
+    public RawImage deathScreenImage; // UI에서 RawImage를 통해 이미지를 표시할 경우
+    public GameObject deathScreenUI; // 플레이어 사망 시 표시할 UI
+
+    [Header("플레이어 클리어UI")]
+    public GameObject Clear_Screen_UI; //플레이어가 클리어시 표시할 UI
+    public RawImage Clear_Screen_Img; //플레이어 클리어시 이미지 표시
+    public Image weapon_slot1_icon; //플레이어가 마지막까지 들고있는 슬롯1 무기
+    public Image weapon_slot2_icon; //플레이어가 마지막까지 들고있는 슬롯1 무기
+    [SerializeField] private TMP_Text Clear_enemyCountText; // UI Text를 연결할 변수
+    [SerializeField] private TMP_Text Clear_TitleText;
+    [SerializeField] private TMP_Text Clear_playtimeText;
+    [SerializeField] private TMP_Text Clear_destory_enemy_count; // enemy count 저장할 텍스트
 
     [Header("기타등등")]
 
@@ -135,6 +150,7 @@ public class IngameUI : MonoBehaviour
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
         MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
         SubWeapon_Swap = subWeapon.GetComponent<Animator>();
+        Coin_Count_Text_Update();
         StopCoroutine(startCoroutine);
         startCoroutine = null;
     }
@@ -234,6 +250,17 @@ public class IngameUI : MonoBehaviour
             playtimeText.text = Time.time.ToString("F2");
             destory_enemy_count.text = enemy_count.ToString();
         }
+
+        if (test_clear_boolCheck == true)
+        {
+            On_Player_Clear();
+            IngameTime(false);
+            Clear_TitleText.text = "해당 층을 클리어하셨습니다!";
+            Clear_playtimeText.text = Time.time.ToString("F2");
+            Clear_destory_enemy_count.text = enemy_count.ToString();
+            
+        }
+
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
@@ -391,9 +418,39 @@ public class IngameUI : MonoBehaviour
         deathScreenImage.texture = screenShot;
     }
 
+    public void On_Player_Clear()
+    {
+        // 추가 카메라 활성화 및 렌더링
+        screenshotCamera.enabled = true;
+        screenshotCamera.Render();
+
+        // Render Texture에서 Texture2D로 변환
+        RenderTexture.active = renderTexture;
+        screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        screenShot.Apply();
+
+        weapon_slot1_icon.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.Icon;
+        weapon_slot2_icon.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.Icon;
+
+
+        // 추가 카메라 비활성화
+        //screenshotCamera.enabled = false;
+        RenderTexture.active = null;
+
+        // 클리어 UI 표시 및 이미지 설정
+        Clear_Screen_UI.SetActive(true);
+        Clear_Screen_Img.texture = screenShot;
+    }
+
     public void GoTitle()
     {
         SceneManager.LoadScene("Title");
         DataManager.Instance.SaveGameData();
+    }
+
+    public void Coin_Count_Text_Update()
+    {
+        Coin_Count_Text.text = "X " +character.Coin_Count.ToString();
     }
 }
