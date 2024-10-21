@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +24,9 @@ public class Item_interaction : MonoBehaviour
     public Buff buff; //현재 획득할려고 하는 버프
     public Coin coin;
 
-
+    [Header("오디오 소스")]
+    public AudioClip Using_Potion_AudioCilp;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class Item_interaction : MonoBehaviour
         ingameUI = FindObjectOfType<IngameUI>();
         character = FindAnyObjectByType<Character>();
         // item_Drop = FindAnyObjectByType<Item_drop>();
-
+        audioSource = gameObject.AddComponent<AudioSource>();
 
 
     }
@@ -344,9 +347,14 @@ public class Item_interaction : MonoBehaviour
             {
                 character.m_health = character.m_maxHealth;
             }
+
+            audioSource.PlayOneShot(Using_Potion_AudioCilp);
+            Debug.Log("포션 사운드 재생");
+
             character.player_hpbar_update();
             ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
             currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
+            
             Debug.Log("포션 사용");
         }
     }
@@ -365,6 +373,10 @@ public class Item_interaction : MonoBehaviour
             {
                 character.m_shield = character.m_maxShield;
             }
+
+            audioSource.PlayOneShot(Using_Potion_AudioCilp);
+            Debug.Log("포션 사운드 재생");
+
             character.player_shieldbar_update();
             ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
             currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
@@ -401,6 +413,10 @@ public class Item_interaction : MonoBehaviour
         // item_Drop = FindAnyObjectByType<Item_drop>();
 
         yield return new WaitForSeconds(0.35f); // 0.초 대기
+       // currentBox의 AudioSource에서 AudioClip을 가져와 PlayOneShot으로 재생
+       
+        currentBox.GetComponent<AudioSource>().Play();
+        Debug.Log("상자 여는 소리 테스트");
         item_Drop.Box_Open_Item_Drop(); // 아이템 드롭 실행
     }
     private void ApplyBuff()
