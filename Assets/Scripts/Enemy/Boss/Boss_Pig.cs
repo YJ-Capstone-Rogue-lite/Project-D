@@ -41,15 +41,9 @@ public class Boss_Pig : Enemy
         ChooseNewEndPoint();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        var hit =  Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
-        if (hit && hit.transform.gameObject.CompareTag("Player"))
-        {
-            blackboard.target = hit.transform;
-            blackboard.state = BehaviourTree.Blackboard.State.Aggro;
-        }
-        behaviorTree.Update();
+        base.Update();
         if (isCasting)
         {
             castingProgress += Time.deltaTime;
@@ -94,6 +88,7 @@ public class Boss_Pig : Enemy
         casting_Bar_BG.SetActive(false);
         castingBarImage.gameObject.SetActive(false);
         boss_Skil_count = 0;
+        Attack_the_Player = true;
 
         Debug.Log("SpecialAttack 실행");
         shockWaveObject.SetActive(true);
@@ -104,6 +99,7 @@ public class Boss_Pig : Enemy
     IEnumerator EndSkill(float time) //애니메이션 이벤트
     {
         yield return new WaitForSeconds(time);
+        Attack_the_Player = false;
         enemy_animator.SetBool("Skill", false);
         shockWaveObject.SetActive(false);
     }
