@@ -9,12 +9,12 @@ namespace BehaviourTree
     [Serializable]
     public class Blackboard
     {
-        [DisableInspector] public Enemy thisUnit;
-        [DisableInspector] public Transform target;
+        public Enemy thisUnit;
+        public Transform target;
         [HideInInspector] public PlayableDirector playableDirector;
         
         public enum State { Idle, Aggro, Death }
 
-        [DisableInspector] public State state;
+        public State state;
     }
 }

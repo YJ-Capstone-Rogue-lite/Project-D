@@ -10,7 +10,7 @@ namespace BehaviourTree
         public enum NodeState { Running, Failure, Success }
         [HideInInspector] public NodeState state = NodeState.Running;
         [HideInInspector] public bool isStarted = false;
-        [SerializeField, DisableInspector] public string guid;
+        [SerializeField] public string guid;
         [HideInInspector] public Vector2 positon;
         [HideInInspector] public Blackboard blackboard;
         [HideInInspector] public static Dictionary<(int, string), BehaviourNode> clone = new();
@@ -44,9 +44,10 @@ namespace BehaviourTree
         protected abstract void OnStart();
         protected abstract NodeState OnUpdate();
         protected abstract void OnEnd();
-
+#if UNITY_EDITOR
         public abstract void AddChild(BehaviourNode child);
         public abstract void RemoveChild(BehaviourNode child);
+#endif
         public abstract List<BehaviourNode> GetChildren();
     }
 }
