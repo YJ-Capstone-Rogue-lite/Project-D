@@ -120,6 +120,24 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         AddEvent(buffTrigger3, EventTriggerType.PointerExit, (data) => OnPointerExit((PointerEventData)data));
     }
 
+    private void Update()
+    {
+        //작동안해서 급하게 업데이트에 때려넣은 임시 코드
+        if (weapon_Slot == null)
+        {
+            weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+            Debug.Log("웨폰슬롯 찾아서 넣음");
+
+        }
+        if (character == null)
+        {
+            character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            Debug.Log("캐릭터 찾아서 넣음");
+
+
+        }
+    }
+
 
     private void AddEvent(EventTrigger trigger, EventTriggerType eventType, UnityAction<BaseEventData> action)
     {
