@@ -15792,9 +15792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comment: {fileID: 1537139593}
-  text: {fileID: 0}
-  nextFloor: 
-  info: 
+  text: {fileID: 2090344140}
+  nextFloor: Floor 1
+  info: "\uD0D1 \uC785\uC7A5"
 --- !u!1 &2110077644
 GameObject:
   m_ObjectHideFlags: 0

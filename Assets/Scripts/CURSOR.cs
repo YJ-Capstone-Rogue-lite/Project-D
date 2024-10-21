@@ -72,7 +72,7 @@ public class CURSOR : MonoBehaviour
     private Texture2D SpriteToTexture2D(Sprite sprite)
     {
         Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height, TextureFormat.RGBA32, false);
-        texture.alphaIsTransparency = true;  // 투명도 설정
+        // texture.alphaIsTransparency = true;  // 투명도 설정
         texture.Apply(); // 설정 적용
 
         Color[] pixels = sprite.texture.GetPixels(
