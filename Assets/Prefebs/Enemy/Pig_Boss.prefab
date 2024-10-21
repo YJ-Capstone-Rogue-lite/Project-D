@@ -429,8 +429,8 @@ GameObject:
   - component: {fileID: 1183472342402711848}
   - component: {fileID: 7575438858144496077}
   - component: {fileID: 7642830349020207972}
-  - component: {fileID: 4349585165714957361}
   - component: {fileID: 7101870726016136037}
+  - component: {fileID: 6705048949898551343}
   m_Layer: 10
   m_Name: Pig_Boss
   m_TagString: Boss
@@ -603,8 +603,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &4349585165714957361
-CapsuleCollider2D:
+--- !u!114 &7101870726016136037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6f18a7f21266449aba77dd95955b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConsumableItem_drop_prefeb: []
+  Weapon_drop_prefeb: []
+  dropChance: 1
+  item_interaction: {fileID: 0}
+  floatSpeed: 4
+  floatAmplitude: 0.03
+  floatingDuration: 1
+  delayBeforeFloating: 0.7
+--- !u!58 &6705048949898551343
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -635,29 +655,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.65}
-  m_Size: {x: 2.17, y: 4.14}
-  m_Direction: 0
---- !u!114 &7101870726016136037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6173313241963185773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6f18a7f21266449aba77dd95955b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConsumableItem_drop_prefeb: []
-  Weapon_drop_prefeb: []
-  dropChance: 1
-  item_interaction: {fileID: 0}
-  floatSpeed: 4
-  floatAmplitude: 0.03
-  floatingDuration: 1
-  delayBeforeFloating: 0.7
+  m_Offset: {x: 0.15, y: -1.23}
+  serializedVersion: 2
+  m_Radius: 1.24
 --- !u!1001 &4881963676710659926
 PrefabInstance:
   m_ObjectHideFlags: 0
