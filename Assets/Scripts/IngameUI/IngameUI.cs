@@ -176,20 +176,20 @@ public class IngameUI : MonoBehaviour
         //     sub_slot_sprite.sprite = nullgun_image.sprite;
         // }
 
-        // if (Weapon_Slot == null)
-        // {
-        //     Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-        //     Debug.Log("웨폰슬롯 찾아서 넣음");
+        if (Weapon_Slot == null)
+        {
+            Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
+            Debug.Log("웨폰슬롯 찾아서 넣음");
 
-        // }
-        // if (character == null)
-        // {
-        //     character = GameObject.FindWithTag("Player").GetComponent<Character>();
-        //     Debug.Log("캐릭터 찾아서 넣음");
+        }
+        if (character == null)
+        {
+            character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            Debug.Log("캐릭터 찾아서 넣음");
 
 
-        // }
-        if(startCoroutine != null) return;
+        }
+        if (startCoroutine != null) return;
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
         sub_slot_sprite.sprite = Weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
         enemy_count = GameManager.Instance.enemyDestoryCount;
