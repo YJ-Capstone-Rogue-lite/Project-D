@@ -130,8 +130,8 @@ MonoBehaviour:
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
-  viewPos: {x: 155, y: 94}
-  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+  viewPos: {x: -84, y: -101}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &1303740912837353020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   guid: c32616e2351d049439ed5ee87f5f43a4
-  positon: {x: 512.2214, y: 514.4596}
+  positon: {x: 510.25098, y: 512.251}
   blackboard:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
@@ -292,7 +292,7 @@ MonoBehaviour:
     playableDirector: {fileID: 0}
     state: 1
   description: 
-  waitTime: 3
+  waitTime: 1
 --- !u!114 &8415800209628027842
 MonoBehaviour:
   m_ObjectHideFlags: 0
