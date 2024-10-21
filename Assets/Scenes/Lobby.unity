@@ -7302,9 +7302,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 111540531138123797, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2530009614169799429, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Name
       value: PlayerPrefeb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685181059802742643, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7956526315547988402, guid: 0ae767e5b81b78a45aec852fc85daaf0, type: 3}
       propertyPath: m_Pivot.x

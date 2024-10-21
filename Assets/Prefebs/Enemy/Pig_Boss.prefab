@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 7575438858144496077}
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 4349585165714957361}
+  - component: {fileID: 7101870726016136037}
   m_Layer: 10
   m_Name: Pig_Boss
   m_TagString: Boss
@@ -567,7 +568,7 @@ MonoBehaviour:
   originalSortingOrder: 0
   character: {fileID: 0}
   enemy_hp_bar: {fileID: 8125213795990888417}
-  item_Drop: {fileID: 0}
+  item_Drop: {fileID: 7101870726016136037}
   enemyTag: {fileID: 6173313241963185773}
   boss_Skil_count: 0
   castingTime: 2
@@ -636,6 +637,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.65}
   m_Size: {x: 2.17, y: 4.14}
   m_Direction: 0
+--- !u!114 &7101870726016136037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6f18a7f21266449aba77dd95955b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConsumableItem_drop_prefeb: []
+  Weapon_drop_prefeb: []
+  dropChance: 1
+  item_interaction: {fileID: 0}
+  floatSpeed: 4
+  floatAmplitude: 0.03
+  floatingDuration: 1
+  delayBeforeFloating: 0.7
 --- !u!1001 &4881963676710659926
 PrefabInstance:
   m_ObjectHideFlags: 0

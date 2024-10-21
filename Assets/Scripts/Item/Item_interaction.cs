@@ -51,6 +51,8 @@ public class Item_interaction : MonoBehaviour
         if (actionText != null)
         {
             actionText.gameObject.SetActive(true); // 씬이 로드된 후 actionText 활성화
+            actionText.text = "";
+            Debug.Log("actionText를 찾았고 내용을 비움.");
         }
         else
         {

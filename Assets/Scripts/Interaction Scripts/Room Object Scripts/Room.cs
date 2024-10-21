@@ -38,6 +38,7 @@ public class Room : MonoBehaviour
     public void RoomEnterTrigger() => roomEnter.Invoke(this);
     public void RoomExitTrigger()
     {
+        Debug.Log("AAA : " + roomExit.Method);
         roomExit.Invoke(this);
         state = State.CLEAR;
     }

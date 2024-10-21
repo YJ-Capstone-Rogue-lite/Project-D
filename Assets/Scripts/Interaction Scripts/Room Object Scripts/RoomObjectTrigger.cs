@@ -13,11 +13,11 @@ public abstract class RoomObjectTrigger : MonoBehaviour
         parentRoom.roomEnter += OnRoomEnter;
         parentRoom.roomExit += OnRoomExit;
     }
-    protected virtual void OnDisable()
-    {
-        parentRoom.roomEnter -= OnRoomEnter;
-        parentRoom.roomExit -= OnRoomExit;
-    }
+    //protected virtual void OnDisable()
+    //{
+    //    parentRoom.roomEnter -= OnRoomEnter;
+    //    parentRoom.roomExit -= OnRoomExit;
+    //}
 
     public abstract void OnRoomEnter(Room room);
     public abstract void OnRoomExit(Room room);
