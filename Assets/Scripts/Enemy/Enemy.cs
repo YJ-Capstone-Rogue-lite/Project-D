@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
 
     // 적의 충돌을 감지하는 Circle Collider
     public float attackRange;
+    public float playerFindRange;
     public float damage;
     public Animator enemy_animator;
     public Rigidbody2D enemy_rb;
@@ -85,9 +86,9 @@ public class Enemy : MonoBehaviour
         ChooseNewEndPoint();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        var hit =  Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
+        var hit =  Physics2D.CircleCast(transform.position, playerFindRange, Vector2.zero, 0, 1<<LayerMask.NameToLayer("Player"));
         if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
             blackboard.target = hit.transform;

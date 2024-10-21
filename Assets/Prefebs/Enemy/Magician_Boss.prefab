@@ -507,6 +507,7 @@ MonoBehaviour:
   followPlayer: 0
   find_Playersecond: 4
   attackRange: 10
+  playerFindRange: 15
   damage: 20
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}

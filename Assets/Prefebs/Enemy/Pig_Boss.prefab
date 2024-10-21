@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0e421ca85d4e408945946370b27b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorTree: {fileID: 11400000, guid: b83239574139f7f4d8d98cea9664e769, type: 2}
+  behaviorTree: {fileID: 11400000, guid: c72163d9b0ab397408be691791e69977, type: 2}
   direction: {x: 0, y: 0}
   targetTransform: {fileID: 0}
   bulletPrefab: {fileID: 0}
@@ -557,7 +557,8 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 3
-  attackRange: 4
+  attackRange: 2
+  playerFindRange: 5
   damage: 10
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
