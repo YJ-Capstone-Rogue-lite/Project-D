@@ -26,6 +26,7 @@ public class Item_interaction : MonoBehaviour
 
     [Header("오디오 소스")]
     public AudioClip Using_Potion_AudioCilp;
+    public AudioClip Get_weapon_AudioClip;
     private AudioSource audioSource;
 
     private void Awake()
@@ -209,6 +210,7 @@ public class Item_interaction : MonoBehaviour
                 {
                     PickUp_Weapon_Change();
                     weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
+                    audioSource.PlayOneShot(Get_weapon_AudioClip);
                     Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");
                     Destroy(item_PickUp.gameObject);
                 }
