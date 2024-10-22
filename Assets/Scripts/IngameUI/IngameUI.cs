@@ -450,13 +450,6 @@ public class IngameUI : MonoBehaviour
         DataManager.Instance.SaveGameData();
     }
 
-    public void Go_Lobby()
-    {
-        SceneManager.LoadScene("Lobby");
-        DataManager.Instance.SaveGameData();
-        test_clear_boolCheck = false;
-
-    }
 
     public void Coin_Count_Text_Update()
     {
