@@ -340,7 +340,7 @@ public class IngameUI : MonoBehaviour
     }
     private IEnumerator InvRefreshCoroutine()
     {
-       // SoundManager.PlaySFX(bookSound); //현재 사운드 오류나서 아래쪽 코드까지 못 가서 인벤토리 안불러와짐 잠깐 주석처리
+        SoundManager.PlaySFX(bookSound); //현재 사운드 오류나서 아래쪽 코드까지 못 가서 인벤토리 안불러와짐 잠깐 주석처리
         yield return new WaitForSecondsRealtime(0.6f); // 실제 시간 기준으로 대기
         inv_refresh(); // 인벤토리 갱신 메서드 호출
     }

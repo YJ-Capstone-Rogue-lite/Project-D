@@ -1303,6 +1303,8 @@ MonoBehaviour:
   item_Drop: {fileID: 0}
   buff: {fileID: 0}
   coin: {fileID: 0}
+  Using_Potion_AudioCilp: {fileID: 8300000, guid: d1a184171c2d8d84cb1b4927da4942e8, type: 3}
+  Get_weapon_AudioClip: {fileID: 8300000, guid: aad119f97aa2bd24fb4f1b220a9a162c, type: 3}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0
