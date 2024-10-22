@@ -6,16 +6,23 @@ namespace BehaviourTree
 {
     public class Attack : ActionNode
     {
-        
-        protected override void OnEnd() { }
+        private bool isAttacked;
+        protected override void OnEnd() => isAttacked = false;
 
-        protected override void OnStart() { }
+        protected override void OnStart()
+        {
+            blackboard.thisUnit.enemy_rb.velocity = Vector2.zero;
+        }
 
         protected override NodeState OnUpdate()
         {
-            if(blackboard.thisUnit.Attack_the_Player) return NodeState.Running;
-            blackboard.thisUnit.Attack_of_Enemy();
-            return NodeState.Success;
+            if (!isAttacked)
+            {
+                blackboard.thisUnit.Attack_of_Enemy();
+                isAttacked = true;
+            }
+            if (blackboard.thisUnit.Attack_the_Player) return NodeState.Running;
+            else return NodeState.Success;
         }
     }
 }
