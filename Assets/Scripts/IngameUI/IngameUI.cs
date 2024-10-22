@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -93,6 +94,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject minimap_camera;
     [SerializeField] private GameObject mainWeapon;
     [SerializeField] private GameObject subWeapon;
+    [SerializeField] private GameObject buff_BG;
 
     [SerializeField] private Image fullScreen_Box;
     [SerializeField] private Image windowScreen_Box;
@@ -234,11 +236,11 @@ public class IngameUI : MonoBehaviour
             WeaponSlot1.SetAsFirstSibling();
         }
         
-        if(ingameOption.activeSelf == true || inv_slot.activeSelf == true)
+        if(ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
         {
             IngameTime(false);
         }
-        else if(ingameOption.activeSelf == false && inv_slot.activeSelf == false)
+        else if(ingameOption.activeSelf == false && inv_slot.activeSelf == false && buff_BG.activeSelf == false)
         {
             IngameTime(true);
         }
@@ -276,6 +278,7 @@ public class IngameUI : MonoBehaviour
             GameManager.Instance.isPlaying = true;
         }
     }
+
     public void Resume_Btn()
     {
         SoundManager.PlaySFX(buttonSound);
@@ -456,5 +459,17 @@ public class IngameUI : MonoBehaviour
     public void Coin_Count_Text_Update()
     {
         Coin_Count_Text.text = "X " +character.Coin_Count.ToString();
+    }
+
+    public void Open_BuffBG()
+    {
+        buff_BG.SetActive(true);  // BuffBG를 활성화
+        IngameTime(false);
+    }
+
+    public void Close_BuffBG()
+    {
+        buff_BG.SetActive(false);  // BuffBG를 비활성화
+        IngameTime(true);
     }
 }
