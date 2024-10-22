@@ -11,48 +11,87 @@ public class NPC_Char : MonoBehaviour
     public string currentChat;
     public string[] line;
     public TextMeshProUGUI currenttext;
+    public TextMeshProUGUI npcName;
     public Image npcFace;
-    private bool npc = false;
+    public bool npc = false;
+    private bool isChatting = false; // 대화 진행 상태를 추적하는 변수
+
+    public Sprite mephistoFace;
+    public Sprite DoolFace;
 
     private void Start()
     {
-        NPC_Chat();
+        NPC_Chat(); // 대화 초기화
     }
 
     private void Update()
     {
-        if (npc && Input.GetKeyDown(KeyCode.E) && !textBox.activeSelf)
+        if (npc && Input.GetKeyDown(KeyCode.E) && !isChatting)
         {
             textBox.SetActive(true);
+            isChatting = true;
+            ShowNextChat(); 
         }
 
+        // 대화 상자가 활성화된 상태에서 G키를 누르면 다음 대화를 보여줌
         if (textBox.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.G) && chat.Count > 0)
             {
-                currentChat = chat.Dequeue();
-                currenttext.text = currentChat;
+                ShowNextChat(); // 다음 대화를 보여줌
+                Debug.Log(chat.Count);
             }
             else if (Input.GetKeyDown(KeyCode.G) && chat.Count <= 0)
             {
+                // 대화가 끝나면 상자를 닫고 초기화
                 textBox.SetActive(false);
-                currenttext.text = "반갑다"; // text 초기화
-                NPC_Chat();
+                NPC_Chat(); // 대화 큐 재설정
+                isChatting = false; // 대화 상태를 false로 설정
+                //if(gameObject.name == "Doll")
+                //{
+                //    //버프 찍는 창 true
+                //}
             }
         }
     }
+
+    private void ShowNextChat()
+    {
+        if (chat.Count > 0)
+        {
+            if(gameObject.name == "Mephisto")
+            {
+                npcName.text = "메피스토";
+                npcFace.sprite = mephistoFace;
+            }
+            else if (gameObject.name == "Doll")
+            {
+                npcName.text = "인형";
+                npcFace.sprite = DoolFace;
+            }
+            currentChat = chat.Dequeue(); // 큐에서 대화를 꺼내옴
+            currenttext.text = currentChat; // 텍스트 업데이트
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            npc = true;
+            npc = true; // 플레이어가 NPC 범위에 들어오면 대화 가능
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            textBox.SetActive(false);
+            NPC_Chat(); // 대화 큐 재설정
+            isChatting = false; // 대화 상태를 false로 설정
             npc = false;
+            textBox.SetActive(false);
+            //버프찍는창 False
         }
     }
 
@@ -62,7 +101,7 @@ public class NPC_Char : MonoBehaviour
         chat.Clear();
         foreach (string npctext in line)
         {
-            chat.Enqueue(npctext);
+            chat.Enqueue(npctext); // 큐에 대화 줄 추가
         }
     }
 }
