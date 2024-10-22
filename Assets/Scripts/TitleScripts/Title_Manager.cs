@@ -183,6 +183,12 @@ public class Title_Manager : LoginData
         sign_up_BG.SetActive(true);
         login_BG.SetActive(false);
     }
+    public void SignUpCancel()
+    {
+        SoundManager.PlaySFX(buttonSound);
+        sign_up_BG.SetActive(false);
+        login_BG.SetActive(true);
+    }
     public void Login()
     {
         SoundManager.PlaySFX(buttonSound);
