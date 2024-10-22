@@ -21,7 +21,7 @@ MonoBehaviour:
   Icon: {fileID: 1433437187, guid: a99a56a53bd274549becf466cb3e8d44, type: 3}
   bullet_range: 3
   bullet_velocity: 30
-  Fire_rate: 0.05
+  Fire_rate: 0.1
   reload_time: 2
   magazine_capacity: 30
   backup_magazine_capacity: 30
