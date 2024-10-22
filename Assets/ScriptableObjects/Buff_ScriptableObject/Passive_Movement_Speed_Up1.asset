@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passive_Movement_Speed_Up1
   m_EditorClassIdentifier: 
   BuffPrefab: {fileID: 2379812772196415641, guid: 31fc4cbdbc4175947ac3b90abf58646f, type: 3}
-  Buff_number: 0
+  Buff_number: 2
   buff_Time: 1
   buffType: 1
   Buff_name: Test_movementUp_Buff
