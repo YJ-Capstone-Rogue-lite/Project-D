@@ -86,13 +86,13 @@ public class Item_drop : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeFloating);
 
         // 위아래로 둥실둥실 움직이는 애니메이션
-        float startTime = Time.time; // 시작 시간 저장
-        while (true)
-        {
-            // 위아래로 둥실둥실 움직이는 애니메이션
-            float newY = initialHeight + Mathf.Sin((Time.time - startTime) * floatSpeed) * floatAmplitude;
-            item.transform.position = new Vector3(item.transform.position.x, newY, item.transform.position.z);
-            yield return null;
-        }
+        //float startTime = Time.time; // 시작 시간 저장
+        //while (true)
+        //{
+        //    // 위아래로 둥실둥실 움직이는 애니메이션
+        //    float newY = initialHeight + Mathf.Sin((Time.time - startTime) * floatSpeed) * floatAmplitude;
+        //    item.transform.position = new Vector3(item.transform.position.x, newY, item.transform.position.z);
+        //    yield return null;
+        //}
     }
 }

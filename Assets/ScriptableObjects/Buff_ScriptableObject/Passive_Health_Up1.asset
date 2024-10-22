@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passive_Health_Up1
   m_EditorClassIdentifier: 
   BuffPrefab: {fileID: 2379812772196415641, guid: ed3e99b6cd8db6b4795598beb145f926, type: 3}
-  Buff_number: 0
+  Buff_number: 1
   buff_Time: 1
   buffType: 2
   Buff_name: Test_HealthUp_Buff
