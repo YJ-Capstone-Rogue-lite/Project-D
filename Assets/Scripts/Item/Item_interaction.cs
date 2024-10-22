@@ -139,9 +139,21 @@ public class Item_interaction : MonoBehaviour
             pickupActivated = true;
             item_PickUp = collider2D.gameObject.GetComponent<Item_PickUp>();
             actionText.gameObject.SetActive(true);
-            if (item_PickUp.weapon != null || item_PickUp.consumable != null || item_PickUp.buff != null || item_PickUp.coin != null) // 아이템 픽업 코드에 무기가 존재한다면
+            if (item_PickUp.weapon != null) // 아이템 픽업 코드에 무기가 존재한다면
             {
                 actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            }
+            else if(item_PickUp.consumable != null)
+            {
+                actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            }
+            else if(item_PickUp.buff != null)
+            {
+                actionText.text = item_PickUp.buff.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            }
+            else if(item_PickUp.coin != null)
+            {
+                actionText.text = item_PickUp.coin.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             }
         }
         else if(!pickupActivated && collider2D.gameObject.CompareTag("Box") && collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
