@@ -40,10 +40,10 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(instance);
     }
 
-    public static void SetVolume(float volume) => Instance.audioMixer.SetFloat("MAster", Mathf.Log10(volume) * 20);
+    public static void SetVolume(float volume) => Instance.audioMixer.SetFloat("MAster", volume > 0 ? Mathf.Log10(volume) * 20 : -80 );
 
-    public static void SetMusicVolume(float volume) => Instance.audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
-    public static void SetSFXVolume(float volume) => Instance.audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+    public static void SetMusicVolume(float volume) => Instance.audioMixer.SetFloat("BGM", volume > 0 ? Mathf.Log10(volume) * 20 : -80);
+    public static void SetSFXVolume(float volume) => Instance.audioMixer.SetFloat("SFX", volume > 0 ? Mathf.Log10(volume) * 20 : -80);
     public static void SetAllVolumes(float volume)
     {
         Instance.audioMixer.SetFloat("BGM", volume);
