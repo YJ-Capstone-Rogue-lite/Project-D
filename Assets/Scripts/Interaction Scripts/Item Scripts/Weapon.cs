@@ -18,6 +18,7 @@ public class Weapon : ScriptableObject
     public string name; //무기 이름
     public Sprite sprite; //아이템 스프라이트
     public Sprite Icon; //무기 아이콘 스프라이트
+    public AudioClip AudioClip; //무기 오디오 클립
 
     [Header(" # 무기 기본 정보")]
     public float bullet_range; //사거리

@@ -676,6 +676,8 @@ MonoBehaviour:
   reload_animator: {fileID: 7078319460908889085}
   reload_object: {fileID: 3946866550077803357}
   playerchar: {fileID: 0}
+  Slot1_Swap_Souond: {fileID: 8300000, guid: f06faa5f69d2ff74cb68e375dd3272e8, type: 3}
+  Slot2_Swap_Souond: {fileID: 8300000, guid: 73d0e797f35930d43a222c051d3c8ce3, type: 3}
 --- !u!222 &9038497741270039512
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1304,7 +1306,7 @@ MonoBehaviour:
   buff: {fileID: 0}
   coin: {fileID: 0}
   Using_Potion_AudioCilp: {fileID: 8300000, guid: d1a184171c2d8d84cb1b4927da4942e8, type: 3}
-  Get_weapon_AudioClip: {fileID: 8300000, guid: aad119f97aa2bd24fb4f1b220a9a162c, type: 3}
+  Get_weapon_AudioClip: {fileID: 8300000, guid: da5e734675b8a9148ac57567958b2c57, type: 3}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0
