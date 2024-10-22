@@ -48,7 +48,7 @@ public class Title_Manager : LoginData
 
         SoundManager.SetMusic(titleMusic);
 
-        playerdata = DataManager.Instance.data;
+        // playerdata = DataManager.Instance.data;
         if (playerdata.player_ID != null && playerdata.player_PW != null)
         {
             m_playerID = playerdata.player_ID;
@@ -76,10 +76,10 @@ public class Title_Manager : LoginData
         Debug.Log(playerdata.player_PW);
     }
 
-    private void OnApplicationQuit()
-    {
-        DataManager.Instance.SaveGameData();
-    }
+    // private void OnApplicationQuit()
+    // {
+    //     DataManager.Instance.SaveGameData(playerdata);
+    // }
 
     public void Click_newGame()
     {

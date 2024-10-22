@@ -29,7 +29,7 @@ public class DataManager : MonoBehaviour
     public string GameDataFileName = "SaveData.json";
 
     // --- 저장용 클래스 변수 --- //
-    public PlayerData data = new PlayerData();
+    public PlayerData data;
 
 
 
@@ -37,7 +37,7 @@ public class DataManager : MonoBehaviour
     public string id;
     public string pw;
 
-    void OnApplicationQuit() => SaveGameData();
+    // void OnApplicationQuit() => SaveGameData(data);
     
     public void CreateUser(string id, string pw, Action<bool> action)
     {
@@ -74,12 +74,12 @@ public class DataManager : MonoBehaviour
     }
 
     // 불러오기
-    public void LoadGameData()
+    public PlayerData LoadGameData()
     {
-        StartWebRequest(TEST.LOAD, (x) => {
-            instance.data = JsonUtility.FromJson<PlayerData>(x);
+        PlayerData temp = null;
+        StartWebRequestWithoutAwait(TEST.LOAD, (x) => {
             if(x == "false")
-            {
+            {            
                 string filePath = Application.persistentDataPath + "/" + GameDataFileName;
                 print(filePath);
                 // 저장된 게임이 있다면
@@ -88,18 +88,24 @@ public class DataManager : MonoBehaviour
                     // 저장된 파일 읽어오고 Json을 클래스 형식으로 전환해서 할당
                     string FromJsonData = File.ReadAllText(filePath);
                     data = JsonUtility.FromJson<PlayerData>(FromJsonData);
+                    temp = data;
                     print("불러오기 완료");
                     // 불러온 데이터 출력
                 }
             }
-            SaveGameData();
+            else
+            {
+                temp = JsonUtility.FromJson<PlayerData>(x);
+            }
         });
+        return temp;
     }
 
     // 저장하기
-    public bool SaveGameData()
+    public bool SaveGameData(PlayerData data)
     {
         // 클래스를 Json 형식으로 전환 (true : 가독성 좋게 작성)
+        this.data = data;
         string ToJsonData = JsonUtility.ToJson(data, true);
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
@@ -129,12 +135,20 @@ public class DataManager : MonoBehaviour
         var coroutineWR = StartCoroutine(UnityWebRequestGETTest(test, action));
         StartCoroutine(Waitting(coroutineWR, action));
     }
+    void StartWebRequestWithoutAwait(TEST test, Action<string> action = null)
+    {
+        try { UnityWebRequestGETWithoutAwait(test, action); }
+        catch(Exception ex) {
+            Debug.LogException(ex);
+            action("false");
+        }
+    }
 
     IEnumerator Waitting(Coroutine WR, Action<string> action)
     {
-        yield return new WaitForSecondsRealtime(10f);
-        if(WR == null) yield break;
-        StopCoroutine(WR);
+        yield return new WaitForSecondsRealtime(5f);
+        if(WR != null)StopCoroutine(WR);
+        WR = null;
         action("false");
     }
     IEnumerator UnityWebRequestGETTest(TEST test, Action<string> action = null)
@@ -143,7 +157,7 @@ public class DataManager : MonoBehaviour
         string url = "http://www.sonsejun.duckdns.org:8181/ProjectD/";
         form.AddField("id", id);
         form.AddField("pw", pw);
-        form.AddField("playerdata", JsonUtility.ToJson(DataManager.Instance.data));
+        form.AddField("playerdata", JsonUtility.ToJson(data));
         
         switch(test)
         {
@@ -173,6 +187,49 @@ public class DataManager : MonoBehaviour
         else
         {
             Debug.LogError("WebRequestException: " + www.error);
+            action("false");
+        }
+    }
+    void UnityWebRequestGETWithoutAwait(TEST test, Action<string> action = null)
+    {
+        WWWForm form = new WWWForm();
+        string url = "http://www.sonsejun.duckdns.org:8181/ProjectD/";
+        form.AddField("id", id);
+        form.AddField("pw", pw);
+        form.AddField("playerdata", JsonUtility.ToJson(data));
+        
+        switch(test)
+        {
+            case TEST.CHECK:
+                url += "LoginCheck.jsp";
+            break;
+            case TEST.CREATE:
+                url += "CreateUser.jsp";
+            break;
+            case TEST.SAVE:
+                url += "DataSave.jsp";
+            break;
+            case TEST.LOAD:
+                url += "DataLoad.jsp";
+            break;
+        }
+
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        float t = 0;
+        while(www.SendWebRequest() == null && t < 5f)  // 응답이 올때까지 대기한다.
+        {
+            t += Time.unscaledDeltaTime;
+        }
+
+        if (www.error == null)  // 에러가 나지 않으면 동작.
+        {
+            Debug.Log(www.downloadHandler.text);
+            action(www.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("WebRequestException: " + www.error);
+            action("false");
         }
     }
 }

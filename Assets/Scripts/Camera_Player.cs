@@ -28,6 +28,7 @@ public class Camera_Player : MonoBehaviour
         {
             // 플레이어와 마우스 사이의 방향으로 카메라를 이동
             Vector3 targetPosition = player.transform.position + direction.normalized * maxDistanceFromPlayer;
+            targetPosition.z = -10;
             transform.position = Vector3.Lerp(transform.position, targetPosition, cameraSpeed * Time.deltaTime * 0.4f);
         }
         else

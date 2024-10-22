@@ -446,8 +446,10 @@ public class IngameUI : MonoBehaviour
 
     public void GoTitle()
     {
-        SceneManager.LoadScene("Title");
-        DataManager.Instance.SaveGameData();
+        SceneManager.LoadScene("Lobby");
+        deathScreenUI.SetActive(false);
+        PlayerChar.single.player_reset();
+        // DataManager.Instance.SaveGameData();
     }
 
     public void Coin_Count_Text_Update()

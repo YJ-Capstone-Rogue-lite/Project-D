@@ -9,6 +9,8 @@ public class PlayerChar : Character
 {
     public static PlayerChar single;
 
+    public PlayerData playerdata;
+
     public Fire_Test fire;
     private Rigidbody2D player_Rb;
     public SpriteRenderer bodyRender;
@@ -38,19 +40,70 @@ public class PlayerChar : Character
 
     protected override void Start()
     {
-        
         player_Rb = GetComponent<Rigidbody2D>();
         player_anim = GetComponent<Animator>();
         bodyRender = GetComponent<SpriteRenderer>();
-        cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
+        // cameraInstance = Instantiate(camera_, transform.position, Quaternion.identity);
         //cameraInstance.SetActive(false);
-        cameraInstance.GetComponent<Camera_Player>().player = gameObject;
+        // cameraInstance.GetComponent<Camera_Player>().player = gameObject;
         //FloorLoader.Instance.player = gameObject;
         base.Start();
         originalSortingOrder = bodyRender.sortingOrder;
         stamina_bar.gameObject.SetActive(false);
         Input.imeCompositionMode = IMECompositionMode.Auto;
+        // charsingle = this;
+        // DataManager를 통해 데이터 불러오기
+        DataManager.Instance.LoadGameData();
 
+        // DataManager에서 불러온 데이터를 playerdata에 할당
+
+        // 플레이어 데이터가 제대로 할당되었는지 확인
+        // Debug.Log("Player Max HP: " + playerdata.player_maxhp);
+        // Debug.Log("Player Max Shield: " + playerdata.player_maxshield);
+        // Debug.Log("Player Move Speed: " + playerdata.player_movespeed);
+        // Debug.Log("Player Protection Time: " + playerdata.player_protectionTime);
+        // Debug.Log(Player_Default_State);
+        if(DataManager.Instance.data != null) playerdata = DataManager.Instance.data;
+        if (playerdata == null) playerdata = new();
+
+        // playerdata의 값을 해당 캐릭터로 연동하는 부분
+        m_name = playerdata.player_name;
+        m_maxHealth = playerdata.player_maxhp;
+        m_maxShield = playerdata.player_maxshield;
+        m_movementSpeed = playerdata.player_movespeed;
+        m_max_movementSpeed = playerdata.player_max_movementSpeed;
+        m_protectionTime = playerdata.player_protectionTime;
+        m_maxStamina = playerdata.player_maxstamina;
+        max_hp_UPStack = playerdata.player_max_hp_UPStack;
+        movement_SpeedUpStack = playerdata.player_movement_SpeedUpStack;
+        damageUpStack = playerdata.player_damageUpStack;
+        Coin_Count = playerdata.player_Coin_Count;
+
+        m_health = m_maxHealth;
+        m_shield = m_maxShield;
+
+        player_hpbar_update();
+        player_shieldbar_update();
+
+
+
+        // else
+        // //아닐경우 플레이어 기본 스탯을 처음으로 로드
+        // {
+        //     m_health = Player_Default_State.Default_player_hp;
+        //     m_maxHealth = Player_Default_State.Default_player_maxhp;
+        //     m_shield = Player_Default_State.Default_player_shield;
+        //     m_maxShield = Player_Default_State.Default_player_maxshield;
+        //     m_movementSpeed = Player_Default_State.Default_player_movespeed;
+        //     m_max_movementSpeed = Player_Default_State.Default_player_max_movementSpeed;
+        //     m_protectionTime = Player_Default_State.Default_player_protectionTime;
+        //     m_stamina = Player_Default_State.Default_player_stamina;
+        //     m_maxStamina = Player_Default_State.Default_player_maxstamina;
+        //     max_hp_UPStack = Player_Default_State.Default_player_max_hp_UPStack;
+        //     movement_SpeedUpStack = Player_Default_State.Default_player_movement_SpeedUpStack;
+        //     damageUpStack = Player_Default_State.Default_player_damageUpStack;
+        //     Coin_Count = Player_Default_State.Default_player_Coin_Count;
+        // }
     }
     private void OnEnable()
     {
@@ -226,6 +279,45 @@ public class PlayerChar : Character
         }
     }
 
+    private void player_die()
+    {
+        if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
+        {
+            player_anim.SetBool("State", false);
+            SaveData();
+            Debug.Log("플레이어 사망");
+        }
+        else Debug.Log(m_health + ", " + m_shield);
+    }
+
+    public void player_reset()
+    {
+        player_anim.SetBool("State", true);
+
+        m_health = m_maxHealth;
+        m_shield = m_maxShield;
+
+        player_hpbar_update();
+        player_shieldbar_update();
+    }
+
+    private void SaveData()
+    {
+        playerdata.player_name = m_name;
+        playerdata.player_maxhp = m_maxHealth;
+        playerdata.player_maxshield = m_maxShield;
+        playerdata.player_movespeed = m_movementSpeed;
+        playerdata.player_max_movementSpeed = m_max_movementSpeed;
+        playerdata.player_protectionTime = m_protectionTime;
+        playerdata.player_maxstamina = m_maxStamina;
+        playerdata.player_max_hp_UPStack = max_hp_UPStack;
+        playerdata.player_movement_SpeedUpStack = movement_SpeedUpStack;
+        playerdata.player_damageUpStack = damageUpStack;
+        playerdata.player_Coin_Count = Coin_Count;
+        // DataManager.Instance.data = playerdata;
+        DataManager.Instance.SaveGameData(playerdata);
+    }
+
     //protected override void OnTriggerEnter2D(Collider2D collider)
     //{
     //    base.OnTriggerEnter2D(collider);
@@ -233,5 +325,15 @@ public class PlayerChar : Character
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+        player_die();
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collider)
+    {
+        base.OnTriggerEnter2D(collider);
+        player_die();
+    }
+
+    void OnApplicationQuit() => SaveData();
+    void OnDestroy() => SaveData();
 }

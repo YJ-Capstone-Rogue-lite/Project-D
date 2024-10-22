@@ -104,8 +104,6 @@ public class Character : MonoBehaviour
 
     public Animator player_anim;
 
-    public PlayerData playerdata = new PlayerData();
-
     public Player_Default_State Player_Default_State = new Player_Default_State();
 
     //private void Awake()
@@ -126,59 +124,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        charsingle = this;
-        // DataManager를 통해 데이터 불러오기
-        DataManager.Instance.LoadGameData();
-
-        // DataManager에서 불러온 데이터를 playerdata에 할당
-        playerdata = DataManager.Instance.data;
-
         effectController = gameObject.AddComponent<EffectController>();
-
-        // 플레이어 데이터가 제대로 할당되었는지 확인
-        Debug.Log("Player Max HP: " + playerdata.player_maxhp);
-        Debug.Log("Player HP: " + playerdata.player_hp);
-        Debug.Log("Player Max Shield: " + playerdata.player_maxshield);
-        Debug.Log("Player Shield: " + playerdata.player_shield);
-        Debug.Log("Player Move Speed: " + playerdata.player_movespeed);
-        Debug.Log("Player Protection Time: " + playerdata.player_protectionTime);
-        Debug.Log(Player_Default_State);
-        if (playerdata.player_ID != null)
-        {
-            // playerdata의 값을 해당 캐릭터로 연동하는 부분
-            m_name = playerdata.player_name;
-            m_health = playerdata.player_hp;
-            m_maxHealth = playerdata.player_maxhp;
-            m_shield = playerdata.player_shield;
-            m_maxShield = playerdata.player_maxshield;
-            m_movementSpeed = playerdata.player_movespeed;
-            m_max_movementSpeed = playerdata.player_max_movementSpeed;
-            m_protectionTime = playerdata.player_protectionTime;
-            m_stamina = playerdata.player_stamina;
-            m_maxStamina = playerdata.player_maxstamina;
-            max_hp_UPStack = playerdata.player_max_hp_UPStack;
-            movement_SpeedUpStack = playerdata.player_movement_SpeedUpStack;
-            damageUpStack = playerdata.player_damageUpStack;
-            Coin_Count = playerdata.player_Coin_Count;
-
-        }
-        else
-        //아닐경우 플레이어 기본 스탯을 처음으로 로드
-        {
-            m_health = Player_Default_State.Default_player_hp;
-            m_maxHealth = Player_Default_State.Default_player_maxhp;
-            m_shield = Player_Default_State.Default_player_shield;
-            m_maxShield = Player_Default_State.Default_player_maxshield;
-            m_movementSpeed = Player_Default_State.Default_player_movespeed;
-            m_max_movementSpeed = Player_Default_State.Default_player_max_movementSpeed;
-            m_protectionTime = Player_Default_State.Default_player_protectionTime;
-            m_stamina = Player_Default_State.Default_player_stamina;
-            m_maxStamina = Player_Default_State.Default_player_maxstamina;
-            max_hp_UPStack = Player_Default_State.Default_player_max_hp_UPStack;
-            movement_SpeedUpStack = Player_Default_State.Default_player_movement_SpeedUpStack;
-            damageUpStack = Player_Default_State.Default_player_damageUpStack;
-            Coin_Count = Player_Default_State.Default_player_Coin_Count;
-        }
 
 
         Shield_bar = GameObject.Find("Shield_Bar_Img");
@@ -270,8 +216,6 @@ public class Character : MonoBehaviour
 
         // 피격 후 무적 상태로 변경
         StartCoroutine(InvincibleCoroutine());
-
-        player_die();
     }
 
     public void EffectAction(EffectData effect)
@@ -315,18 +259,6 @@ public class Character : MonoBehaviour
                 PlayerChar.single.bodyRender.material.color = Color.white; // 기본 색상으로 돌아감
                 yield return new WaitForSeconds(blinkInterval);
             }
-        }
-    }
-
-
-
-    protected void player_die()
-    {
-        if (m_health <= 0 && m_shield <= 0) //플레이어 쉴드여부 관계없이 hp 0 되면 사망 수정해야함
-        {
-            player_anim.SetBool("State", false);
-            m_movementSpeed = 0;
-            Debug.Log("플레이어 사망");
         }
     }
     private void playerDie_State() // Die애니메이션 끝에 실행되는 메소드
