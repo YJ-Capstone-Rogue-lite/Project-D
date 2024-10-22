@@ -205,7 +205,7 @@ public class Title_Manager : LoginData
             {
                 login_popup.SetActive(true);
                 login_popup_Text.text = "로그인 실패";
-                play_inGame();
+                // play_inGame();
             }
             Web_Waitting.SetActive(false);
         });
