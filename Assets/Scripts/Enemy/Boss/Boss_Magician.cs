@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -200,5 +201,10 @@ public class Boss_Magician : Enemy
         isCasting = false;
         casting_Bar.SetActive(false);
         enemy_animator.SetTrigger("Attack");
+    }
+
+    public void boss_clear_check()
+    {
+        IngameUI.single.test_clear_boolCheck = true;
     }
 }

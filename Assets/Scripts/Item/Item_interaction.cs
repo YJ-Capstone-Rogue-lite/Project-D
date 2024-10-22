@@ -122,7 +122,7 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
-    private void LateUpdate() => pickupActivated = false;
+   // private void LateUpdate() => pickupActivated = false;
 
     private void OnTriggerStay2D(Collider2D collider2D)
     {
@@ -133,6 +133,7 @@ public class Item_interaction : MonoBehaviour
             actionText.gameObject.SetActive(true);
             currentBox = collider2D.gameObject; // 현재 상자 객체 저장
             item_Drop = currentBox.GetComponent<Item_drop>();
+
         }
         else if (!pickupActivated && collider2D.gameObject.CompareTag("Item"))
         {
@@ -186,8 +187,8 @@ public class Item_interaction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)) // E를 누르고 픽업이 활성화될 때
         {
-            pickupActivated = false;
-            rg.WakeUp();
+           // pickupActivated = false;
+            //rg.WakeUp();
             if (item_PickUp != null) // 아이템 픽업이 존재할 경우
             {
                 if (item_PickUp.weapon != null) // 무기 아이템일 경우
@@ -369,6 +370,7 @@ public class Item_interaction : MonoBehaviour
             {
                 boxAnimator.SetBool("State", true); // 애니메이션 실행
                 Debug.Log("상자를 열었습니다.");
+                pickupActivated = false;
 
                 StartCoroutine(DelayedItemDrop());
             }

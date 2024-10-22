@@ -563,7 +563,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &2123468261486515646
@@ -1303,8 +1303,6 @@ MonoBehaviour:
   item_Drop: {fileID: 0}
   buff: {fileID: 0}
   coin: {fileID: 0}
-  Using_Potion_AudioCilp: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
-  Get_weapon_AudioClip: {fileID: 8300000, guid: 8175c5c0f1b36da438cf9e2d5346acb6, type: 3}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1339,7 +1337,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!1 &5090413829781632219
 GameObject:
   m_ObjectHideFlags: 0

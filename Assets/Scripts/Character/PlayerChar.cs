@@ -159,7 +159,9 @@ public class PlayerChar : Character
   
     public void player_Roll()
     {
-        if (Input.GetButtonDown("Roll") && m_stamina > 0)
+        if (Input.GetButtonDown("Roll") && m_stamina > 0 &&
+            ((player_Rb.velocity.x > 0 || player_Rb.velocity.x < 0) 
+            || (player_Rb.velocity.y > 0 || player_Rb.velocity.y < 0)))
         {
             if(player_Rb.velocity.x < 0)
             {
@@ -171,6 +173,7 @@ public class PlayerChar : Character
             }
             //플레이어가 구를때마다
             is_rolling = true;
+            invincible = true;
             m_stamina -= 25; //현재 스태미나 값 -25 하고
 
             Debug.Log("구르기! " + "현재 스태미나 : " + m_stamina);
@@ -194,6 +197,8 @@ public class PlayerChar : Character
         yield return new WaitForSeconds(rollDuration);
         player_anim.SetBool("isRolling", false);
         is_rolling = false;
+        invincible = false;
+
     }
 
     // 스태미나 회복 코드
