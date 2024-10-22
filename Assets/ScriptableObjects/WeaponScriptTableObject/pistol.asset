@@ -19,6 +19,7 @@ MonoBehaviour:
   name: "\uAE30\uBCF8\uAD8C\uCD1D"
   sprite: {fileID: 1706657260, guid: d44939ca98b3eb74a8caeb91716ea53d, type: 3}
   Icon: {fileID: -793744162, guid: c3dcd55c6a41db74799a09ff03126ba1, type: 3}
+  AudioClip: {fileID: 8300000, guid: 8ff13ca3b54c0f14483228811ba37862, type: 3}
   bullet_range: 3
   bullet_velocity: 20
   Fire_rate: 0.5

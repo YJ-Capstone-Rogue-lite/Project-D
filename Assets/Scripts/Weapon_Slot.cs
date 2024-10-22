@@ -24,10 +24,16 @@ public class Weapon_Slot : MonoBehaviour
 
     public float animSpeed = 1.0f;
     public float reloadSpeed;
+    public AudioClip Reload_AudioClip;
     public Animator reload_animator;
 
     [SerializeField] private GameObject reload_object;
     public PlayerChar playerchar;
+
+    [Header("오디오 소스")]
+    public AudioClip Slot1_Swap_Souond;
+    public AudioClip Slot2_Swap_Souond;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -45,6 +51,10 @@ public class Weapon_Slot : MonoBehaviour
 
         //게임 시작시 장탄수 한번 초기화
         UpdateMagazineCapacity();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+
+
     }
 
     private void Update()
@@ -111,10 +121,14 @@ public class Weapon_Slot : MonoBehaviour
         if (Input.GetKeyDown(("1")))
         {
             EnableWeaponSlot(weaponSlot1);
+            audioSource.PlayOneShot(Slot1_Swap_Souond);
+
         }
         else if (Input.GetKeyDown(("2")))
         {
             EnableWeaponSlot(weaponSlot2);
+            audioSource.PlayOneShot(Slot2_Swap_Souond);
+
         }
     }
 
@@ -233,8 +247,12 @@ public class Weapon_Slot : MonoBehaviour
         }
 
         reloadSpeed = activeWeaponSlot.GetComponent<Fire_Test>().weapon.reload_time;
+        Reload_AudioClip = activeWeaponSlot.GetComponent<Fire_Test>().weapon.AudioClip;
         animSpeed = 1 / reloadSpeed;
         reload_animator.SetFloat("Reload", animSpeed);
+        audioSource.PlayOneShot(Reload_AudioClip);
+        Debug.Log(Reload_AudioClip.name + " 재장전 소리 재생");
+
         Debug.Log(reloadSpeed + " 초 동안 재장전 애니메이션 실행");
 
     }
