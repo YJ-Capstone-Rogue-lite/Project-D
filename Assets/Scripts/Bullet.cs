@@ -61,5 +61,20 @@ public class Bullet : MonoBehaviour
             Debug.Log("총알을 지움!");
 
         }
+        if (weapon.weaponType == Weapon.WeaponType.Sniper_Rifle && other.gameObject.CompareTag("Enemy"))
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy") && weapon.weaponType == Weapon.WeaponType.Sniper_Rifle)
+        {
+            rb.isKinematic = false;
+        }
     }
 }
