@@ -154,6 +154,7 @@ public class Item_interaction : MonoBehaviour
             }
             else if(item_PickUp.buff != null)
             {
+                buff = item_PickUp.buff;
                 actionText.text = item_PickUp.buff.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
             }
             else if(item_PickUp.coin != null)
@@ -448,15 +449,13 @@ public class Item_interaction : MonoBehaviour
     public void Damage_Up_Passive_Buff()
     {
         //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
-        if (character.damageUpStack < 5) // 최대 5스택까지 증가 가능
-        {
             character.damageUpStack++;
             //캐릭터의 버프 데미지 값에 아이템 픽업의 버프 데미지 값 받아와서 더해주기
             character.m_passive_buff_damage += item_PickUp.buff.damage_up;
 
             Debug.Log("데미지업 패시브 버프 적용");
             UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
-        }
+      
     }
 
     //스피드 업 패시브 버프
@@ -464,7 +463,7 @@ public class Item_interaction : MonoBehaviour
     {
         //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
         //이동속도 증가 스택이 5보다 작거나 캐릭터의 현재 이동속도가 최대칩다 작거나 같다면
-        if (character.movement_SpeedUpStack < 5 || character.m_movementSpeed <= character.m_max_movementSpeed)
+        if ( character.m_movementSpeed <= character.m_max_movementSpeed)
         {
             character.movement_SpeedUpStack++;
             //캐릭터의 이동속도 값 더해주기
@@ -478,14 +477,11 @@ public class Item_interaction : MonoBehaviour
     {
         //버프는 최대 5스택까지, 1스택 올라갈때마다 아이콘 오른쪽 하단 숫자 표기 변경
         //
-        if (character.max_hp_UPStack < 5)
-        {
-            character.max_hp_UPStack++;
+         character.max_hp_UPStack++;
             //최대체력 값 더해주기
             character.m_maxHealth += item_PickUp.buff.health_up;
             character.player_hpbar_update(); //hp바 업데이트
             UpdateBuffIcon(); // 아이콘에 스택 수 업데이트
-        }
     }
 
     public void Coin_Count()

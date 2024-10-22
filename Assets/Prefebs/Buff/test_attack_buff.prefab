@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4093018583842118803}
   - component: {fileID: 2981253785263212825}
   - component: {fileID: 6459981484817778921}
-  - component: {fileID: 8626255523737970530}
   - component: {fileID: -425867717252136666}
+  - component: {fileID: -2159778870776070855}
   m_Layer: 9
   m_Name: test_attack_buff
   m_TagString: Item
@@ -145,20 +145,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8626255523737970530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2379812772196415641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fd102f11abfb7d4a82ecb6098db8bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charsingle: {fileID: 0}
-  item_PickUp: {fileID: 0}
 --- !u!58 &-425867717252136666
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,3 +180,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.125
+--- !u!114 &-2159778870776070855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379812772196415641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd102f11abfb7d4a82ecb6098db8bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charsingle: {fileID: 0}
+  item_PickUp: {fileID: 0}
