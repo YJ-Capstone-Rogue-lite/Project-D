@@ -38,11 +38,11 @@ public class PlayerData
     public float player_protectionTime = 1f;
 
     // 스택을 저장할 변수
-    public float player_damageUpStack; //데미지업 스택
+    public int player_damageUpStack; //데미지업 스택
 
-    public float player_movement_SpeedUpStack; // 스피드업 스택
+    public int player_movement_SpeedUpStack; // 스피드업 스택
 
-    public float player_max_hp_UPStack; // 최대 체력 스택
+    public int player_max_hp_UPStack; // 최대 체력 스택
 
     //플레이어가 획득한 코인
     public int player_Coin_Count;

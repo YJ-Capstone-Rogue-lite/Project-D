@@ -94,11 +94,11 @@ public class Character : MonoBehaviour
 
     [Header("플레이어 버프 관련 스택")]
     // 스택을 저장할 변수
-    public float damageUpStack = 0; //데미지업 스택
+    public int damageUpStack = 0; //데미지업 스택
 
-    public float movement_SpeedUpStack = 0; // 스피드업 스택
+    public int movement_SpeedUpStack = 0; // 스피드업 스택
 
-    public float max_hp_UPStack; // 최대 체력 스택
+    public int max_hp_UPStack; // 최대 체력 스택
 
 
 

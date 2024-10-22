@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 74622187}
   - component: {fileID: 74622186}
   m_Layer: 5
-  m_Name: NeedCoin_Text (2)
+  m_Name: NeedCoin_movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -793446923, guid: dec9249bbe20fd64daa33ea908567464, type: 3}
+  m_Sprite: {fileID: -2143167752, guid: 1b4a51c250c4db949be5f80c3b650074, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2421,7 +2421,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 307697386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000185217}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: Atk_UpgradeBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &330763853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,7 +2645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4573b8c54fb69f54a873949db40d7218, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae27030bd4b42fe40a95134bbcda93fe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4256,7 +4268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1861450961, guid: f74e55f7b3158a943b1a59f4bf2dd7a6, type: 3}
+  m_Sprite: {fileID: 2041912951, guid: 437a8fd653e96a844af5872483d938e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4304,7 +4316,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 1408451446, guid: f74e55f7b3158a943b1a59f4bf2dd7a6, type: 3}
+    m_PressedSprite: {fileID: 2063395189, guid: 437a8fd653e96a844af5872483d938e2, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -6779,7 +6791,7 @@ GameObject:
   - component: {fileID: 942600951}
   - component: {fileID: 942600950}
   m_Layer: 5
-  m_Name: NeedCoin_Text
+  m_Name: NeedCoin_atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7390,6 +7402,7 @@ GameObject:
   - component: {fileID: 1000185217}
   - component: {fileID: 1000185216}
   - component: {fileID: 1000185219}
+  - component: {fileID: 1000185220}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7430,6 +7443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  buffsystem: {fileID: 1000185220}
   Weapon_Slot: {fileID: 0}
   buttonSound: {fileID: 8300000, guid: 6de32e04ccbb2b9479dc69ed656947be, type: 3}
   bookSound: {fileID: 8300000, guid: 1292243e987731c4d8b1865a0af7fecd, type: 3}
@@ -7465,6 +7479,12 @@ MonoBehaviour:
   Clear_TitleText: {fileID: 1677499374}
   Clear_playtimeText: {fileID: 1739393196}
   Clear_destory_enemy_count: {fileID: 1911098184}
+  atkBuff_needcoin: {fileID: 942600950}
+  hpBuff_needcoin: {fileID: 1171360280}
+  movementBuff_needcoin: {fileID: 74622186}
+  atkBuff_stacktext: {fileID: 1346351251}
+  hpBuff_stacktext: {fileID: 1664524045}
+  movementBuff_stacktext: {fileID: 1646168623}
   WeaponSlot1: {fileID: 2118630545}
   WeaponSlot2: {fileID: 681613951}
   ingameOption: {fileID: 1021604036}
@@ -7518,6 +7538,19 @@ MonoBehaviour:
   currenttext: {fileID: 952875239}
   npcName: {fileID: 1677977062}
   npcFace: {fileID: 1492371740}
+--- !u!114 &1000185220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000185215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d60fb4047cfd4b489b38ed3fcdbf032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
 --- !u!1 &1000286032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8362,7 +8395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 170aa1457ce852a4dae07efd127c35ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f16adbd463f294d4999fddac8a3f0d81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8517,7 +8550,7 @@ GameObject:
   - component: {fileID: 1171360281}
   - component: {fileID: 1171360280}
   m_Layer: 5
-  m_Name: NeedCoin_Text (1)
+  m_Name: NeedCoin_hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10609,7 +10642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+1 \uAC15\uD654"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58e397230af86f341866d3dd62252200, type: 2}
   m_sharedMaterial: {fileID: 7309084849199128957, guid: 58e397230af86f341866d3dd62252200, type: 2}
@@ -11751,7 +11784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 602e172c4a24f4a4ea01af08fecdcd2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4171f7306a54c4049aa389254efe21bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13072,7 +13105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+1 \uAC15\uD654"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58e397230af86f341866d3dd62252200, type: 2}
   m_sharedMaterial: {fileID: 7309084849199128957, guid: 58e397230af86f341866d3dd62252200, type: 2}
@@ -13206,7 +13239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+1 \uAC15\uD654"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58e397230af86f341866d3dd62252200, type: 2}
   m_sharedMaterial: {fileID: 7309084849199128957, guid: 58e397230af86f341866d3dd62252200, type: 2}
@@ -14296,7 +14329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -793446923, guid: dec9249bbe20fd64daa33ea908567464, type: 3}
+  m_Sprite: {fileID: -2143167752, guid: 1b4a51c250c4db949be5f80c3b650074, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14357,7 +14390,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1724086438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000185217}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: HP_UpgradeBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1731130237
 GameObject:
   m_ObjectHideFlags: 0
@@ -16430,7 +16475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a312a949395f5f45b6f91679cabb966, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 913d0a7bf4b08b14c8eb2c9826275afd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16966,7 +17011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 602e172c4a24f4a4ea01af08fecdcd2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4171f7306a54c4049aa389254efe21bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18125,7 +18170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 602e172c4a24f4a4ea01af08fecdcd2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4171f7306a54c4049aa389254efe21bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18494,7 +18539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -793446923, guid: dec9249bbe20fd64daa33ea908567464, type: 3}
+  m_Sprite: {fileID: -2143167752, guid: 1b4a51c250c4db949be5f80c3b650074, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18555,7 +18600,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134743367}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000185217}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: Movement_UpgradeBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2139361398
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class IngameUI : MonoBehaviour
 
     public static IngameUI single;
     public Character character;
+    public BuffSystem buffsystem;
     [SerializeField] private Weapon_Slot Weapon_Slot;
     
 
@@ -81,6 +82,13 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private TMP_Text Clear_TitleText;
     [SerializeField] private TMP_Text Clear_playtimeText;
     [SerializeField] private TMP_Text Clear_destory_enemy_count; // enemy count 저장할 텍스트
+    [SerializeField] private TMP_Text atkBuff_needcoin; // 공격력 강화비용
+    [SerializeField] private TMP_Text hpBuff_needcoin; // 체력 강화비용
+    [SerializeField] private TMP_Text movementBuff_needcoin; // 이동속도 강화비용
+    [SerializeField] private TMP_Text atkBuff_stacktext; // 공격력 강화비용
+    [SerializeField] private TMP_Text hpBuff_stacktext; // 체력 강화비용
+    [SerializeField] private TMP_Text movementBuff_stacktext; // 이동속도 강화비용
+
 
     [Header("기타등등")]
 
@@ -112,6 +120,8 @@ public class IngameUI : MonoBehaviour
 
     public GameObject action_text; 
     private Coroutine startCoroutine;
+    private int haveCoin;
+
 
     private void Start() => startCoroutine = StartCoroutine(WaitStart());
 
@@ -169,6 +179,7 @@ public class IngameUI : MonoBehaviour
 
     private void Update()
     {
+
         // if (ConsumableItem_Img.sprite == null)
         // {
         //     ConsumableItem_Img.sprite = default_consumableItem.sprite;
@@ -177,7 +188,7 @@ public class IngameUI : MonoBehaviour
         // {
         //     sub_slot_sprite.sprite = nullgun_image.sprite;
         // }
-        
+
         //작동안해서 급하게 업데이트에 때려넣은 임시 코드
         if (Weapon_Slot == null)
         {
@@ -264,6 +275,15 @@ public class IngameUI : MonoBehaviour
             
         }
 
+        if (haveCoin != character.Coin_Count) // 코인갯수 확인용
+        {
+            haveCoin = character.Coin_Count;
+            Coin_Count_Text_Update();
+        }
+        if (buff_BG.activeSelf)
+        {
+            UpdateNeedCoin();
+        }
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
@@ -458,7 +478,7 @@ public class IngameUI : MonoBehaviour
 
     public void Coin_Count_Text_Update()
     {
-        Coin_Count_Text.text = "X " +character.Coin_Count.ToString();
+        Coin_Count_Text.text = "X " + character.Coin_Count.ToString();
     }
 
     public void Open_BuffBG()
@@ -471,5 +491,49 @@ public class IngameUI : MonoBehaviour
     {
         buff_BG.SetActive(false);  // BuffBG를 비활성화
         IngameTime(true);
+    }
+
+
+
+    public void Atk_UpgradeBtn()
+    {
+        int needcoin = buffsystem.ATK_UPgrade();
+        if (character.Coin_Count >= needcoin)
+        {
+            character.Coin_Count -= needcoin;
+            character.damageUpStack += 1;
+            UpdateNeedCoin();
+        }
+    }
+
+    public void HP_UpgradeBtn()
+    {
+        int needcoin = buffsystem.HP_UPgrade();
+        if (character.Coin_Count >= needcoin)
+        {
+            character.Coin_Count -= needcoin;
+            character.max_hp_UPStack += 1;
+            UpdateNeedCoin();
+        }
+    }
+
+    public void Movement_UpgradeBtn()
+    {
+        int needcoin = buffsystem.MoveMent_UPgrade();
+        if (character.Coin_Count >= needcoin)
+        {
+            character.Coin_Count -= needcoin;
+            character.movement_SpeedUpStack += 1;
+            UpdateNeedCoin();
+        }
+    }
+    private void UpdateNeedCoin()
+    {
+        atkBuff_needcoin.text = buffsystem.ATK_UPgrade().ToString();
+        hpBuff_needcoin.text = buffsystem.HP_UPgrade().ToString();
+        movementBuff_needcoin.text = buffsystem.MoveMent_UPgrade().ToString();
+        atkBuff_stacktext.text = "+" + character.damageUpStack.ToString() + " 강화";
+        hpBuff_stacktext.text = "+" + character.max_hp_UPStack.ToString() + " 강화";
+        movementBuff_stacktext.text = "+" + character.movement_SpeedUpStack.ToString() + " 강화";
     }
 }
