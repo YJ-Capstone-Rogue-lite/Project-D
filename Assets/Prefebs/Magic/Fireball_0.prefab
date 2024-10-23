@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3010022070672285397}
   - component: {fileID: 658256463567194868}
   - component: {fileID: 2797549696030930830}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Fireball_0
   m_TagString: Hit_radius
   m_Icon: {fileID: 0}

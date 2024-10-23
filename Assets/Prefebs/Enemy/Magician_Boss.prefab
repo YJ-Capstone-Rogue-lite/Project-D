@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5503899032511892471}
   - component: {fileID: 548271649355585637}
   - component: {fileID: 5069459133250866807}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: TPCastingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9081045555415472949}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 3901029910022228333}
   - component: {fileID: 6864339823405611616}
   - component: {fileID: 8706616841502106741}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: CastingBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 745372781923591191}
   - component: {fileID: 3445710710384248032}
   - component: {fileID: 6487560436219741982}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: BossCasting_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 3190513805663615319}
   - component: {fileID: 1464800805216949786}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Magician_Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!70 &3190513805663615319
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -500,14 +500,14 @@ MonoBehaviour:
   melee: 0
   enemy_speed: 3
   rotateSpeed: 0.25
-  enemy_hp: 1000
-  max_enemy_hp: 1000
+  enemy_hp: 600
+  max_enemy_hp: 600
   enemy_body_damage: 20
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 0
   find_Playersecond: 4
-  attackRange: 10
-  playerFindRange: 15
+  attackRange: 20
+  playerFindRange: 20
   damage: 20
   enemy_animator: {fileID: 1183472342402711848}
   enemy_rb: {fileID: 7642830349020207972}
@@ -527,6 +527,7 @@ MonoBehaviour:
   posChange: 0
   isCasting: 0
   dangerCount: 0.5
+  playertarget: {fileID: 0}
   fireballPrefeb: {fileID: 2543381142545148147, guid: 6b2a8d927f21d294e82b4addb528d74e, type: 3}
   dangerPrefeb: {fileID: 4916864207237336216, guid: 16f263c17798c3b43a8afb3bb6d5d643, type: 3}
   teleport: []
@@ -546,11 +547,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1648393729127310131, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7228589909507619754, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8252001039647078978, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Name
@@ -558,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8252001039647078978, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8481408815702434982, guid: 0c92985729040c341afb9954c6b4137d, type: 3}
       propertyPath: m_Pivot.x

@@ -22,7 +22,7 @@ MonoBehaviour:
   AudioClip: {fileID: 8300000, guid: 543fc18706ce2b84a8eca8c229158d17, type: 3}
   bullet_range: 3
   bullet_velocity: 30
-  Fire_rate: 0.1
+  Fire_rate: 0.13
   reload_time: 2
   magazine_capacity: 30
   backup_magazine_capacity: 30

@@ -32,6 +32,7 @@ public class Boss_Magician : Enemy
     public float fireballSpeed = 5f; // 파이어볼의 속도
     public float spawnDelay = 0.1f;  // 파이어볼 생성 간격
 
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -69,7 +70,7 @@ public class Boss_Magician : Enemy
             playertarget = GameObject.FindWithTag("Player");
         }
         TeleportCasting();
-        var hit = Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
+        var hit = Physics2D.CircleCast(transform.position, playerFindRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
         if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
             blackboard.target = hit.transform;

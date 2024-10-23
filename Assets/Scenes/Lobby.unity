@@ -12616,7 +12616,7 @@ GameObject:
   - component: {fileID: 1537139597}
   - component: {fileID: 1537139596}
   - component: {fileID: 1537139595}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14922,7 +14922,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 480
+    m_Bits: 6624
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6c369be711ab9524486c1b4521f07005, type: 2}
   m_TargetDisplay: 0
@@ -17723,7 +17723,7 @@ GameObject:
   - component: {fileID: 2090344139}
   - component: {fileID: 2090344141}
   - component: {fileID: 2090344140}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
