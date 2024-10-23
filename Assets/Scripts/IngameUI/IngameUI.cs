@@ -200,8 +200,6 @@ public class IngameUI : MonoBehaviour
         {
             character = GameObject.FindWithTag("Player").GetComponent<Character>();
             Debug.Log("캐릭터 찾아서 넣음");
-
-
         }
         if (startCoroutine != null) return;
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;

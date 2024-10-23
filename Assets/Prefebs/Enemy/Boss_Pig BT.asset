@@ -20,7 +20,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   children:
   - {fileID: 8586965450540107804}
@@ -45,7 +45,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   waitTime: 5
 --- !u!114 &-1062457263043410465
@@ -68,7 +68,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
 --- !u!114 &-240136372221964476
 MonoBehaviour:
@@ -90,7 +90,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   children:
   - {fileID: 3472282179532847250}
@@ -152,7 +152,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   child: {fileID: -240136372221964476}
 --- !u!114 &1705305740611652945
@@ -175,7 +175,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   child: {fileID: -8978172970051993158}
   targetState: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
 --- !u!114 &3472282179532847250
 MonoBehaviour:
@@ -221,7 +221,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   child: {fileID: -1062457263043410465}
   targetState: 2
@@ -268,7 +268,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
 --- !u!114 &8241227615380943065
 MonoBehaviour:
@@ -292,7 +292,7 @@ MonoBehaviour:
     playableDirector: {fileID: 0}
     state: 1
   description: 
-  waitTime: 1.5
+  waitTime: 1
 --- !u!114 &8415800209628027842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   child: {fileID: 8855765640905001488}
   targetState: 1
@@ -337,7 +337,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
 --- !u!114 &8855765640905001488
 MonoBehaviour:
@@ -359,7 +359,7 @@ MonoBehaviour:
     thisUnit: {fileID: 0}
     target: {fileID: 0}
     playableDirector: {fileID: 0}
-    state: 2
+    state: 1
   description: 
   children:
   - {fileID: 2839086867338333033}

@@ -549,7 +549,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   melee: 1
-  enemy_speed: 3
+  enemy_speed: 5
   rotateSpeed: 0.25
   enemy_hp: 1500
   max_enemy_hp: 1500

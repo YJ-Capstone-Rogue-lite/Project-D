@@ -16,6 +16,7 @@ public class Boss_Magician : Enemy
     public bool posChange = false;
     public bool isCasting = false;
     public float dangerCount = 0.5f;
+    public GameObject playertarget;
 
     [Header("마법종류")]
     public GameObject fireballPrefeb;
@@ -61,8 +62,12 @@ public class Boss_Magician : Enemy
 
     }
 
-    private void Update()
+    protected override void Update()
     {
+        if(playertarget == null)
+        {
+            playertarget = GameObject.FindWithTag("Player");
+        }
         TeleportCasting();
         var hit = Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
         if (hit && hit.transform.gameObject.CompareTag("Player"))
@@ -190,7 +195,7 @@ public class Boss_Magician : Enemy
     {
         for (int i = 0; i < 6; i++)
         {
-            GameObject danger = Instantiate(dangerPrefeb, GameManager.Instance.player.transform.position, transform.rotation);
+            GameObject danger = Instantiate(dangerPrefeb, playertarget.transform.position, transform.rotation);
             yield return new WaitForSeconds(0.5f); // 각 Danger 생성 후 0.5초 대기
         }
 
