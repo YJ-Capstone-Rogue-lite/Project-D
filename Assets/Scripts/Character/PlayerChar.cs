@@ -52,8 +52,6 @@ public class PlayerChar : Character
         stamina_bar.gameObject.SetActive(false);
         Input.imeCompositionMode = IMECompositionMode.Auto;
         // charsingle = this;
-        // DataManager를 통해 데이터 불러오기
-        DataManager.Instance.LoadGameData();
 
         // DataManager에서 불러온 데이터를 playerdata에 할당
 

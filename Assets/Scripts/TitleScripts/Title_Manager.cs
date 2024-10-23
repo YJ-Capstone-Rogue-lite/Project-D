@@ -44,7 +44,7 @@ public class Title_Manager : LoginData
     private void Start()
     {
         //DataManager에서 파일 가져와서 playerID와 PW에 저장
-        DataManager.Instance.LoadGameData();
+        // DataManager.Instance.LoadGameData();
 
         SoundManager.SetMusic(titleMusic);
 
@@ -86,6 +86,7 @@ public class Title_Manager : LoginData
         SoundManager.PlaySFX(buttonSound);
         if (File.Exists(Application.persistentDataPath + "/" + DataManager.Instance.GameDataFileName)) // 플레이어 데이터가 있을경우
         {
+            DataManager.Instance.SaveGameData(new PlayerData());
             popUP.SetActive(true);
             popup_Text.text = "저장된 데이터가있습니다 데이터를 지우고 계속 하시겠습니까?";
         }
@@ -166,7 +167,8 @@ public class Title_Manager : LoginData
 
     public void play_inGame()
     {
-        SceneManager.LoadScene("Lobby");
+        Web_Waitting.SetActive(true);
+        DataManager.Instance.LoadGameData((x) => SceneManager.LoadScene("Lobby"));
     }
 
     public void pressBtn()

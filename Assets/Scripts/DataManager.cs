@@ -74,10 +74,10 @@ public class DataManager : MonoBehaviour
     }
 
     // 불러오기
-    public PlayerData LoadGameData()
+    public void LoadGameData(Action<bool> action)
     {
         PlayerData temp = null;
-        StartWebRequestWithoutAwait(TEST.LOAD, (x) => {
+        StartWebRequest(TEST.LOAD, (x) => {
             if(x == "false")
             {            
                 string filePath = Application.persistentDataPath + "/" + GameDataFileName;
@@ -96,9 +96,10 @@ public class DataManager : MonoBehaviour
             else
             {
                 temp = JsonUtility.FromJson<PlayerData>(x);
+                data = temp;
             }
         });
-        return temp;
+        action(true);
     }
 
     // 저장하기
@@ -135,19 +136,19 @@ public class DataManager : MonoBehaviour
         var coroutineWR = StartCoroutine(UnityWebRequestGETTest(test, action));
         StartCoroutine(Waitting(coroutineWR, action));
     }
-    void StartWebRequestWithoutAwait(TEST test, Action<string> action = null)
-    {
-        try { UnityWebRequestGETWithoutAwait(test, action); }
-        catch(Exception ex) {
-            Debug.LogException(ex);
-            action("false");
-        }
-    }
+    // void StartWebRequestWithoutAwait(TEST test, Action<string> action = null)
+    // {
+    //     try { UnityWebRequestGETWithoutAwait(test, action); }
+    //     catch(Exception ex) {
+    //         Debug.LogException(ex);
+    //         action("false");
+    //     }
+    // }
 
     IEnumerator Waitting(Coroutine WR, Action<string> action)
     {
-        yield return new WaitForSecondsRealtime(5f);
-        if(WR != null)StopCoroutine(WR);
+        yield return new WaitForSecondsRealtime(15f);
+        if(WR != null) StopCoroutine(WR);
         WR = null;
         action("false");
     }
@@ -190,46 +191,47 @@ public class DataManager : MonoBehaviour
             action("false");
         }
     }
-    void UnityWebRequestGETWithoutAwait(TEST test, Action<string> action = null)
-    {
-        WWWForm form = new WWWForm();
-        string url = "http://www.sonsejun.duckdns.org:8181/ProjectD/";
-        form.AddField("id", id);
-        form.AddField("pw", pw);
-        form.AddField("playerdata", JsonUtility.ToJson(data));
+    // void UnityWebRequestGETWithoutAwait(TEST test, Action<string> action = null)
+    // {
+    //     WWWForm form = new WWWForm();
+    //     string url = "http://www.sonsejun.duckdns.org:8181/ProjectD/";
+    //     form.AddField("id", id);
+    //     form.AddField("pw", pw);
+    //     form.AddField("playerdata", JsonUtility.ToJson(data));
         
-        switch(test)
-        {
-            case TEST.CHECK:
-                url += "LoginCheck.jsp";
-            break;
-            case TEST.CREATE:
-                url += "CreateUser.jsp";
-            break;
-            case TEST.SAVE:
-                url += "DataSave.jsp";
-            break;
-            case TEST.LOAD:
-                url += "DataLoad.jsp";
-            break;
-        }
+    //     switch(test)
+    //     {
+    //         case TEST.CHECK:
+    //             url += "LoginCheck.jsp";
+    //         break;
+    //         case TEST.CREATE:
+    //             url += "CreateUser.jsp";
+    //         break;
+    //         case TEST.SAVE:
+    //             url += "DataSave.jsp";
+    //         break;
+    //         case TEST.LOAD:
+    //             url += "DataLoad.jsp";
+    //         break;
+    //     }
 
-        UnityWebRequest www = UnityWebRequest.Post(url, form);
-        float t = 0;
-        while(www.SendWebRequest() == null && t < 5f)  // 응답이 올때까지 대기한다.
-        {
-            t += Time.unscaledDeltaTime;
-        }
+    //     UnityWebRequest www = UnityWebRequest.Post(url, form);
+    //     float t = 0;
+    //     while(www.SendWebRequest() == null && t < 15f)  // 응답이 올때까지 대기한다.
+    //     {
+    //         Debug.Log("AAA : " + t);
+    //         t += Time.unscaledDeltaTime;
+    //     }
 
-        if (www.error == null)  // 에러가 나지 않으면 동작.
-        {
-            Debug.Log(www.downloadHandler.text);
-            action(www.downloadHandler.text);
-        }
-        else
-        {
-            Debug.LogError("WebRequestException: " + www.error);
-            action("false");
-        }
-    }
+    //     if (www.SendWebRequest() != null && www.error == null)  // 에러가 나지 않으면 동작.
+    //     {
+    //         Debug.Log(www.downloadHandler.text);
+    //         action(www.downloadHandler.text);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("WebRequestException: " + www.error);
+    //         action("false");
+    //     }
+    // }
 }
