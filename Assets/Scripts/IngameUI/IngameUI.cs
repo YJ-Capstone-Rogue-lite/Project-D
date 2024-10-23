@@ -502,6 +502,7 @@ public class IngameUI : MonoBehaviour
         {
             character.Coin_Count -= needcoin;
             character.damageUpStack += 1;
+            character.m_passive_buff_damage += 1;
             UpdateNeedCoin();
         }
     }
@@ -513,6 +514,9 @@ public class IngameUI : MonoBehaviour
         {
             character.Coin_Count -= needcoin;
             character.max_hp_UPStack += 1;
+            character.m_maxHealth += 10;
+            character.m_health = character.m_maxHealth;
+            character.player_hpbar_update();
             UpdateNeedCoin();
         }
     }
@@ -524,6 +528,7 @@ public class IngameUI : MonoBehaviour
         {
             character.Coin_Count -= needcoin;
             character.movement_SpeedUpStack += 1;
+            character.m_buff_movementSpeed += 0.2f;
             UpdateNeedCoin();
         }
     }

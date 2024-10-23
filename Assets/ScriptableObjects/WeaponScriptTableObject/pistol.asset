@@ -23,8 +23,9 @@ MonoBehaviour:
   bullet_range: 3
   bullet_velocity: 20
   Fire_rate: 0.5
-  reload_time: 1
+  reload_time: 1.4
   magazine_capacity: 15
   backup_magazine_capacity: 15
   Damage: 10
-  info: "\uD14C\uC2A4\uD2B8\uB97C \uC704\uD55C \uAE30\uBCF8 \uAD8C\uCD1D\uC774\uB2E4."
+  info: "\uB370\uBBF8\uC9C0 : 10\n\uD0C4\uCC3D : 15\uBC1C\n\n\uB0AE\uC740 \uB300\uBBF8\uC9C0\uC640
+    \uBE60\uB978 \uC5F0\uC0AC\uAC00 \uD2B9\uC9D5\uC778 \uAE30\uBCF8 \uBB34\uAE30"

@@ -3530,8 +3530,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7104,7 +7104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0C0\uC774\uD2C0\uB85C \uB3CC\uC544\uAC00\uAE30"
+  m_text: "\uB85C\uBE44\uB85C \uB3CC\uC544\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58e397230af86f341866d3dd62252200, type: 2}
   m_sharedMaterial: {fileID: 7309084849199128957, guid: 58e397230af86f341866d3dd62252200, type: 2}
@@ -7131,7 +7131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 54.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13652,7 +13652,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.05
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16871,14 +16871,14 @@ RectTransform:
   m_Children:
   - {fileID: 1851247141}
   - {fileID: 1344550987}
-  - {fileID: 2139361399}
-  - {fileID: 1398473500}
   - {fileID: 1664578975}
   - {fileID: 2042384659}
   - {fileID: 1715564367}
   - {fileID: 837892273}
   - {fileID: 371846887}
   - {fileID: 1021604037}
+  - {fileID: 2139361399}
+  - {fileID: 1398473500}
   m_Father: {fileID: 1000185218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

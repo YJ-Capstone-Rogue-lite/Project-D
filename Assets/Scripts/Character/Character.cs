@@ -59,7 +59,7 @@ public class Character : MonoBehaviour
     //캐릭터의 최대 방패량
     public float m_maxShield;
 
-    // 캐릭터의 현재 이동 속도(기본 5)
+    // 캐릭터의 현재 이동 속도(기본 3)
     public float m_movementSpeed;
 
     // 캐릭터의 버프로 증가되는 이동 속도

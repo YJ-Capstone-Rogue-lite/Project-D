@@ -238,21 +238,21 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             Stack_Buff_List.gameObject.SetActive(true); // 리스트 활성화
             Stack_Buff_Attack_text_background.gameObject.SetActive(true); // 배경 활성화
-            Stack_Buff_Attack_text.text = "스택당 공격력이 1씩 증가합니다." + "\n" + "최대 5스택까지 획득 가능." + "\n" + "현재 스택 : " + character.damageUpStack ;
+            Stack_Buff_Attack_text.text = "스택당 공격력이 1씩 증가합니다." + "\n" + "현재 스택 : " + character.damageUpStack ;
             Debug.Log("공격 버프 설명 텍스트 실행");
         }
         else if (Stack_Buff_Speed.gameObject == eventData.pointerEnter) // 속도 버프 설명
         {
             Stack_Buff_List.gameObject.SetActive(true); // 리스트 활성화
             Stack_Buff_Speed_text_background.gameObject.SetActive(true); // 배경 활성화
-            Stack_Buff_Speed_text.text = "스택당 이동속도가 0.2씩 증가합니다." + "\n" + "최대 5스택까지 획득 가능." + "\n" + "현재 스택 : " + character.movement_SpeedUpStack ;
+            Stack_Buff_Speed_text.text = "스택당 이동속도가 0.2씩 증가합니다." + "\n" + "현재 스택 : " + character.movement_SpeedUpStack ;
             Debug.Log("속도 버프 설명 텍스트 실행");
         }
         else if (Stack_Buff_Health.gameObject == eventData.pointerEnter) // 체력 버프 설명
         {
             Stack_Buff_List.gameObject.SetActive(true); // 리스트 활성화
             Stack_Buff_Health_text_background.gameObject.SetActive(true); // 배경 활성화
-            Stack_Buff_Health_text.text = "스택당 최대체력이 10씩 증가합니다." + "\n" + "최대 5스택까지 획득 가능." + "\n" + "현재 스택 : " + character.max_hp_UPStack; ;
+            Stack_Buff_Health_text.text = "스택당 최대체력이 10씩 증가합니다." + "\n" + "현재 스택 : " + character.max_hp_UPStack; ;
             Debug.Log("체력 버프 설명 텍스트 실행");
         }
 
