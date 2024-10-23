@@ -469,7 +469,9 @@ public class IngameUI : MonoBehaviour
     {
         SceneManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
+        Clear_Screen_UI.SetActive(false);
         PlayerChar.single.player_reset();
+        test_clear_boolCheck = false;
         // DataManager.Instance.SaveGameData();
     }
 

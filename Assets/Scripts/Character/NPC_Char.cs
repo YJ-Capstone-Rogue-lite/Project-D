@@ -20,6 +20,10 @@ public class NPC_Char : MonoBehaviour
             chatManager.StartChat(this); // 대화 시작
             isChatting = true;
         }
+        if(chatManager == null)
+        {
+            chatManager = GameObject.FindObjectOfType<NPC_ChatManager>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
