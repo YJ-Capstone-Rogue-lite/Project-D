@@ -148,7 +148,7 @@ MonoBehaviour:
   endPosition: {x: 0, y: 0, z: 0}
   followPlayer: 1
   find_Playersecond: 5
-  attackRange: 2
+  attackRange: 1
   playerFindRange: 5
   damage: 10
   enemy_animator: {fileID: 0}

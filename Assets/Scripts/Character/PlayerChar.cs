@@ -296,7 +296,7 @@ public class PlayerChar : Character
     public void player_reset()
     {
         player_anim.SetBool("State", true);
-
+        player_state = true;
         m_health = m_maxHealth;
         m_shield = m_maxShield;
 
