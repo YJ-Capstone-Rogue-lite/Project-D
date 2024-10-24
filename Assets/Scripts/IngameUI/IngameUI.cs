@@ -169,11 +169,7 @@ public class IngameUI : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton 패턴 설정
-        if (single == null)
-        {
-            single = this;
-        }
+
        
     }
 
@@ -188,7 +184,11 @@ public class IngameUI : MonoBehaviour
         // {
         //     sub_slot_sprite.sprite = nullgun_image.sprite;
         // }
-
+        // Singleton 패턴 설정
+        if (single == null)
+        {
+            single = this;
+        }
         //작동안해서 급하게 업데이트에 때려넣은 임시 코드
         if (Weapon_Slot == null)
         {
@@ -263,11 +263,11 @@ public class IngameUI : MonoBehaviour
             destory_enemy_count.text = enemy_count.ToString();
         }
 
-        if (test_clear_boolCheck == true)
+        if (test_clear_boolCheck)
         {
             On_Player_Clear();
             IngameTime(false);
-            Clear_TitleText.text = "해당 층을 클리어하셨습니다!";
+            Clear_TitleText.text = "모든 층을 클리어하셨습니다!";
             Clear_playtimeText.text = Time.time.ToString("F2");
             Clear_destory_enemy_count.text = enemy_count.ToString();
             
@@ -478,7 +478,7 @@ public class IngameUI : MonoBehaviour
 
     public void Coin_Count_Text_Update()
     {
-        Coin_Count_Text.text = "X " + character.Coin_Count.ToString();
+        Coin_Count_Text.text = "X " + character.Coin_Count.ToString();  
     }
 
     public void Open_BuffBG()

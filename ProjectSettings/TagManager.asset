@@ -18,6 +18,7 @@ TagManager:
   - object
   - NPC
   - Boss
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -598,7 +598,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.05, y: -0.19}
   serializedVersion: 2
   m_Radius: 0.3
 --- !u!114 &3074071826946895613
@@ -613,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3b8d4de0c6f5a44b14dd3b880d4852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_state: 1
   hit_sound: {fileID: 6913579118779599393}
   effectController: {fileID: 0}
   is_rolling: 0
@@ -673,6 +674,7 @@ MonoBehaviour:
   isReloadingSlot2: 0
   animSpeed: 1
   reloadSpeed: 0
+  Reload_AudioClip: {fileID: 0}
   reload_animator: {fileID: 7078319460908889085}
   reload_object: {fileID: 3946866550077803357}
   playerchar: {fileID: 0}
@@ -1305,8 +1307,6 @@ MonoBehaviour:
   item_Drop: {fileID: 0}
   buff: {fileID: 0}
   coin: {fileID: 0}
-  Using_Potion_AudioCilp: {fileID: 8300000, guid: d1a184171c2d8d84cb1b4927da4942e8, type: 3}
-  Get_weapon_AudioClip: {fileID: 8300000, guid: da5e734675b8a9148ac57567958b2c57, type: 3}
 --- !u!58 &8377657067992975816
 CircleCollider2D:
   m_ObjectHideFlags: 0

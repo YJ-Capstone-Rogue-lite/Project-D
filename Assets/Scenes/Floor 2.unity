@@ -8212,7 +8212,7 @@ GameObject:
   - component: {fileID: 2031060858}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8249,6 +8249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  buffsystem: {fileID: 0}
   Weapon_Slot: {fileID: 0}
   buttonSound: {fileID: 8300000, guid: 3ea8a774c85049147870440d6beb6835, type: 3}
   bookSound: {fileID: 8300000, guid: f1773bae3e2a9fa4a9d66f15f35a254b, type: 3}
@@ -8259,11 +8260,13 @@ MonoBehaviour:
   SubWeapon_Swap: {fileID: 2057936261}
   ConsumableItem_Img: {fileID: 1970404069}
   default_consumableItem: {fileID: 11400000, guid: 6f0ca15f150b8e541a6ac7090e8e0477, type: 2}
+  Coin_Count_Text: {fileID: 0}
   MainWeapon: 0
   SubWeapon: 1
   openOption: 1
   openInventory: 1
   minimap_state: 0
+  test_clear_boolCheck: 0
   reload_img: {fileID: 4144628358222961968, guid: 9d8626c6c1fc33f4497da19894a04643, type: 3}
   inv_slot: {fileID: 900186355}
   left_inv: {fileID: 408296384}
@@ -8274,6 +8277,20 @@ MonoBehaviour:
   screenshotCamera: {fileID: 1166463143}
   deathScreenImage: {fileID: 642283388}
   deathScreenUI: {fileID: 344454885}
+  Clear_Screen_UI: {fileID: 0}
+  Clear_Screen_Img: {fileID: 0}
+  weapon_slot1_icon: {fileID: 0}
+  weapon_slot2_icon: {fileID: 0}
+  Clear_enemyCountText: {fileID: 0}
+  Clear_TitleText: {fileID: 0}
+  Clear_playtimeText: {fileID: 0}
+  Clear_destory_enemy_count: {fileID: 0}
+  atkBuff_needcoin: {fileID: 0}
+  hpBuff_needcoin: {fileID: 0}
+  movementBuff_needcoin: {fileID: 0}
+  atkBuff_stacktext: {fileID: 0}
+  hpBuff_stacktext: {fileID: 0}
+  movementBuff_stacktext: {fileID: 0}
   WeaponSlot1: {fileID: 482613115}
   WeaponSlot2: {fileID: 2057936258}
   ingameOption: {fileID: 984497733}
@@ -8282,6 +8299,7 @@ MonoBehaviour:
   minimap_camera: {fileID: 2101898435}
   mainWeapon: {fileID: 482613114}
   subWeapon: {fileID: 2057936257}
+  buff_BG: {fileID: 0}
   fullScreen_Box: {fileID: 1703680976}
   windowScreen_Box: {fileID: 1390164987}
   checkBox: {fileID: 21300000, guid: 2d389206eda1dc8409a8a317b96c68a1, type: 3}

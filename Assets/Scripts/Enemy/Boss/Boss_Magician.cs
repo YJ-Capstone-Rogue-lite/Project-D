@@ -33,6 +33,7 @@ public class Boss_Magician : Enemy
     public float spawnDelay = 0.1f;  // 파이어볼 생성 간격
 
 
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -65,10 +66,12 @@ public class Boss_Magician : Enemy
 
     protected override void Update()
     {
+        Debug.Log(IngameUI.single.test_clear_boolCheck);
         if(playertarget == null)
         {
             playertarget = GameObject.FindWithTag("Player");
         }
+
         TeleportCasting();
         var hit = Physics2D.CircleCast(transform.position, playerFindRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
         if (hit && hit.transform.gameObject.CompareTag("Player"))
@@ -209,8 +212,9 @@ public class Boss_Magician : Enemy
         enemy_animator.SetTrigger("Attack");
     }
 
-    public void boss_clear_check()
+    public void Boss_clear_check()
     {
+        Debug.Log("작동함");
         IngameUI.single.test_clear_boolCheck = true;
     }
 }
