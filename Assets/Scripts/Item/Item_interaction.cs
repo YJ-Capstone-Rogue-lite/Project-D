@@ -23,6 +23,10 @@ public class Item_interaction : MonoBehaviour
     public Buff buff; //현재 획득할려고 하는 버프
     public Coin coin;
     private Rigidbody2D rg;
+    [SerializeField] private int HP_Potion_Stac;
+    [SerializeField] private int Shield_Potion_Stac;
+
+
 
 
 
@@ -129,7 +133,7 @@ public class Item_interaction : MonoBehaviour
         if (!pickupActivated && collider2D.gameObject.CompareTag("Box") && !collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
         {
             pickupActivated = true;
-            actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+            actionText.text = "<b>" + " 상자 열기 " + "<color=yellow>" + "[F]" + "</b>" + "</color>";
             actionText.gameObject.SetActive(true);
             currentBox = collider2D.gameObject; // 현재 상자 객체 저장
             item_Drop = currentBox.GetComponent<Item_drop>();
@@ -141,19 +145,19 @@ public class Item_interaction : MonoBehaviour
             actionText.gameObject.SetActive(true);
             if (item_PickUp.weapon != null) // 아이템 픽업 코드에 무기가 존재한다면
             {
-                actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+                actionText.text = item_PickUp.weapon.name + "<b>" + " 획득 " + "<color=yellow>" + "[F]" + "</b>" + "</color>";
             }
             else if(item_PickUp.consumable != null)
             {
-                actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+                actionText.text = item_PickUp.consumable.name + "<b>" + " 획득 " + "<color=yellow>" + "[F]" + "</b>" + "</color>";
             }
             else if(item_PickUp.buff != null)
             {
-                actionText.text = item_PickUp.buff.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+                actionText.text = item_PickUp.buff.name + "<b>" + " 획득 " + "<color=yellow>" + "[F]" + "</b>" + "</color>";
             }
             else if(item_PickUp.coin != null)
             {
-                actionText.text = item_PickUp.coin.name + "<b>" + " 획득 " + "<color=yellow>" + "[E]" + "</b>" + "</color>";
+                actionText.text = item_PickUp.coin.name + "<b>" + " 획득 " + "<color=yellow>" + "[F]" + "</b>" + "</color>";
             }
         }
         else if(!pickupActivated && collider2D.gameObject.CompareTag("Box") && collider2D.gameObject.GetComponent<Animator>().GetBool("State"))
@@ -184,7 +188,7 @@ public class Item_interaction : MonoBehaviour
     
     private void CanPickUp()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // E를 누르고 픽업이 활성화될 때
+        if (Input.GetKeyDown(KeyCode.F)) // E를 누르고 픽업이 활성화될 때
         {
             pickupActivated = false;
             rg.WakeUp();
@@ -206,6 +210,23 @@ public class Item_interaction : MonoBehaviour
                     if (ingameUI != null && ingameUI.ConsumableItem_Img != null)
                     {
                         ingameUI.ConsumableItem_Img.sprite = item_PickUp.consumable.sprite;
+                        //소비아이템의 번호가 0번(HP포션)이고 hp포션의 스택이 3을 넘지 않을때
+                        if (item_PickUp.consumable.number == 0 && HP_Potion_Stac < 4)
+                        {
+                            HP_Potion_Stac++;
+                            ingameUI.ConsumableItem_Img_Count_1.text = HP_Potion_Stac.ToString();
+                          
+
+                        }
+                        //소비아이템의 번호가 1번(쉴드포션)이고 쉴드포션의 스택이 3을 넘지 않을때
+                        else if (item_PickUp.consumable.number == 1 && Shield_Potion_Stac < 4)
+                        {
+                            Shield_Potion_Stac++;
+                            ingameUI.ConsumableItem_Img_Count_2.text = Shield_Potion_Stac.ToString();
+                            
+
+                        }
+
                     }
                     Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
                     Destroy(item_PickUp.gameObject);
@@ -233,11 +254,11 @@ public class Item_interaction : MonoBehaviour
 
     private void Open_box()
     {
-        if (Input.GetKeyDown(KeyCode.E) && pickupActivated)// E를 누르고 픽업이 활성화될 때
+        if (Input.GetKeyDown(KeyCode.F) && pickupActivated)// E를 누르고 픽업이 활성화될 때
         {
             if (currentBox != null) // 상자일 경우
             {
-                Debug.Log("상자를 확인했고 E키를 누름");
+                Debug.Log("상자를 확인했고 F키를 누름");
                 tresure_box_open();
             }
         }
@@ -320,12 +341,12 @@ public class Item_interaction : MonoBehaviour
 
     public void active_Potion()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) &&
+        if (Input.GetKeyDown(KeyCode.Q) &&
             ingameUI.ConsumableItem_Img.sprite != null &&
             ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
             character.m_health < character.m_maxHealth &&
             currentConsumable != null &&
-            currentConsumable.itemType == ConsumableItem.ItemType.Potion)
+            currentConsumable.itemType == ConsumableItem.ItemType.Potion && (HP_Potion_Stac < 4 && HP_Potion_Stac > 0))
         {
             character.m_health += currentConsumable.HPHealing;
             if (character.m_health > character.m_maxHealth)
@@ -333,15 +354,22 @@ public class Item_interaction : MonoBehaviour
                 character.m_health = character.m_maxHealth;
             }
             character.player_hpbar_update();
-            ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
-            currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
+            HP_Potion_Stac--;
+            ingameUI.ConsumableItem_Img_Count_1.text = HP_Potion_Stac.ToString();
+            if (HP_Potion_Stac == 0)
+            {
+                ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
+                currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
+                ingameUI.ConsumableItem_Img_Count_1.text = "";
+            }
+
             Debug.Log("포션 사용");
         }
     }
 
     public void active_Shield()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) &&
+        if (Input.GetKeyDown(KeyCode.E) &&
             ingameUI.ConsumableItem_Img.sprite != null &&
             ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
             character.m_shield < character.m_maxShield &&
