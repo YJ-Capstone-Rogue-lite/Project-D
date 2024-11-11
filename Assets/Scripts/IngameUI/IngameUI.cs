@@ -22,14 +22,16 @@ public class IngameUI : MonoBehaviour
 
     [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
+    public GameObject selectMainSlot;
     public Image sub_slot_sprite;
+    public GameObject selectSubSlot;
     public Weapon nullgun_image;
 
-    [Header("무기 슬롯 교체 애니메이션")]
-    [SerializeField]
-    private Animator MainWeapon_Swap;
-    [SerializeField]
-    private Animator SubWeapon_Swap;
+    //[Header("무기 슬롯 교체 애니메이션")]
+    //[SerializeField]
+    //private Animator MainWeapon_Swap;
+    //[SerializeField]
+    //private Animator SubWeapon_Swap;
 
 
     [Header("소비 슬롯 이미지")]
@@ -100,8 +102,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
     [SerializeField] private GameObject minimap_camera;
-    [SerializeField] private GameObject mainWeapon;
-    [SerializeField] private GameObject subWeapon;
+    //[SerializeField] private GameObject mainWeapon;
+    //[SerializeField] private GameObject subWeapon;
     [SerializeField] private GameObject buff_BG;
 
     [SerializeField] private Image fullScreen_Box;
@@ -160,8 +162,8 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.targetTexture = renderTexture;
         action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-        MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
-        SubWeapon_Swap = subWeapon.GetComponent<Animator>();
+        //MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
+        //SubWeapon_Swap = subWeapon.GetComponent<Animator>();
         Coin_Count_Text_Update();
         StopCoroutine(startCoroutine);
         startCoroutine = null;
@@ -222,27 +224,31 @@ public class IngameUI : MonoBehaviour
 
         if (Input.GetButtonDown("MainWeapon") && MainWeapon == true)
         {
-            MainWeapon_Swap.SetBool("MainWeapon_Up", true);
-            SubWeapon_Swap.SetBool("SubWeapon_Down", true);
-            MainWeapon_Swap.SetBool("MainWeapon_Down", false);
-            SubWeapon_Swap.SetBool("SubWeapon_Up", false);
+            //MainWeapon_Swap.SetBool("MainWeapon_Up", true);
+            //SubWeapon_Swap.SetBool("SubWeapon_Down", true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Down", false);
+            //SubWeapon_Swap.SetBool("SubWeapon_Up", false);
+            selectMainSlot.SetActive(true);
+            selectSubSlot.SetActive(false);
             MainWeapon = false;
             SubWeapon = true;
             Debug.Log("MainClick");
-            WeaponSlot1.SetAsLastSibling();
-            WeaponSlot2.SetAsFirstSibling();
+            //WeaponSlot1.SetAsLastSibling();
+            //WeaponSlot2.SetAsFirstSibling();
         }
         else if (Input.GetButtonDown("SubWeapon") && SubWeapon == true)
         {
-            MainWeapon_Swap.SetBool("MainWeapon_Down", true);
-            SubWeapon_Swap.SetBool("SubWeapon_Up", true);
-            MainWeapon_Swap.SetBool("MainWeapon_Up", false);
-            SubWeapon_Swap.SetBool("SubWeapon_Down", false);
+            selectMainSlot.SetActive(false);
+            selectSubSlot.SetActive(true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Down", true);
+            //SubWeapon_Swap.SetBool("SubWeapon_Up", true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Up", false);
+            //SubWeapon_Swap.SetBool("SubWeapon_Down", false);
             MainWeapon = true;
             SubWeapon = false;
             Debug.Log("SubClick");
-            WeaponSlot2.SetAsLastSibling();
-            WeaponSlot1.SetAsFirstSibling();
+            //WeaponSlot2.SetAsLastSibling();
+            //WeaponSlot1.SetAsFirstSibling();
         }
         
         if(ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
