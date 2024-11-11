@@ -14,7 +14,7 @@ public class IngameUI : MonoBehaviour
     public Character character;
     public BuffSystem buffsystem;
     [SerializeField] private Weapon_Slot Weapon_Slot;
-    
+
 
     [Header("SFX")]
     public AudioClip buttonSound;
@@ -35,9 +35,12 @@ public class IngameUI : MonoBehaviour
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯1 이미지
     public TMP_Text ConsumableItem_Img_Count_1; //소비슬롯 1번 갯수
+    public Image slot1_select_test_img; //소비슬롯 1번 선택시 나올 이미지
     public Image ConsumableItem_Img_2; //소비 슬롯2 이미지
     public TMP_Text ConsumableItem_Img_Count_2; //소비슬롯 2번 갯수
+    public Image slot2_select_test_img; //소비슬롯 2번 선택시 나올 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
+
 
     [Header("코인 카운트")]
     public TMP_Text Coin_Count_Text;
@@ -53,7 +56,7 @@ public class IngameUI : MonoBehaviour
 
 
     [Header("재장전 이미지 오브젝트")]
-    [SerializeField]  private GameObject reload_img;
+    [SerializeField] private GameObject reload_img;
 
 
     [Header("인벤토리 관련")]
@@ -121,7 +124,7 @@ public class IngameUI : MonoBehaviour
 
     private int enemy_count;
 
-    public GameObject action_text; 
+    public GameObject action_text;
     private Coroutine startCoroutine;
     private int haveCoin;
 
@@ -131,7 +134,8 @@ public class IngameUI : MonoBehaviour
     private IEnumerator WaitStart()
     {
         GameObject player = null;
-        yield return new WaitUntil(() => {
+        yield return new WaitUntil(() =>
+        {
             // "Player" 태그를 가진 GameObject를 찾습니다.
             player = GameObject.FindWithTag("Player");
             return player != null;
@@ -180,7 +184,9 @@ public class IngameUI : MonoBehaviour
         {
             single = this;
         }
-       
+
+        slot1_select_test_img.gameObject.SetActive(false);
+        slot2_select_test_img.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -252,12 +258,12 @@ public class IngameUI : MonoBehaviour
             WeaponSlot2.SetAsLastSibling();
             WeaponSlot1.SetAsFirstSibling();
         }
-        
-        if(ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
+
+        if (ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
         {
             IngameTime(false);
         }
-        else if(ingameOption.activeSelf == false && inv_slot.activeSelf == false && buff_BG.activeSelf == false)
+        else if (ingameOption.activeSelf == false && inv_slot.activeSelf == false && buff_BG.activeSelf == false)
         {
             IngameTime(true);
         }
@@ -278,7 +284,7 @@ public class IngameUI : MonoBehaviour
             Clear_TitleText.text = "해당 층을 클리어하셨습니다!";
             Clear_playtimeText.text = Time.time.ToString("F2");
             Clear_destory_enemy_count.text = enemy_count.ToString();
-            
+
         }
 
         if (haveCoin != character.Coin_Count) // 코인갯수 확인용
@@ -298,7 +304,7 @@ public class IngameUI : MonoBehaviour
             Time.timeScale = 0f;
             GameManager.Instance.isPlaying = false;
         }
-        else if(ingameTime) // 시간흘러가게하기
+        else if (ingameTime) // 시간흘러가게하기
         {
             Time.timeScale = 1f;
             GameManager.Instance.isPlaying = true;
@@ -402,12 +408,12 @@ public class IngameUI : MonoBehaviour
 
     public void MinimapOn_off()
     {
-        if(!minimap_state && Input.GetButtonDown("Minimap"))
+        if (!minimap_state && Input.GetButtonDown("Minimap"))
         {
             minimap_camera.SetActive(true);
             minimap_state = true;
         }
-        else if(minimap_state && Input.GetButtonDown("Minimap"))
+        else if (minimap_state && Input.GetButtonDown("Minimap"))
         {
             minimap_camera.SetActive(false);
             minimap_state = false;
@@ -422,11 +428,11 @@ public class IngameUI : MonoBehaviour
         // UI 텍스트 업데이트
         enemyCountText.text = enemyCount.ToString();
     }
-    
+
 
     public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
     public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
-    
+
     public void OnPlayerDeath()
     {
         // 추가 카메라 활성화 및 렌더링
@@ -547,4 +553,7 @@ public class IngameUI : MonoBehaviour
         hpBuff_stacktext.text = "+" + character.max_hp_UPStack.ToString() + " 강화";
         movementBuff_stacktext.text = "+" + character.movement_SpeedUpStack.ToString() + " 강화";
     }
+
+  
+
 }

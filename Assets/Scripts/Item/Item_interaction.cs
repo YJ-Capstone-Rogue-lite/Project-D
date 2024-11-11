@@ -17,7 +17,9 @@ public class Item_interaction : MonoBehaviour
     [SerializeField] private Character character;
     [SerializeField] private GameObject pickedUpConsumablePrefab; // 픽업한 소비 아이템의 프리팹을 저장할 변수
     [SerializeField] private Inventory_Slot Inventory_Slot;
-    public ConsumableItem currentConsumable; // 현재 슬롯에 있는 소비 아이템
+    public ConsumableItem currentConsumable1; // 현재 1 슬롯에 있는 소비 아이템
+    public ConsumableItem currentConsumable2; // 현재 2 슬롯에 있는 소비 아이템
+
     public GameObject currentBox; // 현재 상자 객체를 저장할 변수
     public Item_drop item_Drop;
     public Buff buff; //현재 획득할려고 하는 버프
@@ -116,8 +118,8 @@ public class Item_interaction : MonoBehaviour
         {
             Open_box();
         }
-        active_Potion();
-        active_Shield();
+        //active_Potion();
+       // active_Shield();
 
          // actionText가 씬 전환 등으로 파괴된 경우 다시 찾기
         if (actionText == null)
@@ -126,7 +128,7 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
-    private void LateUpdate() => pickupActivated = false;
+   // private void LateUpdate() => pickupActivated = false;
 
     private void OnTriggerStay2D(Collider2D collider2D)
     {
@@ -185,13 +187,15 @@ public class Item_interaction : MonoBehaviour
         }
 
     }
-    
+
     private void CanPickUp()
     {
-        if (Input.GetKeyDown(KeyCode.F)) // E를 누르고 픽업이 활성화될 때
+        // F 키를 누를 때 픽업을 활성화
+        if (Input.GetKeyDown(KeyCode.F))
         {
             pickupActivated = false;
             rg.WakeUp();
+
             if (item_PickUp != null) // 아이템 픽업이 존재할 경우
             {
                 if (item_PickUp.weapon != null) // 무기 아이템일 경우
@@ -203,54 +207,88 @@ public class Item_interaction : MonoBehaviour
                 }
                 else if (item_PickUp.consumable != null) // 소비 아이템일 경우
                 {
-                    PickUp_Item_Change();
+                    // 픽업한 아이템 프리팹 정보 저장
                     pickedUpConsumablePrefab = item_PickUp.consumable.ConsumItemPrefab;
-                    currentConsumable = item_PickUp.consumable;
 
-                    if (ingameUI != null && ingameUI.ConsumableItem_Img != null)
-                    {
-                        ingameUI.ConsumableItem_Img.sprite = item_PickUp.consumable.sprite;
-                        //소비아이템의 번호가 0번(HP포션)이고 hp포션의 스택이 3을 넘지 않을때
-                        if (item_PickUp.consumable.number == 0 && HP_Potion_Stac < 4)
-                        {
-                            HP_Potion_Stac++;
-                            ingameUI.ConsumableItem_Img_Count_1.text = HP_Potion_Stac.ToString();
-                          
-
-                        }
-                        //소비아이템의 번호가 1번(쉴드포션)이고 쉴드포션의 스택이 3을 넘지 않을때
-                        else if (item_PickUp.consumable.number == 1 && Shield_Potion_Stac < 4)
-                        {
-                            Shield_Potion_Stac++;
-                            ingameUI.ConsumableItem_Img_Count_2.text = Shield_Potion_Stac.ToString();
-                            
-
-                        }
-
-                    }
-                    Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
-                    Destroy(item_PickUp.gameObject);
+                    // 소비 슬롯 선택 UI를 활성화
+                    ingameUI.slot1_select_test_img.gameObject.SetActive(true);
+                    ingameUI.slot2_select_test_img.gameObject.SetActive(true);
+                    Debug.Log("소비 슬롯 선택창 활성화");
                 }
-                else if(item_PickUp.buff != null) //버프일 경우
+                else if (item_PickUp.buff != null) // 버프 아이템일 경우
                 {
-                    // 버프 아이템 처리 로직
-                    //buff = item_PickUp.buff; // buff 필드를 item_PickUp.buff로 설정
                     ApplyBuff();
                     Debug.Log(item_PickUp.buff.Buff_name + " 버프 적용됨.");
                     Destroy(item_PickUp.gameObject);
                 }
-                else if(item_PickUp.coin != null)
+                else if (item_PickUp.coin != null) // 코인 아이템일 경우
                 {
                     Coin_Count();
                     Debug.Log(item_PickUp.coin.Coin_name + " 코인 획득함.");
                     ingameUI.Coin_Count_Text_Update();
                     Destroy(item_PickUp.gameObject);
                 }
-
             }
-            
+        }
+
+        // 소비 슬롯 선택 UI가 활성화된 상태에서 3번 키를 누르면
+        if (ingameUI.slot1_select_test_img.gameObject.activeSelf && ingameUI.slot2_select_test_img.gameObject.activeSelf)
+        {
+            actionText.text = "아이템을 획득하시려면 [3]번 또는 [4]번을 눌러주십시오";
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Debug.Log("3번 누름");
+                // 픽업한 아이템을 소비 아이템 1번 슬롯에 저장
+                currentConsumable1 = item_PickUp.consumable;
+                ingameUI.ConsumableItem_Img.sprite = currentConsumable1.sprite;
+                Debug.Log("소비 슬롯 1 아이템 저장");
+
+                // 소비 슬롯 선택 UI를 비활성화
+                ingameUI.slot1_select_test_img.gameObject.SetActive(false);
+                ingameUI.slot2_select_test_img.gameObject.SetActive(false);
+                Debug.Log("소비 슬롯 선택창 비활성화");
+
+                //소비슬롯 1번의 아이템이 아이템 픽업의 값과 다르다면(즉 소비 아이템이 다르다면)
+                if(currentConsumable1 != item_PickUp.consumable)
+                {
+                    PickUp_Item_Change_Slot_1();
+
+                }
+
+                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
+                actionText.text = "";
+                Destroy(item_PickUp.gameObject);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Debug.Log("4번 누름");
+                // 픽업한 아이템을 소비 아이템 2번 슬롯에 저장
+                currentConsumable2 = item_PickUp.consumable;
+                ingameUI.ConsumableItem_Img_2.sprite = currentConsumable2.sprite;
+                Debug.Log("소비 슬롯 2 아이템 저장");
+
+                // 소비 슬롯 선택 UI를 비활성화
+                ingameUI.slot1_select_test_img.gameObject.SetActive(false);
+                ingameUI.slot2_select_test_img.gameObject.SetActive(false);
+                Debug.Log("소비 슬롯 선택창 비활성화");
+
+                //소비슬롯 2번의 아이템이 아이템 픽업의 값과 다르다면(즉 소비 아이템이 다르다면)
+                if (currentConsumable2 != item_PickUp.consumable)
+                {
+                    PickUp_Item_Change_Slot_2();
+
+                }
+
+
+                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
+                actionText.text = "";
+                Destroy(item_PickUp.gameObject);
+            }
         }
     }
+
+
 
     private void Open_box()
     {
@@ -310,28 +348,38 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
-    public void PickUp_Item_Change()
+    // 소비 아이템을 바닥에 생성하는 공통 함수
+    private void DropConsumableItem(GameObject consumablePrefab, Vector3 playerPosition)
+    {
+        if (consumablePrefab != null)
+        {
+            // 아이템을 생성할 위치를 설정
+            Vector3 spawnPosition = playerPosition;
+            spawnPosition.z = 0f; // z축은 0으로 설정하여 2D 게임에서 위치가 겹치지 않도록 설정
+
+            // 소비 아이템을 해당 위치에 인스턴스화(생성)
+            GameObject newConsumableItem = Instantiate(consumablePrefab, spawnPosition, Quaternion.identity);
+
+            // 생성된 아이템의 SpriteRenderer를 설정
+            SpriteRenderer itemRenderer = newConsumableItem.GetComponent<SpriteRenderer>();
+            if (itemRenderer != null)
+            {
+                // 아이템의 sortingLayer를 "Item"으로 설정하여, 다른 게임 오브젝트와 겹치지 않도록 순서 설정
+                itemRenderer.sortingLayerName = "Item";
+            }
+        }
+        else
+        {
+            Debug.LogWarning("프리팹이 존재하지 않습니다.");
+        }
+    }
+
+    public void PickUp_Item_Change_Slot_1()
     {
         if (item_PickUp.consumable != null && ingameUI.ConsumableItem_Img.sprite != null && ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite)
         {
-            GameObject ConsumItem_Prefab = pickedUpConsumablePrefab;
-
-            if (ConsumItem_Prefab != null)
-            {
-                Vector3 spawnPosition = player_postion.transform.position;
-                spawnPosition.z = 0f;
-
-                GameObject new_Consum_Item = Instantiate(ConsumItem_Prefab, spawnPosition, Quaternion.identity);
-                SpriteRenderer itemRenderer = new_Consum_Item.GetComponent<SpriteRenderer>();
-                if (itemRenderer != null)
-                {
-                    itemRenderer.sortingLayerName = "Item";
-                }
-            }
-            else
-            {
-                Debug.LogWarning("프리팹이 존재하지 않습니다.");
-            }
+            // 슬롯 1의 소비 아이템 프리팹을 가져와서 생성 함수 호출
+            DropConsumableItem(item_PickUp.consumable.ConsumItemPrefab, player_postion.transform.position);
         }
         else
         {
@@ -339,16 +387,30 @@ public class Item_interaction : MonoBehaviour
         }
     }
 
+    public void PickUp_Item_Change_Slot_2()
+    {
+        if (item_PickUp.consumable != null && ingameUI.ConsumableItem_Img.sprite != null && ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite)
+        {
+            // 슬롯 2의 소비 아이템 프리팹을 가져와서 생성 함수 호출
+            DropConsumableItem(item_PickUp.consumable.ConsumItemPrefab, player_postion.transform.position);
+        }
+        else
+        {
+            Debug.LogWarning("소비아이템이나 소비 슬롯 이미지가 존재하지 않습니다.");
+        }
+    }
+
+
     public void active_Potion()
     {
         if (Input.GetKeyDown(KeyCode.Q) &&
             ingameUI.ConsumableItem_Img.sprite != null &&
             ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
             character.m_health < character.m_maxHealth &&
-            currentConsumable != null &&
-            currentConsumable.itemType == ConsumableItem.ItemType.Potion && (HP_Potion_Stac < 4 && HP_Potion_Stac > 0))
+            currentConsumable1 != null &&
+            currentConsumable1.itemType == ConsumableItem.ItemType.Potion && (HP_Potion_Stac < 4 && HP_Potion_Stac > 0))
         {
-            character.m_health += currentConsumable.HPHealing;
+            character.m_health += currentConsumable1.HPHealing;
             if (character.m_health > character.m_maxHealth)
             {
                 character.m_health = character.m_maxHealth;
@@ -359,7 +421,7 @@ public class Item_interaction : MonoBehaviour
             if (HP_Potion_Stac == 0)
             {
                 ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
-                currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
+                currentConsumable1 = null; // 소비 후 현재 소비 아이템을 null로 설정
                 ingameUI.ConsumableItem_Img_Count_1.text = "";
             }
 
@@ -373,17 +435,17 @@ public class Item_interaction : MonoBehaviour
             ingameUI.ConsumableItem_Img.sprite != null &&
             ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
             character.m_shield < character.m_maxShield &&
-            currentConsumable != null &&
-            currentConsumable.itemType == ConsumableItem.ItemType.Shield)
+            currentConsumable1 != null &&
+            currentConsumable1.itemType == ConsumableItem.ItemType.Shield)
         {
-            character.m_shield += currentConsumable.AddShield;
+            character.m_shield += currentConsumable1.AddShield;
             if (character.m_shield > character.m_maxShield)
             {
                 character.m_shield = character.m_maxShield;
             }
             character.player_shieldbar_update();
             ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
-            currentConsumable = null; // 소비 후 현재 소비 아이템을 null로 설정
+            currentConsumable1 = null; // 소비 후 현재 소비 아이템을 null로 설정
             Debug.Log("쉴드 사용");
         }
     }
