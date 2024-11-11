@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class NPC_ChatManager : MonoBehaviour
@@ -17,10 +19,13 @@ public class NPC_ChatManager : MonoBehaviour
     private bool isChatting = false;
     private NPC_Char currentNPC;
 
+    public UnityEvent OnStartChat;
+    public UnityEvent OnEndChat;
+
     public void StartChat(NPC_Char npc)
     {
         if (isChatting) return;
-
+        OnStartChat?.Invoke();
         currentNPC = npc;
         chatQueue = new Queue<string>(npc.line);  // NPC의 대화 줄을 받아서 큐에 넣음
         textBox.SetActive(true);
@@ -63,6 +68,7 @@ public class NPC_ChatManager : MonoBehaviour
         textBox.SetActive(false);
         isChatting = false;
         currentNPC.OnChatEnd();
+        OnEndChat?.Invoke();
     }
 
 }
