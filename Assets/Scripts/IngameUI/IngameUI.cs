@@ -34,10 +34,10 @@ public class IngameUI : MonoBehaviour
 
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯1 이미지
-    public TMP_Text ConsumableItem_Img_Count_1; //소비슬롯 1번 갯수
+    //public TMP_Text ConsumableItem_Img_Count_1; //소비슬롯 1번 갯수
     public Image slot1_select_test_img; //소비슬롯 1번 선택시 나올 이미지
     public Image ConsumableItem_Img_2; //소비 슬롯2 이미지
-    public TMP_Text ConsumableItem_Img_Count_2; //소비슬롯 2번 갯수
+   // public TMP_Text ConsumableItem_Img_Count_2; //소비슬롯 2번 갯수
     public Image slot2_select_test_img; //소비슬롯 2번 선택시 나올 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
 
@@ -161,8 +161,8 @@ public class IngameUI : MonoBehaviour
         character = player.GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
         ConsumableItem_Img_2.sprite = default_consumableItem.sprite;
-        ConsumableItem_Img_Count_1.text = null;
-        ConsumableItem_Img_Count_2.text = null;
+       // ConsumableItem_Img_Count_1.text = null;
+        //ConsumableItem_Img_Count_2.text = null;
         sub_slot_sprite.sprite = default_consumableItem.sprite;
         // 추가 카메라 설정
         screenshotCamera.enabled = false;

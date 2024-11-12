@@ -25,8 +25,8 @@ public class Item_interaction : MonoBehaviour
     public Buff buff; //현재 획득할려고 하는 버프
     public Coin coin;
     private Rigidbody2D rg;
-    [SerializeField] private int HP_Potion_Stac;
-    [SerializeField] private int Shield_Potion_Stac;
+    [SerializeField] private bool canUseItem = false;  // 아이템 사용 가능 여부
+    [SerializeField] private Coroutine itemUseCoroutine;  // 코루틴을 추적하기 위한 변수
 
 
 
@@ -109,7 +109,7 @@ public class Item_interaction : MonoBehaviour
 
     private void Update()
     {
-        
+
         if (pickupActivated && item_PickUp != null) // pickupActivated와 item_PickUp이 초기화된 경우에만 CanPickUp 호출
         {
             CanPickUp();
@@ -118,10 +118,14 @@ public class Item_interaction : MonoBehaviour
         {
             Open_box();
         }
-        //active_Potion();
-       // active_Shield();
 
-         // actionText가 씬 전환 등으로 파괴된 경우 다시 찾기
+        // active_Consum 호출 전에 canUseItem이 true인지 확인
+        if (canUseItem)
+        {
+            active_Consum();  // 아이템을 사용할 수 있을 때만 호출
+        }
+
+        // actionText가 씬 전환 등으로 파괴된 경우 다시 찾기
         if (actionText == null)
         {
             StartCoroutine(FindActionText());
@@ -239,56 +243,91 @@ public class Item_interaction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Debug.Log("3번 누름");
-                // 픽업한 아이템을 소비 아이템 1번 슬롯에 저장
-                currentConsumable1 = item_PickUp.consumable;
-                ingameUI.ConsumableItem_Img.sprite = currentConsumable1.sprite;
-                Debug.Log("소비 슬롯 1 아이템 저장");
+                // 3번 슬롯에 소비아이템 저장
+                StoreItemInSlot1();
 
-                // 소비 슬롯 선택 UI를 비활성화
-                ingameUI.slot1_select_test_img.gameObject.SetActive(false);
-                ingameUI.slot2_select_test_img.gameObject.SetActive(false);
-                Debug.Log("소비 슬롯 선택창 비활성화");
-
-                //소비슬롯 1번의 아이템이 아이템 픽업의 값과 다르다면(즉 소비 아이템이 다르다면)
-                if(currentConsumable1 != item_PickUp.consumable)
-                {
-                    PickUp_Item_Change_Slot_1();
-
-                }
-
-                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
-                actionText.text = "";
-                Destroy(item_PickUp.gameObject);
+                // 아이템을 슬롯에 넣은 후 코루틴 시작
+                StartItemUseCoroutine();
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 Debug.Log("4번 누름");
-                // 픽업한 아이템을 소비 아이템 2번 슬롯에 저장
-                currentConsumable2 = item_PickUp.consumable;
-                ingameUI.ConsumableItem_Img_2.sprite = currentConsumable2.sprite;
-                Debug.Log("소비 슬롯 2 아이템 저장");
+                // 4번 슬롯에 소비아이템 저장
+                StoreItemInSlot2();
 
-                // 소비 슬롯 선택 UI를 비활성화
-                ingameUI.slot1_select_test_img.gameObject.SetActive(false);
-                ingameUI.slot2_select_test_img.gameObject.SetActive(false);
-                Debug.Log("소비 슬롯 선택창 비활성화");
-
-                //소비슬롯 2번의 아이템이 아이템 픽업의 값과 다르다면(즉 소비 아이템이 다르다면)
-                if (currentConsumable2 != item_PickUp.consumable)
-                {
-                    PickUp_Item_Change_Slot_2();
-
-                }
-
-
-                Debug.Log(item_PickUp.consumable.name + " 획득 했습니다.");
-                actionText.text = "";
-                Destroy(item_PickUp.gameObject);
+                // 아이템을 슬롯에 넣은 후 코루틴 시작
+                StartItemUseCoroutine();
             }
         }
     }
+    private void StartItemUseCoroutine()
+    {
+        // 이미 코루틴이 실행 중이라면 중단
+        if (itemUseCoroutine != null)
+        {
+            StopCoroutine(itemUseCoroutine);
+        }
 
+        // 코루틴 실행
+        itemUseCoroutine = StartCoroutine(EnableItemUseAfterDelay(0.5f));  // 0.5초 후 아이템 사용 가능
+    }
+    private IEnumerator EnableItemUseAfterDelay(float delay)
+    {
+        canUseItem = false;  // 아이템 사용 불가능 상태로 시작
+        yield return new WaitForSeconds(delay);  // 지정된 시간만큼 기다림
+        canUseItem = true;  // 아이템 사용 가능
+        Debug.Log("아이템 사용 가능");
+    }
 
+    private void StoreItemInSlot1()
+    {
+        // 슬롯 1에 아이템 저장
+        if (currentConsumable1 != item_PickUp.consumable && currentConsumable1 != null)
+        {
+            PickUp_Item_Change_Slot_1();
+            Debug.Log("픽업 아이템 재생성함");
+        }
+        else
+        {
+            currentConsumable1 = item_PickUp.consumable;
+            ingameUI.ConsumableItem_Img.sprite = currentConsumable1.sprite;
+            Debug.Log("소비 슬롯 1 아이템 저장");
+        }
+
+        // 슬롯 1 선택 UI 비활성화
+        ingameUI.slot1_select_test_img.gameObject.SetActive(false);
+        ingameUI.slot2_select_test_img.gameObject.SetActive(false);
+        Debug.Log("소비 슬롯 선택창 비활성화");
+
+        actionText.text = "";
+        Destroy(item_PickUp.gameObject);
+        Debug.Log("아이템 삭제");
+    }
+
+    private void StoreItemInSlot2()
+    {
+        // 슬롯 2에 아이템 저장
+        if (currentConsumable2 != item_PickUp.consumable && currentConsumable2 != null)
+        {
+            PickUp_Item_Change_Slot_2();
+            Debug.Log("픽업 아이템 재생성함");
+        }
+        else
+        {
+            currentConsumable2 = item_PickUp.consumable;
+            ingameUI.ConsumableItem_Img_2.sprite = currentConsumable2.sprite;
+            Debug.Log("소비 슬롯 2 아이템 저장");
+        }
+
+        // 슬롯 2 선택 UI 비활성화
+        ingameUI.slot1_select_test_img.gameObject.SetActive(false);
+        ingameUI.slot2_select_test_img.gameObject.SetActive(false);
+        Debug.Log("소비 슬롯 선택창 비활성화");
+
+        actionText.text = "";
+        Destroy(item_PickUp.gameObject);
+        Debug.Log("아이템 삭제");
+    }
 
     private void Open_box()
     {
@@ -353,6 +392,8 @@ public class Item_interaction : MonoBehaviour
     {
         if (consumablePrefab != null)
         {
+            Debug.Log("바닥에 아이템을 생성합니다.");
+
             // 아이템을 생성할 위치를 설정
             Vector3 spawnPosition = playerPosition;
             spawnPosition.z = 0f; // z축은 0으로 설정하여 2D 게임에서 위치가 겹치지 않도록 설정
@@ -366,89 +407,175 @@ public class Item_interaction : MonoBehaviour
             {
                 // 아이템의 sortingLayer를 "Item"으로 설정하여, 다른 게임 오브젝트와 겹치지 않도록 순서 설정
                 itemRenderer.sortingLayerName = "Item";
+                Debug.Log("아이템의 sortingLayer를 'Item'으로 설정했습니다.");
+            }
+            else
+            {
+                Debug.LogWarning("생성된 아이템에 SpriteRenderer가 없습니다.");
             }
         }
         else
         {
-            Debug.LogWarning("프리팹이 존재하지 않습니다.");
+            Debug.LogWarning("DropConsumableItem: 프리팹이 존재하지 않습니다.");
         }
     }
 
     public void PickUp_Item_Change_Slot_1()
     {
-        if (item_PickUp.consumable != null && ingameUI.ConsumableItem_Img.sprite != null && ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite)
-        {
-            // 슬롯 1의 소비 아이템 프리팹을 가져와서 생성 함수 호출
-            DropConsumableItem(item_PickUp.consumable.ConsumItemPrefab, player_postion.transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("소비아이템이나 소비 슬롯 이미지가 존재하지 않습니다.");
-        }
+        Debug.Log("소비 아이템 슬롯 1 교체 시작");
+
+
+        // 아이템을 생성할 위치를 설정
+        Vector3 spawnPosition = player_postion.transform.position;
+        spawnPosition.z = 0f; // z축은 0으로 설정하여 2D 게임에서 위치가 겹치지 않도록 설정
+        // 현재 슬롯 1에 있는 아이템을 바닥에 생성
+        DropConsumableItem(currentConsumable1.ConsumItemPrefab, spawnPosition);
+        Debug.Log("아이템 바닥에 드랍.");
+
+        currentConsumable1 = item_PickUp.consumable; // 3번 슬롯에 소비아이템 저장하고
+        ingameUI.ConsumableItem_Img.sprite = currentConsumable1.sprite; //인게임 ui 스프라이트 바꾸고
+        Debug.Log("소비 슬롯 1 아이템 저장");
+
+
     }
 
     public void PickUp_Item_Change_Slot_2()
     {
-        if (item_PickUp.consumable != null && ingameUI.ConsumableItem_Img.sprite != null && ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite)
+        Debug.Log("소비 아이템 슬롯 2 교체 시작");
+
+        // 아이템을 생성할 위치를 설정
+        Vector3 spawnPosition = player_postion.transform.position;
+        spawnPosition.z = 0f; // z축은 0으로 설정하여 2D 게임에서 위치가 겹치지 않도록 설정
+        // 현재 슬롯 2에 있는 아이템을 바닥에 생성
+        DropConsumableItem(currentConsumable2.ConsumItemPrefab, spawnPosition);
+        Debug.Log("아이템 바닥에 드랍.");
+
+
+        currentConsumable2 = item_PickUp.consumable; // 3번 슬롯에 소비아이템 저장하고
+        ingameUI.ConsumableItem_Img_2.sprite = currentConsumable2.sprite; //인게임 ui 스프라이트 바꾸고
+        Debug.Log("소비 슬롯 2 아이템 저장");
+    }
+
+
+    public void active_Consum()
+    {
+        // 슬롯 선택 화면이 꺼져있는 상태에서 3번 또는 4번 키를 눌렀을 시
+        if (!ingameUI.slot1_select_test_img.gameObject.activeSelf && // 슬롯 1 선택 화면이 비활성화되어 있는지 확인
+            !ingameUI.slot2_select_test_img.gameObject.activeSelf && // 슬롯 2 선택 화면이 비활성화되어 있는지 확인
+            (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))) // 3번 또는 4번 키가 눌렸는지 확인
         {
-            // 슬롯 2의 소비 아이템 프리팹을 가져와서 생성 함수 호출
-            DropConsumableItem(item_PickUp.consumable.ConsumItemPrefab, player_postion.transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("소비아이템이나 소비 슬롯 이미지가 존재하지 않습니다.");
+            // 3번 키가 눌린 경우
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                // 슬롯 1 아이템이 포션인 경우 포션 사용
+                if (currentConsumable1 != null && currentConsumable1.itemType == ConsumableItem.ItemType.Potion)
+                {
+                    active_HP_Potion(currentConsumable1, 1);  // 슬롯 1 포션 사용
+                }
+                // 슬롯 1 아이템이 쉴드인 경우 쉴드 사용
+                else if (currentConsumable1 != null && currentConsumable1.itemType == ConsumableItem.ItemType.Shield)
+                {
+                    active_Shield(currentConsumable1, 1);  // 슬롯 1 쉴드 사용
+                }
+            }
+
+            // 4번 키가 눌린 경우
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                // 슬롯 2 아이템이 포션인 경우 포션 사용
+                if (currentConsumable2 != null && currentConsumable2.itemType == ConsumableItem.ItemType.Potion)
+                {
+                    active_HP_Potion(currentConsumable2, 2);  // 슬롯 2 포션 사용
+                }
+                // 슬롯 2 아이템이 쉴드인 경우 쉴드 사용
+                else if (currentConsumable2 != null && currentConsumable2.itemType == ConsumableItem.ItemType.Shield)
+                {
+                    active_Shield(currentConsumable2, 2);  // 슬롯 2 쉴드 사용
+                }
+            }
         }
     }
 
 
-    public void active_Potion()
+    // 포션 사용 코드 (슬롯 1 또는 2를 인자로 전달받음)
+    public void active_HP_Potion(ConsumableItem consumable, int slot)
     {
-        if (Input.GetKeyDown(KeyCode.Q) &&
-            ingameUI.ConsumableItem_Img.sprite != null &&
-            ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
-            character.m_health < character.m_maxHealth &&
-            currentConsumable1 != null &&
-            currentConsumable1.itemType == ConsumableItem.ItemType.Potion && (HP_Potion_Stac < 4 && HP_Potion_Stac > 0))
+        // 포션 사용 조건 체크
+        if (character.m_health < character.m_maxHealth && consumable != null && consumable.itemType == ConsumableItem.ItemType.Potion)
         {
-            character.m_health += currentConsumable1.HPHealing;
+            // 포션 사용
+            character.m_health += consumable.HPHealing;
+
+            // 체력이 최대 체력보다 커지지 않도록 설정
             if (character.m_health > character.m_maxHealth)
             {
                 character.m_health = character.m_maxHealth;
             }
+
+            // HP 바 업데이트
             character.player_hpbar_update();
-            HP_Potion_Stac--;
-            ingameUI.ConsumableItem_Img_Count_1.text = HP_Potion_Stac.ToString();
-            if (HP_Potion_Stac == 0)
+
+            // 슬롯에 따라 포션 소진 처리
+            if (slot == 1)
             {
                 ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
-                currentConsumable1 = null; // 소비 후 현재 소비 아이템을 null로 설정
-                ingameUI.ConsumableItem_Img_Count_1.text = "";
+                currentConsumable1 = null; // 슬롯 1 포션 사용 후 null로 설정
+            }
+            else if (slot == 2)
+            {
+                ingameUI.ConsumableItem_Img_2.sprite = ingameUI.default_consumableItem.sprite;
+                currentConsumable2 = null; // 슬롯 2 포션 사용 후 null로 설정
             }
 
             Debug.Log("포션 사용");
         }
+        else
+        {
+            Debug.LogWarning("포션 사용 조건을 충족하지 못했습니다.");
+        }
     }
 
-    public void active_Shield()
+    // 쉴드 사용 코드 (슬롯 1 또는 2를 인자로 전달받음)
+    public void active_Shield(ConsumableItem consumable, int slot)
     {
-        if (Input.GetKeyDown(KeyCode.E) &&
-            ingameUI.ConsumableItem_Img.sprite != null &&
-            ingameUI.ConsumableItem_Img.sprite != ingameUI.default_consumableItem.sprite &&
-            character.m_shield < character.m_maxShield &&
-            currentConsumable1 != null &&
-            currentConsumable1.itemType == ConsumableItem.ItemType.Shield)
+        // 쉴드 사용 조건 체크
+        if (character.m_shield < character.m_maxShield && consumable != null && consumable.itemType == ConsumableItem.ItemType.Shield)
         {
-            character.m_shield += currentConsumable1.AddShield;
+            // 쉴드 사용
+            character.m_shield += consumable.AddShield;
+
+            // 쉴드가 최대 쉴드를 초과하지 않도록 설정
             if (character.m_shield > character.m_maxShield)
             {
                 character.m_shield = character.m_maxShield;
             }
+
+            // 쉴드 바 업데이트
             character.player_shieldbar_update();
-            ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
-            currentConsumable1 = null; // 소비 후 현재 소비 아이템을 null로 설정
+
+            // 슬롯에 따라 쉴드 소진 처리
+            if (slot == 1)
+            {
+                ingameUI.ConsumableItem_Img.sprite = ingameUI.default_consumableItem.sprite;
+                currentConsumable1 = null; // 슬롯 1 쉴드 사용 후 null로 설정
+            }
+            else if (slot == 2)
+            {
+                ingameUI.ConsumableItem_Img_2.sprite = ingameUI.default_consumableItem.sprite;
+                currentConsumable2 = null; // 슬롯 2 쉴드 사용 후 null로 설정
+            }
+
             Debug.Log("쉴드 사용");
         }
+        else
+        {
+            Debug.LogWarning("쉴드 사용 조건을 충족하지 못했습니다.");
+        }
     }
+
+
+
+
 
     public void tresure_box_open()
     {
