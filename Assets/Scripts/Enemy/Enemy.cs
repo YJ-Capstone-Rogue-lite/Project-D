@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -62,6 +63,8 @@ public class Enemy : MonoBehaviour
     public GameObject enemyTag;
     protected Transform originPos;
     private CircleCollider2D circleCollider2D;
+
+    public UnityEvent onEnenyDie;
 
     private void Start()
     {
@@ -303,8 +306,10 @@ public class Enemy : MonoBehaviour
             enemy_rb.velocity = Vector2.zero; // 움직임 멈춤
             enemy_rb.isKinematic = true;
             this.enabled = false; // 스크립트 비활성화하여 다른 업데이트 중지
-            transform.parent.parent.GetComponent<Room>().EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
-            item_Drop.enemy_item_drop();
+            transform.parent.parent.GetComponent<Room>()?.EnemyTemp(-1); // 적이 속한 방에서 적 개수를 줄임
+            item_Drop?.enemy_item_drop();
+            onEnenyDie?.AddListener(() => Debug.Log("AAA"));
+            onEnenyDie?.Invoke();
 
             GameManager.Instance.enemyDestoryCount += 1;
         }

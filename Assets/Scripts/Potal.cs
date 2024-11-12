@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Potal : RoomObjectTrigger
@@ -10,6 +11,7 @@ public class Potal : RoomObjectTrigger
     [SerializeField] private TMP_Text text;
     [SerializeField] private string nextFloor;
     [SerializeField] private string info;
+    public UnityEvent OnWarp;
     private bool isPlayerColliding = false;
 
     private void Start()
@@ -50,6 +52,7 @@ public class Potal : RoomObjectTrigger
         if (isPlayerColliding && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("넘어간다~");
+            OnWarp?.Invoke();
             SceneManager.LoadScene(nextFloor);
         }
     }

@@ -624,19 +624,19 @@ MonoBehaviour:
   shield_count: {fileID: 0}
   invincible: 0
   m_name: 
-  m_health: 0
-  m_maxHealth: 0
-  m_shield: 0
-  m_maxShield: 0
-  m_movementSpeed: 0
+  m_health: 100
+  m_maxHealth: 100
+  m_shield: 100
+  m_maxShield: 100
+  m_movementSpeed: 5
   m_buff_movementSpeed: 0
   m_max_movementSpeed: 7
   m_min_movementSpeed: 3
-  m_protectionTime: 0
-  m_damage: 0
+  m_protectionTime: 1
+  m_damage: 10
   m_passive_buff_damage: 0
   m_buff_damage: 0
-  m_stamina: 0
+  m_stamina: 100
   m_maxStamina: 100
   Coin_Count: 0
   damageUpStack: 0
@@ -651,6 +651,9 @@ MonoBehaviour:
   SortingGroup_Weapon_slot1: {fileID: 7241063988810155913}
   SortingGroup_Weapon_slot2: {fileID: 1655305956877176783}
   stamina_bar: {fileID: 4968377018650464628}
+  onRollingAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5046371043250726752
 MonoBehaviour:
   m_ObjectHideFlags: 0
