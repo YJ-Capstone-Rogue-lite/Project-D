@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -28,6 +29,9 @@ public class PlayerChar : Character
 
     public Image stamina_bar; //플레이어 스태미나 바
 
+    private bool isControl = true;
+    public UnityEvent onRollingAction;
+
     //현재 주석처리 된 부분 사용시 플레이어 총기 스프라이트 위치가 미묘하게 달라지는 현상 있음
     //[SerializeField]private SpriteRenderer gunSpriteRenderer; // 총 스프라이트 렌더러
 
@@ -52,8 +56,6 @@ public class PlayerChar : Character
         stamina_bar.gameObject.SetActive(false);
         Input.imeCompositionMode = IMECompositionMode.Auto;
         // charsingle = this;
-        // DataManager를 통해 데이터 불러오기
-        DataManager.Instance.LoadGameData();
 
         // DataManager에서 불러온 데이터를 playerdata에 할당
 
@@ -116,7 +118,7 @@ public class PlayerChar : Character
         //스태미나 바 업데이트
         staminaba_update();
 
-        if (!GameManager.Instance.isPlaying)
+        if (!GameManager.Instance.isPlaying || !isControl)
         {
             return;
         }
@@ -209,7 +211,8 @@ public class PlayerChar : Character
 
     }
 
-  
+    public void SetIsControll(bool iscon) => isControl = iscon;
+
     public void player_Roll()
     {
         if (Input.GetButtonDown("Roll") && m_stamina > 0 &&
@@ -233,6 +236,9 @@ public class PlayerChar : Character
             player_anim.SetBool("isRolling", true);
             player_anim.SetFloat("RollX", Input.GetAxisRaw("Horizontal"));
             player_anim.SetFloat("RollY", Input.GetAxisRaw("Vertical"));
+
+            onRollingAction?.Invoke();
+
             // 기존에 실행 중인 InvokeRepeating을 취소한다.
             CancelInvoke("stamina_recovery");
             // 새로운 InvokeRepeating을 설정한다.
@@ -298,7 +304,7 @@ public class PlayerChar : Character
     public void player_reset()
     {
         player_anim.SetBool("State", true);
-
+        player_state = true;
         m_health = m_maxHealth;
         m_shield = m_maxShield;
 

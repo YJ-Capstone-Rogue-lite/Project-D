@@ -14,7 +14,7 @@ public class IngameUI : MonoBehaviour
     public Character character;
     public BuffSystem buffsystem;
     [SerializeField] private Weapon_Slot Weapon_Slot;
-
+    
 
     [Header("SFX")]
     public AudioClip buttonSound;
@@ -22,25 +22,24 @@ public class IngameUI : MonoBehaviour
 
     [Header("무기 슬롯 이미지")]
     public Image main_slot_sprite;
+    public GameObject selectMainSlot;
     public Image sub_slot_sprite;
+    public GameObject selectSubSlot;
     public Weapon nullgun_image;
 
-    [Header("무기 슬롯 교체 애니메이션")]
-    [SerializeField]
-    private Animator MainWeapon_Swap;
-    [SerializeField]
-    private Animator SubWeapon_Swap;
+    //[Header("무기 슬롯 교체 애니메이션")]
+    //[SerializeField]
+    //private Animator MainWeapon_Swap;
+    //[SerializeField]
+    //private Animator SubWeapon_Swap;
 
 
     [Header("소비 슬롯 이미지")]
-    public Image ConsumableItem_Img; //소비 슬롯1 이미지
-    //public TMP_Text ConsumableItem_Img_Count_1; //소비슬롯 1번 갯수
-    public Image slot1_select_test_img; //소비슬롯 1번 선택시 나올 이미지
-    public Image ConsumableItem_Img_2; //소비 슬롯2 이미지
-   // public TMP_Text ConsumableItem_Img_Count_2; //소비슬롯 2번 갯수
-    public Image slot2_select_test_img; //소비슬롯 2번 선택시 나올 이미지
+    public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
-
+    public Image slot1_select_test_img;
+    public Image slot2_select_test_img;
+    public Image ConsumableItem_Img_2;
 
     [Header("코인 카운트")]
     public TMP_Text Coin_Count_Text;
@@ -56,7 +55,7 @@ public class IngameUI : MonoBehaviour
 
 
     [Header("재장전 이미지 오브젝트")]
-    [SerializeField] private GameObject reload_img;
+    [SerializeField]  private GameObject reload_img;
 
 
     [Header("인벤토리 관련")]
@@ -106,8 +105,8 @@ public class IngameUI : MonoBehaviour
     [SerializeField] private GameObject option_popup;
     [SerializeField] private GameObject quit_popup;
     [SerializeField] private GameObject minimap_camera;
-    [SerializeField] private GameObject mainWeapon;
-    [SerializeField] private GameObject subWeapon;
+    //[SerializeField] private GameObject mainWeapon;
+    //[SerializeField] private GameObject subWeapon;
     [SerializeField] private GameObject buff_BG;
 
     [SerializeField] private Image fullScreen_Box;
@@ -124,7 +123,7 @@ public class IngameUI : MonoBehaviour
 
     private int enemy_count;
 
-    public GameObject action_text;
+    public GameObject action_text; 
     private Coroutine startCoroutine;
     private int haveCoin;
 
@@ -134,8 +133,7 @@ public class IngameUI : MonoBehaviour
     private IEnumerator WaitStart()
     {
         GameObject player = null;
-        yield return new WaitUntil(() =>
-        {
+        yield return new WaitUntil(() => {
             // "Player" 태그를 가진 GameObject를 찾습니다.
             player = GameObject.FindWithTag("Player");
             return player != null;
@@ -161,8 +159,6 @@ public class IngameUI : MonoBehaviour
         character = player.GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
         ConsumableItem_Img_2.sprite = default_consumableItem.sprite;
-       // ConsumableItem_Img_Count_1.text = null;
-        //ConsumableItem_Img_Count_2.text = null;
         sub_slot_sprite.sprite = default_consumableItem.sprite;
         // 추가 카메라 설정
         screenshotCamera.enabled = false;
@@ -170,8 +166,8 @@ public class IngameUI : MonoBehaviour
         screenshotCamera.targetTexture = renderTexture;
         action_text.SetActive(true);//인게임 UI코드에서 액션 텍스트 활성화
         Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-        MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
-        SubWeapon_Swap = subWeapon.GetComponent<Animator>();
+        //MainWeapon_Swap = mainWeapon.GetComponent<Animator>();
+        //SubWeapon_Swap = subWeapon.GetComponent<Animator>();
         Coin_Count_Text_Update();
         StopCoroutine(startCoroutine);
         startCoroutine = null;
@@ -179,14 +175,8 @@ public class IngameUI : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton 패턴 설정
-        if (single == null)
-        {
-            single = this;
-        }
 
-        slot1_select_test_img.gameObject.SetActive(false);
-        slot2_select_test_img.gameObject.SetActive(false);
+       
     }
 
     private void Update()
@@ -200,7 +190,11 @@ public class IngameUI : MonoBehaviour
         // {
         //     sub_slot_sprite.sprite = nullgun_image.sprite;
         // }
-
+        // Singleton 패턴 설정
+        if (single == null)
+        {
+            single = this;
+        }
         //작동안해서 급하게 업데이트에 때려넣은 임시 코드
         if (Weapon_Slot == null)
         {
@@ -212,8 +206,6 @@ public class IngameUI : MonoBehaviour
         {
             character = GameObject.FindWithTag("Player").GetComponent<Character>();
             Debug.Log("캐릭터 찾아서 넣음");
-
-
         }
         if (startCoroutine != null) return;
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
@@ -236,34 +228,38 @@ public class IngameUI : MonoBehaviour
 
         if (Input.GetButtonDown("MainWeapon") && MainWeapon == true)
         {
-            MainWeapon_Swap.SetBool("MainWeapon_Up", true);
-            SubWeapon_Swap.SetBool("SubWeapon_Down", true);
-            MainWeapon_Swap.SetBool("MainWeapon_Down", false);
-            SubWeapon_Swap.SetBool("SubWeapon_Up", false);
+            //MainWeapon_Swap.SetBool("MainWeapon_Up", true);
+            //SubWeapon_Swap.SetBool("SubWeapon_Down", true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Down", false);
+            //SubWeapon_Swap.SetBool("SubWeapon_Up", false);
+            selectMainSlot.SetActive(true);
+            selectSubSlot.SetActive(false);
             MainWeapon = false;
             SubWeapon = true;
             Debug.Log("MainClick");
-            WeaponSlot1.SetAsLastSibling();
-            WeaponSlot2.SetAsFirstSibling();
+            //WeaponSlot1.SetAsLastSibling();
+            //WeaponSlot2.SetAsFirstSibling();
         }
         else if (Input.GetButtonDown("SubWeapon") && SubWeapon == true)
         {
-            MainWeapon_Swap.SetBool("MainWeapon_Down", true);
-            SubWeapon_Swap.SetBool("SubWeapon_Up", true);
-            MainWeapon_Swap.SetBool("MainWeapon_Up", false);
-            SubWeapon_Swap.SetBool("SubWeapon_Down", false);
+            selectMainSlot.SetActive(false);
+            selectSubSlot.SetActive(true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Down", true);
+            //SubWeapon_Swap.SetBool("SubWeapon_Up", true);
+            //MainWeapon_Swap.SetBool("MainWeapon_Up", false);
+            //SubWeapon_Swap.SetBool("SubWeapon_Down", false);
             MainWeapon = true;
             SubWeapon = false;
             Debug.Log("SubClick");
-            WeaponSlot2.SetAsLastSibling();
-            WeaponSlot1.SetAsFirstSibling();
+            //WeaponSlot2.SetAsLastSibling();
+            //WeaponSlot1.SetAsFirstSibling();
         }
-
-        if (ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
+        
+        if(ingameOption.activeSelf == true || inv_slot.activeSelf == true || buff_BG.activeSelf == true)
         {
             IngameTime(false);
         }
-        else if (ingameOption.activeSelf == false && inv_slot.activeSelf == false && buff_BG.activeSelf == false)
+        else if(ingameOption.activeSelf == false && inv_slot.activeSelf == false && buff_BG.activeSelf == false)
         {
             IngameTime(true);
         }
@@ -277,14 +273,14 @@ public class IngameUI : MonoBehaviour
             destory_enemy_count.text = enemy_count.ToString();
         }
 
-        if (test_clear_boolCheck == true)
+        if (test_clear_boolCheck)
         {
             On_Player_Clear();
             IngameTime(false);
-            Clear_TitleText.text = "해당 층을 클리어하셨습니다!";
+            Clear_TitleText.text = "모든 층을 클리어하셨습니다!";
             Clear_playtimeText.text = Time.time.ToString("F2");
             Clear_destory_enemy_count.text = enemy_count.ToString();
-
+            
         }
 
         if (haveCoin != character.Coin_Count) // 코인갯수 확인용
@@ -304,7 +300,7 @@ public class IngameUI : MonoBehaviour
             Time.timeScale = 0f;
             GameManager.Instance.isPlaying = false;
         }
-        else if (ingameTime) // 시간흘러가게하기
+        else if(ingameTime) // 시간흘러가게하기
         {
             Time.timeScale = 1f;
             GameManager.Instance.isPlaying = true;
@@ -408,12 +404,12 @@ public class IngameUI : MonoBehaviour
 
     public void MinimapOn_off()
     {
-        if (!minimap_state && Input.GetButtonDown("Minimap"))
+        if(!minimap_state && Input.GetButtonDown("Minimap"))
         {
             minimap_camera.SetActive(true);
             minimap_state = true;
         }
-        else if (minimap_state && Input.GetButtonDown("Minimap"))
+        else if(minimap_state && Input.GetButtonDown("Minimap"))
         {
             minimap_camera.SetActive(false);
             minimap_state = false;
@@ -428,11 +424,11 @@ public class IngameUI : MonoBehaviour
         // UI 텍스트 업데이트
         enemyCountText.text = enemyCount.ToString();
     }
-
+    
 
     public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
     public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
-
+    
     public void OnPlayerDeath()
     {
         // 추가 카메라 활성화 및 렌더링
@@ -483,14 +479,16 @@ public class IngameUI : MonoBehaviour
     {
         SceneManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
+        Clear_Screen_UI.SetActive(false);
         PlayerChar.single.player_reset();
+        test_clear_boolCheck = false;
         // DataManager.Instance.SaveGameData();
     }
 
 
     public void Coin_Count_Text_Update()
     {
-        Coin_Count_Text.text = "X " + character.Coin_Count.ToString();
+        Coin_Count_Text.text = "X " + character.Coin_Count.ToString();  
     }
 
     public void Open_BuffBG()
@@ -553,7 +551,4 @@ public class IngameUI : MonoBehaviour
         hpBuff_stacktext.text = "+" + character.max_hp_UPStack.ToString() + " 강화";
         movementBuff_stacktext.text = "+" + character.movement_SpeedUpStack.ToString() + " 강화";
     }
-
-  
-
 }

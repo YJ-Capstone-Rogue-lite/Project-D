@@ -18,6 +18,7 @@ TagManager:
   - object
   - NPC
   - Boss
+  - GameManager
   - FootCollider
   layers:
   - Default
@@ -31,8 +32,8 @@ TagManager:
   - Map
   - Object
   - Enemy
-  - 
-  - 
+  - Potal
+  - Boss
   - 
   - 
   - 

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4675494888545606473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517d2316710431e4ea0746739a2a71a9, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 1
+  guid: 25a46d85894a063489cc13991519a072
+  positon: {x: 0, y: 0}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 2
+  description: 
+  child: {fileID: -2274270606496971266}
+--- !u!114 &-2274270606496971266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 26a8553a87371cc438b9ae96d5920049
+  positon: {x: 0, y: 120}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 2
+  description: 
+  waitTime: 210000000
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a54fa91364e07b4aaf8bd939bae61e2, type: 3}
+  m_Name: Tutorial Dumy
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -4675494888545606473}
+  nodeState: 0
+  nodes:
+  - {fileID: -4675494888545606473}
+  - {fileID: -2274270606496971266}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 0
+  viewPos: {x: 224, y: 81}
+  viewScale: {x: 1, y: 1, z: 1}

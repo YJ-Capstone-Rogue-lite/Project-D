@@ -16,6 +16,7 @@ public class Boss_Magician : Enemy
     public bool posChange = false;
     public bool isCasting = false;
     public float dangerCount = 0.5f;
+    public GameObject playertarget;
 
     [Header("마법종류")]
     public GameObject fireballPrefeb;
@@ -30,6 +31,8 @@ public class Boss_Magician : Enemy
     public float radius = 5f;      // 원형으로 배치할 반지름
     public float fireballSpeed = 5f; // 파이어볼의 속도
     public float spawnDelay = 0.1f;  // 파이어볼 생성 간격
+
+
 
     private void Start()
     {
@@ -61,10 +64,16 @@ public class Boss_Magician : Enemy
 
     }
 
-    private void Update()
+    protected override void Update()
     {
+        Debug.Log(IngameUI.single.test_clear_boolCheck);
+        if(playertarget == null)
+        {
+            playertarget = GameObject.FindWithTag("Player");
+        }
+
         TeleportCasting();
-        var hit = Physics2D.CircleCast(transform.position, attackRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
+        var hit = Physics2D.CircleCast(transform.position, playerFindRange, Vector2.zero, 0, 1 << LayerMask.NameToLayer("Player"));
         if (hit && hit.transform.gameObject.CompareTag("Player"))
         {
             blackboard.target = hit.transform;
@@ -190,7 +199,7 @@ public class Boss_Magician : Enemy
     {
         for (int i = 0; i < 6; i++)
         {
-            GameObject danger = Instantiate(dangerPrefeb, GameManager.Instance.player.transform.position, transform.rotation);
+            GameObject danger = Instantiate(dangerPrefeb, playertarget.transform.position, transform.rotation);
             yield return new WaitForSeconds(0.5f); // 각 Danger 생성 후 0.5초 대기
         }
 
@@ -203,8 +212,9 @@ public class Boss_Magician : Enemy
         enemy_animator.SetTrigger("Attack");
     }
 
-    public void boss_clear_check()
+    public void Boss_clear_check()
     {
+        Debug.Log("작동함");
         IngameUI.single.test_clear_boolCheck = true;
     }
 }

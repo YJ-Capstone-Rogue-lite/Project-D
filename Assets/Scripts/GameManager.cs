@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
@@ -51,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         if (Room.focusedMinimapChar == null)
             return;
-        
+
         mini_camera_transform = new Vector3(Room.focusedMinimapChar.transform.position.x, Room.focusedMinimapChar.transform.position.y, -40);
         mini_camera.transform.position = mini_camera_transform;
     }

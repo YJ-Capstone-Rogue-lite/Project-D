@@ -1,3 +1,4 @@
+using ChatContainer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class NPC_Char : MonoBehaviour
             chatManager.StartChat(this); // 대화 시작
             isChatting = true;
         }
+        if(chatManager == null)
+        {
+            chatManager = GameObject.FindObjectOfType<NPC_ChatManager>(); // 쓰지마세요. 차라리 싱글톤 ㄱㄱ
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +42,14 @@ public class NPC_Char : MonoBehaviour
             isPlayerInRange = false;
             chatManager.EndChat();
         }
+    }
+
+    public void UpdateChat(Chat chat) => line = chat.chat;
+
+    public void StartChat()
+    {
+        chatManager.StartChat(this); // 대화 시작
+        isChatting = true;
     }
 
     public void OnChatEnd()

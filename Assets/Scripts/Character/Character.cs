@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
             return charsingle;
         }
     }
-    private bool player_state = true;
+    public bool player_state = true;
     [SerializeField] private GameObject hit_sound;
 
     // 캐릭터의 효과를 관리하는 컨트롤러
