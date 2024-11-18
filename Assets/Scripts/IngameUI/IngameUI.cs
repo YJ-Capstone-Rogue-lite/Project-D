@@ -158,6 +158,7 @@ public class IngameUI : MonoBehaviour
         inv_slot_active_bool = false;
         character = player.GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
+        ConsumableItem_Img_2.sprite = default_consumableItem.sprite;
         sub_slot_sprite.sprite = default_consumableItem.sprite;
         // 추가 카메라 설정
         screenshotCamera.enabled = false;
