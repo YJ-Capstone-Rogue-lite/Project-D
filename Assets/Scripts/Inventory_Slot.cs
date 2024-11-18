@@ -23,7 +23,9 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 
     public Image inv_accessory_image; // 인벤토리 슬롯의 악세사리 이미지
-    public Image inv_consumableItem_image; //인벤 슬롯의 소비아이템 이미지
+    public Image inv_consumableItem_image1; //인벤 슬롯의 소비아이템1 이미지
+    public Image inv_consumableItem_image2; //인벤 슬롯의 소비아이템2 이미지
+
 
     public TMP_Text item_info_text; //아이템 설명 텍스트
 
@@ -67,7 +69,8 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         // 1. 해당 이미지 객체에 EventTrigger 컴포넌트 추가
         EventTrigger trigger1 = inv_weapon1_image.gameObject.AddComponent<EventTrigger>();
         EventTrigger trigger2 = inv_weapon2_image.gameObject.AddComponent<EventTrigger>();
-        EventTrigger trigger3 = inv_consumableItem_image.gameObject.AddComponent<EventTrigger>();
+        EventTrigger trigger3 = inv_consumableItem_image1.gameObject.AddComponent<EventTrigger>();
+        EventTrigger trigger4 = inv_consumableItem_image2.gameObject.AddComponent<EventTrigger>();
 
         //버프 이벤트 트리거
         // 버프 이미지에 대한 EventTrigger 추가
@@ -93,6 +96,11 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         entry3.callback.AddListener((data) => { OnPointerEnter((PointerEventData)data); });
         trigger3.triggers.Add(entry3);
 
+        EventTrigger.Entry entry4 = new EventTrigger.Entry();
+        entry4.eventID = EventTriggerType.PointerEnter;
+        entry4.callback.AddListener((data) => { OnPointerEnter((PointerEventData)data); });
+        trigger4.triggers.Add(entry4);
+
 
 
         EventTrigger.Entry buffEntry1 = new EventTrigger.Entry();
@@ -109,6 +117,8 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         buffEntry3.eventID = EventTriggerType.PointerEnter;
         buffEntry3.callback.AddListener((data) => { OnPointerEnter((PointerEventData)data); });
         buffTrigger3.triggers.Add(buffEntry3);
+
+
 
         AddEvent(buffTrigger1, EventTriggerType.PointerEnter, (data) => OnPointerEnter((PointerEventData)data));
         AddEvent(buffTrigger1, EventTriggerType.PointerExit, (data) => OnPointerExit((PointerEventData)data));
@@ -169,16 +179,19 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    //무기 추가하고 삭제하는 코드
+   
     public void AddConsumableItem() //소비템을 슬롯에 추가하는 함수
     {
         // 가져온 이미지가 유효한지 확인
         if (ingameUI.ConsumableItem_Img.sprite != null)
         {
             // 인벤토리의 소비슬롯 이미지를 인게임 ui의 소비 슬롯 스프라이트의 값으로 교체
-            inv_consumableItem_image.sprite = ingameUI.ConsumableItem_Img.sprite;
-            inv_consumableItem_image.enabled = true; // 이미지 활성화
+            inv_consumableItem_image1.sprite = ingameUI.ConsumableItem_Img.sprite;
+            inv_consumableItem_image1.enabled = true; // 이미지 활성화
 
+            // 인벤토리의 소비슬롯 이미지를 인게임 ui의 소비 슬롯 스프라이트의 값으로 교체
+            inv_consumableItem_image2.sprite = ingameUI.ConsumableItem_Img_2.sprite;
+            inv_consumableItem_image2.enabled = true; // 이미지 활성화
         }
         else
         {
@@ -201,11 +214,12 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
        
     }
 
-    public void OnPointerEnter(PointerEventData eventData) // 마우스 들어올때 인벤토리 옆에 설명 문구 뜨게 하기
+    public void OnPointerEnter(PointerEventData eventData) // 마우스 들어올 때 인벤토리 옆에 설명 문구 뜨게 하기
     {
         PointerEventData pointerData = (PointerEventData)eventData;
 
-        if (inv_weapon1_image.gameObject == eventData.pointerEnter) //1번슬롯 설명창에 띄우기
+        // 1번 슬롯 설명창에 띄우기
+        if (inv_weapon1_image.gameObject == eventData.pointerEnter)
         {
             item_info_text.text = weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.info;
             Debug.Log("아이템1 설명 텍스트 실행");
@@ -213,7 +227,8 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             item_info_image.sprite = weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
             Debug.Log("아이템1 설명 이미지 실행");
         }
-        else if (weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.weaponType != Weapon.WeaponType.None && inv_weapon2_image.gameObject == eventData.pointerEnter) //2번슬롯 설명창에 띄우기, 2번 무기칸 타입ㅇ none이 아닐때 실행
+        // 2번 슬롯 설명창에 띄우기
+        else if (weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.weaponType != Weapon.WeaponType.None && inv_weapon2_image.gameObject == eventData.pointerEnter)
         {
             item_info_text.text = weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.info;
             Debug.Log("아이템2 설명 텍스트 실행");
@@ -221,17 +236,22 @@ public class Inventory_Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             item_info_image.sprite = weapon_Slot.weaponSlot2.GetComponent<Fire_Test>().weapon.sprite;
             Debug.Log("아이템2 설명 이미지 실행");
         }
-        //인게임 ui의 소비 슬롯의 스프라이트가 존재하고 인게임 ui의 스프라이트가 기본값이 아닐때
-        else if (inv_consumableItem_image.sprite != ingameUI.default_consumableItem.sprite && inv_consumableItem_image.gameObject == eventData.pointerEnter)
+        // 소비슬롯1 설명창에 띄우기
+        else if (inv_consumableItem_image1.sprite != ingameUI.default_consumableItem.sprite && inv_consumableItem_image1.gameObject == eventData.pointerEnter)
         {
-
-            item_info_image.sprite = inv_consumableItem_image.sprite;
-            Debug.Log("소비슬롯 설명 이미지 실행");
-
-            item_info_text.text = item_Interaction.currentConsumable.info;
-            Debug.Log("소비슬롯 설명 텍스트 실행");
-
+            item_info_image.sprite = inv_consumableItem_image1.sprite;  // 소비슬롯1 아이템 이미지
+            item_info_text.text = item_Interaction.currentConsumable1.info;  // 소비슬롯1 아이템 설명
+            Debug.Log("소비슬롯1 설명 텍스트 실행");
         }
+        // 소비슬롯2 설명창에 띄우기
+        else if (inv_consumableItem_image2.sprite != ingameUI.default_consumableItem.sprite && inv_consumableItem_image2.gameObject == eventData.pointerEnter)
+        {
+            item_info_image.sprite = inv_consumableItem_image2.sprite;  // 소비슬롯2 아이템 이미지
+            item_info_text.text = item_Interaction.currentConsumable2.info;  // 소비슬롯2 아이템 설명
+            Debug.Log("소비슬롯2 설명 텍스트 실행");
+        }
+    
+
 
         // 새로 추가한 버프 설명 코드
         else if (Stack_Buff_Attack.gameObject == eventData.pointerEnter) // 공격 버프 설명

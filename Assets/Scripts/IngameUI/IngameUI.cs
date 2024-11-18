@@ -37,6 +37,9 @@ public class IngameUI : MonoBehaviour
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
+    public Image slot1_select_test_img;
+    public Image slot2_select_test_img;
+    public Image ConsumableItem_Img_2;
 
     [Header("코인 카운트")]
     public TMP_Text Coin_Count_Text;
@@ -155,6 +158,7 @@ public class IngameUI : MonoBehaviour
         inv_slot_active_bool = false;
         character = player.GetComponent<Character>();
         ConsumableItem_Img.sprite = default_consumableItem.sprite;
+        ConsumableItem_Img_2.sprite = default_consumableItem.sprite;
         sub_slot_sprite.sprite = default_consumableItem.sprite;
         // 추가 카메라 설정
         screenshotCamera.enabled = false;
