@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Item_interaction : MonoBehaviour
@@ -27,6 +28,8 @@ public class Item_interaction : MonoBehaviour
     private Rigidbody2D rg;
     [SerializeField] private bool canUseItem = false;  // 아이템 사용 가능 여부
     [SerializeField] private Coroutine itemUseCoroutine;  // 코루틴을 추적하기 위한 변수
+
+    public UnityEvent onPeekup;
 
 
 
@@ -197,6 +200,7 @@ public class Item_interaction : MonoBehaviour
         // F 키를 누를 때 픽업을 활성화
         if (Input.GetKeyDown(KeyCode.F))
         {
+            onPeekup?.Invoke();
             pickupActivated = false;
             rg.WakeUp();
 
