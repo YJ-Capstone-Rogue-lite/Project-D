@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 4454255999481653968}
   - component: {fileID: 4004789940300632649}
   - component: {fileID: 5175892632321508333}
-  - component: {fileID: 4095651073736089274}
   - component: {fileID: 5295097327467257503}
   - component: {fileID: 8895389374841265435}
   m_Layer: 0
   m_Name: Thorn Trap_0
-  m_TagString: Hit_radius
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0.1, y: 0.305, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1627914313817666489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4004789940300632649
@@ -109,20 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4095651073736089274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3096463147265758589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7bb0641ad12fa43ab93759c833104c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerTransform: {fileID: 4454255999481653968}
-  damage: 15
 --- !u!114 &5295097327467257503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b2ad4fb55a26342a1f160a72bde031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  damageCollider: {fileID: 1938501566678484545}
+  hit_radius: {fileID: 4907887454559386816}
 --- !u!61 &8895389374841265435
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,6 +131,98 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3096463147265758589}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.029354006}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.7}
+    newSize: {x: 0.64, y: 0.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.6412919}
+  m_EdgeRadius: 0
+--- !u!1 &4907887454559386816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627914313817666489}
+  - component: {fileID: 8673088634782141338}
+  - component: {fileID: 1938501566678484545}
+  m_Layer: 0
+  m_Name: Hit_Collider
+  m_TagString: Hit_radius
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1627914313817666489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907887454559386816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4454255999481653968}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8673088634782141338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907887454559386816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7bb0641ad12fa43ab93759c833104c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerTransform: {fileID: 4454255999481653968}
+  damage: 15
+--- !u!61 &1938501566678484545
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907887454559386816}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
