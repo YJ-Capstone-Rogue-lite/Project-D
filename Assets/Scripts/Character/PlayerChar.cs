@@ -215,7 +215,7 @@ public class PlayerChar : Character
 
     public void player_Roll()
     {
-        if (Input.GetButtonDown("Roll") && m_stamina > 0 &&
+        if ((Input.GetButtonDown("Roll") || Input.GetKeyDown(KeyCode.Mouse1)) && m_stamina > 0 &&
             ((player_Rb.velocity.x > 0 || player_Rb.velocity.x < 0) 
             || (player_Rb.velocity.y > 0 || player_Rb.velocity.y < 0)))
         {
