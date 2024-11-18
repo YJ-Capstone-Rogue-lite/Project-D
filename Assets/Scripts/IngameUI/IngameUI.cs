@@ -37,6 +37,9 @@ public class IngameUI : MonoBehaviour
     [Header("소비 슬롯 이미지")]
     public Image ConsumableItem_Img; //소비 슬롯 이미지
     public ConsumableItem default_consumableItem; // 소비슬롯이 비어있을때 사용할 이미지
+    public Image slot1_select_test_img;
+    public Image slot2_select_test_img;
+    public Image ConsumableItem_Img_2;
 
     [Header("코인 카운트")]
     public TMP_Text Coin_Count_Text;

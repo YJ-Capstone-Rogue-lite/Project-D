@@ -282,7 +282,7 @@ public class Item_interaction : MonoBehaviour
     private void StoreItemInSlot1()
     {
         // 슬롯 1에 아이템 저장
-        if (currentConsumable1 != item_PickUp.consumable && currentConsumable1 != null)
+        if (currentConsumable1 != null)
         {
             PickUp_Item_Change_Slot_1();
             Debug.Log("픽업 아이템 재생성함");
@@ -307,7 +307,7 @@ public class Item_interaction : MonoBehaviour
     private void StoreItemInSlot2()
     {
         // 슬롯 2에 아이템 저장
-        if (currentConsumable2 != item_PickUp.consumable && currentConsumable2 != null)
+        if (currentConsumable2 != null)
         {
             PickUp_Item_Change_Slot_2();
             Debug.Log("픽업 아이템 재생성함");
