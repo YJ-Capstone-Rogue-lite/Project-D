@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
 
 
 
-    public enum TEST { CHECK, CREATE, SAVE, LOAD, LANK_UP };
+    public enum TEST { CHECK, CREATE, SAVE, LOAD, RANK_UP };
     public string id;
     public string pw;
 
@@ -131,9 +131,9 @@ public class DataManager : MonoBehaviour
         return temp;
     }
 
-    public void LankUp()
+    public void RankUp()
     {
-        StartWebRequest(TEST.LANK_UP, (x) => {
+        StartWebRequest(TEST.RANK_UP, (x) => {
             if(x.Equals("true"))
             {
                 print("랭킹 등록 완료");
@@ -176,8 +176,8 @@ public class DataManager : MonoBehaviour
             case TEST.LOAD:
                 url += "DataLoad.jsp";
             break;
-            case TEST.LANK_UP:
-                url += "LankUp.jsp";
+            case TEST.RANK_UP:
+                url += "RankUp.jsp";
             break;
         }
 

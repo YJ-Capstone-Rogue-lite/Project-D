@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,7 +34,6 @@ public class GameManager : MonoBehaviour
     private static AsyncOperation nextAo;
     private static Scene loadScene;
     public static float loadProgress { get => nextAo.progress; }
-    public static bool iscompleted;
 
     private void Awake()
     {
@@ -108,18 +108,16 @@ public class GameManager : MonoBehaviour
         var loadAo = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
         loadAo.completed += (ao) => {
             loadScene = SceneManager.GetSceneByName("Loading");
-            iscompleted = false;
-            SceneManager.UnloadSceneAsync(currentScene);
-            nextAo = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            nextAo.completed += (nao) => {
-                SceneManager.UnloadSceneAsync(loadScene);
-                // StartCoroutine(WaitForLoadScene(loadScene));
+            var cao = SceneManager.UnloadSceneAsync(currentScene);
+            cao.completed += async (cao) => {
+                nextAo = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+                nextAo.allowSceneActivation = false;
+                await Task.Delay(3000);
+                nextAo.allowSceneActivation = true;
+                nextAo.completed += (nao) => {
+                    SceneManager.UnloadSceneAsync(loadScene);
+                };
             };
         };
     }
-    // IEnumerator WaitForLoadScene(Scene load)
-    // {
-    //     yield return new WaitUntil(() => iscompleted );
-    //     SceneManager.UnloadSceneAsync(load);
-    // }
 }

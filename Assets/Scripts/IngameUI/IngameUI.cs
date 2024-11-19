@@ -473,14 +473,14 @@ public class IngameUI : MonoBehaviour
         Clear_Screen_Img.texture = screenShot;
 
         DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
-        DataManager.Instance.data.clearTime = Time.time;
-        DataManager.Instance.LankUp();
+        DataManager.Instance.data.clearTime = GameManager.Instance.timer;
     }
 
     public void GoTitle()
     {
         DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
         GameManager.Instance.EndGame();
+        DataManager.Instance.RankUp();
         GameManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
         Clear_Screen_UI.SetActive(false);
