@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PeekupObserver : MonoBehaviour
+public class PeekupObserver : EventObserver<Item_interaction>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public override void AddEvent() => target.onPeekup.AddListener(Action);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void RemoveEvent() => target.onPeekup.RemoveListener(Action);
 }
