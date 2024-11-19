@@ -296,7 +296,7 @@ public class PlayerChar : Character
             SaveData();
             Debug.Log("플레이어 사망");
         }
-        else Debug.Log(m_health + ", " + m_shield);
+        // else Debug.Log(m_health + ", " + m_shield);
     }
 
     public void player_reset()

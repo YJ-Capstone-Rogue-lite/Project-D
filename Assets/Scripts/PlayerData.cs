@@ -46,4 +46,6 @@ public class PlayerData
 
     //플레이어가 획득한 코인
     public int player_Coin_Count;
+
+    public float clearTime;
 }

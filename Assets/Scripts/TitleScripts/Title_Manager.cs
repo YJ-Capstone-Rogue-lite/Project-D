@@ -92,7 +92,8 @@ public class Title_Manager : LoginData
         }
         else
         {
-            play_inGame(); //없을 경우 씬 변경
+            DataManager.Instance.LoadGameData((x) => SceneManager.LoadScene("Tutorial_Lobby"));
+            // play_inGame(); //없을 경우 씬 변경
         }
     }
 
@@ -137,7 +138,8 @@ public class Title_Manager : LoginData
         }
         else if(popup_Text.text == "저장된 데이터가있습니다 데이터를 지우고 계속 하시겠습니까?")
         {
-            play_inGame();
+            DataManager.Instance.LoadGameData((x) => SceneManager.LoadScene("Tutorial_Lobby"));
+            // play_inGame();
         }
     }
 

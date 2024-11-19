@@ -471,11 +471,19 @@ public class IngameUI : MonoBehaviour
         // 클리어 UI 표시 및 이미지 설정
         Clear_Screen_UI.SetActive(true);
         Clear_Screen_Img.texture = screenShot;
+
+        DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
+        DataManager.Instance.data.clearTime = Time.time;
+        DataManager.Instance.LankUp();
     }
 
     public void GoTitle()
     {
+<<<<<<< Updated upstream
         GameManager.Instance.EndGame();
+=======
+        DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
+>>>>>>> Stashed changes
         SceneManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
         Clear_Screen_UI.SetActive(false);
