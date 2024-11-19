@@ -53,7 +53,7 @@ public class Potal : RoomObjectTrigger
         {
             Debug.Log("넘어간다~");
             OnWarp?.Invoke();
-            SceneManager.LoadScene(nextFloor);
+            GameManager.LoadScene(nextFloor);
         }
     }
 }

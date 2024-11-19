@@ -481,7 +481,7 @@ public class IngameUI : MonoBehaviour
     {
         DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
         GameManager.Instance.EndGame();
-        SceneManager.LoadScene("Lobby");
+        GameManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
         Clear_Screen_UI.SetActive(false);
         PlayerChar.single.player_reset();

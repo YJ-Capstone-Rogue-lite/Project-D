@@ -72,13 +72,13 @@ public class Item_interaction : MonoBehaviour
 
     private IEnumerator FindActionText()
     {
-        Debug.Log("액션 텍스트 찾는중");
+        // Debug.Log("액션 텍스트 찾는중");
         while (true)
         {
             // actionText가 null이면 찾으려 시도
             if (actionText == null)
             {
-                GameObject textObject = GameObject.Find("actionText");
+                GameObject textObject = GameObject.Find("actionText"); // 쓰지마십쇼
                 if (textObject != null)
                 {
                     actionText = textObject.GetComponent<TMP_Text>(); // 적절한 컴포넌트 타입을 사용해야 함

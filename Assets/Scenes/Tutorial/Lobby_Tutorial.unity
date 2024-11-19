@@ -11003,7 +11003,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.8
+  orthographic size: 4.2
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16926,6 +16926,9 @@ MonoBehaviour:
   mini_camera_transform: {x: 0, y: 0, z: 0}
   playerIcon: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2674dac3e4e4e0e4492a1d7751cb4c8e, type: 3}
+  timer: 0
+  gamestart: 0
+  time: {fileID: 973851843}
 --- !u!114 &1643453016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21788,6 +21791,7 @@ GameObject:
   - component: {fileID: 2108361755}
   - component: {fileID: 2108361759}
   - component: {fileID: 2108361760}
+  - component: {fileID: 2108361761}
   m_Layer: 11
   m_Name: Portal_0
   m_TagString: Untagged
@@ -21950,6 +21954,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2108361761}
+        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+        m_MethodName: CallStartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1835515108}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2108361760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21964,6 +21992,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetGo:
   - {fileID: 1409374880}
+--- !u!114 &2108361761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108361754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300d1df0c68e6a4d8cfb3e70a883c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2125941669
 GameObject:
   m_ObjectHideFlags: 0

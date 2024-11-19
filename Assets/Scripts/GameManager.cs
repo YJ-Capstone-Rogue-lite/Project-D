@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -29,6 +30,11 @@ public class GameManager : MonoBehaviour
     public bool gamestart = false;
     public TextMeshProUGUI time;
 
+    private static AsyncOperation nextAo;
+    private static Scene loadScene;
+    public static float loadProgress { get => nextAo.progress; }
+    public static bool iscompleted;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,11 +59,10 @@ public class GameManager : MonoBehaviour
     //미니맵에 표시되는 카메라
     void Update()
     {
-        Debug.Log(gamestart);
+        // Debug.Log(gamestart);
         if (!gamestart) return;
         timer += Time.deltaTime;
         time.text = SetTime((int)timer);
-        Debug.Log(gamestart);
         if (Room.focusedMinimapChar == null)
             return;
 
@@ -96,4 +101,25 @@ public class GameManager : MonoBehaviour
         Instance.gamestart = false;
         Instance.time.text = "";
     }
+
+    public static void LoadScene(string sceneName)
+    {
+        var currentScene = SceneManager.GetActiveScene();
+        var loadAo = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Additive);
+        loadAo.completed += (ao) => {
+            loadScene = SceneManager.GetSceneByName("Loading");
+            iscompleted = false;
+            SceneManager.UnloadSceneAsync(currentScene);
+            nextAo = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            nextAo.completed += (nao) => {
+                SceneManager.UnloadSceneAsync(loadScene);
+                // StartCoroutine(WaitForLoadScene(loadScene));
+            };
+        };
+    }
+    // IEnumerator WaitForLoadScene(Scene load)
+    // {
+    //     yield return new WaitUntil(() => iscompleted );
+    //     SceneManager.UnloadSceneAsync(load);
+    // }
 }

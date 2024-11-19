@@ -69,6 +69,22 @@ public partial class FloorLoader : MonoBehaviour
     bool loadStarted;
     float time;
     Coroutine coroutine;
+
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
+    void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     void Start()
     {
         roomContainer = InitRoomContainer.roomContainer;
@@ -146,7 +162,8 @@ public partial class FloorLoader : MonoBehaviour
             {
                 loadStarted = false;
                 StopCoroutine(coroutine);
-                throw new System.Exception("Floor Loader Time Out");
+                Debug.LogError("Floor Load Time Out");
+                Application.Quit();
             }
         }
     }
@@ -168,6 +185,8 @@ public partial class FloorLoader : MonoBehaviour
         CreateSpecialRoom();
         CreateRooms();
         DoorPP();
+
+        GameManager.iscompleted = true;
 
         //player.transform.position = new Vector3((float)(startPoint.Y*roomSize_Width)+roomSize_Width/2, (float)-(startPoint.X*roomSize_Height)-(roomSize_Height/2));
         // Destroy(this);
