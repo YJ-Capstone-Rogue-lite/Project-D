@@ -15,7 +15,7 @@ public class MonsterIndicator : MonoBehaviour
 
     void Start()
     {
-        camera_screen_vec = Camera.main.WorldToScreenPoint(transform.position);
+        camera_screen_vec = new Vector2(Screen.width / 2, Screen.height / 2);
         camera_vec = Camera.main.WorldToViewportPoint(transform.position); // 0f ~ 1f
 
         Vector2 vecRU = new Vector2(Screen.width, Screen.height) - camera_screen_vec;

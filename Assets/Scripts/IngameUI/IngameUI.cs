@@ -574,7 +574,6 @@ public class IngameUI : MonoBehaviour
                 // 텍스트 변경 후 UI 강제 갱신
                 activate_Magazine.ForceMeshUpdate();
 
-                Debug.Log("활성화된 슬롯: 1번, 장탄수: " + currentMagazineCapacity);
             }
             else if (activeSlot == Weapon_Slot.weaponSlot2)
             {
@@ -585,7 +584,7 @@ public class IngameUI : MonoBehaviour
                 // 텍스트 변경 후 UI 강제 갱신
                 activate_Magazine.ForceMeshUpdate();
 
-                Debug.Log("활성화된 슬롯: 2번, 장탄수: " + currentMagazineCapacity);
+
             }
             else
             {
