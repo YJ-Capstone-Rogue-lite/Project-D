@@ -131,14 +131,12 @@ public class PlayerChar : Character
                 if (hit[i].collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
                 {
                     // 레이캐스트가 "Wall" 레이어에 닿은 경우
-                    Debug.Log("Wall에 닿음");
                     bodyRender.sortingOrder = -1;
                     bodyRender.sortingLayerName = "Wall";
                 }
                 else if (hit[i].collider.gameObject.layer == LayerMask.NameToLayer("Object"))
                 {
                     // 레이캐스트가 "Object" 레이어에 닿은 경우
-                    Debug.Log("Object에 닿음");
                     bodyRender.sortingOrder = -1;
                     bodyRender.sortingLayerName = "Object";
                 }

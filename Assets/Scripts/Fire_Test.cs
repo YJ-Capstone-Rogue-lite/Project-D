@@ -40,7 +40,6 @@ public class Fire_Test : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         weapon = default_weapon;
-        Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
         // Reload_anim 스크립트 가져오기
         shot_animator = GetComponentsInChildren<Animator>();
@@ -51,7 +50,6 @@ public class Fire_Test : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         weapon = default_weapon;
-        Debug.Log(default_weapon.name + " 로 기본 무기 변경");
         weapon_Slot.UpdateMagazineCapacity(); // 게임 시작시 한번 장탄수들 초기화
         // Reload_anim 스크립트 가져오기
         shot_animator = GetComponentsInChildren<Animator>();
@@ -128,21 +126,18 @@ public class Fire_Test : MonoBehaviour
         {
             var temp = Instantiate(Handgun_bulletPrefebs, PistolfiringPoint.position, PistolfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
-            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
             shot_animator[3].SetTrigger("Shot");
         }
         else if (weapon.weaponType == Weapon.WeaponType.Assaultt_Rifle)
         {
             var temp = Instantiate(AR_bulletPrefebs, ARfiringPoint.position, ARfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
-            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
             shot_animator[1].SetTrigger("Shot");
         }
         else
         {
             var temp = Instantiate(SR_bulletPrefebs, SRfiringPoint.position, SRfiringPoint.rotation); // 총알 생성
             temp.GetComponent<Bullet>().setup(weapon);
-            Debug.Log("총을 쏨! " + "무기 이름 : " + weapon.name + " " + weapon.Damage + " 데미지 " + " 아이템 번호: " + weapon.number + " 연사속도: " + weapon.Fire_rate + " 사거리 : " + weapon.bullet_range + " 무기 타입 : " + weapon.weaponType);
             shot_animator[0].SetTrigger("Shot");
         }
     }

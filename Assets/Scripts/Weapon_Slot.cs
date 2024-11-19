@@ -202,7 +202,6 @@ public class Weapon_Slot : MonoBehaviour
         if (slot == weaponSlot1)
         {
             magazineCapacitySlot1 -= 1;
-            Debug.Log("무기 슬롯 1의 장탄수 감소: " + magazineCapacitySlot1);
 
             if (magazineCapacitySlot1 <= 0)
             {
@@ -214,7 +213,6 @@ public class Weapon_Slot : MonoBehaviour
         else if (slot == weaponSlot2)
         {
             magazineCapacitySlot2 -= 1;
-            Debug.Log("무기 슬롯 2의 장탄수 감소: " + magazineCapacitySlot2);
 
             if (magazineCapacitySlot2 <= 0)
             {
@@ -227,7 +225,7 @@ public class Weapon_Slot : MonoBehaviour
         }
     }
 
-
+    
 
 
     // 재장전 메서드

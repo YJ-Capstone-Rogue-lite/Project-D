@@ -7446,6 +7446,9 @@ MonoBehaviour:
   mini_camera_transform: {x: 0, y: 0, z: 0}
   playerIcon: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2674dac3e4e4e0e4492a1d7751cb4c8e, type: 3}
+  timer: 0
+  gamestart: 0
+  time: {fileID: 1390370428}
 --- !u!114 &1000185217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18209,6 +18212,7 @@ GameObject:
   - component: {fileID: 2108361756}
   - component: {fileID: 2108361755}
   - component: {fileID: 2108361759}
+  - component: {fileID: 2108361760}
   m_Layer: 0
   m_Name: Portal_0
   m_TagString: Untagged
@@ -18358,7 +18362,31 @@ MonoBehaviour:
   info: "\uD0D1 \uC785\uC7A5"
   OnWarp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2108361760}
+        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+        m_MethodName: CallStartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2108361760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108361754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a300d1df0c68e6a4d8cfb3e70a883c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2110077644
 GameObject:
   m_ObjectHideFlags: 0

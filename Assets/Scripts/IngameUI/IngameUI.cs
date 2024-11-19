@@ -199,13 +199,11 @@ public class IngameUI : MonoBehaviour
         if (Weapon_Slot == null)
         {
             Weapon_Slot = PlayerChar.single.GetComponent<Weapon_Slot>();
-            Debug.Log("웨폰슬롯 찾아서 넣음");
 
         }
         if (character == null)
         {
             character = GameObject.FindWithTag("Player").GetComponent<Character>();
-            Debug.Log("캐릭터 찾아서 넣음");
         }
         if (startCoroutine != null) return;
         main_slot_sprite.sprite = Weapon_Slot.weaponSlot1.GetComponent<Fire_Test>().weapon.sprite;
@@ -269,7 +267,7 @@ public class IngameUI : MonoBehaviour
             OnPlayerDeath();
             IngameTime(false);
             TitleText.text = "당신은 사망하셨습니다";
-            playtimeText.text = Time.time.ToString("F2");
+            playtimeText.text = GameManager.Instance.time.text;
             destory_enemy_count.text = enemy_count.ToString();
         }
 
@@ -278,7 +276,7 @@ public class IngameUI : MonoBehaviour
             On_Player_Clear();
             IngameTime(false);
             Clear_TitleText.text = "모든 층을 클리어하셨습니다!";
-            Clear_playtimeText.text = Time.time.ToString("F2");
+            Clear_playtimeText.text = GameManager.Instance.time.text;
             Clear_destory_enemy_count.text = enemy_count.ToString();
             
         }
@@ -477,6 +475,7 @@ public class IngameUI : MonoBehaviour
 
     public void GoTitle()
     {
+        GameManager.Instance.EndGame();
         SceneManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
         Clear_Screen_UI.SetActive(false);
