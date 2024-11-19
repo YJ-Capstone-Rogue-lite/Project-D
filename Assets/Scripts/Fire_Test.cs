@@ -111,6 +111,7 @@ public class Fire_Test : MonoBehaviour
                 }
 
                 weapon_Slot.DecreaseMagazineCapacity(weapon_Slot.activeWeaponSlot); // 쏠 때마다 장탄수 값 1 감소
+
             }
         }
         else

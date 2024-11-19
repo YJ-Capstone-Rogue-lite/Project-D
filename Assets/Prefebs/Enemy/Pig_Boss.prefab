@@ -497,7 +497,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -632554699
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 453745229, guid: 37041fe45a2d3bd4f91d1851bec7105d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -571,6 +571,9 @@ MonoBehaviour:
   enemy_hp_bar: {fileID: 8125213795990888417}
   item_Drop: {fileID: 7101870726016136037}
   enemyTag: {fileID: 6173313241963185773}
+  onEnenyDie:
+    m_PersistentCalls:
+      m_Calls: []
   boss_Skil_count: 0
   castingTime: 2
   casting_Bar: {fileID: 5783211037973561508}

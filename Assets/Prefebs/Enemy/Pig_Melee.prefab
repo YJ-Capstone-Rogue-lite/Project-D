@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 77336819094904402}
   m_Layer: 10
   m_Name: Pig_Melee
-  m_TagString: Boss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,7 +495,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -632554699
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 361543370, guid: 3261870a8b21d88448a89128ed21ec9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -583,6 +583,7 @@ MonoBehaviour:
   followPlayer: 1
   find_Playersecond: 5
   attackRange: 1
+  playerFindRange: 0
   damage: 10
   enemy_animator: {fileID: 0}
   enemy_rb: {fileID: 0}
@@ -595,6 +596,9 @@ MonoBehaviour:
   enemy_hp_bar: {fileID: 0}
   item_Drop: {fileID: 0}
   enemyTag: {fileID: 0}
+  onEnenyDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &77336819094904402
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
