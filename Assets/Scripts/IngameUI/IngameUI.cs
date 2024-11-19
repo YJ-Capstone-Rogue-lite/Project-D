@@ -479,11 +479,8 @@ public class IngameUI : MonoBehaviour
 
     public void GoTitle()
     {
-<<<<<<< Updated upstream
-        GameManager.Instance.EndGame();
-=======
         DataManager.Instance.SaveGameData(PlayerChar.single.playerdata);
->>>>>>> Stashed changes
+        GameManager.Instance.EndGame();
         SceneManager.LoadScene("Lobby");
         deathScreenUI.SetActive(false);
         Clear_Screen_UI.SetActive(false);
