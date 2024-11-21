@@ -33,9 +33,12 @@ public class MonsterIndicator : MonoBehaviour
         Vector2 targetVec = objScreenVec - camera_screen_vec;
         targetVec = targetVec.normalized;
 
+
         float targetAngle = Vector2.Angle(targetVec, Vector2.up); // 0 ~ 180
         int sign = Vector3.Cross(targetVec, Vector2.up).z < 0 ? -1 : 1;
         targetAngle *= sign; // -180 ~ 180
+
+        indicator.rectTransform.rotation = Quaternion.Euler(0, 0, targetAngle); // 회전 적용
 
         float xPrime = objVec.x - screenHalfHeight;
         float yPrime = objVec.y - screenHalfWidth;
@@ -47,8 +50,8 @@ public class MonsterIndicator : MonoBehaviour
 
         if (-angleRU < targetAngle && angleRU >= targetAngle) // UP 쪽에 있을 때
         {
-            anchorMinY = 0.94f;
-            anchorMaxY = 0.94f;
+            anchorMinY = 0.84f;
+            anchorMaxY = 0.84f;
             // y anchor 지정
 
             float posX = (Mathf.Abs(xPrime) * screenHalfHeight) / yPrime;
@@ -58,8 +61,8 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinX = screenHalfWidth + posX;
                 anchorMaxX = screenHalfWidth + posX;
 
-                if (anchorMinX > 0.965f) anchorMinX = 0.965f;
-                if (anchorMaxX > 0.965f) anchorMaxX = 0.965f;
+                if (anchorMinX > 0.865f) anchorMinX = 0.865f;
+                if (anchorMaxX > 0.865f) anchorMaxX = 0.865f;
                 // 이미지가 넘어가는 걸 방지
             }
             else // Left
@@ -67,20 +70,22 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinX = screenHalfWidth - posX;
                 anchorMaxX = screenHalfWidth - posX;
 
-                if (anchorMinX < 0.035f) anchorMinX = 0.035f;
-                if (anchorMaxX < 0.035f) anchorMaxX = 0.035f;
+                if (anchorMinX < 0.135f) anchorMinX = 0.135f;
+                if (anchorMaxX < 0.135f) anchorMaxX = 0.135f;
                 // 이미지가 넘어가는 걸 방지
             }
 
             indicator.rectTransform.anchorMin = new Vector2(anchorMinX, anchorMinY);
             indicator.rectTransform.anchorMax = new Vector2(anchorMaxX, anchorMaxY);
+            indicator.rectTransform.rotation = Quaternion.Euler(0, 0, -targetAngle); // 회전 적용
+
             // indicator의 anchor 지정
         }
-        
+
         else if (angleRU < targetAngle && 180 - angleRU >= targetAngle) // RIGHT 쪽에 있을 떄
         {
-            anchorMinX = 0.965f;
-            anchorMaxX = 0.965f;
+            anchorMinX = 0.865f;
+            anchorMaxX = 0.865f;
             // x anchor 지정
 
             float posY = (screenHalfWidth * Mathf.Abs(yPrime)) / xPrime;
@@ -90,8 +95,8 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinY = screenHalfHeight + posY;
                 anchorMaxY = screenHalfHeight + posY;
 
-                if (anchorMinY > 0.94f) anchorMinY = 0.94f;
-                if (anchorMaxY > 0.94f) anchorMaxY = 0.94f;
+                if (anchorMinY > 0.84f) anchorMinY = 0.84f;
+                if (anchorMaxY > 0.84f) anchorMaxY = 0.84f;
                 // 이미지가 넘어가는 걸 방지
             }
             else // Down
@@ -99,20 +104,22 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinY = screenHalfHeight - posY;
                 anchorMaxY = screenHalfHeight - posY;
 
-                if (anchorMinY < 0.04f) anchorMinY = 0.04f;
-                if (anchorMaxY < 0.04f) anchorMaxY = 0.04f;
+                if (anchorMinY < 0.14f) anchorMinY = 0.14f;
+                if (anchorMaxY < 0.14f) anchorMaxY = 0.14f;
                 // 이미지가 넘어가는 걸 방지
             }
 
             indicator.rectTransform.anchorMin = new Vector2(anchorMinX, anchorMinY);
             indicator.rectTransform.anchorMax = new Vector2(anchorMaxX, anchorMaxY);
+            indicator.rectTransform.rotation = Quaternion.Euler(0, 0, -targetAngle); // 회전 적용
+
             // indicator의 anchor 지정
         }
         else if ((180 - angleRU < targetAngle && 180 > targetAngle)
             || (-180 <= targetAngle && angleRU - 180 >= targetAngle)) // DOWN 쪽에 있을 때
         {
-            anchorMinY = 0.04f;
-            anchorMaxY = 0.04f;
+            anchorMinY = 0.16f;
+            anchorMaxY = 0.16f;
 
             float posX = (Mathf.Abs(xPrime) * screenHalfHeight) / -yPrime;
 
@@ -121,25 +128,27 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinX = screenHalfWidth + posX;
                 anchorMaxX = screenHalfWidth + posX;
 
-                if (anchorMinX > 0.965f) anchorMinX = 0.965f;
-                if (anchorMaxX > 0.965f) anchorMaxX = 0.965f;
+                if (anchorMinX > 0.865f) anchorMinX = 0.865f;
+                if (anchorMaxX > 0.865f) anchorMaxX = 0.865f;
             }
             else // Left
             {
                 anchorMinX = screenHalfWidth - posX;
                 anchorMaxX = screenHalfWidth - posX;
 
-                if (anchorMinX < 0.035f) anchorMinX = 0.035f;
-                if (anchorMaxX < 0.035f) anchorMaxX = 0.035f;
+                if (anchorMinX < 0.135f) anchorMinX = 0.135f;
+                if (anchorMaxX < 0.135f) anchorMaxX = 0.135f;
             }
 
             indicator.rectTransform.anchorMin = new Vector2(anchorMinX, anchorMinY);
             indicator.rectTransform.anchorMax = new Vector2(anchorMaxX, anchorMaxY);
+            indicator.rectTransform.rotation = Quaternion.Euler(0, 0, -targetAngle); // 회전 적용
+
         }
         else if (angleRU - 180 < targetAngle && -angleRU >= targetAngle) // LEFT 쪽에 있을 때
         {
-            anchorMinX = 0.035f;
-            anchorMaxX = 0.035f;
+            anchorMinX = 0.135f;
+            anchorMaxX = 0.135f;
 
             float posY = (screenHalfWidth * Mathf.Abs(yPrime)) / -xPrime;
 
@@ -148,19 +157,21 @@ public class MonsterIndicator : MonoBehaviour
                 anchorMinY = screenHalfWidth + posY;
                 anchorMaxY = screenHalfWidth + posY;
 
-                if (anchorMinY > 0.94f) anchorMinY = 0.94f;
-                if (anchorMaxY > 0.94f) anchorMaxY = 0.94f;
+                if (anchorMinY > 0.84f) anchorMinY = 0.84f;
+                if (anchorMaxY > 0.84f) anchorMaxY = 0.84f;
             }
             else // Down
             {
                 anchorMinY = screenHalfWidth - posY;
                 anchorMaxY = screenHalfWidth - posY;
 
-                if (anchorMinY < 0.04f) anchorMinY = 0.04f;
-                if (anchorMaxY < 0.04f) anchorMaxY = 0.04f;
+                if (anchorMinY < 0.14f) anchorMinY = 0.14f;
+                if (anchorMaxY < 0.14f) anchorMaxY = 0.14f;
             }
             indicator.rectTransform.anchorMin = new Vector2(anchorMinX, anchorMinY);
             indicator.rectTransform.anchorMax = new Vector2(anchorMaxX, anchorMaxY);
+            indicator.rectTransform.rotation = Quaternion.Euler(0, 0, -targetAngle); // 회전 적용
+
         }
 
         indicator.rectTransform.anchoredPosition = new Vector3(0, 0);

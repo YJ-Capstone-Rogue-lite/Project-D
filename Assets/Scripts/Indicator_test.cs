@@ -9,7 +9,7 @@ public class Indicator_test : MonoBehaviour
     public GameObject indicatorObj;
 
     // 인디케이터 객체들이 배치될 캔버스
-    public GameObject indicatorCanvas;
+    //public GameObject indicatorCanvas;
 
     // 생성된 실제 인디케이터 객체를 저장할 변수
     private GameObject myIndicatorObj;
@@ -20,18 +20,19 @@ public class Indicator_test : MonoBehaviour
     // 메인 카메라 객체, 뷰포트 계산에 사용
     private Camera mainCamera;
 
+    public GameObject Indicator_generate;
     void Start()
     {
         // 시작 시 메인 카메라 참조를 가져옴
         mainCamera = Camera.main;
 
         // 만약 indicatorCanvas가 지정되지 않았다면, "Canvas"라는 이름으로 찾아서 할당
-        if (indicatorCanvas == null)
-            indicatorCanvas = GameObject.Find("Canvas");
+        if (Indicator_generate == null)
+            Indicator_generate = GameObject.Find("Indicator_generate");
 
         // Canvas가 여전히 null이면 오류 메시지 출력
-        if (indicatorCanvas == null)
-            Debug.LogError("IndicatorCanvas를 찾을 수 없습니다. Canvas가 존재하거나 이름이 'Canvas'인지 확인하세요.");
+        if (Indicator_generate == null)
+            Debug.LogError("Indicator_generate 찾을 수 없습니다. Indicator_generate 존재하거나 이름이 'Indicator_generate'인지 확인하세요.");
     }
 
     void Update()
@@ -99,7 +100,7 @@ public class Indicator_test : MonoBehaviour
     {
         // 인디케이터 객체를 생성하고 캔버스의 자식으로 설정
         myIndicatorObj = Instantiate(indicatorObj);
-        myIndicatorObj.transform.SetParent(indicatorCanvas.transform, false);
+        myIndicatorObj.transform.SetParent(Indicator_generate.transform, false);
 
         // 인디케이터가 존재함을 나타내는 플래그 설정
         hasIndicator = true;
