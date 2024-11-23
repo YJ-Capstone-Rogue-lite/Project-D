@@ -514,8 +514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterIndicator: {fileID: 0}
-  indicatorObj: {fileID: 0}
-  indicatorCanvas: {fileID: 0}
+  indicatorObj: {fileID: 7530173701283539612, guid: f62fe9062d51e3b4fb92ca352028f683, type: 3}
+  Indicator_generate: {fileID: 0}
 --- !u!1 &8474169143193447083
 GameObject:
   m_ObjectHideFlags: 0
