@@ -94,8 +94,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.33333334
+    functionName: melee_pig_boss_charging_sound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2
-    functionName: PerformShockWave
+    functionName: melee_pig_boss_charge_attack_sound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

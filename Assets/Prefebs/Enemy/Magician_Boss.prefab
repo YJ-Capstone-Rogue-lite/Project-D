@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 3190513805663615319}
   - component: {fileID: 1464800805216949786}
   - component: {fileID: 4280437921974509217}
+  - component: {fileID: 1148230800110162383}
   m_Layer: 12
   m_Name: Magician_Boss
   m_TagString: Boss
@@ -524,6 +525,18 @@ MonoBehaviour:
   onEnenyDie:
     m_PersistentCalls:
       m_Calls: []
+  range_pig_attack: {fileID: 0}
+  range_pig_die: {fileID: 0}
+  melee_boss_attack: {fileID: 0}
+  melee_boss_die: {fileID: 0}
+  melee_boss_charging: {fileID: 0}
+  melee_boss_charge_attack: {fileID: 0}
+  magic_boss_metor: {fileID: 8300000, guid: 64dbe1b512a48384daee712edffa758c, type: 3}
+  magic_boss_die: {fileID: 8300000, guid: c1befb9e2b3b9b14cb3319a6ebb17a27, type: 3}
+  magic_boss_teleport_in: {fileID: 8300000, guid: 07f5bb6bfbaeae94895890b90895eeca, type: 3}
+  magic_boss_teleport_out: {fileID: 8300000, guid: 5161028736894da4f8ccd5a6c18f76ca, type: 3}
+  magic_boss_fire_ball_charging: {fileID: 8300000, guid: 99dcbeb679a706a4c8ae17e93d048802, type: 3}
+  magic_boss_fire_ball_attack: {fileID: 8300000, guid: 7314ac57db157b646ab567740f20a29f, type: 3}
   setTP: 0
   attackCount: 0
   castingTime: 3
@@ -556,6 +569,102 @@ MonoBehaviour:
   monsterIndicator: {fileID: 0}
   indicatorObj: {fileID: 7530173701283539612, guid: f62fe9062d51e3b4fb92ca352028f683, type: 3}
   Indicator_generate: {fileID: 0}
+--- !u!82 &1148230800110162383
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8572831652317543832, guid: ef4706b9e55b1f5478bfba24232268a4, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7359668736518700242
 PrefabInstance:
   m_ObjectHideFlags: 0
