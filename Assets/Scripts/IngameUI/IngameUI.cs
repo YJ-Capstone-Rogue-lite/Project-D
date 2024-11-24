@@ -505,6 +505,7 @@ public class IngameUI : MonoBehaviour
 
     public void Close_BuffBG()
     {
+        SoundManager.PlaySFX(buttonSound);
         buff_BG.SetActive(false);  // BuffBG를 비활성화
         IngameTime(true);
     }
@@ -514,6 +515,7 @@ public class IngameUI : MonoBehaviour
     public void Atk_UpgradeBtn()
     {
         int needcoin = buffsystem.ATK_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
@@ -526,6 +528,7 @@ public class IngameUI : MonoBehaviour
     public void HP_UpgradeBtn()
     {
         int needcoin = buffsystem.HP_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
@@ -539,7 +542,9 @@ public class IngameUI : MonoBehaviour
 
     public void Movement_UpgradeBtn()
     {
+
         int needcoin = buffsystem.MoveMent_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
