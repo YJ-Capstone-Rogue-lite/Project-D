@@ -78,7 +78,8 @@ public class Item_interaction : MonoBehaviour
             // actionText가 null이면 찾으려 시도
             if (actionText == null)
             {
-                GameObject textObject = GameObject.Find("actionText"); // 쓰지마십쇼
+                // GameObject textObject = GameObject.Find("actionText"); // 쓰지마십쇼
+                GameObject textObject = ingameUI.action_text;
                 if (textObject != null)
                 {
                     actionText = textObject.GetComponent<TMP_Text>(); // 적절한 컴포넌트 타입을 사용해야 함
