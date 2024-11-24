@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,7 +29,8 @@ public class Item_interaction : MonoBehaviour
     [SerializeField] private bool canUseItem = false;  // 아이템 사용 가능 여부
     [SerializeField] private Coroutine itemUseCoroutine;  // 코루틴을 추적하기 위한 변수
 
-
+    public AudioClip coinSoundClip; // Unity 에디터에서 연결할 클립
+    public AudioClip weapon_pickup_sound;
 
 
 
@@ -207,6 +209,9 @@ public class Item_interaction : MonoBehaviour
                     PickUp_Weapon_Change();
                     weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
                     Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");
+                    AudioSource weapon_audioSource = GetComponent<AudioSource>();
+                    AudioSource weapon_AudioSource = GetComponent<AudioSource>();
+                    weapon_AudioSource.PlayOneShot(weapon_pickup_sound); // PlayOneShot으로 클립 재생
                     Destroy(item_PickUp.gameObject);
                 }
                 else if (item_PickUp.consumable != null) // 소비 아이템일 경우
@@ -227,8 +232,10 @@ public class Item_interaction : MonoBehaviour
                 }
                 else if (item_PickUp.coin != null) // 코인 아이템일 경우
                 {
+
                     Coin_Count();
                     Debug.Log(item_PickUp.coin.Coin_name + " 코인 획득함.");
+
                     ingameUI.Coin_Count_Text_Update();
                     Destroy(item_PickUp.gameObject);
                 }
@@ -526,8 +533,15 @@ public class Item_interaction : MonoBehaviour
                 ingameUI.ConsumableItem_Img_2.sprite = ingameUI.default_consumableItem.sprite;
                 currentConsumable2 = null; // 슬롯 2 포션 사용 후 null로 설정
             }
+            // 오디오 소스에서 효과음 재생
+            AudioSource audioSource = GetComponent<AudioSource>(); // 같은 게임 오브젝트에서 AudioSource 가져오기
+            if (audioSource != null) 
+            {
+                audioSource.Play();
+            }
 
             Debug.Log("포션 사용");
+            
         }
         else
         {
@@ -564,7 +578,12 @@ public class Item_interaction : MonoBehaviour
                 ingameUI.ConsumableItem_Img_2.sprite = ingameUI.default_consumableItem.sprite;
                 currentConsumable2 = null; // 슬롯 2 쉴드 사용 후 null로 설정
             }
-
+            // 오디오 소스에서 효과음 재생
+            AudioSource audioSource = GetComponent<AudioSource>(); // 같은 게임 오브젝트에서 AudioSource 가져오기
+            if (audioSource != null) 
+            {
+                audioSource.Play();
+            }
             Debug.Log("쉴드 사용");
         }
         else
@@ -697,12 +716,24 @@ public class Item_interaction : MonoBehaviour
 
     public void Coin_Count()
     {
-        //캐릭터 코인 변수 증가시켜주고
+        // 캐릭터 코인 변수 증가
         character.Coin_Count++;
-        Debug.Log("플레이어 코인 추가" + "현재 코인 갯수 : " + character.Coin_Count);
+
+        // AudioSource 가져오기
+        if (item_PickUp.coin != null)
+        {
+            AudioSource Coin_AudioSource = GetComponent<AudioSource>();
+            Coin_AudioSource.PlayOneShot(coinSoundClip); // PlayOneShot으로 클립 재생
+        }
+
+        else
+        {
+            Debug.LogError("item_PickUp.coin이 null입니다. 오브젝트를 확인하세요.");
+        }
+
+        Debug.Log("플레이어 코인 추가. 현재 코인 갯수: " + character.Coin_Count);
     }
 
-    
 
 
     private void UpdateBuffIcon()
