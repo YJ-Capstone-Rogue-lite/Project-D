@@ -96,6 +96,8 @@ public class Title_Manager : LoginData
             // play_inGame(); //없을 경우 씬 변경
         }
     }
+    public void SetMusicVolume(float volume) => SoundManager.SetMusicVolume(volume);
+    public void SetSFXVolume(float volume) => SoundManager.SetSFXVolume(volume);
 
     public void Click_loadGame()
     {
