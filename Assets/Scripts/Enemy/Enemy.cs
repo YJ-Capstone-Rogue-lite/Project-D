@@ -66,6 +66,11 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent onEnenyDie;
 
+    //몬스터 사운드
+    public AudioClip range_pig_attack;
+    public AudioClip range_pig_die;
+
+
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -341,6 +346,12 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject); // 적 오브젝트 제거
     }
 
+    public void Destory_range_pig_Sound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(range_pig_die);
+    }
+
     public void enemy_hpbar_update() // 체력 바 업데이트
     {
 
@@ -354,5 +365,7 @@ public class Enemy : MonoBehaviour
     public void Create_Bullet()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(range_pig_attack);
     }
 }

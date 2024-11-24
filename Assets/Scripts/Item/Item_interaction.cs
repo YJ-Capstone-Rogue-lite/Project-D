@@ -209,7 +209,6 @@ public class Item_interaction : MonoBehaviour
                     PickUp_Weapon_Change();
                     weaponSlotScript.ReceiveWeapon(item_PickUp.weapon);
                     Debug.Log(item_PickUp.weapon.name + " 획득 했습니다.");
-                    AudioSource weapon_audioSource = GetComponent<AudioSource>();
                     AudioSource weapon_AudioSource = GetComponent<AudioSource>();
                     weapon_AudioSource.PlayOneShot(weapon_pickup_sound); // PlayOneShot으로 클립 재생
                     Destroy(item_PickUp.gameObject);
