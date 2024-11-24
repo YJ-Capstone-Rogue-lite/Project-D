@@ -237,17 +237,21 @@ public class Weapon_Slot : MonoBehaviour
     {
 
         // slot1에 대한 재장전 중복 방지
-        if (slot == weaponSlot1 && !isReloadingSlot1)
+        if (slot == weaponSlot1 && !isReloadingSlot1 && weaponSlot1.GetComponent<Fire_Test>().weapon.weaponType != Weapon.WeaponType.None)
         {
             StartCoroutine(ReloadCoroutine(slot, 1));
-
         }
         // slot2에 대한 재장전 중복 방지
-        else if (slot == weaponSlot2 && !isReloadingSlot2)
+        else if (slot == weaponSlot2 && !isReloadingSlot2 && weaponSlot2.GetComponent<Fire_Test>().weapon.weaponType != Weapon.WeaponType.None)
         {
             StartCoroutine(ReloadCoroutine(slot, 2));
         }
-
+        else
+        {
+            // 이미 재장전 중인 경우 메서드를 종료
+            Debug.Log("이미 재장전 중입니다: " + slot.name);
+            return;
+        }
         reloadSpeed = activeWeaponSlot.GetComponent<Fire_Test>().weapon.reload_time;
         Reload_AudioClip = activeWeaponSlot.GetComponent<Fire_Test>().weapon.AudioClip;
         animSpeed = 1 / reloadSpeed;

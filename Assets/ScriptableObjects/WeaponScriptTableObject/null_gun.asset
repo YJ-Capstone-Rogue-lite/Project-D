@@ -19,10 +19,11 @@ MonoBehaviour:
   name: "\uBE48\uCD1D"
   sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   Icon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  AudioClip: {fileID: 0}
   bullet_range: 1
   bullet_velocity: 1
   Fire_rate: 1
-  reload_time: 5
+  reload_time: 0
   magazine_capacity: 0
   backup_magazine_capacity: 0
   Damage: 0

@@ -16,7 +16,7 @@ public class NPC_Char : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerInRange && !isChatting && Input.GetKeyDown(KeyCode.E) && chatManager != null)
+        if (isPlayerInRange && !isChatting && Input.GetKeyDown(KeyCode.F) && chatManager != null)
         {
             chatManager.StartChat(this); // 대화 시작
             isChatting = true;

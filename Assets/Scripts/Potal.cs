@@ -49,7 +49,7 @@ public class Potal : RoomObjectTrigger
 
     private void Update()
     {
-        if (isPlayerColliding && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerColliding && Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("넘어간다~");
             OnWarp?.Invoke();
