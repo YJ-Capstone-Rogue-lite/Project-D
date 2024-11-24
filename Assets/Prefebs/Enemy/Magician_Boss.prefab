@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 3190513805663615319}
   - component: {fileID: 1464800805216949786}
+  - component: {fileID: 4280437921974509217}
   m_Layer: 12
   m_Name: Magician_Boss
   m_TagString: Boss
@@ -384,7 +385,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -632554699
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 249836150, guid: 4cbf50aafc6b28144b9119be766fc26b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -520,6 +521,9 @@ MonoBehaviour:
   enemy_hp_bar: {fileID: 8125213795990888417}
   item_Drop: {fileID: 0}
   enemyTag: {fileID: 0}
+  onEnenyDie:
+    m_PersistentCalls:
+      m_Calls: []
   setTP: 0
   attackCount: 0
   castingTime: 3
@@ -537,6 +541,21 @@ MonoBehaviour:
   radius: 4
   fireballSpeed: 9
   spawnDelay: 0.2
+--- !u!114 &4280437921974509217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee74ce63901b6f844a0ab53cddecf6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterIndicator: {fileID: 0}
+  indicatorObj: {fileID: 7530173701283539612, guid: f62fe9062d51e3b4fb92ca352028f683, type: 3}
+  Indicator_generate: {fileID: 0}
 --- !u!1001 &7359668736518700242
 PrefabInstance:
   m_ObjectHideFlags: 0

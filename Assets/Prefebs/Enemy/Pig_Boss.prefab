@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 7642830349020207972}
   - component: {fileID: 7101870726016136037}
   - component: {fileID: 6705048949898551343}
+  - component: {fileID: 1510394862070867822}
   m_Layer: 12
   m_Name: Pig_Boss
   m_TagString: Boss
@@ -497,7 +498,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -632554699
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 453745229, guid: 37041fe45a2d3bd4f91d1851bec7105d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -571,6 +572,9 @@ MonoBehaviour:
   enemy_hp_bar: {fileID: 8125213795990888417}
   item_Drop: {fileID: 7101870726016136037}
   enemyTag: {fileID: 6173313241963185773}
+  onEnenyDie:
+    m_PersistentCalls:
+      m_Calls: []
   boss_Skil_count: 0
   castingTime: 2
   casting_Bar: {fileID: 5783211037973561508}
@@ -658,6 +662,21 @@ CircleCollider2D:
   m_Offset: {x: 0.15, y: -1.23}
   serializedVersion: 2
   m_Radius: 1.24
+--- !u!114 &1510394862070867822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173313241963185773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee74ce63901b6f844a0ab53cddecf6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterIndicator: {fileID: 0}
+  indicatorObj: {fileID: 7530173701283539612, guid: f62fe9062d51e3b4fb92ca352028f683, type: 3}
+  Indicator_generate: {fileID: 0}
 --- !u!1001 &4881963676710659926
 PrefabInstance:
   m_ObjectHideFlags: 0
