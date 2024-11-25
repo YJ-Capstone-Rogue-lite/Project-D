@@ -78,7 +78,8 @@ public class Item_interaction : MonoBehaviour
             // actionText가 null이면 찾으려 시도
             if (actionText == null)
             {
-                GameObject textObject = GameObject.Find("actionText"); // 쓰지마십쇼
+                // GameObject textObject = GameObject.Find("actionText"); // 쓰지마십쇼
+                GameObject textObject = ingameUI.action_text;
                 if (textObject != null)
                 {
                     actionText = textObject.GetComponent<TMP_Text>(); // 적절한 컴포넌트 타입을 사용해야 함
@@ -335,7 +336,7 @@ public class Item_interaction : MonoBehaviour
 
     private void Open_box()
     {
-        if (Input.GetKeyDown(KeyCode.F) && pickupActivated)// E를 누르고 픽업이 활성화될 때
+        if (Input.GetKeyDown(KeyCode.F) && pickupActivated)// F를 누르고 픽업이 활성화될 때
         {
             if (currentBox != null) // 상자일 경우
             {
@@ -590,6 +591,12 @@ public class Item_interaction : MonoBehaviour
             {
                 boxAnimator.SetBool("State", true); // 애니메이션 실행
                 Debug.Log("상자를 열었습니다.");
+                // 오디오 재생
+                AudioSource boxAudioSource = currentBox.GetComponent<AudioSource>();
+                if (boxAudioSource != null)
+                {
+                    boxAudioSource.Play(); // 오디오 클립 재생
+                }
 
                 StartCoroutine(DelayedItemDrop());
             }

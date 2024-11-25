@@ -107,24 +107,30 @@ public class Enemy : MonoBehaviour
         // Debug.DrawLine(enemy_rb.position, endPosition, Color.red); // Enemy가 움직일 목표지점 표시
 
         // Enemy_die(); // 적의 사망 체크
-        // Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
-        // RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall")); // 오더레이어 업데이트
-        // for (int i = 0; i < hit_ray.Length; i++)
-        // {
-        //     if (hit_ray[i].collider != null && !hit_ray[i].collider.isTrigger)
-        //     {
-        //         // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
-        //         spriteRenderer.sortingOrder = -1;
-        //         spriteRenderer.sortingLayerName = "Wall";
-        //     }
-        //     // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
-        //     else
-        //     {
-        //         // 원래 sortingOrder 값을 복원합니다.
-        //         spriteRenderer.sortingOrder = originalSortingOrder;
-        //         spriteRenderer.sortingLayerName = "Enemy";
-        //     }
-        // }
+        Debug.DrawRay(enemy_rb.position, Vector2.down, new Color(1, 0, 0));
+        RaycastHit2D[] hit_ray = Physics2D.RaycastAll(enemy_rb.position, Vector2.down, 1, LayerMask.GetMask("Wall", "Object")); // 오더레이어 업데이트
+        for (int i = 0; i < hit_ray.Length; i++)
+        {
+            if (hit_ray[i].collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                // 레이캐스트가 "Wall" 레이어에 닿은 경우 "닿음" 메시지를 출력하고 sortingOrder를 0으로 설정합니다.
+                spriteRenderer.sortingOrder = -1;
+                spriteRenderer.sortingLayerName = "Wall";
+            }
+            else if (hit_ray[i].collider.gameObject.layer == LayerMask.NameToLayer("Object"))
+            {
+                // 레이캐스트가 "Object" 레이어에 닿은 경우
+                spriteRenderer.sortingOrder = -1;
+                spriteRenderer.sortingLayerName = "Object";
+            }
+            // 레이캐스트가 아무 콜라이더에도 닿지 않은 경우
+            else
+            {
+                // 원래 sortingOrder 값을 복원합니다.
+                spriteRenderer.sortingOrder = originalSortingOrder;
+                spriteRenderer.sortingLayerName = "Enemy";
+            }
+        }
         // if(character == null)
         // {
         //     character = FindAnyObjectByType<Character>();

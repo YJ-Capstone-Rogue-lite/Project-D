@@ -1,0 +1,335 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9188894835984085984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3195d4dea04c0744aadaef31853ab61, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: bd9b426b6e945a3429ff6c58275c2007
+  positon: {x: 518.55707, y: 343.6252}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  children:
+  - {fileID: -8449135273208574097}
+  - {fileID: -6014449236711760575}
+  - {fileID: 5893703594077205398}
+  - {fileID: 7329650980480891473}
+--- !u!114 &-8449135273208574097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe9224ad75c5a84c9f2960ee5be2173, type: 3}
+  m_Name: MagicianIdle
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 2a24bef11710bf34981aae61cd412acf
+  positon: {x: 239.40884, y: 522.10223}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+--- !u!114 &-6014449236711760575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: c3976d3f3ffba3049b91258596b00878
+  positon: {x: 463.32248, y: 517}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  waitTime: 0
+--- !u!114 &-5980733586388064956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b786448c04870e45bbf03470ad9b1ac, type: 3}
+  m_Name: FireBall
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 0}
+  fireballCount: 8
+  radius: 5
+  fireballSpeed: 0
+  spawnDelay: 0.5
+--- !u!114 &-1062457263043410465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af388ea55fb26464280b19dca27ebe9c, type: 3}
+  m_Name: Die
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: eed52a33d3b29d04bb6323d20d8dcbb1
+  positon: {x: -278.24704, y: 367.50195}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+--- !u!114 &-240136372221964476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4b973c34db69c408370d7d0e2d80a1, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 2
+  isStarted: 0
+  guid: caf59737bb24d0646a29b75fa9a2c617
+  positon: {x: -2.7786438, y: 93.45957}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  children:
+  - {fileID: 3472282179532847250}
+  - {fileID: 1705305740611652945}
+  - {fileID: 8415800209628027842}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a54fa91364e07b4aaf8bd939bae61e2, type: 3}
+  m_Name: SlimeBoss BT
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 1303740912837353020}
+  nodeState: 0
+  nodes:
+  - {fileID: 1303740912837353020}
+  - {fileID: -240136372221964476}
+  - {fileID: 3472282179532847250}
+  - {fileID: 1705305740611652945}
+  - {fileID: 8415800209628027842}
+  - {fileID: -1062457263043410465}
+  - {fileID: 1574534796371870472}
+  - {fileID: -8449135273208574097}
+  - {fileID: -6014449236711760575}
+  - {fileID: 5893703594077205398}
+  - {fileID: 7329650980480891473}
+  - {fileID: -9188894835984085984}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 0
+  viewPos: {x: 95, y: 71}
+  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+--- !u!114 &1303740912837353020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517d2316710431e4ea0746739a2a71a9, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 2
+  isStarted: 0
+  guid: 90e1f3295a94cee458f7093f29ba6e71
+  positon: {x: -1.2510194, y: -37.00002}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  child: {fileID: -240136372221964476}
+--- !u!114 &1574534796371870472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe9224ad75c5a84c9f2960ee5be2173, type: 3}
+  m_Name: MagicianIdle
+  m_EditorClassIdentifier: 
+  state: 2
+  isStarted: 0
+  guid: fd2300f5fb57076489a893567cb0504b
+  positon: {x: 2.522403, y: 367.17087}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+--- !u!114 &1705305740611652945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3948d447dd93b4991279cea5f12aa9, type: 3}
+  m_Name: StateCheck
+  m_EditorClassIdentifier: 
+  state: 2
+  isStarted: 0
+  guid: 8b89dceba35d0f64aa6263988f70fe84
+  positon: {x: -7.660056, y: 223}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  child: {fileID: 1574534796371870472}
+  targetState: 0
+--- !u!114 &3472282179532847250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3948d447dd93b4991279cea5f12aa9, type: 3}
+  m_Name: StateCheck
+  m_EditorClassIdentifier: 
+  state: 1
+  isStarted: 0
+  guid: e17f8cb8893fbc144b9172c3001e97f3
+  positon: {x: -286.5337, y: 225.97723}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  child: {fileID: -1062457263043410465}
+  targetState: 2
+--- !u!114 &5893703594077205398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd55777f44ebe3b46bb49fdc9bb398c1, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 26afd5a8229d7f6479a24870404de0b9
+  positon: {x: 649.7649, y: 515.75696}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+--- !u!114 &7329650980480891473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18010df103739f34fa8a9e484853ec76, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 777e61c35a7cf7c48b126ea6e2ab3f67
+  positon: {x: 834.02515, y: 517.48206}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  waitTime: 0
+--- !u!114 &8415800209628027842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3948d447dd93b4991279cea5f12aa9, type: 3}
+  m_Name: StateCheck
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  guid: 9d48490d13547ce47999f2e306b75d8c
+  positon: {x: 519.00006, y: 220.33998}
+  blackboard:
+    thisUnit: {fileID: 0}
+    target: {fileID: 0}
+    playableDirector: {fileID: 0}
+    state: 1
+  description: 
+  child: {fileID: -9188894835984085984}
+  targetState: 1

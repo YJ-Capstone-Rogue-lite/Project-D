@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3042768072393564539}
   - component: {fileID: 3130439549480012488}
   - component: {fileID: 219581706284057917}
+  - component: {fileID: 2936870643380892108}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -632554699
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 17480013, guid: db09261748df9cf49a7315873d63814d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -162,6 +163,9 @@ MonoBehaviour:
   enemy_hp_bar: {fileID: 8658236728831378350}
   item_Drop: {fileID: 3740784252326495083}
   enemyTag: {fileID: 1039019153509472436}
+  onEnenyDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &1408360845080943993
 Animator:
   serializedVersion: 5
@@ -374,6 +378,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: a5ddf8b699d58614e8a73aef34cc30dd, type: 3}
   audioSource: {fileID: 0}
+--- !u!114 &2936870643380892108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039019153509472436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee74ce63901b6f844a0ab53cddecf6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterIndicator: {fileID: 0}
+  indicatorObj: {fileID: 7530173701283539612, guid: f62fe9062d51e3b4fb92ca352028f683, type: 3}
+  indicatorCanvas: {fileID: 0}
 --- !u!1 &2028621583532895664
 GameObject:
   m_ObjectHideFlags: 0

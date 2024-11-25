@@ -44,6 +44,8 @@ public class IngameUI : MonoBehaviour
     [Header("코인 카운트")]
     public TMP_Text Coin_Count_Text;
 
+    [Header("현재 활성화된 총의 총알 카운트")]
+    public TMP_Text activate_Magazine;
 
     [Header("기타 불 값들")]
     public bool MainWeapon = false; // true면 MainWeapon false면 SubWeapon
@@ -290,6 +292,10 @@ public class IngameUI : MonoBehaviour
         {
             UpdateNeedCoin();
         }
+
+        activate_Magazine_Update();
+
+
     }
     public void IngameTime(bool ingameTime) //false면 멈춤 true면 재생
     {
@@ -503,6 +509,7 @@ public class IngameUI : MonoBehaviour
 
     public void Close_BuffBG()
     {
+        SoundManager.PlaySFX(buttonSound);
         buff_BG.SetActive(false);  // BuffBG를 비활성화
         IngameTime(true);
     }
@@ -512,6 +519,7 @@ public class IngameUI : MonoBehaviour
     public void Atk_UpgradeBtn()
     {
         int needcoin = buffsystem.ATK_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
@@ -524,6 +532,7 @@ public class IngameUI : MonoBehaviour
     public void HP_UpgradeBtn()
     {
         int needcoin = buffsystem.HP_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
@@ -537,7 +546,9 @@ public class IngameUI : MonoBehaviour
 
     public void Movement_UpgradeBtn()
     {
+
         int needcoin = buffsystem.MoveMent_UPgrade();
+        SoundManager.PlaySFX(buttonSound);
         if (character.Coin_Count >= needcoin)
         {
             character.Coin_Count -= needcoin;
@@ -555,4 +566,49 @@ public class IngameUI : MonoBehaviour
         hpBuff_stacktext.text = "+" + character.max_hp_UPStack.ToString() + " 강화";
         movementBuff_stacktext.text = "+" + character.movement_SpeedUpStack.ToString() + " 강화";
     }
+
+
+    public void activate_Magazine_Update()
+    {
+        // Weapon_Slot 싱글톤 인스턴스의 활성화된 슬롯을 가져옵니다.
+        GameObject activeSlot = Weapon_Slot.activeWeaponSlot;
+
+        if (activeSlot != null)
+        {
+            if (activeSlot == Weapon_Slot.weaponSlot1)
+            {
+                float currentMagazineCapacity = Weapon_Slot.magazineCapacitySlot1;
+                activate_Magazine.text = currentMagazineCapacity.ToString() + "/" + Weapon_Slot.activeWeaponSlot_Component.weapon.backup_magazine_capacity;
+
+                // 텍스트 변경 후 UI 강제 갱신
+                activate_Magazine.ForceMeshUpdate();
+
+            }
+            else if (activeSlot == Weapon_Slot.weaponSlot2)
+            {
+                float currentMagazineCapacity = Weapon_Slot.magazineCapacitySlot2;
+                activate_Magazine.text = currentMagazineCapacity.ToString() + "/" + Weapon_Slot.weapon_slot2_weapon.weapon.backup_magazine_capacity;
+                ;
+
+                // 텍스트 변경 후 UI 강제 갱신
+                activate_Magazine.ForceMeshUpdate();
+
+
+            }
+            else
+            {
+                Debug.LogError("활성화된 슬롯을 확인할 수 없습니다.");
+                activate_Magazine.text = "N/A";
+                activate_Magazine.ForceMeshUpdate();
+            }
+        }
+        else
+        {
+            Debug.LogError("활성화된 슬롯이 없습니다.");
+            activate_Magazine.text = "N/A";
+            activate_Magazine.ForceMeshUpdate();
+        }
+    }
+
+
 }

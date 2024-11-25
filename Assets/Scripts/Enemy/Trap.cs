@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-   [SerializeField] private bool isActive = false; // 트랩의 활성화 여부를 나타내는 변수
-
-    private Animator animator; // 트랩에 연결된 애니메이터 컴포넌트
+      private Animator animator; // 트랩에 연결된 애니메이터 컴포넌트
     [SerializeField] private BoxCollider2D damageCollider; // 데미지를 줄 콜라이더
     [SerializeField] private GameObject hit_radius;
 
@@ -31,7 +29,7 @@ public class Trap : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("Active", true); // "Active" 애니메이션 파라미터를 true로 설정
-               // ActivateTrap();
+               
             }
         }
     }
@@ -59,18 +57,5 @@ public class Trap : MonoBehaviour
         hit_radius.SetActive(false);
     }
 
-    //// 트랩을 활성화하는 메서드
-    //public void ActivateTrap()
-    //{
-    //    isActive = true; // 트랩을 활성화 상태로 설정
-
-    //}
-
-    //// 트랩을 비활성화하는 메서드
-    //public void DeactivateTrap()
-    //{
-    //    isActive = false; // 트랩을 비활성화 상태로 설정
-
-    //    //gameObject.GetComponent<BoxCollider2D>().enabled = false; // 트랩의 충돌체를 비활성화
-    //}
+   
 }

@@ -72,6 +72,8 @@ public class Weapon_Slot : MonoBehaviour
             Reload(activeWeaponSlot);
             Debug.Log("R 키 누름" + activeWeaponSlot.name);
             //리로드 스크립트 실행시 리로드 애니메이션 작동
+            IngameUI.single.activate_Magazine_Update();
+
         }
     }
 
