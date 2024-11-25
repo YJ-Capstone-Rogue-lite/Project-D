@@ -66,6 +66,25 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent onEnenyDie;
 
+    [Header("몬스터 사운드들")]
+    private AudioSource audioSource;
+    //원거리 돼지 사운드
+    public AudioClip range_pig_attack;
+    public AudioClip range_pig_die;
+
+    //근거리 보스 돼지 사운드
+    public AudioClip melee_boss_attack;
+    public AudioClip melee_boss_die;
+    public AudioClip melee_boss_charging;
+    public AudioClip melee_boss_charge_attack;
+
+    //마법 보스 돼지 사운드
+    public AudioClip magic_boss_metor;
+    public AudioClip magic_boss_die;
+    public AudioClip magic_boss_teleport_in;
+    public AudioClip magic_boss_teleport_out;
+    public AudioClip magic_boss_fire_ball_charging;
+    public AudioClip magic_boss_fire_ball_attack;
     private void Start()
     {
         enemy_rb = GetComponent<Rigidbody2D>();
@@ -87,6 +106,8 @@ public class Enemy : MonoBehaviour
         behaviorTree = behaviorTree.Clone();
         blackboard = behaviorTree.blackboard;
         ChooseNewEndPoint();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     protected virtual void Update()
@@ -347,6 +368,12 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject); // 적 오브젝트 제거
     }
 
+    public void Destory_range_pig_Sound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(range_pig_die);
+    }
+
     public void enemy_hpbar_update() // 체력 바 업데이트
     {
 
@@ -357,8 +384,56 @@ public class Enemy : MonoBehaviour
             enemy_hp_bar.SetActive(false);
         }
     }
+    //원거리 몬스터
     public void Create_Bullet()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        audioSource.PlayOneShot(range_pig_attack);
+    }
+    
+    //근거리 보스 몬스터 사운드들
+    public void melee_pig_boss_attack_sound()
+    {
+        audioSource.PlayOneShot(melee_boss_attack);
+    }
+    public void melee_pig_boss_die_sound()
+    {
+        audioSource.PlayOneShot(melee_boss_die);
+    }
+    public void melee_pig_boss_charging_sound()
+    {
+        audioSource.PlayOneShot(melee_boss_charging);
+    }
+    public void melee_pig_boss_charge_attack_sound()
+    {
+        audioSource.PlayOneShot(melee_boss_charge_attack);
+    }
+
+    //마법 보스
+    public void magic_pig_boss_metor_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_metor);
+    }
+    public void magic_pig_boss_die_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_die);
+    }
+    public void magic_pig_boss_teleport_in_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_teleport_in);
+    }
+    public void magic_pig_boss_teleport_out_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_teleport_out);
+    }
+    public void magic_pig_boss_teleport_fire_ball_charging_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_fire_ball_charging);
+    }
+    public void magic_pig_boss_teleport_fire_ball_attakck_sound()
+    {
+        audioSource.PlayOneShot(magic_boss_fire_ball_attack);
     }
 }
+
+
