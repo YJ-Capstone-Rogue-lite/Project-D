@@ -675,6 +675,18 @@ MonoBehaviour:
   onEnenyDie:
     m_PersistentCalls:
       m_Calls: []
+  range_pig_attack: {fileID: 0}
+  range_pig_die: {fileID: 0}
+  melee_boss_attack: {fileID: 0}
+  melee_boss_die: {fileID: 0}
+  melee_boss_charging: {fileID: 0}
+  melee_boss_charge_attack: {fileID: 0}
+  magic_boss_metor: {fileID: 0}
+  magic_boss_die: {fileID: 0}
+  magic_boss_teleport_in: {fileID: 0}
+  magic_boss_teleport_out: {fileID: 0}
+  magic_boss_fire_ball_charging: {fileID: 0}
+  magic_boss_fire_ball_attack: {fileID: 0}
   castingTime: 1.5
   magictype: 0100000002000000
   posChange: 0

@@ -132,7 +132,7 @@ public class Boss_Magician : Enemy
         attackCount = 1;
         isCasting = false;
         casting_Bar.SetActive(false);
-        enemy_animator.SetTrigger("Attack");
+
         foreach (GameObject fireball in fireballs)
         {
             if (fireball != null)
@@ -140,6 +140,11 @@ public class Boss_Magician : Enemy
                 Destroy(fireball, 3f);
             }
         }
+    }
+    public void Go_Idle()
+    {
+        enemy_animator.ResetTrigger("Attack");
+        enemy_animator.SetTrigger("Idle");
     }
 
     private void FireAllBalls(List<GameObject> fireballs)
@@ -209,7 +214,6 @@ public class Boss_Magician : Enemy
         attackCount = 1;
         isCasting = false;
         casting_Bar.SetActive(false);
-        enemy_animator.SetTrigger("Attack");
     }
 
     public void Boss_clear_check()

@@ -107,7 +107,7 @@ public class Boss_SlimeKing : Enemy
         {
             if (slimeball != null)
             {
-                Destroy(slimeball, 3f);
+                Destroy(slimeball, 2.5f);
             }
         }
     }
@@ -136,8 +136,8 @@ public class Boss_SlimeKing : Enemy
     }
     private IEnumerator TrapCreate()
     {
-        CreateTrap();
         yield return new WaitForSeconds(castingTime);
+        CreateTrap();
         EndCasting();
     }
     private void CreateTrap()

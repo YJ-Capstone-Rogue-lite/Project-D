@@ -130,8 +130,8 @@ MonoBehaviour:
     target: {fileID: 0}
     playableDirector: {fileID: 0}
     state: 0
-  viewPos: {x: -84, y: -101}
-  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
+  viewPos: {x: 514, y: 224}
+  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
 --- !u!114 &1303740912837353020
 MonoBehaviour:
   m_ObjectHideFlags: 0
