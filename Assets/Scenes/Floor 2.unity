@@ -6764,7 +6764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1c82d143db31f478c79d68846c8024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitRoomContainer: {fileID: 0}
+  InitRoomContainer: {fileID: 1686493798}
   player: {fileID: 0}
   floorTiles:
   - {fileID: 11400000, guid: 9f665f8de11dbca41be5e142bf0af8f4, type: 2}
